@@ -8,6 +8,7 @@ import java.nio.file.Path;
 
 import static ca.kieve.formatter.FormatterTestUtil.formatJava;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 /**
  * Tests for Eclipse JDT Formatter — Indentation & Tabs section.
@@ -347,6 +348,134 @@ class IndentationTabsTest {
                 """;
 
         assertEquals(expected, formatJava(testProjectDir, input));
+    }
+
+    // indent_switchstatements_compare_to_cases
+    @Test
+    void indentSwitchStatementsCompareToCases() throws IOException {
+        // language=Java
+        String input = """
+                public class FormatterTest {
+                    void method(int x) {
+                        switch (x) {
+                        case 1:
+                        System.out.println("one");
+                        break;
+                        default:
+                        System.out.println("other");
+                        break;
+                        }
+                    }
+                }
+                """;
+
+        // language=Java
+        String expected = """
+                public class FormatterTest {
+                    void method(int x) {
+                        switch (x) {
+                        case 1:
+                            System.out.println("one");
+                            break;
+                        default:
+                            System.out.println("other");
+                            break;
+                        }
+                    }
+                }
+                """;
+
+        assertEquals(expected, formatJava(testProjectDir, input));
+    }
+
+    // indent_breaks_compare_to_cases
+    @Test
+    void indentBreaksCompareToCases() throws IOException {
+        // language=Java
+        String input = """
+                public class FormatterTest {
+                    void method(int x) {
+                        switch (x) {
+                        case 1:
+                            System.out.println("one");
+                        break;
+                        case 2:
+                            System.out.println("two");
+                        break;
+                        default:
+                            System.out.println("other");
+                        break;
+                        }
+                    }
+                }
+                """;
+
+        // language=Java
+        String expected = """
+                public class FormatterTest {
+                    void method(int x) {
+                        switch (x) {
+                        case 1:
+                            System.out.println("one");
+                            break;
+                        case 2:
+                            System.out.println("two");
+                            break;
+                        default:
+                            System.out.println("other");
+                            break;
+                        }
+                    }
+                }
+                """;
+
+        assertEquals(expected, formatJava(testProjectDir, input));
+    }
+
+    // indent_empty_lines
+    @Test
+    void indentEmptyLinesDoesNotIndentBlankLines() throws IOException {
+        // language=Java — \s preserves trailing spaces on blank lines
+        String input = """
+                public class FormatterTest {
+                    int fieldOne;
+                \s\s\s\s
+                    int fieldTwo;
+                \s\s\s\s
+                    void method() {
+                    }
+                }
+                """;
+
+        // language=Java
+        String expected = """
+                public class FormatterTest {
+                    int fieldOne;
+
+                    int fieldTwo;
+
+                    void method() {
+                    }
+                }
+                """;
+
+        assertEquals(expected, formatJava(testProjectDir, input));
+    }
+
+    // use_tabs_only_for_leading_indentation (excluded — N/A with space indentation)
+    @Test
+    void useTabsOnlyForLeadingIndentationIsNotApplicableWithSpaces() throws IOException {
+        // language=Java
+        String input = """
+                public class FormatterTest {
+                \tvoid method() {
+                \t\tSystem.out.println("hello");
+                \t}
+                }
+                """;
+
+        String result = formatJava(testProjectDir, input);
+        assertFalse(result.contains("\t"), "Output should contain no tab characters with space indentation");
     }
 
     // tabulation.size

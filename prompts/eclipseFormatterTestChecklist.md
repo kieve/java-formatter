@@ -23,10 +23,10 @@ All setting IDs are relative to `org.eclipse.jdt.core.formatter.` unless otherwi
 - [x] `indent_statements_compare_to_block` — indent statements inside blocks
 - [x] `indent_statements_compare_to_body` — indent statements inside method body
 - [x] `indent_switchstatements_compare_to_switch` — indent case labels relative to switch
-- [ ] `indent_switchstatements_compare_to_cases` — indent statements relative to case
-- [ ] `indent_breaks_compare_to_cases` — indent break/yield relative to case
-- [ ] `indent_empty_lines` — whether to indent blank lines
-- [ ] `use_tabs_only_for_leading_indentation` — tabs only for leading indent, spaces for alignment *(excluded — N/A with space indentation)*
+- [x] `indent_switchstatements_compare_to_cases` — indent statements relative to case
+- [x] `indent_breaks_compare_to_cases` — indent break/yield relative to case
+- [x] `indent_empty_lines` — whether to indent blank lines
+- [x] `use_tabs_only_for_leading_indentation` — tabs only for leading indent, spaces for alignment *(excluded — N/A with space indentation)*
 
 ---
 

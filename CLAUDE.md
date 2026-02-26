@@ -106,6 +106,22 @@ becomes `<setting id="org.eclipse.jdt.core.formatter.tabulation.char" value="tab
 3. Add unit tests in `ca.kieve.formatter.rules` with input/expected string pairs
 4. Optionally add fixture files in `src/test/resources/fixtures/` for larger test cases
 
+## Testing Tips
+
+Java text blocks strip trailing whitespace from each line at compile time. When a test needs
+blank lines that contain whitespace (e.g., to test `indent_empty_lines`), use the `\s` escape
+sequence to preserve trailing spaces:
+
+```java
+String input = """
+        public class Foo {
+        \s\s\s\s
+        }
+        """;
+```
+
+The `\s` escape (Java 15+) produces a literal space that survives text block processing.
+
 ## Tech Stack
 
 - **Java 25**
