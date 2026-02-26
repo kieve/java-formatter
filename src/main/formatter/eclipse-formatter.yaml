@@ -5,10 +5,23 @@ org:
         formatter:
           # Indentation
           tabulation:
-            char: tab
+            char: space
             size: 4
           indentation:
             size: 4
+          continuation_indentation: 1
+          continuation_indentation_for_array_initializer: 1
+          indent_body_declarations_compare_to_type_header: true
+          indent_body_declarations_compare_to_enum_declaration_header: true
+          indent_body_declarations_compare_to_enum_constant_header: true
+          indent_body_declarations_compare_to_annotation_declaration_header: true
+          indent_body_declarations_compare_to_record_header: true
+          indent_statements_compare_to_block: true
+          indent_statements_compare_to_body: true
+          indent_switchstatements_compare_to_switch: false
+          indent_switchstatements_compare_to_cases: true
+          indent_breaks_compare_to_cases: true
+          indent_empty_lines: false
 
           # Line width
           lineSplit: 120

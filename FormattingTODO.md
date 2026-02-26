@@ -8,23 +8,23 @@ All setting IDs are relative to `org.eclipse.jdt.core.formatter.` unless otherwi
 
 ## Indentation & Tabs
 
-- [ ] `tabulation.char` — tab vs space vs mixed
-- [ ] `tabulation.size` — tab display width
-- [ ] `indentation.size` — indentation width
-- [ ] `continuation_indentation` — extra indent for continuation lines (default: `2` units)
-- [ ] `continuation_indentation_for_array_initializer` — continuation indent for array initializers (default: `2`)
-- [ ] `indent_body_declarations_compare_to_type_header` — indent class body relative to class decl
-- [ ] `indent_body_declarations_compare_to_enum_declaration_header` — indent enum body
-- [ ] `indent_body_declarations_compare_to_enum_constant_header` — indent enum constant body
-- [ ] `indent_body_declarations_compare_to_annotation_declaration_header` — indent annotation body
-- [ ] `indent_body_declarations_compare_to_record_header` — indent record body
-- [ ] `indent_statements_compare_to_block` — indent statements inside blocks
-- [ ] `indent_statements_compare_to_body` — indent statements inside method body
-- [ ] `indent_switchstatements_compare_to_switch` — indent case labels relative to switch
-- [ ] `indent_switchstatements_compare_to_cases` — indent statements relative to case
-- [ ] `indent_breaks_compare_to_cases` — indent break/yield relative to case
-- [ ] `indent_empty_lines` — whether to indent blank lines
-- [ ] `use_tabs_only_for_leading_indentation` — tabs only for leading indent, spaces for alignment
+- [x] `tabulation.char` — tab vs space vs mixed
+- [x] `tabulation.size` — tab display width
+- [x] `indentation.size` — indentation width
+- [x] `continuation_indentation` — extra indent for continuation lines (default: `2` units)
+- [x] `continuation_indentation_for_array_initializer` — continuation indent for array initializers (default: `2`)
+- [x] `indent_body_declarations_compare_to_type_header` — indent class body relative to class decl
+- [x] `indent_body_declarations_compare_to_enum_declaration_header` — indent enum body
+- [x] `indent_body_declarations_compare_to_enum_constant_header` — indent enum constant body
+- [x] `indent_body_declarations_compare_to_annotation_declaration_header` — indent annotation body
+- [x] `indent_body_declarations_compare_to_record_header` — indent record body
+- [x] `indent_statements_compare_to_block` — indent statements inside blocks
+- [x] `indent_statements_compare_to_body` — indent statements inside method body
+- [x] `indent_switchstatements_compare_to_switch` — indent case labels relative to switch
+- [x] `indent_switchstatements_compare_to_cases` — indent statements relative to case
+- [x] `indent_breaks_compare_to_cases` — indent break/yield relative to case
+- [x] `indent_empty_lines` — whether to indent blank lines
+- [x] `use_tabs_only_for_leading_indentation` — tabs only for leading indent, spaces for alignment *(excluded — N/A with space indentation)*
 
 ---
 
