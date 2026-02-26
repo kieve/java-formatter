@@ -89,7 +89,8 @@ class IndentationTabsTest {
         // language=Java
         String expected = """
                 public class FormatterTest {
-                    void method(int parameterOne,
+                    void method(
+                        int parameterOne,
                         int parameterTwo,
                         int parameterThree,
                         int parameterFour,
