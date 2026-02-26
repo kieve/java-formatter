@@ -6,3 +6,8 @@ We're interactively updating eclipse formatter settings. Prompt with examples fo
 We'll go through this process for one section for now.
 
 This TODO list is the source of truth for what is complete or not. If a setting exists inside the YAML, but the TODO list says it's not done, that means the setting isn't final and we need to prompt for it
+Also note: Sometimes your examples with get cut off by the interactive prompt. So at the end of the examples put two blank lines like
+```
+
+/blank
+```
