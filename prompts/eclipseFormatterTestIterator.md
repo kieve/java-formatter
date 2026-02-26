@@ -1,7 +1,9 @@
 Let's go through the next incomplete section of @prompts/eclipseFormatterTestChecklist.md
 We're only doing one test. We stop after the test is created.
 
-We're implementing tests for each of these settings, to make sure they're applied corectly.
+Each section gets its own file.
+
+We're implementing tests for each of these settings, to make sure they're applied correctly.
 @src/test/java/ca/kieve/formatter/eclipse/IndentationTabsTest.java has an example with the test
 method `tabulationCharConvertsTabsToSpaces`
 
