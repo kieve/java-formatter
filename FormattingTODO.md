@@ -352,14 +352,14 @@ Alignment values are bitmask integers. Key bits: `0` = no wrap, `16` = wrap wher
 
 ## Whitespace — Angle Brackets (Generics)
 
-- [ ] `insert_space_before_opening_angle_bracket_in_type_arguments`
-- [ ] `insert_space_after_opening_angle_bracket_in_type_arguments`
-- [ ] `insert_space_before_closing_angle_bracket_in_type_arguments`
-- [ ] `insert_space_after_closing_angle_bracket_in_type_arguments`
-- [ ] `insert_space_before_opening_angle_bracket_in_type_parameters`
-- [ ] `insert_space_after_opening_angle_bracket_in_type_parameters`
-- [ ] `insert_space_before_closing_angle_bracket_in_type_parameters`
-- [ ] `insert_space_after_closing_angle_bracket_in_type_parameters`
+- [x] `insert_space_before_opening_angle_bracket_in_type_arguments`
+- [x] `insert_space_after_opening_angle_bracket_in_type_arguments`
+- [x] `insert_space_before_closing_angle_bracket_in_type_arguments`
+- [x] `insert_space_after_closing_angle_bracket_in_type_arguments`
+- [x] `insert_space_before_opening_angle_bracket_in_type_parameters`
+- [x] `insert_space_after_opening_angle_bracket_in_type_parameters`
+- [x] `insert_space_before_closing_angle_bracket_in_type_parameters`
+- [x] `insert_space_after_closing_angle_bracket_in_type_parameters`
 
 ---
 
