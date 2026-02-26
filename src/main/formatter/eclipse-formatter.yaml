@@ -41,6 +41,8 @@ org:
           brace_position_for_record_declaration: end_of_line
           brace_position_for_record_constructor: end_of_line
           brace_position_for_lambda_body: end_of_line
+          brace_position_for_block_in_case: end_of_line
+          brace_position_for_block_in_case_after_arrow: end_of_line
 
           # Blank lines
           blank_lines_before_package: 0
