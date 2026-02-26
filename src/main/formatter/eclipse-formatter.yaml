@@ -121,9 +121,51 @@ org:
           insert_new_line_after_type_annotation: do not insert
 
           # Wrapping
-          alignment_for_arguments_in_method_invocation: 16
-          alignment_for_parameters_in_method_declaration: 16
-          alignment_for_expressions_in_array_initializer: 16
+          alignment_for_arguments_in_method_invocation: 80
+          alignment_for_parameters_in_method_declaration: 80
+          alignment_for_arguments_in_allocation_expression: 80
+          alignment_for_arguments_in_annotation: 80
+          alignment_for_arguments_in_enum_constant: 80
+          alignment_for_arguments_in_explicit_constructor_call: 80
+          alignment_for_arguments_in_qualified_allocation_expression: 80
+          alignment_for_assertion_message: 80
+          alignment_for_assignment: 0
+          alignment_for_conditional_expression: 48
+          alignment_for_enum_constants: 48
+          alignment_for_for_loop_header: 80
+          alignment_for_method_declaration: 0
+          alignment_for_parameters_in_constructor_declaration: 80
+          alignment_for_permitted_types_in_type_declaration: 80
+          alignment_for_record_components: 80
+          alignment_for_resources_in_try: 80
+          alignment_for_selector_in_method_invocation: 80
+          alignment_for_superclass_in_type_declaration: 80
+          alignment_for_superinterfaces_in_type_declaration: 80
+          alignment_for_superinterfaces_in_enum_declaration: 80
+          alignment_for_superinterfaces_in_record_declaration: 80
+          alignment_for_throws_clause_in_method_declaration: 80
+          alignment_for_throws_clause_in_constructor_declaration: 80
+          alignment_for_type_arguments: 80
+          alignment_for_type_parameters: 80
+          alignment_for_parameterized_type_references: 0
+          alignment_for_union_type_in_multicatch: 80
+          alignment_for_switch_case_with_arrow: 80
+          alignment_for_expressions_in_switch_case_with_arrow: 80
+          alignment_for_expressions_in_switch_case_with_colon: 80
+          alignment_for_annotations_on_type: 80
+          alignment_for_annotations_on_method: 80
+          alignment_for_annotations_on_field: 80
+          alignment_for_annotations_on_local_variable: 80
+          alignment_for_annotations_on_parameter: 80
+          alignment_for_annotations_on_package: 80
+          alignment_for_annotations_on_enum_constant: 80
+          alignment_for_type_annotations: 80
+          wrap_before_binary_operator: true
+          wrap_before_or_operator_multicatch: true
+          align_type_members_on_columns: false
+          align_variable_declarations_on_columns: false
+          align_assignment_statements_on_columns: false
+          align_arrows_in_switch_on_columns: false
 
           # Comments
           comment:

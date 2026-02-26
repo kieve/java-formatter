@@ -35,3 +35,42 @@ public void main(
 }
 
 ---
+In the following case, we need a custom formatter to for the `);` onto a new line.
+Same for `) {`
+Same for type argument `>`
+
+// Exceeds line width — wraps with first break + one per line
+result = someObject.doSomething(
+    firstArg,
+    secondArg,
+    thirdArg,
+    fourthArg);
+
+---
+We need a complete custom formatter for array initializers
+
+3. alignment_for_expressions_in_array_initializer
+
+  Controls how array initializer elements wrap. Currently set to 16 in YAML.
+
+  // 16 — wrap where necessary (current)
+  int[] values = {1, 2, 3, 4, 5, 6, 7, 8, 9,
+          10, 11, 12};
+
+  // 80 — wrap next per line
+  int[] values = {
+          1, 2, 3, 4, 5, 6, 7, 8, 9,
+          10, 11, 12};
+
+  // 48 — wrap all elements (one per line)
+  int[] values = {1,
+          2,
+          3,
+
+---
+
+
+---
+Linting:
+- Find a way to effectively "ban" nested ternary operators
+- Ban multiple field declarations in one line. ex. `int x, y, z;`

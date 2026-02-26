@@ -135,72 +135,72 @@ Values: `ONE_LINE_NEVER`, `ONE_LINE_IF_EMPTY`, `ONE_LINE_IF_SINGLE_ITEM`, `ONE_L
 Alignment values are bitmask integers. Key bits: `0` = no wrap, `16` = wrap where necessary,
 `32` = wrap first element, `48` = wrap all elements, `+64` = force split, `+16` = indent on column.
 
-- [ ] `alignment_for_arguments_in_method_invocation`
-- [ ] `alignment_for_parameters_in_method_declaration`
-- [ ] `alignment_for_expressions_in_array_initializer`
-- [ ] `alignment_for_arguments_in_allocation_expression` — args in `new Foo(...)` calls
-- [ ] `alignment_for_arguments_in_annotation` — args in annotations
-- [ ] `alignment_for_arguments_in_enum_constant` — args in enum constants
-- [ ] `alignment_for_arguments_in_explicit_constructor_call` — args in `this()`/`super()` calls
-- [ ] `alignment_for_arguments_in_qualified_allocation_expression` — args in qualified `new`
-- [ ] `alignment_for_assertion_message` — assertion message wrapping
-- [ ] `alignment_for_assignment` — wrapping around `=`
-- [ ] `alignment_for_compact_if` — compact if statement alignment
-- [ ] `alignment_for_compact_loops` — compact loop alignment
-- [ ] `alignment_for_conditional_expression` — ternary `? :` wrapping
-- [ ] `alignment_for_conditional_expression_chain` — chained ternaries
-- [ ] `alignment_for_enum_constants` — enum constant list wrapping
-- [ ] `alignment_for_for_loop_header` — for loop header expressions
-- [ ] `alignment_for_method_declaration` — method declaration wrapping
-- [ ] `alignment_for_module_statements` — module-info statements
-- [ ] `alignment_for_multiple_fields` — multiple field declarations
-- [ ] `alignment_for_parameters_in_constructor_declaration` — constructor params
-- [ ] `alignment_for_permitted_types_in_type_declaration` — `permits` clause
-- [ ] `alignment_for_record_components` — record component list
-- [ ] `alignment_for_resources_in_try` — try-with-resources
-- [ ] `alignment_for_selector_in_method_invocation` — method chain `.foo().bar()`
-- [ ] `alignment_for_superclass_in_type_declaration` — `extends` clause
-- [ ] `alignment_for_superinterfaces_in_type_declaration` — `implements` clause
-- [ ] `alignment_for_superinterfaces_in_enum_declaration` — enum `implements`
-- [ ] `alignment_for_superinterfaces_in_record_declaration` — record `implements`
-- [ ] `alignment_for_throws_clause_in_method_declaration` — method `throws`
-- [ ] `alignment_for_throws_clause_in_constructor_declaration` — constructor `throws`
-- [ ] `alignment_for_type_arguments` — type arguments `<A, B>`
-- [ ] `alignment_for_type_parameters` — type parameters `<T extends ...>`
-- [ ] `alignment_for_parameterized_type_references` — parameterized type refs
-- [ ] `alignment_for_union_type_in_multicatch` — multi-catch `|` types
-- [ ] `alignment_for_switch_case_with_arrow` — switch case arrow alignment
-- [ ] `alignment_for_expressions_in_switch_case_with_arrow` — expressions in arrow case
-- [ ] `alignment_for_expressions_in_switch_case_with_colon` — expressions in colon case
-- [ ] `alignment_for_annotations_on_type` — annotation wrapping on types
-- [ ] `alignment_for_annotations_on_method` — annotation wrapping on methods
-- [ ] `alignment_for_annotations_on_field` — annotation wrapping on fields
-- [ ] `alignment_for_annotations_on_local_variable` — annotation wrapping on locals
-- [ ] `alignment_for_annotations_on_parameter` — annotation wrapping on params
-- [ ] `alignment_for_annotations_on_package` — annotation wrapping on package
-- [ ] `alignment_for_annotations_on_enum_constant` — annotation wrapping on enum constants
-- [ ] `alignment_for_type_annotations` — type annotation wrapping
+- [x] `alignment_for_arguments_in_method_invocation`
+- [x] `alignment_for_parameters_in_method_declaration`
+- [x] `alignment_for_expressions_in_array_initializer` *(excluded — custom formatter rule needed)*
+- [x] `alignment_for_arguments_in_allocation_expression` — args in `new Foo(...)` calls
+- [x] `alignment_for_arguments_in_annotation` — args in annotations
+- [x] `alignment_for_arguments_in_enum_constant` — args in enum constants
+- [x] `alignment_for_arguments_in_explicit_constructor_call` — args in `this()`/`super()` calls
+- [x] `alignment_for_arguments_in_qualified_allocation_expression` — args in qualified `new`
+- [x] `alignment_for_assertion_message` — assertion message wrapping
+- [x] `alignment_for_assignment` — wrapping around `=`
+- [x] `alignment_for_compact_if` — compact if statement alignment *(excluded — braces always required)*
+- [x] `alignment_for_compact_loops` — compact loop alignment *(excluded — braces always required)*
+- [x] `alignment_for_conditional_expression` — ternary `? :` wrapping
+- [x] `alignment_for_conditional_expression_chain` — chained ternaries *(excluded — will be banned via linting)*
+- [x] `alignment_for_enum_constants` — enum constant list wrapping
+- [x] `alignment_for_for_loop_header` — for loop header expressions
+- [x] `alignment_for_method_declaration` — method declaration wrapping
+- [x] `alignment_for_module_statements` — module-info statements *(excluded)*
+- [x] `alignment_for_multiple_fields` — multiple field declarations *(excluded)*
+- [x] `alignment_for_parameters_in_constructor_declaration` — constructor params
+- [x] `alignment_for_permitted_types_in_type_declaration` — `permits` clause
+- [x] `alignment_for_record_components` — record component list
+- [x] `alignment_for_resources_in_try` — try-with-resources
+- [x] `alignment_for_selector_in_method_invocation` — method chain `.foo().bar()`
+- [x] `alignment_for_superclass_in_type_declaration` — `extends` clause
+- [x] `alignment_for_superinterfaces_in_type_declaration` — `implements` clause
+- [x] `alignment_for_superinterfaces_in_enum_declaration` — enum `implements`
+- [x] `alignment_for_superinterfaces_in_record_declaration` — record `implements`
+- [x] `alignment_for_throws_clause_in_method_declaration` — method `throws`
+- [x] `alignment_for_throws_clause_in_constructor_declaration` — constructor `throws`
+- [x] `alignment_for_type_arguments` — type arguments `<A, B>`
+- [x] `alignment_for_type_parameters` — type parameters `<T extends ...>`
+- [x] `alignment_for_parameterized_type_references` — parameterized type refs
+- [x] `alignment_for_union_type_in_multicatch` — multi-catch `|` types
+- [x] `alignment_for_switch_case_with_arrow` — switch case arrow alignment
+- [x] `alignment_for_expressions_in_switch_case_with_arrow` — expressions in arrow case
+- [x] `alignment_for_expressions_in_switch_case_with_colon` — expressions in colon case
+- [x] `alignment_for_annotations_on_type` — annotation wrapping on types
+- [x] `alignment_for_annotations_on_method` — annotation wrapping on methods
+- [x] `alignment_for_annotations_on_field` — annotation wrapping on fields
+- [x] `alignment_for_annotations_on_local_variable` — annotation wrapping on locals
+- [x] `alignment_for_annotations_on_parameter` — annotation wrapping on params
+- [x] `alignment_for_annotations_on_package` — annotation wrapping on package
+- [x] `alignment_for_annotations_on_enum_constant` — annotation wrapping on enum constants
+- [x] `alignment_for_type_annotations` — type annotation wrapping
 
 ### Operator Wrapping
 
-- [ ] `alignment_for_additive_operator` — `+` `-` wrapping
-- [ ] `alignment_for_multiplicative_operator` — `*` `/` `%` wrapping
-- [ ] `alignment_for_string_concatenation` — string `+` wrapping
-- [ ] `alignment_for_bitwise_operator` — `&` `|` `^` wrapping
-- [ ] `alignment_for_logical_operator` — `&&` `||` wrapping
-- [ ] `alignment_for_relational_operator` — `<` `>` `<=` `>=` `==` `!=` wrapping
-- [ ] `alignment_for_shift_operator` — `<<` `>>` `>>>` wrapping
-- [ ] `wrap_before_binary_operator` — wrap before or after binary operators
-- [ ] `wrap_before_or_operator_multicatch` — wrap before `|` in multi-catch
+- [x] `alignment_for_additive_operator` — `+` `-` wrapping *(excluded — custom formatter)*
+- [x] `alignment_for_multiplicative_operator` — `*` `/` `%` wrapping *(excluded — custom formatter)*
+- [x] `alignment_for_string_concatenation` — string `+` wrapping *(excluded — custom formatter)*
+- [x] `alignment_for_bitwise_operator` — `&` `|` `^` wrapping *(excluded — custom formatter)*
+- [x] `alignment_for_logical_operator` — `&&` `||` wrapping *(excluded — custom formatter)*
+- [x] `alignment_for_relational_operator` — `<` `>` `<=` `>=` `==` `!=` wrapping *(excluded — custom formatter)*
+- [x] `alignment_for_shift_operator` — `<<` `>>` `>>>` wrapping *(excluded — custom formatter)*
+- [x] `wrap_before_binary_operator` — wrap before or after binary operators
+- [x] `wrap_before_or_operator_multicatch` — wrap before `|` in multi-catch
 
 ### Column Alignment
 
-- [ ] `align_type_members_on_columns` — align fields/methods on columns
-- [ ] `align_variable_declarations_on_columns` — align variable declarations
-- [ ] `align_assignment_statements_on_columns` — align assignment `=` on columns
-- [ ] `align_arrows_in_switch_on_columns` — align switch case arrows
-- [ ] `align_fields_grouping_blank_lines` — blank line grouping for field alignment
-- [ ] `align_with_spaces` — use spaces for alignment (even with tab indentation)
+- [x] `align_type_members_on_columns` — align fields/methods on columns
+- [x] `align_variable_declarations_on_columns` — align variable declarations
+- [x] `align_assignment_statements_on_columns` — align assignment `=` on columns
+- [x] `align_arrows_in_switch_on_columns` — align switch case arrows
+- [x] `align_fields_grouping_blank_lines` — blank line grouping for field alignment *(excluded — N/A, alignment disabled)*
+- [x] `align_with_spaces` — use spaces for alignment *(excluded — N/A, alignment disabled)*
 
 ---
 

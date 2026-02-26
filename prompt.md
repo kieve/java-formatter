@@ -11,3 +11,5 @@ Also note: Sometimes your examples with get cut off by the interactive prompt. S
 
 /blank
 ```
+Note: You MUST output at the end of every example before prompting. The prompt WILL cover your last two lines.
+I won't see them, so this is needed.
