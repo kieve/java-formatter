@@ -117,4 +117,12 @@ dependencies {
 tasks.named('test') {
     useJUnitPlatform()
     maxParallelForks = 16
+
+    testLogging {
+        events 'failed'
+        showExceptions = true
+        showCauses = true
+        showStackTraces = false
+        exceptionFormat = 'full'
+    }
 }

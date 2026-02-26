@@ -11,11 +11,11 @@ All setting IDs are relative to `org.eclipse.jdt.core.formatter.` unless otherwi
 ## Indentation & Tabs
 
 - [x] `tabulation.char` — tab vs space vs mixed
-- [ ] `tabulation.size` — tab display width
-- [ ] `indentation.size` — indentation width
-- [ ] `continuation_indentation` — extra indent for continuation lines (default: `2` units)
-- [ ] `continuation_indentation_for_array_initializer` — continuation indent for array initializers (default: `2`)
-- [ ] `indent_body_declarations_compare_to_type_header` — indent class body relative to class decl
+- [x] `tabulation.size` — tab display width
+- [x] `indentation.size` — indentation width
+- [x] `continuation_indentation` — extra indent for continuation lines (default: `2` units)
+- [x] `continuation_indentation_for_array_initializer` — continuation indent for array initializers (default: `2`)
+- [x] `indent_body_declarations_compare_to_type_header` — indent class body relative to class decl
 - [ ] `indent_body_declarations_compare_to_enum_declaration_header` — indent enum body
 - [ ] `indent_body_declarations_compare_to_enum_constant_header` — indent enum constant body
 - [ ] `indent_body_declarations_compare_to_annotation_declaration_header` — indent annotation body
