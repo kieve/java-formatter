@@ -200,4 +200,27 @@ class BlankLinesTest {
 
         assertEquals(expected, formatJava(testProjectDir, input));
     }
+
+    // blank_lines_after_last_class_body_declaration
+    @Test
+    void blankLinesAfterLastClassBodyDeclarationRemovesTrailingBlank() throws IOException {
+        // language=Java
+        String input = """
+                public class FormatterTest {
+                    void method() {
+                    }
+
+                }
+                """;
+
+        // language=Java
+        String expected = """
+                public class FormatterTest {
+                    void method() {
+                    }
+                }
+                """;
+
+        assertEquals(expected, formatJava(testProjectDir, input));
+    }
 }
