@@ -26,3 +26,12 @@ etc...
 Can we enforce invert + early exit if statements:
 
 ---
+Enforce if a () is wrapped, the ) goes on it's own line.
+Example
+
+public void main(
+    ... etc ...
+) {
+}
+
+---
