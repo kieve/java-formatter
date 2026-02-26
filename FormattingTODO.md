@@ -234,18 +234,18 @@ Alignment values are bitmask integers. Key bits: `0` = no wrap, `16` = wrap wher
 
 ## Whitespace — Parentheses (Opening)
 
-- [ ] `insert_space_before_opening_paren_in_method_declaration`
-- [ ] `insert_space_before_opening_paren_in_method_invocation`
-- [ ] `insert_space_before_opening_paren_in_if`
-- [ ] `insert_space_before_opening_paren_in_for`
-- [ ] `insert_space_before_opening_paren_in_while`
-- [ ] `insert_space_before_opening_paren_in_switch`
-- [ ] `insert_space_before_opening_paren_in_catch`
-- [ ] `insert_space_before_opening_paren_in_constructor_declaration`
-- [ ] `insert_space_before_opening_paren_in_annotation`
-- [ ] `insert_space_before_opening_paren_in_enum_constant`
-- [ ] `insert_space_before_opening_paren_in_record_declaration`
-- [ ] `insert_space_before_opening_paren_in_synchronized`
+- [x] `insert_space_before_opening_paren_in_method_declaration`
+- [x] `insert_space_before_opening_paren_in_method_invocation`
+- [x] `insert_space_before_opening_paren_in_if`
+- [x] `insert_space_before_opening_paren_in_for`
+- [x] `insert_space_before_opening_paren_in_while`
+- [x] `insert_space_before_opening_paren_in_switch`
+- [x] `insert_space_before_opening_paren_in_catch`
+- [x] `insert_space_before_opening_paren_in_constructor_declaration`
+- [x] `insert_space_before_opening_paren_in_annotation`
+- [x] `insert_space_before_opening_paren_in_enum_constant`
+- [x] `insert_space_before_opening_paren_in_record_declaration`
+- [x] `insert_space_before_opening_paren_in_synchronized`
 
 ---
 
