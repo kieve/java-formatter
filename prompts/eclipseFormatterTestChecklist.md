@@ -62,11 +62,11 @@ Values: `end_of_line`, `next_line`, `next_line_shifted`, `next_line_on_wrap`
 ## Blank Lines
 
 - [x] `blank_lines_before_package`
-- [ ] `blank_lines_after_package`
-- [ ] `blank_lines_before_imports`
-- [ ] `blank_lines_after_imports`
-- [ ] `blank_lines_between_type_declarations`
-- [ ] `blank_lines_before_member_type`
+- [x] `blank_lines_after_package`
+- [x] `blank_lines_before_imports`
+- [x] `blank_lines_after_imports`
+- [x] `blank_lines_between_type_declarations`
+- [x] `blank_lines_before_member_type`
 - [ ] `blank_lines_before_first_class_body_declaration`
 - [ ] `blank_lines_after_last_class_body_declaration`
 - [ ] `blank_lines_before_method`
