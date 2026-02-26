@@ -96,6 +96,27 @@ org:
           insert_space_before_opening_brace_in_block: insert
           insert_space_after_assignment_operator: insert
           insert_space_before_assignment_operator: insert
+          insert_space_before_additive_operator: insert
+          insert_space_after_additive_operator: insert
+          insert_space_before_multiplicative_operator: insert
+          insert_space_after_multiplicative_operator: insert
+          insert_space_before_bitwise_operator: insert
+          insert_space_after_bitwise_operator: insert
+          insert_space_before_logical_operator: insert
+          insert_space_after_logical_operator: insert
+          insert_space_before_relational_operator: insert
+          insert_space_after_relational_operator: insert
+          insert_space_before_shift_operator: insert
+          insert_space_after_shift_operator: insert
+          insert_space_before_string_concatenation: insert
+          insert_space_after_string_concatenation: insert
+          insert_space_before_unary_operator: do not insert
+          insert_space_after_unary_operator: do not insert
+          insert_space_before_prefix_operator: do not insert
+          insert_space_after_prefix_operator: do not insert
+          insert_space_before_postfix_operator: do not insert
+          insert_space_after_postfix_operator: do not insert
+          insert_space_after_not_operator: do not insert
           insert_space_before_semicolon: do not insert
           insert_space_before_colon_in_for: insert
           insert_space_after_colon_in_for: insert
