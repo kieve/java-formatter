@@ -235,6 +235,14 @@ org:
           insert_space_before_closing_angle_bracket_in_type_parameters: do not insert
           insert_space_after_closing_angle_bracket_in_type_parameters: insert
 
+          # Parentheses Preservation
+          parentheses_preservation_mode: DO_NOT_PRESERVE_EMPTY
+
+          # On/Off Tags
+          use_on_off_tags: true
+          enabling_tag: "@formatter:on"
+          disabling_tag: "@formatter:off"
+
           format_line_comment_starting_on_first_column: false
 
           # Newlines

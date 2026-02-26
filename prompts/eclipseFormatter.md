@@ -424,12 +424,12 @@ Alignment values are bitmask integers. Key bits: `0` = no wrap, `16` = wrap wher
 
 ## Parentheses Preservation
 
-- [ ] `parentheses_preservation_mode` — `PRESERVE`, `DO_NOT_PRESERVE_EMPTY`, `REMOVE_UNNECESSARY`
+- [x] `parentheses_preservation_mode` — `PRESERVE`, `DO_NOT_PRESERVE_EMPTY`, `REMOVE_UNNECESSARY`
 
 ---
 
 ## On/Off Tags
 
-- [ ] `use_on_off_tags` — enable `// @formatter:off` / `// @formatter:on`
-- [ ] `enabling_tag` — custom enabling tag text
-- [ ] `disabling_tag` — custom disabling tag text
+- [x] `use_on_off_tags` — enable `// @formatter:off` / `// @formatter:on`
+- [x] `enabling_tag` — custom enabling tag text
+- [x] `disabling_tag` — custom disabling tag text

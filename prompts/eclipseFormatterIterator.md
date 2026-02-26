@@ -1,4 +1,4 @@
-Let's go through the next incomplete section of @FormattingTODO.md
+Let's go through the next incomplete section of @prompts/eclipseFormatter.md
 We're only doing one section. We stop after the section is done.
 
 We're interactively updating eclipse formatter settings. Prompt with examples for each setting, I'll make a decision on the value (or to exclude if possible) the setting. Then we'll update the YAML config with this setting.
