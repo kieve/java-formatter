@@ -112,7 +112,7 @@ Values: `end_of_line`, `next_line`, `next_line_shifted`, `next_line_on_wrap`
 
 ## Keep On One Line
 
-Values: `ONE_LINE_NEVER`, `ONE_LINE_IF_EMPTY`, `ONE_LINE_IF_SINGLE_ITEM`, `ONE_LINE_ALWAYS`, `ONE_LINE_PRESERVE`
+Values: `one_line_never`, `one_line_if_empty`, `one_line_if_single_item`, `one_line_always`, `one_line_preserve`
 
 - [x] `keep_method_body_on_one_line`
 - [x] `keep_simple_getter_setter_on_one_line`

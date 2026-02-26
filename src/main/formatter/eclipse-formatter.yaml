@@ -65,19 +65,19 @@ org:
           number_of_blank_lines_at_end_of_method_body: 0
 
           # Keep on one line
-          keep_method_body_on_one_line: ONE_LINE_NEVER
-          keep_simple_getter_setter_on_one_line: ONE_LINE_NEVER
-          keep_code_block_on_one_line: ONE_LINE_NEVER
-          keep_lambda_body_block_on_one_line: ONE_LINE_IF_EMPTY
-          keep_loop_body_block_on_one_line: ONE_LINE_NEVER
-          keep_if_then_body_block_on_one_line: ONE_LINE_NEVER
-          keep_type_declaration_on_one_line: ONE_LINE_NEVER
-          keep_annotation_declaration_on_one_line: ONE_LINE_NEVER
-          keep_anonymous_type_declaration_on_one_line: ONE_LINE_NEVER
-          keep_enum_declaration_on_one_line: ONE_LINE_NEVER
-          keep_enum_constant_declaration_on_one_line: ONE_LINE_NEVER
-          keep_record_declaration_on_one_line: ONE_LINE_NEVER
-          keep_record_constructor_on_one_line: ONE_LINE_NEVER
+          keep_method_body_on_one_line: one_line_never
+          keep_simple_getter_setter_on_one_line: one_line_never
+          keep_code_block_on_one_line: one_line_never
+          keep_lambda_body_block_on_one_line: one_line_if_empty
+          keep_loop_body_block_on_one_line: one_line_never
+          keep_if_then_body_block_on_one_line: one_line_never
+          keep_type_declaration_on_one_line: one_line_never
+          keep_annotation_declaration_on_one_line: one_line_never
+          keep_anonymous_type_declaration_on_one_line: one_line_never
+          keep_enum_declaration_on_one_line: one_line_never
+          keep_enum_constant_declaration_on_one_line: one_line_never
+          keep_record_declaration_on_one_line: one_line_never
+          keep_record_constructor_on_one_line: one_line_never
 
           # Whitespace — Commas
           insert_space_before_comma_in_method_invocation_arguments: do not insert
