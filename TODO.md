@@ -23,3 +23,6 @@ private ...
 etc...
 
 ---
+Can we enforce invert + early exit if statements:
+
+---
