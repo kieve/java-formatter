@@ -295,40 +295,40 @@ Alignment values are bitmask integers. Key bits: `0` = no wrap, `16` = wrap wher
 
 ## Whitespace — Commas
 
-- [ ] `insert_space_before_comma_in_method_invocation_arguments`
-- [ ] `insert_space_after_comma_in_method_invocation_arguments`
-- [ ] `insert_space_before_comma_in_method_declaration_parameters`
-- [ ] `insert_space_after_comma_in_method_declaration_parameters`
-- [ ] `insert_space_before_comma_in_constructor_declaration_parameters`
-- [ ] `insert_space_after_comma_in_constructor_declaration_parameters`
-- [ ] `insert_space_before_comma_in_allocation_expression`
-- [ ] `insert_space_after_comma_in_allocation_expression`
-- [ ] `insert_space_before_comma_in_array_initializer`
-- [ ] `insert_space_after_comma_in_array_initializer`
-- [ ] `insert_space_before_comma_in_enum_constant_arguments`
-- [ ] `insert_space_after_comma_in_enum_constant_arguments`
-- [ ] `insert_space_before_comma_in_enum_declarations`
-- [ ] `insert_space_after_comma_in_enum_declarations`
-- [ ] `insert_space_before_comma_in_for_increments`
-- [ ] `insert_space_after_comma_in_for_increments`
-- [ ] `insert_space_before_comma_in_for_inits`
-- [ ] `insert_space_after_comma_in_for_inits`
-- [ ] `insert_space_before_comma_in_multiple_field_declarations`
-- [ ] `insert_space_after_comma_in_multiple_field_declarations`
-- [ ] `insert_space_before_comma_in_multiple_local_declarations`
-- [ ] `insert_space_after_comma_in_multiple_local_declarations`
-- [ ] `insert_space_before_comma_in_annotation`
-- [ ] `insert_space_after_comma_in_annotation`
-- [ ] `insert_space_before_comma_in_record_components`
-- [ ] `insert_space_after_comma_in_record_components`
-- [ ] `insert_space_before_comma_in_switch_case_expressions`
-- [ ] `insert_space_after_comma_in_switch_case_expressions`
-- [ ] `insert_space_before_comma_in_type_arguments`
-- [ ] `insert_space_after_comma_in_type_arguments`
-- [ ] `insert_space_before_comma_in_type_parameters`
-- [ ] `insert_space_after_comma_in_type_parameters`
-- [ ] `insert_space_before_comma_in_parameterized_type_reference`
-- [ ] `insert_space_after_comma_in_parameterized_type_reference`
+- [x] `insert_space_before_comma_in_method_invocation_arguments`
+- [x] `insert_space_after_comma_in_method_invocation_arguments`
+- [x] `insert_space_before_comma_in_method_declaration_parameters`
+- [x] `insert_space_after_comma_in_method_declaration_parameters`
+- [x] `insert_space_before_comma_in_constructor_declaration_parameters`
+- [x] `insert_space_after_comma_in_constructor_declaration_parameters`
+- [x] `insert_space_before_comma_in_allocation_expression`
+- [x] `insert_space_after_comma_in_allocation_expression`
+- [x] `insert_space_before_comma_in_array_initializer`
+- [x] `insert_space_after_comma_in_array_initializer`
+- [x] `insert_space_before_comma_in_enum_constant_arguments`
+- [x] `insert_space_after_comma_in_enum_constant_arguments`
+- [x] `insert_space_before_comma_in_enum_declarations`
+- [x] `insert_space_after_comma_in_enum_declarations`
+- [x] `insert_space_before_comma_in_for_increments`
+- [x] `insert_space_after_comma_in_for_increments`
+- [x] `insert_space_before_comma_in_for_inits`
+- [x] `insert_space_after_comma_in_for_inits`
+- [x] `insert_space_before_comma_in_multiple_field_declarations`
+- [x] `insert_space_after_comma_in_multiple_field_declarations`
+- [x] `insert_space_before_comma_in_multiple_local_declarations`
+- [x] `insert_space_after_comma_in_multiple_local_declarations`
+- [x] `insert_space_before_comma_in_annotation`
+- [x] `insert_space_after_comma_in_annotation`
+- [x] `insert_space_before_comma_in_record_components`
+- [x] `insert_space_after_comma_in_record_components`
+- [x] `insert_space_before_comma_in_switch_case_expressions`
+- [x] `insert_space_after_comma_in_switch_case_expressions`
+- [x] `insert_space_before_comma_in_type_arguments`
+- [x] `insert_space_after_comma_in_type_arguments`
+- [x] `insert_space_before_comma_in_type_parameters`
+- [x] `insert_space_after_comma_in_type_parameters`
+- [x] `insert_space_before_comma_in_parameterized_type_reference`
+- [x] `insert_space_after_comma_in_parameterized_type_reference`
 
 ---
 

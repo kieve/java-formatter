@@ -79,11 +79,43 @@ org:
           keep_record_declaration_on_one_line: ONE_LINE_NEVER
           keep_record_constructor_on_one_line: ONE_LINE_NEVER
 
-          # Whitespace
+          # Whitespace — Commas
           insert_space_before_comma_in_method_invocation_arguments: do not insert
           insert_space_after_comma_in_method_invocation_arguments: insert
           insert_space_before_comma_in_method_declaration_parameters: do not insert
           insert_space_after_comma_in_method_declaration_parameters: insert
+          insert_space_before_comma_in_constructor_declaration_parameters: do not insert
+          insert_space_after_comma_in_constructor_declaration_parameters: insert
+          insert_space_before_comma_in_allocation_expression: do not insert
+          insert_space_after_comma_in_allocation_expression: insert
+          insert_space_before_comma_in_array_initializer: do not insert
+          insert_space_after_comma_in_array_initializer: insert
+          insert_space_before_comma_in_enum_constant_arguments: do not insert
+          insert_space_after_comma_in_enum_constant_arguments: insert
+          insert_space_before_comma_in_enum_declarations: do not insert
+          insert_space_after_comma_in_enum_declarations: insert
+          insert_space_before_comma_in_for_increments: do not insert
+          insert_space_after_comma_in_for_increments: insert
+          insert_space_before_comma_in_for_inits: do not insert
+          insert_space_after_comma_in_for_inits: insert
+          insert_space_before_comma_in_multiple_field_declarations: do not insert
+          insert_space_after_comma_in_multiple_field_declarations: insert
+          insert_space_before_comma_in_multiple_local_declarations: do not insert
+          insert_space_after_comma_in_multiple_local_declarations: insert
+          insert_space_before_comma_in_annotation: do not insert
+          insert_space_after_comma_in_annotation: insert
+          insert_space_before_comma_in_record_components: do not insert
+          insert_space_after_comma_in_record_components: insert
+          insert_space_before_comma_in_switch_case_expressions: do not insert
+          insert_space_after_comma_in_switch_case_expressions: insert
+          insert_space_before_comma_in_type_arguments: do not insert
+          insert_space_after_comma_in_type_arguments: insert
+          insert_space_before_comma_in_type_parameters: do not insert
+          insert_space_after_comma_in_type_parameters: insert
+          insert_space_before_comma_in_parameterized_type_reference: do not insert
+          insert_space_after_comma_in_parameterized_type_reference: insert
+
+          # Whitespace — Parentheses (Opening)
           insert_space_before_opening_paren_in_method_declaration: do not insert
           insert_space_before_opening_paren_in_method_invocation: do not insert
           insert_space_before_opening_paren_in_if: insert
