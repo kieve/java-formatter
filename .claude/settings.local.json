@@ -4,7 +4,9 @@
       "WebSearch",
       "Bash(./gradlew build:*)",
       "WebFetch(domain:central.sonatype.com)",
-      "Bash(./gradlew clean:*)"
+      "Bash(./gradlew clean:*)",
+      "WebFetch(domain:help.eclipse.org)",
+      "WebFetch(domain:github.com)"
     ]
   }
 }

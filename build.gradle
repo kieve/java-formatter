@@ -1,3 +1,5 @@
+import org.yaml.snakeyaml.Yaml
+
 buildscript {
     repositories {
         mavenCentral()
@@ -54,7 +56,7 @@ tasks.register('generateEclipseConfig') {
     outputs.file(outputFile)
 
     doLast {
-        def yaml = new org.yaml.snakeyaml.Yaml()
+        def yaml = new Yaml()
         def config = yaml.load(yamlFile.text)
 
         def settings = new TreeMap<String, String>()
