@@ -96,6 +96,33 @@ org:
           insert_space_before_opening_paren_in_enum_constant: do not insert
           insert_space_before_opening_paren_in_record_declaration: do not insert
           insert_space_before_opening_paren_in_synchronized: insert
+          insert_space_after_opening_paren_in_method_declaration: do not insert
+          insert_space_after_opening_paren_in_method_invocation: do not insert
+          insert_space_after_opening_paren_in_constructor_declaration: do not insert
+          insert_space_after_opening_paren_in_if: do not insert
+          insert_space_after_opening_paren_in_for: do not insert
+          insert_space_after_opening_paren_in_while: do not insert
+          insert_space_after_opening_paren_in_switch: do not insert
+          insert_space_after_opening_paren_in_catch: do not insert
+          insert_space_after_opening_paren_in_synchronized: do not insert
+          insert_space_after_opening_paren_in_cast: do not insert
+          insert_space_after_opening_paren_in_annotation: do not insert
+          insert_space_after_opening_paren_in_enum_constant: do not insert
+          insert_space_after_opening_paren_in_record_declaration: do not insert
+          insert_space_before_closing_paren_in_method_declaration: do not insert
+          insert_space_before_closing_paren_in_method_invocation: do not insert
+          insert_space_before_closing_paren_in_constructor_declaration: do not insert
+          insert_space_before_closing_paren_in_if: do not insert
+          insert_space_before_closing_paren_in_for: do not insert
+          insert_space_before_closing_paren_in_while: do not insert
+          insert_space_before_closing_paren_in_switch: do not insert
+          insert_space_before_closing_paren_in_catch: do not insert
+          insert_space_before_closing_paren_in_synchronized: do not insert
+          insert_space_before_closing_paren_in_cast: do not insert
+          insert_space_before_closing_paren_in_annotation: do not insert
+          insert_space_before_closing_paren_in_enum_constant: do not insert
+          insert_space_before_closing_paren_in_record_declaration: do not insert
+          insert_space_after_closing_paren_in_cast: insert
           insert_space_before_opening_brace_in_type_declaration: insert
           insert_space_before_opening_brace_in_method_declaration: insert
           insert_space_before_opening_brace_in_block: insert
