@@ -341,6 +341,8 @@ Alignment values are bitmask integers. Key bits: `0` = no wrap, `16` = wrap wher
 - [x] `insert_space_after_colon_in_assert`
 - [x] `insert_space_before_colon_in_case`
 - [x] `insert_space_after_colon_in_case`
+- [x] `insert_space_before_colon_in_default` — space before `:` in default
+- [x] `insert_space_after_colon_in_default` — space after `:` in default
 - [x] `insert_space_before_colon_in_conditional`
 - [x] `insert_space_after_colon_in_conditional`
 - [x] `insert_space_before_colon_in_labeled_statement`

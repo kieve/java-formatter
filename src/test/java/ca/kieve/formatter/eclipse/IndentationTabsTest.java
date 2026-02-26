@@ -182,6 +182,173 @@ class IndentationTabsTest {
         assertEquals(expected, formatJava(testProjectDir, input));
     }
 
+    // indent_body_declarations_compare_to_enum_constant_header
+    @Test
+    void indentBodyDeclarationsCompareToEnumConstantHeader() throws IOException {
+        // language=Java
+        String input = """
+                public enum FormatterTest {
+                VALUE_ONE {
+                public String toString() {
+                return "one";
+                }
+                };
+                }
+                """;
+
+        // language=Java
+        String expected = """
+                public enum FormatterTest {
+                    VALUE_ONE {
+                        public String toString() {
+                            return "one";
+                        }
+                    };
+                }
+                """;
+
+        assertEquals(expected, formatJava(testProjectDir, input));
+    }
+
+    // indent_body_declarations_compare_to_annotation_declaration_header
+    @Test
+    void indentBodyDeclarationsCompareToAnnotationDeclarationHeader() throws IOException {
+        // language=Java
+        String input = """
+                public @interface FormatterTest {
+                String value();
+                int count() default 0;
+                }
+                """;
+
+        // language=Java
+        String expected = """
+                public @interface FormatterTest {
+                    String value();
+
+                    int count() default 0;
+                }
+                """;
+
+        assertEquals(expected, formatJava(testProjectDir, input));
+    }
+
+    // indent_body_declarations_compare_to_record_header
+    @Test
+    void indentBodyDeclarationsCompareToRecordHeader() throws IOException {
+        // language=Java
+        String input = """
+                public record FormatterTest(int x, int y) {
+                public int sum() {
+                return x + y;
+                }
+                }
+                """;
+
+        // language=Java
+        String expected = """
+                public record FormatterTest(int x, int y) {
+                    public int sum() {
+                        return x + y;
+                    }
+                }
+                """;
+
+        assertEquals(expected, formatJava(testProjectDir, input));
+    }
+
+    // indent_statements_compare_to_block
+    @Test
+    void indentStatementsCompareToBlock() throws IOException {
+        // language=Java
+        String input = """
+                public class FormatterTest {
+                    void method() {
+                        if (true) {
+                int x = 1;
+                int y = 2;
+                        }
+                    }
+                }
+                """;
+
+        // language=Java
+        String expected = """
+                public class FormatterTest {
+                    void method() {
+                        if (true) {
+                            int x = 1;
+                            int y = 2;
+                        }
+                    }
+                }
+                """;
+
+        assertEquals(expected, formatJava(testProjectDir, input));
+    }
+
+    // indent_statements_compare_to_body
+    @Test
+    void indentStatementsCompareToBody() throws IOException {
+        // language=Java
+        String input = """
+                public class FormatterTest {
+                    void method() {
+                int x = 1;
+                int y = 2;
+                System.out.println(x + y);
+                    }
+                }
+                """;
+
+        // language=Java
+        String expected = """
+                public class FormatterTest {
+                    void method() {
+                        int x = 1;
+                        int y = 2;
+                        System.out.println(x + y);
+                    }
+                }
+                """;
+
+        assertEquals(expected, formatJava(testProjectDir, input));
+    }
+
+    // indent_switchstatements_compare_to_switch
+    @Test
+    void indentSwitchStatementsCompareToSwitch() throws IOException {
+        // language=Java
+        String input = """
+                public class FormatterTest {
+                    void method(int x) {
+                        switch (x) {
+                            case 1:
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                }
+                """;
+
+        // language=Java
+        String expected = """
+                public class FormatterTest {
+                    void method(int x) {
+                        switch (x) {
+                        case 1:
+                            break;
+                        default:
+                            break;
+                        }
+                    }
+                }
+                """;
+
+        assertEquals(expected, formatJava(testProjectDir, input));
+    }
+
     // tabulation.size
     @Test
     void tabulationSizeExpandsTabsToFourSpaces() throws IOException {

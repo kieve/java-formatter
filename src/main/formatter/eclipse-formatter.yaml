@@ -193,6 +193,8 @@ org:
           insert_space_after_colon_in_assert: insert
           insert_space_before_colon_in_case: do not insert
           insert_space_after_colon_in_case: insert
+          insert_space_before_colon_in_default: do not insert
+          insert_space_after_colon_in_default: insert
           insert_space_before_colon_in_conditional: insert
           insert_space_after_colon_in_conditional: insert
           insert_space_before_colon_in_labeled_statement: do not insert
