@@ -24,7 +24,8 @@ org:
           indent_empty_lines: false
 
           # Line width
-          lineSplit: 120
+          lineSplit: 100
+          number_of_empty_lines_to_preserve: 1
 
           # Braces
           brace_position_for_type_declaration: end_of_line
