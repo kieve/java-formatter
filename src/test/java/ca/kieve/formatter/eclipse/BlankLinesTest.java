@@ -159,4 +159,45 @@ class BlankLinesTest {
 
         assertEquals(expected, formatJava(testProjectDir, input));
     }
+
+    // blank_lines_before_first_class_body_declaration
+    @Test
+    void blankLinesBeforeFirstClassBodyDeclarationDoesNotInsertBlank() throws IOException {
+        // language=Java
+        String input = """
+                public class FormatterTest {
+                int field;
+                }
+                """;
+
+        // language=Java
+        String expected = """
+                public class FormatterTest {
+                    int field;
+                }
+                """;
+
+        assertEquals(expected, formatJava(testProjectDir, input));
+    }
+
+    // blank_lines_before_first_class_body_declaration — removes existing blank line
+    @Test
+    void blankLinesBeforeFirstClassBodyDeclarationRemovesExistingBlank() throws IOException {
+        // language=Java
+        String input = """
+                public class FormatterTest {
+
+                    int field;
+                }
+                """;
+
+        // language=Java
+        String expected = """
+                public class FormatterTest {
+                    int field;
+                }
+                """;
+
+        assertEquals(expected, formatJava(testProjectDir, input));
+    }
 }
