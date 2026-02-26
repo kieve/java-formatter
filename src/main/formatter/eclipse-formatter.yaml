@@ -126,6 +126,10 @@ org:
           insert_space_before_opening_brace_in_type_declaration: insert
           insert_space_before_opening_brace_in_method_declaration: insert
           insert_space_before_opening_brace_in_block: insert
+          insert_space_before_opening_brace_in_array_initializer: insert
+          insert_space_after_opening_brace_in_array_initializer: insert
+          insert_space_before_closing_brace_in_array_initializer: insert
+          insert_space_after_closing_brace_in_block: insert
           insert_space_after_assignment_operator: insert
           insert_space_before_assignment_operator: insert
           insert_space_before_additive_operator: insert

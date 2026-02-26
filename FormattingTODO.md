@@ -283,13 +283,13 @@ Alignment values are bitmask integers. Key bits: `0` = no wrap, `16` = wrap wher
 
 ## Whitespace — Braces
 
-- [ ] `insert_space_before_opening_brace_in_type_declaration`
-- [ ] `insert_space_before_opening_brace_in_method_declaration`
-- [ ] `insert_space_before_opening_brace_in_block`
-- [ ] `insert_space_before_opening_brace_in_array_initializer`
-- [ ] `insert_space_after_opening_brace_in_array_initializer`
-- [ ] `insert_space_before_closing_brace_in_array_initializer`
-- [ ] `insert_space_after_closing_brace_in_block`
+- [x] `insert_space_before_opening_brace_in_type_declaration`
+- [x] `insert_space_before_opening_brace_in_method_declaration`
+- [x] `insert_space_before_opening_brace_in_block`
+- [x] `insert_space_before_opening_brace_in_array_initializer`
+- [x] `insert_space_after_opening_brace_in_array_initializer`
+- [x] `insert_space_before_closing_brace_in_array_initializer`
+- [x] `insert_space_after_closing_brace_in_block`
 
 ---
 
