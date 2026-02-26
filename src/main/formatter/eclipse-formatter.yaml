@@ -185,9 +185,20 @@ org:
           insert_space_before_postfix_operator: do not insert
           insert_space_after_postfix_operator: do not insert
           insert_space_after_not_operator: do not insert
-          insert_space_before_semicolon: do not insert
+          # Whitespace — Colons & Semicolons
           insert_space_before_colon_in_for: insert
           insert_space_after_colon_in_for: insert
+          insert_space_before_semicolon: do not insert
+          insert_space_before_colon_in_assert: insert
+          insert_space_after_colon_in_assert: insert
+          insert_space_before_colon_in_case: do not insert
+          insert_space_after_colon_in_case: insert
+          insert_space_before_colon_in_conditional: insert
+          insert_space_after_colon_in_conditional: insert
+          insert_space_before_colon_in_labeled_statement: do not insert
+          insert_space_after_colon_in_labeled_statement: insert
+          insert_space_before_semicolon_in_for: do not insert
+          insert_space_before_semicolon_in_try_with_resources: do not insert
 
           # Newlines
           insert_new_line_at_end_of_file_if_missing: insert

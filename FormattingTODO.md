@@ -334,19 +334,19 @@ Alignment values are bitmask integers. Key bits: `0` = no wrap, `16` = wrap wher
 
 ## Whitespace — Colons & Semicolons
 
-- [ ] `insert_space_before_colon_in_for`
-- [ ] `insert_space_after_colon_in_for`
-- [ ] `insert_space_before_semicolon`
-- [ ] `insert_space_before_colon_in_assert`
-- [ ] `insert_space_after_colon_in_assert`
-- [ ] `insert_space_before_colon_in_case`
-- [ ] `insert_space_after_colon_in_case`
-- [ ] `insert_space_before_colon_in_conditional`
-- [ ] `insert_space_after_colon_in_conditional`
-- [ ] `insert_space_before_colon_in_labeled_statement`
-- [ ] `insert_space_after_colon_in_labeled_statement`
-- [ ] `insert_space_before_semicolon_in_for`
-- [ ] `insert_space_before_semicolon_in_try_with_resources`
+- [x] `insert_space_before_colon_in_for`
+- [x] `insert_space_after_colon_in_for`
+- [x] `insert_space_before_semicolon`
+- [x] `insert_space_before_colon_in_assert`
+- [x] `insert_space_after_colon_in_assert`
+- [x] `insert_space_before_colon_in_case`
+- [x] `insert_space_after_colon_in_case`
+- [x] `insert_space_before_colon_in_conditional`
+- [x] `insert_space_after_colon_in_conditional`
+- [x] `insert_space_before_colon_in_labeled_statement`
+- [x] `insert_space_after_colon_in_labeled_statement`
+- [x] `insert_space_before_semicolon_in_for`
+- [x] `insert_space_before_semicolon_in_try_with_resources`
 
 ---
 
