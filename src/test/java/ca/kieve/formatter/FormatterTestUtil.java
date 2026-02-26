@@ -34,26 +34,27 @@ public final class FormatterTestUtil {
 
     private FormatterTestUtil() {}
 
+    private static final String CLASS_NAME = "FormatterTest";
+    private static final String RELATIVE_PATH = "src/main/java/" + CLASS_NAME + ".java";
+
     /**
      * Format a Java source string through the full Eclipse JDT formatter pipeline.
      * <p>
      * Creates a temporary Gradle project in {@code testProjectDir}, writes the
-     * source as {@code src/main/java/<className>.java}, runs {@code spotlessApply},
+     * source as {@code src/main/java/FormatterTest.java}, runs {@code spotlessApply},
      * and returns the formatted result.
      *
      * @param testProjectDir a JUnit {@code @TempDir} unique to the calling test
-     * @param className      simple class name (must match the public class in source)
      * @param javaSource     unformatted Java source code
      * @return the formatted source with normalized (Unix) line endings
      */
-    public static String formatJava(Path testProjectDir, String className, String javaSource)
+    public static String formatJava(Path testProjectDir, String javaSource)
             throws IOException {
         writeFile(testProjectDir, "settings.gradle", "");
         writeFile(testProjectDir, "build.gradle", BUILD_GRADLE);
         copyResource("/eclipse-formatter.xml", testProjectDir.resolve("eclipse-config.xml"));
 
-        String relativePath = "src/main/java/" + className + ".java";
-        writeFile(testProjectDir, relativePath, javaSource);
+        writeFile(testProjectDir, RELATIVE_PATH, javaSource);
 
         GradleRunner.create()
                 .withProjectDir(testProjectDir.toFile())
@@ -62,7 +63,7 @@ public final class FormatterTestUtil {
                 .build();
 
         return normalizeLineEndings(
-                Files.readString(testProjectDir.resolve(relativePath)));
+                Files.readString(testProjectDir.resolve(RELATIVE_PATH)));
     }
 
     /**

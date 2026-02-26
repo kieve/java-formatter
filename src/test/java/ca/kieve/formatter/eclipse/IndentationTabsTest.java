@@ -1,12 +1,12 @@
 package ca.kieve.formatter.eclipse;
 
-import ca.kieve.formatter.FormatterTestUtil;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import java.io.IOException;
 import java.nio.file.Path;
 
+import static ca.kieve.formatter.FormatterTestUtil.formatJava;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
@@ -23,7 +23,7 @@ class IndentationTabsTest {
     @Test
     void tabulationCharConvertsTabsToSpaces() throws IOException {
         String input = """
-                public class Test {
+                public class FormatterTest {
                 \tpublic void method() {
                 \t\tSystem.out.println("hello");
                 \t}
@@ -31,13 +31,13 @@ class IndentationTabsTest {
                 """;
 
         String expected = """
-                public class Test {
+                public class FormatterTest {
                     public void method() {
                         System.out.println("hello");
                     }
                 }
                 """;
 
-        assertEquals(expected, FormatterTestUtil.formatJava(testProjectDir, "Test", input));
+        assertEquals(expected, formatJava(testProjectDir, input));
     }
 }
