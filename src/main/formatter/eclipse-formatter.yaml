@@ -55,6 +55,14 @@ org:
           blank_lines_after_last_class_body_declaration: 0
           blank_lines_before_method: 1
           blank_lines_before_field: 0
+          blank_lines_before_abstract_method: 0
+          blank_lines_before_new_chunk: 1
+          blank_lines_between_import_groups: 1
+          blank_lines_between_statement_groups_in_switch: 0
+          number_of_blank_lines_at_beginning_of_code_block: 0
+          number_of_blank_lines_at_end_of_code_block: 0
+          number_of_blank_lines_at_beginning_of_method_body: 0
+          number_of_blank_lines_at_end_of_method_body: 0
 
           # Whitespace
           insert_space_before_comma_in_method_invocation_arguments: do not insert
