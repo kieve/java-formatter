@@ -1,4 +1,6 @@
 Styles to enforce:
+---
+Can we enforce these on code inside JavaDoc comments (incl Markdown ones)
 
 ---
 All Inner types must be declared at the top, before any members.
@@ -66,6 +68,17 @@ We need a complete custom formatter for array initializers
   int[] values = {1,
           2,
           3,
+
+---
+Write a formatter to align param continuation lines after the space of `@param `
+Same for the `@return `
+
+  /**
+   *
+   * @param foo some long line that wraps
+   *        and when it wraps it's aligned after the `@param `
+   * @param bar some other param
+   */
 
 ---
 
