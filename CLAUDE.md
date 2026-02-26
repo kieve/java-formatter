@@ -8,7 +8,7 @@ baseline formatter followed by custom formatting rules implemented with JavaPars
 This project is a **Gradle plugin** (`ca.kieve.java-formatter`). When applied to a project, it:
 
 1. Applies the Spotless Gradle plugin
-2. Configures Eclipse JDT formatter as the baseline (config bundled in `src/main/resources/eclipse-formatter.xml`)
+2. Configures Eclipse JDT formatter as the baseline (config generated from `src/main/formatter/eclipse-formatter.yaml`)
 3. Applies custom formatting rules on top via `CustomFormatterStep`
 
 Spotless provides the `spotlessApply` (auto-format) and `spotlessCheck` (CI validation) tasks.
@@ -46,8 +46,8 @@ src/main/java/ca/kieve/formatter/
         CustomFormatterStep.java    — Main Spotless FormatterStep (chains all custom rules)
     printer/                        — Custom pretty printer visitors (future)
     rules/                          — Individual formatting rules (future)
-src/main/resources/
-    eclipse-formatter.xml           — Eclipse JDT baseline formatter configuration
+src/main/formatter/
+    eclipse-formatter.yaml          — Eclipse JDT config (human-editable source of truth)
 src/test/java/ca/kieve/formatter/
     FormatterTestUtil.java          — Test helpers (fixture loading, line ending normalization)
     step/
@@ -64,6 +64,32 @@ src/test/resources/fixtures/        — Input/expected Java files for comparison
 - **Custom rules** are `String -> String` transformations chained inside `CustomFormatterStep`
 
 Each custom rule should be independently testable with simple input/output string pairs.
+
+## Eclipse Formatter Configuration
+
+The Eclipse JDT formatter config is maintained as a **YAML file** (`src/main/formatter/eclipse-formatter.yaml`)
+and converted to Eclipse's XML format at build time by the `generateEclipseConfig` Gradle task.
+
+**How it works:** YAML keys are joined with `.` separators to produce flat Eclipse setting IDs.
+For example:
+
+```yaml
+org:
+  eclipse:
+    jdt:
+      core:
+        formatter:
+          tabulation:
+            char: tab
+```
+
+becomes `<setting id="org.eclipse.jdt.core.formatter.tabulation.char" value="tab"/>`.
+
+- **Source of truth:** `src/main/formatter/eclipse-formatter.yaml` — edit this file
+- **Generated output:** `build/generated-resources/eclipse-formatter.xml` — do not edit
+- The generated XML is included in the JAR automatically via `sourceSets.main.resources`
+- Values can be unquoted in YAML; the generator calls `.toString()` on all values
+- Settings are sorted alphabetically in the generated XML (TreeMap)
 
 ## Build Commands
 

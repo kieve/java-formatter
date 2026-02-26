@@ -1,3 +1,12 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'org.yaml:snakeyaml:2.3'
+    }
+}
+
 plugins {
     id 'java-gradle-plugin'
 }
@@ -24,6 +33,70 @@ gradlePlugin {
         }
     }
 }
+
+// --- Eclipse formatter: YAML -> XML generation ---
+
+def generatedResourcesDir = layout.buildDirectory.dir('generated-resources')
+
+sourceSets {
+    main {
+        resources {
+            srcDir generatedResourcesDir
+        }
+    }
+}
+
+tasks.register('generateEclipseConfig') {
+    def yamlFile = file('src/main/formatter/eclipse-formatter.yaml')
+    def outputFile = generatedResourcesDir.map { it.file('eclipse-formatter.xml') }
+
+    inputs.file(yamlFile)
+    outputs.file(outputFile)
+
+    doLast {
+        def yaml = new org.yaml.snakeyaml.Yaml()
+        def config = yaml.load(yamlFile.text)
+
+        def settings = new TreeMap<String, String>()
+        def flatten
+        flatten = { Map map, String prefix ->
+            map.each { key, value ->
+                def fullKey = prefix ? "${prefix}.${key}" : key.toString()
+                if (value instanceof Map) {
+                    flatten(value, fullKey)
+                } else {
+                    settings[fullKey] = value.toString()
+                }
+            }
+        }
+        flatten(config, '')
+
+        def xml = new StringBuilder()
+        xml.append('<?xml version="1.0" encoding="UTF-8" standalone="no"?>\n')
+        xml.append('<profiles version="22">\n')
+        xml.append('    <profile kind="CodeFormatterProfile" name="KieveStyle" version="22">\n')
+        settings.each { id, value ->
+            def escapedValue = value
+                .replace('&', '&amp;')
+                .replace('<', '&lt;')
+                .replace('>', '&gt;')
+                .replace('"', '&quot;')
+            xml.append("        <setting id=\"${id}\" value=\"${escapedValue}\"/>\n")
+        }
+        xml.append('    </profile>\n')
+        xml.append('</profiles>\n')
+
+        def outFile = outputFile.get().asFile
+        outFile.parentFile.mkdirs()
+        outFile.text = xml.toString()
+    }
+}
+
+tasks.named('processResources') {
+    dependsOn 'generateEclipseConfig'
+}
+
+// --- end Eclipse formatter generation ---
 
 dependencies {
     // Spotless Gradle plugin — brings in spotless-lib transitively

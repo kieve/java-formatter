@@ -1,0 +1,80 @@
+org:
+  eclipse:
+    jdt:
+      core:
+        formatter:
+          # Indentation
+          tabulation:
+            char: tab
+            size: 4
+          indentation:
+            size: 4
+
+          # Line width
+          lineSplit: 120
+
+          # Braces
+          brace_position_for_type_declaration: end_of_line
+          brace_position_for_method_declaration: end_of_line
+          brace_position_for_constructor_declaration: end_of_line
+          brace_position_for_block: end_of_line
+          brace_position_for_switch: end_of_line
+          brace_position_for_anonymous_type_declaration: end_of_line
+          brace_position_for_array_initializer: end_of_line
+          brace_position_for_enum_declaration: end_of_line
+          brace_position_for_enum_constant: end_of_line
+          brace_position_for_annotation_type_declaration: end_of_line
+          brace_position_for_record_declaration: end_of_line
+          brace_position_for_record_constructor: end_of_line
+          brace_position_for_lambda_body: end_of_line
+
+          # Blank lines
+          blank_lines_before_package: 0
+          blank_lines_after_package: 1
+          blank_lines_before_imports: 1
+          blank_lines_after_imports: 1
+          blank_lines_between_type_declarations: 1
+          blank_lines_before_member_type: 1
+          blank_lines_before_first_class_body_declaration: 0
+          blank_lines_after_last_class_body_declaration: 0
+          blank_lines_before_method: 1
+          blank_lines_before_field: 0
+
+          # Whitespace
+          insert_space_before_comma_in_method_invocation_arguments: do not insert
+          insert_space_after_comma_in_method_invocation_arguments: insert
+          insert_space_before_comma_in_method_declaration_parameters: do not insert
+          insert_space_after_comma_in_method_declaration_parameters: insert
+          insert_space_before_opening_paren_in_method_declaration: do not insert
+          insert_space_before_opening_paren_in_method_invocation: do not insert
+          insert_space_before_opening_paren_in_if: insert
+          insert_space_before_opening_paren_in_for: insert
+          insert_space_before_opening_paren_in_while: insert
+          insert_space_before_opening_paren_in_switch: insert
+          insert_space_before_opening_paren_in_catch: insert
+          insert_space_before_opening_brace_in_type_declaration: insert
+          insert_space_before_opening_brace_in_method_declaration: insert
+          insert_space_before_opening_brace_in_block: insert
+          insert_space_after_assignment_operator: insert
+          insert_space_before_assignment_operator: insert
+          insert_space_before_semicolon: do not insert
+          insert_space_before_colon_in_for: insert
+          insert_space_after_colon_in_for: insert
+
+          # Newlines
+          insert_new_line_at_end_of_file_if_missing: insert
+          keep_else_statement_on_same_line: false
+          keep_then_statement_on_same_line: false
+          put_empty_statement_on_new_line: true
+
+          # Wrapping
+          alignment_for_arguments_in_method_invocation: 16
+          alignment_for_parameters_in_method_declaration: 16
+          alignment_for_expressions_in_array_initializer: 16
+
+          # Comments
+          comment:
+            format_javadoc_comments: true
+            format_block_comments: true
+            format_line_comments: false
+            line_length: 120
