@@ -1,0 +1,43 @@
+plugins {
+    id 'java-gradle-plugin'
+}
+
+group = 'ca.kieve'
+version = '0.1.0'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(25)
+    }
+}
+
+repositories {
+    mavenCentral()
+    gradlePluginPortal()
+}
+
+gradlePlugin {
+    plugins {
+        javaFormatter {
+            id = 'ca.kieve.java-formatter'
+            implementationClass = 'ca.kieve.formatter.JavaFormatterPlugin'
+        }
+    }
+}
+
+dependencies {
+    // Spotless Gradle plugin — brings in spotless-lib transitively
+    implementation 'com.diffplug.spotless:spotless-plugin-gradle:8.2.1'
+
+    // JavaParser for AST parsing and transformation
+    implementation 'com.github.javaparser:javaparser-core:3.28.0'
+
+    // Testing
+    testImplementation platform('org.junit:junit-bom:5.11.4')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
