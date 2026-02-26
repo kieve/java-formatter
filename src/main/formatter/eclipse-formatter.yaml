@@ -276,7 +276,7 @@ org:
           alignment_for_assertion_message: 48
           alignment_for_assignment: 0
           alignment_for_conditional_expression: 48
-          alignment_for_enum_constants: 48
+          alignment_for_enum_constants: 49
           alignment_for_for_loop_header: 48
           alignment_for_method_declaration: 0
           alignment_for_parameters_in_constructor_declaration: 48

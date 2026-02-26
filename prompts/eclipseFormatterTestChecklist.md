@@ -16,7 +16,7 @@ All setting IDs are relative to `org.eclipse.jdt.core.formatter.` unless otherwi
 - [x] `continuation_indentation` — extra indent for continuation lines (default: `2` units)
 - [x] `continuation_indentation_for_array_initializer` — continuation indent for array initializers (default: `2`)
 - [x] `indent_body_declarations_compare_to_type_header` — indent class body relative to class decl
-- [ ] `indent_body_declarations_compare_to_enum_declaration_header` — indent enum body
+- [x] `indent_body_declarations_compare_to_enum_declaration_header` — indent enum body
 - [ ] `indent_body_declarations_compare_to_enum_constant_header` — indent enum constant body
 - [ ] `indent_body_declarations_compare_to_annotation_declaration_header` — indent annotation body
 - [ ] `indent_body_declarations_compare_to_record_header` — indent record body

@@ -10,7 +10,9 @@
       "Bash(./gradlew dependencies:*)",
       "WebFetch(domain:raw.githubusercontent.com)",
       "Bash(gh api:*)",
-      "Bash(./gradlew test:*)"
+      "Bash(./gradlew test:*)",
+      "Bash(curl:*)",
+      "WebFetch(domain:stackoverflow.com)"
     ]
   }
 }

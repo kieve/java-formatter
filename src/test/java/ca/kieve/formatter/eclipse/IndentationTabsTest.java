@@ -152,6 +152,36 @@ class IndentationTabsTest {
         assertEquals(expected, formatJava(testProjectDir, input));
     }
 
+    // indent_body_declarations_compare_to_enum_declaration_header
+    @Test
+    void indentBodyDeclarationsCompareToEnumDeclarationHeader() throws IOException {
+        // language=Java
+        String input = """
+                public enum FormatterTest {
+                VALUE_ONE,
+                VALUE_TWO;
+                int field;
+                void method() {
+                }
+                }
+                """;
+
+        // language=Java
+        String expected = """
+                public enum FormatterTest {
+                    VALUE_ONE,
+                    VALUE_TWO;
+
+                    int field;
+
+                    void method() {
+                    }
+                }
+                """;
+
+        assertEquals(expected, formatJava(testProjectDir, input));
+    }
+
     // tabulation.size
     @Test
     void tabulationSizeExpandsTabsToFourSpaces() throws IOException {
