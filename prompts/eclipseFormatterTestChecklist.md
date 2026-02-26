@@ -41,21 +41,21 @@ All setting IDs are relative to `org.eclipse.jdt.core.formatter.` unless otherwi
 
 Values: `end_of_line`, `next_line`, `next_line_shifted`, `next_line_on_wrap`
 
-- [ ] `brace_position_for_type_declaration`
-- [ ] `brace_position_for_method_declaration`
-- [ ] `brace_position_for_constructor_declaration`
-- [ ] `brace_position_for_block`
-- [ ] `brace_position_for_switch`
-- [ ] `brace_position_for_anonymous_type_declaration`
-- [ ] `brace_position_for_array_initializer`
-- [ ] `brace_position_for_enum_declaration`
-- [ ] `brace_position_for_enum_constant`
-- [ ] `brace_position_for_annotation_type_declaration`
-- [ ] `brace_position_for_record_declaration`
-- [ ] `brace_position_for_record_constructor`
-- [ ] `brace_position_for_lambda_body`
-- [ ] `brace_position_for_block_in_case` — brace position for block inside case
-- [ ] `brace_position_for_block_in_case_after_arrow` — brace position for block inside arrow case
+- [x] `brace_position_for_type_declaration`
+- [x] `brace_position_for_method_declaration`
+- [x] `brace_position_for_constructor_declaration`
+- [x] `brace_position_for_block`
+- [x] `brace_position_for_switch`
+- [x] `brace_position_for_anonymous_type_declaration`
+- [x] `brace_position_for_array_initializer`
+- [x] `brace_position_for_enum_declaration`
+- [x] `brace_position_for_enum_constant`
+- [x] `brace_position_for_annotation_type_declaration`
+- [x] `brace_position_for_record_declaration`
+- [x] `brace_position_for_record_constructor`
+- [x] `brace_position_for_lambda_body`
+- [x] `brace_position_for_block_in_case` — brace position for block inside case
+- [x] `brace_position_for_block_in_case_after_arrow` — brace position for block inside arrow case
 
 ---
 
