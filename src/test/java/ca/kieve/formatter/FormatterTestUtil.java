@@ -19,16 +19,10 @@ public final class FormatterTestUtil {
     private static final String BUILD_GRADLE = """
             plugins {
                 id 'java'
-                id 'com.diffplug.spotless'
+                id 'ca.kieve.java-formatter'
             }
             repositories {
                 mavenCentral()
-            }
-            spotless {
-                java {
-                    target 'src/*/java/**/*.java'
-                    eclipse().configFile(file('eclipse-config.xml'))
-                }
             }
             """;
 
@@ -38,7 +32,7 @@ public final class FormatterTestUtil {
     private static final String RELATIVE_PATH = "src/main/java/" + CLASS_NAME + ".java";
 
     /**
-     * Format a Java source string through the full Eclipse JDT formatter pipeline.
+     * Format a Java source string through the full formatter pipeline (Eclipse JDT + custom rules).
      * <p>
      * Creates a temporary Gradle project in {@code testProjectDir}, writes the
      * source as {@code src/main/java/FormatterTest.java}, runs {@code spotlessApply},
@@ -52,7 +46,6 @@ public final class FormatterTestUtil {
             throws IOException {
         writeFile(testProjectDir, "settings.gradle", "");
         writeFile(testProjectDir, "build.gradle", BUILD_GRADLE);
-        copyResource("/eclipse-formatter.xml", testProjectDir.resolve("eclipse-config.xml"));
 
         writeFile(testProjectDir, RELATIVE_PATH, javaSource);
 

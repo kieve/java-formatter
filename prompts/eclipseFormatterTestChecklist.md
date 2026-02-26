@@ -61,7 +61,7 @@ Values: `end_of_line`, `next_line`, `next_line_shifted`, `next_line_on_wrap`
 
 ## Blank Lines
 
-- [ ] `blank_lines_before_package`
+- [x] `blank_lines_before_package`
 - [ ] `blank_lines_after_package`
 - [ ] `blank_lines_before_imports`
 - [ ] `blank_lines_after_imports`

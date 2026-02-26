@@ -1,6 +1,7 @@
 package ca.kieve.formatter.step;
 
 import ca.kieve.formatter.FormatConfig;
+import ca.kieve.formatter.rules.LeadingBlankLines;
 import com.diffplug.spotless.FormatterFunc;
 import com.diffplug.spotless.FormatterStep;
 
@@ -38,8 +39,7 @@ public final class CustomFormatterStep {
         FormatterFunc toFormatter() {
             return source -> {
                 String result = source;
-                // Formatting rules will be applied here in sequence.
-                // Each rule is a String -> String transformation.
+                result = LeadingBlankLines.apply(result);
                 return result;
             };
         }

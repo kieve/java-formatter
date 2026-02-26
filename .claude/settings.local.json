@@ -12,7 +12,8 @@
       "Bash(gh api:*)",
       "Bash(./gradlew test:*)",
       "Bash(curl:*)",
-      "WebFetch(domain:stackoverflow.com)"
+      "WebFetch(domain:stackoverflow.com)",
+      "Bash(./gradlew:*)"
     ]
   }
 }
