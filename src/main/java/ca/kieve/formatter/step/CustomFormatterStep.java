@@ -29,6 +29,19 @@ public final class CustomFormatterStep {
         );
     }
 
+    /**
+     * Apply all custom formatting rules to the given source string.
+     * <p>
+     * This is the single source of truth for the custom rule chain.
+     * Both the Spotless step and the direct test utility call this method.
+     */
+    public static String applyCustomRules(String source) {
+        String result = source;
+        result = LeadingBlankLines.apply(result);
+        result = ClassBodyBlankLines.apply(result);
+        return result;
+    }
+
     private static final class State implements Serializable {
         private static final long serialVersionUID = 1L;
         private final FormatConfig config;
@@ -38,12 +51,7 @@ public final class CustomFormatterStep {
         }
 
         FormatterFunc toFormatter() {
-            return source -> {
-                String result = source;
-                result = LeadingBlankLines.apply(result);
-                result = ClassBodyBlankLines.apply(result);
-                return result;
-            };
+            return CustomFormatterStep::applyCustomRules;
         }
     }
 }

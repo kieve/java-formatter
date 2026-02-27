@@ -112,6 +112,10 @@ dependencies {
     testImplementation platform('org.junit:junit-bom:5.11.4')
     testImplementation 'org.junit.jupiter:junit-jupiter'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+    // Eclipse JDT for direct (in-process) formatter tests
+    testImplementation 'org.eclipse.jdt:org.eclipse.jdt.core:3.40.0'
+    testImplementation 'org.eclipse.platform:org.eclipse.text:3.14.200'
 }
 
 tasks.named('test') {

@@ -1,12 +1,8 @@
 package ca.kieve.formatter.eclipse;
 
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.io.TempDir;
 
-import java.io.IOException;
-import java.nio.file.Path;
-
-import static ca.kieve.formatter.FormatterTestUtil.formatJava;
+import static ca.kieve.formatter.DirectFormatterTestUtil.formatJava;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
@@ -16,12 +12,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  */
 class BlankLinesTest {
 
-    @TempDir
-    Path testProjectDir;
-
     // blank_lines_before_package
     @Test
-    void blankLinesBeforePackageRemovesLeadingBlanks() throws IOException {
+    void blankLinesBeforePackageRemovesLeadingBlanks() {
         // language=Java
         String input = """
                 \n\npackage com.example;
@@ -38,12 +31,12 @@ class BlankLinesTest {
                 }
                 """;
 
-        assertEquals(expected, formatJava(testProjectDir, input));
+        assertEquals(expected, formatJava(input));
     }
 
     // blank_lines_after_package
     @Test
-    void blankLinesAfterPackageEnsuresOneBlankLine() throws IOException {
+    void blankLinesAfterPackageEnsuresOneBlankLine() {
         // language=Java
         String input = """
                 package com.example;
@@ -59,12 +52,12 @@ class BlankLinesTest {
                 }
                 """;
 
-        assertEquals(expected, formatJava(testProjectDir, input));
+        assertEquals(expected, formatJava(input));
     }
 
     // blank_lines_before_imports
     @Test
-    void blankLinesBeforeImportsEnsuresOneBlankLine() throws IOException {
+    void blankLinesBeforeImportsEnsuresOneBlankLine() {
         // language=Java
         String input = """
                 package com.example;
@@ -84,12 +77,12 @@ class BlankLinesTest {
                 }
                 """;
 
-        assertEquals(expected, formatJava(testProjectDir, input));
+        assertEquals(expected, formatJava(input));
     }
 
     // blank_lines_after_imports
     @Test
-    void blankLinesAfterImportsEnsuresOneBlankLine() throws IOException {
+    void blankLinesAfterImportsEnsuresOneBlankLine() {
         // language=Java
         String input = """
                 package com.example;
@@ -109,12 +102,12 @@ class BlankLinesTest {
                 }
                 """;
 
-        assertEquals(expected, formatJava(testProjectDir, input));
+        assertEquals(expected, formatJava(input));
     }
 
     // blank_lines_between_type_declarations
     @Test
-    void blankLinesBetweenTypeDeclarationsEnsuresOneBlankLine() throws IOException {
+    void blankLinesBetweenTypeDeclarationsEnsuresOneBlankLine() {
         // language=Java
         String input = """
                 class FormatterTest {
@@ -132,12 +125,12 @@ class BlankLinesTest {
                 }
                 """;
 
-        assertEquals(expected, formatJava(testProjectDir, input));
+        assertEquals(expected, formatJava(input));
     }
 
     // blank_lines_before_member_type
     @Test
-    void blankLinesBeforeMemberTypeEnsuresOneBlankLine() throws IOException {
+    void blankLinesBeforeMemberTypeEnsuresOneBlankLine() {
         // language=Java
         String input = """
                 public class FormatterTest {
@@ -157,12 +150,12 @@ class BlankLinesTest {
                 }
                 """;
 
-        assertEquals(expected, formatJava(testProjectDir, input));
+        assertEquals(expected, formatJava(input));
     }
 
     // blank_lines_before_first_class_body_declaration
     @Test
-    void blankLinesBeforeFirstClassBodyDeclarationDoesNotInsertBlank() throws IOException {
+    void blankLinesBeforeFirstClassBodyDeclarationDoesNotInsertBlank() {
         // language=Java
         String input = """
                 public class FormatterTest {
@@ -177,12 +170,12 @@ class BlankLinesTest {
                 }
                 """;
 
-        assertEquals(expected, formatJava(testProjectDir, input));
+        assertEquals(expected, formatJava(input));
     }
 
     // blank_lines_before_first_class_body_declaration — removes existing blank line
     @Test
-    void blankLinesBeforeFirstClassBodyDeclarationRemovesExistingBlank() throws IOException {
+    void blankLinesBeforeFirstClassBodyDeclarationRemovesExistingBlank() {
         // language=Java
         String input = """
                 public class FormatterTest {
@@ -198,12 +191,12 @@ class BlankLinesTest {
                 }
                 """;
 
-        assertEquals(expected, formatJava(testProjectDir, input));
+        assertEquals(expected, formatJava(input));
     }
 
     // blank_lines_after_last_class_body_declaration
     @Test
-    void blankLinesAfterLastClassBodyDeclarationRemovesTrailingBlank() throws IOException {
+    void blankLinesAfterLastClassBodyDeclarationRemovesTrailingBlank() {
         // language=Java
         String input = """
                 public class FormatterTest {
@@ -221,6 +214,6 @@ class BlankLinesTest {
                 }
                 """;
 
-        assertEquals(expected, formatJava(testProjectDir, input));
+        assertEquals(expected, formatJava(input));
     }
 }

@@ -1,12 +1,8 @@
 package ca.kieve.formatter.eclipse;
 
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.io.TempDir;
 
-import java.io.IOException;
-import java.nio.file.Path;
-
-import static ca.kieve.formatter.FormatterTestUtil.formatJava;
+import static ca.kieve.formatter.DirectFormatterTestUtil.formatJava;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
@@ -17,12 +13,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
  */
 class IndentationTabsTest {
 
-    @TempDir
-    Path testProjectDir;
-
     // tabulation.char
     @Test
-    void tabulationCharConvertsTabsToSpaces() throws IOException {
+    void tabulationCharConvertsTabsToSpaces() {
         // language=Java
         String input = """
                 public class FormatterTest {
@@ -41,12 +34,12 @@ class IndentationTabsTest {
                 }
                 """;
 
-        assertEquals(expected, formatJava(testProjectDir, input));
+        assertEquals(expected, formatJava(input));
     }
 
     // indentation.size
     @Test
-    void indentationSizeUsesFourSpacesPerLevel() throws IOException {
+    void indentationSizeUsesFourSpacesPerLevel() {
         // language=Java
         String input = """
                 public class FormatterTest {
@@ -73,12 +66,12 @@ class IndentationTabsTest {
                 }
                 """;
 
-        assertEquals(expected, formatJava(testProjectDir, input));
+        assertEquals(expected, formatJava(input));
     }
 
     // continuation_indentation
     @Test
-    void continuationIndentationIndentsByOneUnit() throws IOException {
+    void continuationIndentationIndentsByOneUnit() {
         // language=Java
         String input = """
                 public class FormatterTest {
@@ -100,12 +93,12 @@ class IndentationTabsTest {
                 }
                 """;
 
-        assertEquals(expected, formatJava(testProjectDir, input));
+        assertEquals(expected, formatJava(input));
     }
 
     // continuation_indentation_for_array_initializer
     @Test
-    void continuationIndentationForArrayInitializerIndentsByOneUnit() throws IOException {
+    void continuationIndentationForArrayInitializerIndentsByOneUnit() {
         // language=Java
         String input = """
                 public class FormatterTest {
@@ -125,12 +118,12 @@ class IndentationTabsTest {
                 }
                 """;
 
-        assertEquals(expected, formatJava(testProjectDir, input));
+        assertEquals(expected, formatJava(input));
     }
 
     // indent_body_declarations_compare_to_type_header
     @Test
-    void indentBodyDeclarationsCompareToTypeHeader() throws IOException {
+    void indentBodyDeclarationsCompareToTypeHeader() {
         // language=Java
         String input = """
                 public class FormatterTest {
@@ -150,12 +143,12 @@ class IndentationTabsTest {
                 }
                 """;
 
-        assertEquals(expected, formatJava(testProjectDir, input));
+        assertEquals(expected, formatJava(input));
     }
 
     // indent_body_declarations_compare_to_enum_declaration_header
     @Test
-    void indentBodyDeclarationsCompareToEnumDeclarationHeader() throws IOException {
+    void indentBodyDeclarationsCompareToEnumDeclarationHeader() {
         // language=Java
         String input = """
                 public enum FormatterTest {
@@ -180,12 +173,12 @@ class IndentationTabsTest {
                 }
                 """;
 
-        assertEquals(expected, formatJava(testProjectDir, input));
+        assertEquals(expected, formatJava(input));
     }
 
     // indent_body_declarations_compare_to_enum_constant_header
     @Test
-    void indentBodyDeclarationsCompareToEnumConstantHeader() throws IOException {
+    void indentBodyDeclarationsCompareToEnumConstantHeader() {
         // language=Java
         String input = """
                 public enum FormatterTest {
@@ -208,12 +201,12 @@ class IndentationTabsTest {
                 }
                 """;
 
-        assertEquals(expected, formatJava(testProjectDir, input));
+        assertEquals(expected, formatJava(input));
     }
 
     // indent_body_declarations_compare_to_annotation_declaration_header
     @Test
-    void indentBodyDeclarationsCompareToAnnotationDeclarationHeader() throws IOException {
+    void indentBodyDeclarationsCompareToAnnotationDeclarationHeader() {
         // language=Java
         String input = """
                 public @interface FormatterTest {
@@ -231,12 +224,12 @@ class IndentationTabsTest {
                 }
                 """;
 
-        assertEquals(expected, formatJava(testProjectDir, input));
+        assertEquals(expected, formatJava(input));
     }
 
     // indent_body_declarations_compare_to_record_header
     @Test
-    void indentBodyDeclarationsCompareToRecordHeader() throws IOException {
+    void indentBodyDeclarationsCompareToRecordHeader() {
         // language=Java
         String input = """
                 public record FormatterTest(int x, int y) {
@@ -255,12 +248,12 @@ class IndentationTabsTest {
                 }
                 """;
 
-        assertEquals(expected, formatJava(testProjectDir, input));
+        assertEquals(expected, formatJava(input));
     }
 
     // indent_statements_compare_to_block
     @Test
-    void indentStatementsCompareToBlock() throws IOException {
+    void indentStatementsCompareToBlock() {
         // language=Java
         String input = """
                 public class FormatterTest {
@@ -285,12 +278,12 @@ class IndentationTabsTest {
                 }
                 """;
 
-        assertEquals(expected, formatJava(testProjectDir, input));
+        assertEquals(expected, formatJava(input));
     }
 
     // indent_statements_compare_to_body
     @Test
-    void indentStatementsCompareToBody() throws IOException {
+    void indentStatementsCompareToBody() {
         // language=Java
         String input = """
                 public class FormatterTest {
@@ -313,12 +306,12 @@ class IndentationTabsTest {
                 }
                 """;
 
-        assertEquals(expected, formatJava(testProjectDir, input));
+        assertEquals(expected, formatJava(input));
     }
 
     // indent_switchstatements_compare_to_switch
     @Test
-    void indentSwitchStatementsCompareToSwitch() throws IOException {
+    void indentSwitchStatementsCompareToSwitch() {
         // language=Java
         String input = """
                 public class FormatterTest {
@@ -347,12 +340,12 @@ class IndentationTabsTest {
                 }
                 """;
 
-        assertEquals(expected, formatJava(testProjectDir, input));
+        assertEquals(expected, formatJava(input));
     }
 
     // indent_switchstatements_compare_to_cases
     @Test
-    void indentSwitchStatementsCompareToCases() throws IOException {
+    void indentSwitchStatementsCompareToCases() {
         // language=Java
         String input = """
                 public class FormatterTest {
@@ -385,12 +378,12 @@ class IndentationTabsTest {
                 }
                 """;
 
-        assertEquals(expected, formatJava(testProjectDir, input));
+        assertEquals(expected, formatJava(input));
     }
 
     // indent_breaks_compare_to_cases
     @Test
-    void indentBreaksCompareToCases() throws IOException {
+    void indentBreaksCompareToCases() {
         // language=Java
         String input = """
                 public class FormatterTest {
@@ -429,12 +422,12 @@ class IndentationTabsTest {
                 }
                 """;
 
-        assertEquals(expected, formatJava(testProjectDir, input));
+        assertEquals(expected, formatJava(input));
     }
 
     // indent_empty_lines
     @Test
-    void indentEmptyLinesDoesNotIndentBlankLines() throws IOException {
+    void indentEmptyLinesDoesNotIndentBlankLines() {
         // language=Java — \s preserves trailing spaces on blank lines
         String input = """
                 public class FormatterTest {
@@ -459,12 +452,12 @@ class IndentationTabsTest {
                 }
                 """;
 
-        assertEquals(expected, formatJava(testProjectDir, input));
+        assertEquals(expected, formatJava(input));
     }
 
     // use_tabs_only_for_leading_indentation (excluded — N/A with space indentation)
     @Test
-    void useTabsOnlyForLeadingIndentationIsNotApplicableWithSpaces() throws IOException {
+    void useTabsOnlyForLeadingIndentationIsNotApplicableWithSpaces() {
         // language=Java
         String input = """
                 public class FormatterTest {
@@ -474,13 +467,13 @@ class IndentationTabsTest {
                 }
                 """;
 
-        String result = formatJava(testProjectDir, input);
+        String result = formatJava(input);
         assertFalse(result.contains("\t"), "Output should contain no tab characters with space indentation");
     }
 
     // tabulation.size
     @Test
-    void tabulationSizeExpandsTabsToFourSpaces() throws IOException {
+    void tabulationSizeExpandsTabsToFourSpaces() {
         // language=Java
         String input = """
                 public class FormatterTest {
@@ -503,6 +496,6 @@ class IndentationTabsTest {
                 }
                 """;
 
-        assertEquals(expected, formatJava(testProjectDir, input));
+        assertEquals(expected, formatJava(input));
     }
 }

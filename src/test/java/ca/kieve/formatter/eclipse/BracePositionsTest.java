@@ -1,12 +1,8 @@
 package ca.kieve.formatter.eclipse;
 
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.io.TempDir;
 
-import java.io.IOException;
-import java.nio.file.Path;
-
-import static ca.kieve.formatter.FormatterTestUtil.formatJava;
+import static ca.kieve.formatter.DirectFormatterTestUtil.formatJava;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
@@ -16,12 +12,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  */
 class BracePositionsTest {
 
-    @TempDir
-    Path testProjectDir;
-
     // brace_position_for_type_declaration
     @Test
-    void bracePositionForTypeDeclarationIsEndOfLine() throws IOException {
+    void bracePositionForTypeDeclarationIsEndOfLine() {
         // language=Java
         String input = """
                 public class FormatterTest
@@ -37,12 +30,12 @@ class BracePositionsTest {
                 }
                 """;
 
-        assertEquals(expected, formatJava(testProjectDir, input));
+        assertEquals(expected, formatJava(input));
     }
 
     // brace_position_for_method_declaration
     @Test
-    void bracePositionForMethodDeclarationIsEndOfLine() throws IOException {
+    void bracePositionForMethodDeclarationIsEndOfLine() {
         // language=Java
         String input = """
                 public class FormatterTest {
@@ -62,12 +55,12 @@ class BracePositionsTest {
                 }
                 """;
 
-        assertEquals(expected, formatJava(testProjectDir, input));
+        assertEquals(expected, formatJava(input));
     }
 
     // brace_position_for_constructor_declaration
     @Test
-    void bracePositionForConstructorDeclarationIsEndOfLine() throws IOException {
+    void bracePositionForConstructorDeclarationIsEndOfLine() {
         // language=Java
         String input = """
                 public class FormatterTest
@@ -88,12 +81,12 @@ class BracePositionsTest {
                 }
                 """;
 
-        assertEquals(expected, formatJava(testProjectDir, input));
+        assertEquals(expected, formatJava(input));
     }
 
     // brace_position_for_block
     @Test
-    void bracePositionForBlockIsEndOfLine() throws IOException {
+    void bracePositionForBlockIsEndOfLine() {
         // language=Java
         String input = """
                 public class FormatterTest {
@@ -117,12 +110,12 @@ class BracePositionsTest {
                 }
                 """;
 
-        assertEquals(expected, formatJava(testProjectDir, input));
+        assertEquals(expected, formatJava(input));
     }
 
     // brace_position_for_switch
     @Test
-    void bracePositionForSwitchIsEndOfLine() throws IOException {
+    void bracePositionForSwitchIsEndOfLine() {
         // language=Java
         String input = """
                 public class FormatterTest {
@@ -148,12 +141,12 @@ class BracePositionsTest {
                 }
                 """;
 
-        assertEquals(expected, formatJava(testProjectDir, input));
+        assertEquals(expected, formatJava(input));
     }
 
     // brace_position_for_anonymous_type_declaration
     @Test
-    void bracePositionForAnonymousTypeDeclarationIsEndOfLine() throws IOException {
+    void bracePositionForAnonymousTypeDeclarationIsEndOfLine() {
         // language=Java
         String input = """
                 public class FormatterTest {
@@ -176,12 +169,12 @@ class BracePositionsTest {
                 }
                 """;
 
-        assertEquals(expected, formatJava(testProjectDir, input));
+        assertEquals(expected, formatJava(input));
     }
 
     // brace_position_for_array_initializer
     @Test
-    void bracePositionForArrayInitializerIsEndOfLine() throws IOException {
+    void bracePositionForArrayInitializerIsEndOfLine() {
         // language=Java
         String input = """
                 public class FormatterTest {
@@ -197,12 +190,12 @@ class BracePositionsTest {
                 }
                 """;
 
-        assertEquals(expected, formatJava(testProjectDir, input));
+        assertEquals(expected, formatJava(input));
     }
 
     // brace_position_for_enum_declaration
     @Test
-    void bracePositionForEnumDeclarationIsEndOfLine() throws IOException {
+    void bracePositionForEnumDeclarationIsEndOfLine() {
         // language=Java
         String input = """
                 public enum FormatterTest
@@ -220,12 +213,12 @@ class BracePositionsTest {
                 }
                 """;
 
-        assertEquals(expected, formatJava(testProjectDir, input));
+        assertEquals(expected, formatJava(input));
     }
 
     // brace_position_for_enum_constant
     @Test
-    void bracePositionForEnumConstantIsEndOfLine() throws IOException {
+    void bracePositionForEnumConstantIsEndOfLine() {
         // language=Java
         String input = """
                 public enum FormatterTest {
@@ -249,12 +242,12 @@ class BracePositionsTest {
                 }
                 """;
 
-        assertEquals(expected, formatJava(testProjectDir, input));
+        assertEquals(expected, formatJava(input));
     }
 
     // brace_position_for_annotation_type_declaration
     @Test
-    void bracePositionForAnnotationTypeDeclarationIsEndOfLine() throws IOException {
+    void bracePositionForAnnotationTypeDeclarationIsEndOfLine() {
         // language=Java
         String input = """
                 public @interface FormatterTest
@@ -270,12 +263,12 @@ class BracePositionsTest {
                 }
                 """;
 
-        assertEquals(expected, formatJava(testProjectDir, input));
+        assertEquals(expected, formatJava(input));
     }
 
     // brace_position_for_record_declaration
     @Test
-    void bracePositionForRecordDeclarationIsEndOfLine() throws IOException {
+    void bracePositionForRecordDeclarationIsEndOfLine() {
         // language=Java
         String input = """
                 public record FormatterTest(int x, int y)
@@ -295,12 +288,12 @@ class BracePositionsTest {
                 }
                 """;
 
-        assertEquals(expected, formatJava(testProjectDir, input));
+        assertEquals(expected, formatJava(input));
     }
 
     // brace_position_for_record_constructor
     @Test
-    void bracePositionForRecordConstructorIsEndOfLine() throws IOException {
+    void bracePositionForRecordConstructorIsEndOfLine() {
         // language=Java
         String input = """
                 public record FormatterTest(int x, int y)
@@ -325,12 +318,12 @@ class BracePositionsTest {
                 }
                 """;
 
-        assertEquals(expected, formatJava(testProjectDir, input));
+        assertEquals(expected, formatJava(input));
     }
 
     // brace_position_for_lambda_body
     @Test
-    void bracePositionForLambdaBodyIsEndOfLine() throws IOException {
+    void bracePositionForLambdaBodyIsEndOfLine() {
         // language=Java
         String input = """
                 public class FormatterTest {
@@ -350,12 +343,12 @@ class BracePositionsTest {
                 }
                 """;
 
-        assertEquals(expected, formatJava(testProjectDir, input));
+        assertEquals(expected, formatJava(input));
     }
 
     // brace_position_for_block_in_case
     @Test
-    void bracePositionForBlockInCaseIsEndOfLine() throws IOException {
+    void bracePositionForBlockInCaseIsEndOfLine() {
         // language=Java
         String input = """
                 public class FormatterTest {
@@ -385,12 +378,12 @@ class BracePositionsTest {
                 }
                 """;
 
-        assertEquals(expected, formatJava(testProjectDir, input));
+        assertEquals(expected, formatJava(input));
     }
 
     // brace_position_for_block_in_case_after_arrow
     @Test
-    void bracePositionForBlockInCaseAfterArrowIsEndOfLine() throws IOException {
+    void bracePositionForBlockInCaseAfterArrowIsEndOfLine() {
         // language=Java
         String input = """
                 public class FormatterTest {
@@ -425,6 +418,6 @@ class BracePositionsTest {
                 }
                 """;
 
-        assertEquals(expected, formatJava(testProjectDir, input));
+        assertEquals(expected, formatJava(input));
     }
 }

@@ -1,12 +1,8 @@
 package ca.kieve.formatter.eclipse;
 
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.io.TempDir;
 
-import java.io.IOException;
-import java.nio.file.Path;
-
-import static ca.kieve.formatter.FormatterTestUtil.formatJava;
+import static ca.kieve.formatter.DirectFormatterTestUtil.formatJava;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
@@ -16,12 +12,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  */
 class LineWidthTest {
 
-    @TempDir
-    Path testProjectDir;
-
     // lineSplit
     @Test
-    void lineSplitWrapsLinesExceedingOneHundredCharacters() throws IOException {
+    void lineSplitWrapsLinesExceedingOneHundredCharacters() {
         // language=Java
         String input = """
                 public class FormatterTest {
@@ -46,12 +39,12 @@ class LineWidthTest {
                 }
                 """;
 
-        assertEquals(expected, formatJava(testProjectDir, input));
+        assertEquals(expected, formatJava(input));
     }
 
     // number_of_empty_lines_to_preserve
     @Test
-    void numberOfEmptyLinesToPreserveCollapsesMultipleBlanksToOne() throws IOException {
+    void numberOfEmptyLinesToPreserveCollapsesMultipleBlanksToOne() {
         // language=Java
         String input = """
                 public class FormatterTest {
@@ -81,6 +74,6 @@ class LineWidthTest {
                 }
                 """;
 
-        assertEquals(expected, formatJava(testProjectDir, input));
+        assertEquals(expected, formatJava(input));
     }
 }
