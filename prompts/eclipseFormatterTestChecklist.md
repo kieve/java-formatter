@@ -102,14 +102,14 @@ Values: `end_of_line`, `next_line`, `next_line_shifted`, `next_line_on_wrap`
 
 ### Annotations on Newlines
 
-- [ ] `insert_new_line_after_annotation_on_type` — newline after annotation on type
-- [ ] `insert_new_line_after_annotation_on_method` — newline after annotation on method
-- [ ] `insert_new_line_after_annotation_on_field` — newline after annotation on field
-- [ ] `insert_new_line_after_annotation_on_local_variable` — newline after annotation on local var
-- [ ] `insert_new_line_after_annotation_on_parameter` — newline after annotation on parameter
-- [ ] `insert_new_line_after_annotation_on_package` — newline after annotation on package
-- [ ] `insert_new_line_after_annotation_on_enum_constant` — newline after annotation on enum constant
-- [ ] `insert_new_line_after_type_annotation` — newline after type annotation
+- [x] `insert_new_line_after_annotation_on_type` — newline after annotation on type
+- [x] `insert_new_line_after_annotation_on_method` — newline after annotation on method
+- [x] `insert_new_line_after_annotation_on_field` — newline after annotation on field
+- [x] `insert_new_line_after_annotation_on_local_variable` — newline after annotation on local var
+- [x] `insert_new_line_after_annotation_on_parameter` — newline after annotation on parameter
+- [x] `insert_new_line_after_annotation_on_package` — newline after annotation on package
+- [x] `insert_new_line_after_annotation_on_enum_constant` — newline after annotation on enum constant
+- [x] `insert_new_line_after_type_annotation` — newline after type annotation
 
 ---
 
