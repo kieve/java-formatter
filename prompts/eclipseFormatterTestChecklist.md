@@ -138,34 +138,34 @@ Values: `one_line_never`, `one_line_if_empty`, `one_line_if_single_item`, `one_l
 Alignment values are bitmask integers. Key bits: `0` = no wrap, `16` = wrap where necessary,
 `32` = wrap first element, `48` = wrap all elements, `+64` = force split, `+16` = indent on column.
 
-- [ ] `alignment_for_arguments_in_method_invocation`
-- [ ] `alignment_for_parameters_in_method_declaration`
-- [ ] `alignment_for_expressions_in_array_initializer` *(excluded — custom formatter rule needed)*
-- [ ] `alignment_for_arguments_in_allocation_expression` — args in `new Foo(...)` calls
-- [ ] `alignment_for_arguments_in_annotation` — args in annotations
-- [ ] `alignment_for_arguments_in_enum_constant` — args in enum constants
-- [ ] `alignment_for_arguments_in_explicit_constructor_call` — args in `this()`/`super()` calls
-- [ ] `alignment_for_arguments_in_qualified_allocation_expression` — args in qualified `new`
-- [ ] `alignment_for_assertion_message` — assertion message wrapping
-- [ ] `alignment_for_assignment` — wrapping around `=`
-- [ ] `alignment_for_compact_if` — compact if statement alignment *(excluded — braces always required)*
-- [ ] `alignment_for_compact_loops` — compact loop alignment *(excluded — braces always required)*
-- [ ] `alignment_for_conditional_expression` — ternary `? :` wrapping
-- [ ] `alignment_for_conditional_expression_chain` — chained ternaries *(excluded — will be banned via linting)*
-- [ ] `alignment_for_enum_constants` — enum constant list wrapping
-- [ ] `alignment_for_for_loop_header` — for loop header expressions
-- [ ] `alignment_for_method_declaration` — method declaration wrapping
-- [ ] `alignment_for_module_statements` — module-info statements *(excluded)*
-- [ ] `alignment_for_multiple_fields` — multiple field declarations *(excluded)*
-- [ ] `alignment_for_parameters_in_constructor_declaration` — constructor params
-- [ ] `alignment_for_permitted_types_in_type_declaration` — `permits` clause
-- [ ] `alignment_for_record_components` — record component list
-- [ ] `alignment_for_resources_in_try` — try-with-resources
-- [ ] `alignment_for_selector_in_method_invocation` — method chain `.foo().bar()`
-- [ ] `alignment_for_superclass_in_type_declaration` — `extends` clause
-- [ ] `alignment_for_superinterfaces_in_type_declaration` — `implements` clause
-- [ ] `alignment_for_superinterfaces_in_enum_declaration` — enum `implements`
-- [ ] `alignment_for_superinterfaces_in_record_declaration` — record `implements`
+- [x] `alignment_for_arguments_in_method_invocation`
+- [x] `alignment_for_parameters_in_method_declaration`
+- [x] `alignment_for_expressions_in_array_initializer` *(excluded — custom formatter rule needed)* also no test was created
+- [x] `alignment_for_arguments_in_allocation_expression` — args in `new Foo(...)` calls
+- [x] `alignment_for_arguments_in_annotation` — args in annotations
+- [x] `alignment_for_arguments_in_enum_constant` — args in enum constants
+- [x] `alignment_for_arguments_in_explicit_constructor_call` — args in `this()`/`super()` calls
+- [x] `alignment_for_arguments_in_qualified_allocation_expression` — args in qualified `new`
+- [x] `alignment_for_assertion_message` — assertion message wrapping
+- [x] `alignment_for_assignment` — wrapping around `=`
+- [x] `alignment_for_compact_if` — compact if statement alignment *(excluded — braces always required)*
+- [x] `alignment_for_compact_loops` — compact loop alignment *(excluded — braces always required)*
+- [x] `alignment_for_conditional_expression` — ternary `? :` wrapping
+- [x] `alignment_for_conditional_expression_chain` — chained ternaries *(excluded — will be banned via linting)*
+- [x] `alignment_for_enum_constants` — enum constant list wrapping
+- [x] `alignment_for_expressions_in_for_loop_header` — for loop header expressions
+- [x] `alignment_for_method_declaration` — method declaration wrapping
+- [x] `alignment_for_module_statements` — module-info statements *(excluded)*
+- [x] `alignment_for_multiple_fields` — multiple field declarations *(excluded)*
+- [x] `alignment_for_parameters_in_constructor_declaration` — constructor params
+- [x] `alignment_for_permitted_types_in_type_declaration` — `permits` clause
+- [x] `alignment_for_record_components` — record component list
+- [x] `alignment_for_resources_in_try` — try-with-resources
+- [x] `alignment_for_selector_in_method_invocation` — method chain `.foo().bar()`
+- [x] `alignment_for_superclass_in_type_declaration` — `extends` clause
+- [x] `alignment_for_superinterfaces_in_type_declaration` — `implements` clause
+- [x] `alignment_for_superinterfaces_in_enum_declaration` — enum `implements`
+- [x] `alignment_for_superinterfaces_in_record_declaration` — record `implements`
 - [ ] `alignment_for_throws_clause_in_method_declaration` — method `throws`
 - [ ] `alignment_for_throws_clause_in_constructor_declaration` — constructor `throws`
 - [ ] `alignment_for_type_arguments` — type arguments `<A, B>`

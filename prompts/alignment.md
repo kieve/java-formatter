@@ -76,6 +76,38 @@ Working values from real projects:
 - `49` — used by [Eclipse SmartHome](https://github.com/eclipse-archived/smarthome/pull/211/files)
 - `17` — reported working on [Stack Overflow](https://stackoverflow.com/questions/6676305/how-to-stop-eclipse-formatter-from-placing-all-enums-on-one-line)
 
+### `alignment_for_for_loop_header` is the wrong setting ID
+
+The YAML key `alignment_for_for_loop_header` generates a valid-looking XML setting, but Eclipse JDT
+ignores it entirely. The correct setting ID is `alignment_for_expressions_in_for_loop_header`, which
+matches the constant name `FORMATTER_ALIGNMENT_FOR_EXPRESSIONS_IN_FOR_LOOP_HEADER`. The constant's
+*value* string is `"org.eclipse.jdt.core.formatter.alignment_for_for_loop_header"` according to the
+docs, but in practice only `alignment_for_expressions_in_for_loop_header` works.
+
+### `alignment_for_assignment` interferes with other wrapping
+
+Setting `alignment_for_assignment` to any non-zero value (tested `16` and `48`) causes Eclipse to
+wrap after `=` **before** applying other wrapping rules (e.g., `alignment_for_arguments_in_allocation_expression`).
+This means `Object obj = new Foo(longArg1, longArg2, longArg3)` wraps as:
+
+```java
+Object obj =
+    new Foo(longArg1, longArg2, longArg3);  // args no longer wrap individually
+```
+
+instead of the desired:
+
+```java
+Object obj = new Foo(
+    longArg1,
+    longArg2,
+    longArg3);
+```
+
+The assignment wrap "absorbs" the line length so the RHS fits on one line, preventing per-argument
+wrapping. This needs a custom rule that only wraps after `=` when the RHS doesn't have its own
+wrapping (e.g., a plain string literal or expression, not a method/constructor call).
+
 ### `join_wrapped_lines` preserves author line breaks
 
 The global setting `org.eclipse.jdt.core.formatter.join_wrapped_lines` (`true`/`false`)

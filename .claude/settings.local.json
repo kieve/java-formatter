@@ -14,7 +14,9 @@
       "Bash(curl:*)",
       "WebFetch(domain:stackoverflow.com)",
       "Bash(./gradlew:*)",
-      "WebFetch(domain:bugs.eclipse.org)"
+      "WebFetch(domain:bugs.eclipse.org)",
+      "WebFetch(domain:javadoc.io)",
+      "WebFetch(domain:eclipse.googlesource.com)"
     ]
   }
 }

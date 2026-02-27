@@ -151,7 +151,7 @@ Alignment values are bitmask integers. Key bits: `0` = no wrap, `16` = wrap wher
 - [x] `alignment_for_conditional_expression` — ternary `? :` wrapping
 - [x] `alignment_for_conditional_expression_chain` — chained ternaries *(excluded — will be banned via linting)*
 - [x] `alignment_for_enum_constants` — enum constant list wrapping
-- [x] `alignment_for_for_loop_header` — for loop header expressions
+- [x] `alignment_for_expressions_in_for_loop_header` — for loop header expressions
 - [x] `alignment_for_method_declaration` — method declaration wrapping
 - [x] `alignment_for_module_statements` — module-info statements *(excluded)*
 - [x] `alignment_for_multiple_fields` — multiple field declarations *(excluded)*
