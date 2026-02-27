@@ -117,19 +117,19 @@ Values: `end_of_line`, `next_line`, `next_line_shifted`, `next_line_on_wrap`
 
 Values: `one_line_never`, `one_line_if_empty`, `one_line_if_single_item`, `one_line_always`, `one_line_preserve`
 
-- [ ] `keep_method_body_on_one_line`
-- [ ] `keep_simple_getter_setter_on_one_line`
-- [ ] `keep_code_block_on_one_line`
-- [ ] `keep_lambda_body_block_on_one_line`
-- [ ] `keep_loop_body_block_on_one_line`
-- [ ] `keep_if_then_body_block_on_one_line`
-- [ ] `keep_type_declaration_on_one_line`
-- [ ] `keep_annotation_declaration_on_one_line`
-- [ ] `keep_anonymous_type_declaration_on_one_line`
-- [ ] `keep_enum_declaration_on_one_line`
-- [ ] `keep_enum_constant_declaration_on_one_line`
-- [ ] `keep_record_declaration_on_one_line`
-- [ ] `keep_record_constructor_on_one_line`
+- [x] `keep_method_body_on_one_line`
+- [x] `keep_simple_getter_setter_on_one_line`
+- [x] `keep_code_block_on_one_line`
+- [x] `keep_lambda_body_block_on_one_line`
+- [x] `keep_loop_body_block_on_one_line`
+- [x] `keep_if_then_body_block_on_one_line`
+- [x] `keep_type_declaration_on_one_line`
+- [x] `keep_annotation_declaration_on_one_line`
+- [x] `keep_anonymous_type_declaration_on_one_line`
+- [x] `keep_enum_declaration_on_one_line`
+- [x] `keep_enum_constant_declaration_on_one_line`
+- [x] `keep_record_declaration_on_one_line`
+- [x] `keep_record_constructor_on_one_line`
 
 ---
 
