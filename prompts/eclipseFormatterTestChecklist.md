@@ -34,6 +34,7 @@ All setting IDs are relative to `org.eclipse.jdt.core.formatter.` unless otherwi
 
 - [x] `lineSplit` — max line width before wrapping
 - [x] `number_of_empty_lines_to_preserve` — max consecutive blank lines to keep
+- [x] `join_wrapped_lines` — preserve author's line breaks (set to `false`)
 
 ---
 
@@ -75,29 +76,29 @@ Values: `end_of_line`, `next_line`, `next_line_shifted`, `next_line_on_wrap`
 - [x] `blank_lines_before_new_chunk` — blank lines before a new "chunk" of declarations
 - [x] `blank_lines_between_import_groups` — blank lines between import groups
 - [x] `blank_lines_between_statement_groups_in_switch` — blank lines between switch case groups
-- [ ] `number_of_blank_lines_after_code_block` — blank lines after a code block *(excluded)*
-- [ ] `number_of_blank_lines_before_code_block` — blank lines before a code block *(excluded)*
-- [ ] `number_of_blank_lines_at_beginning_of_code_block` — blank lines at start of code block
-- [ ] `number_of_blank_lines_at_end_of_code_block` — blank lines at end of code block
-- [ ] `number_of_blank_lines_at_beginning_of_method_body` — blank lines at start of method body
-- [ ] `number_of_blank_lines_at_end_of_method_body` — blank lines at end of method body
+- [x] `number_of_blank_lines_after_code_block` — blank lines after a code block *(excluded)*
+- [x] `number_of_blank_lines_before_code_block` — blank lines before a code block *(excluded)*
+- [x] `number_of_blank_lines_at_beginning_of_code_block` — blank lines at start of code block
+- [x] `number_of_blank_lines_at_end_of_code_block` — blank lines at end of code block
+- [x] `number_of_blank_lines_at_beginning_of_method_body` — blank lines at start of method body
+- [x] `number_of_blank_lines_at_end_of_method_body` — blank lines at end of method body
 
 ---
 
 ## Newlines
 
-- [ ] `insert_new_line_at_end_of_file_if_missing`
-- [ ] `keep_else_statement_on_same_line` *(excluded — N/A, braces always required)*
-- [ ] `keep_then_statement_on_same_line` *(excluded — N/A, braces always required)*
-- [ ] `put_empty_statement_on_new_line`
-- [ ] `insert_new_line_before_else_in_if_statement` — newline before `else`
-- [ ] `insert_new_line_before_catch_in_try_statement` — newline before `catch`
-- [ ] `insert_new_line_before_finally_in_try_statement` — newline before `finally`
-- [ ] `insert_new_line_before_while_in_do_statement` — newline before `while` in do-while
-- [ ] `insert_new_line_after_opening_brace_in_array_initializer` — newline after `{` in array init
-- [ ] `insert_new_line_before_closing_brace_in_array_initializer` — newline before `}` in array init
-- [ ] `insert_new_line_after_label` — newline after a label
-- [ ] `compact_else_if` — treat `else if` as a single unit
+- [x] `insert_new_line_at_end_of_file_if_missing`
+- [x] `keep_else_statement_on_same_line` *(excluded — N/A, braces always required)*
+- [x] `keep_then_statement_on_same_line` *(excluded — N/A, braces always required)*
+- [x] `put_empty_statement_on_new_line`
+- [x] `insert_new_line_before_else_in_if_statement` — newline before `else`
+- [x] `insert_new_line_before_catch_in_try_statement` — newline before `catch`
+- [x] `insert_new_line_before_finally_in_try_statement` — newline before `finally`
+- [x] `insert_new_line_before_while_in_do_statement` — newline before `while` in do-while
+- [x] `insert_new_line_after_opening_brace_in_array_initializer` — newline after `{` in array init
+- [x] `insert_new_line_before_closing_brace_in_array_initializer` — newline before `}` in array init
+- [x] `insert_new_line_after_label` — newline after a label
+- [x] `compact_else_if` — treat `else if` as a single unit
 
 ### Annotations on Newlines
 

@@ -365,6 +365,238 @@ class BlankLinesTest {
         assertEquals(expected, formatJava(input));
     }
 
+    // number_of_blank_lines_after_code_block (excluded)
+    @Test
+    void numberOfBlankLinesAfterCodeBlockDoesNotInsertBlankLines() {
+        // language=Java
+        String input = """
+                public class FormatterTest {
+                    void method() {
+                        if (true) {
+                            System.out.println("inside if");
+                        }
+                        System.out.println("after if");
+                    }
+                }
+                """;
+
+        // language=Java
+        String expected = """
+                public class FormatterTest {
+                    void method() {
+                        if (true) {
+                            System.out.println("inside if");
+                        }
+                        System.out.println("after if");
+                    }
+                }
+                """;
+
+        assertEquals(expected, formatJava(input));
+    }
+
+    // number_of_blank_lines_after_code_block (excluded) — preserves existing blank line
+    @Test
+    void numberOfBlankLinesAfterCodeBlockPreservesExistingBlankLine() {
+        // language=Java
+        String input = """
+                public class FormatterTest {
+                    void method() {
+                        if (true) {
+                            System.out.println("inside if");
+                        }
+
+                        System.out.println("after if");
+                    }
+                }
+                """;
+
+        // language=Java
+        String expected = """
+                public class FormatterTest {
+                    void method() {
+                        if (true) {
+                            System.out.println("inside if");
+                        }
+
+                        System.out.println("after if");
+                    }
+                }
+                """;
+
+        assertEquals(expected, formatJava(input));
+    }
+
+    // number_of_blank_lines_before_code_block (excluded)
+    @Test
+    void numberOfBlankLinesBeforeCodeBlockDoesNotInsertBlankLines() {
+        // language=Java
+        String input = """
+                public class FormatterTest {
+                    void method() {
+                        System.out.println("before if");
+                        if (true) {
+                            System.out.println("inside if");
+                        }
+                    }
+                }
+                """;
+
+        // language=Java
+        String expected = """
+                public class FormatterTest {
+                    void method() {
+                        System.out.println("before if");
+                        if (true) {
+                            System.out.println("inside if");
+                        }
+                    }
+                }
+                """;
+
+        assertEquals(expected, formatJava(input));
+    }
+
+    // number_of_blank_lines_before_code_block (excluded) — preserves existing blank line
+    @Test
+    void numberOfBlankLinesBeforeCodeBlockPreservesExistingBlankLine() {
+        // language=Java
+        String input = """
+                public class FormatterTest {
+                    void method() {
+                        System.out.println("before if");
+
+                        if (true) {
+                            System.out.println("inside if");
+                        }
+                    }
+                }
+                """;
+
+        // language=Java
+        String expected = """
+                public class FormatterTest {
+                    void method() {
+                        System.out.println("before if");
+
+                        if (true) {
+                            System.out.println("inside if");
+                        }
+                    }
+                }
+                """;
+
+        assertEquals(expected, formatJava(input));
+    }
+
+    // number_of_blank_lines_at_beginning_of_code_block
+    @Test
+    void numberOfBlankLinesAtBeginningOfCodeBlockRemovesBlankLines() {
+        // language=Java
+        String input = """
+                public class FormatterTest {
+                    void method() {
+                        if (true) {
+
+                            System.out.println("hello");
+                        }
+                    }
+                }
+                """;
+
+        // language=Java
+        String expected = """
+                public class FormatterTest {
+                    void method() {
+                        if (true) {
+                            System.out.println("hello");
+                        }
+                    }
+                }
+                """;
+
+        assertEquals(expected, formatJava(input));
+    }
+
+    // number_of_blank_lines_at_end_of_code_block
+    @Test
+    void numberOfBlankLinesAtEndOfCodeBlockRemovesBlankLines() {
+        // language=Java
+        String input = """
+                public class FormatterTest {
+                    void method() {
+                        if (true) {
+                            System.out.println("hello");
+
+                        }
+                    }
+                }
+                """;
+
+        // language=Java
+        String expected = """
+                public class FormatterTest {
+                    void method() {
+                        if (true) {
+                            System.out.println("hello");
+                        }
+                    }
+                }
+                """;
+
+        assertEquals(expected, formatJava(input));
+    }
+
+    // number_of_blank_lines_at_beginning_of_method_body
+    @Test
+    void numberOfBlankLinesAtBeginningOfMethodBodyRemovesBlankLines() {
+        // language=Java
+        String input = """
+                public class FormatterTest {
+                    void method() {
+
+                        System.out.println("hello");
+                    }
+                }
+                """;
+
+        // language=Java
+        String expected = """
+                public class FormatterTest {
+                    void method() {
+                        System.out.println("hello");
+                    }
+                }
+                """;
+
+        assertEquals(expected, formatJava(input));
+    }
+
+    // number_of_blank_lines_at_end_of_method_body
+    @Test
+    void numberOfBlankLinesAtEndOfMethodBodyRemovesBlankLines() {
+        // language=Java
+        String input = """
+                public class FormatterTest {
+                    void method() {
+                        System.out.println("hello");
+
+                    }
+                }
+                """;
+
+        // language=Java
+        String expected = """
+                public class FormatterTest {
+                    void method() {
+                        System.out.println("hello");
+                    }
+                }
+                """;
+
+        assertEquals(expected, formatJava(input));
+    }
+
     // blank_lines_between_statement_groups_in_switch
     @Test
     void blankLinesBetweenStatementGroupsInSwitchRemovesBlankLines() {

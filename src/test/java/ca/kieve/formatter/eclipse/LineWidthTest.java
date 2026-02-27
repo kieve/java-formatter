@@ -76,4 +76,28 @@ class LineWidthTest {
 
         assertEquals(expected, formatJava(input));
     }
+
+    // join_wrapped_lines
+    @Test
+    void joinWrappedLinesPreservesAuthorLineBreaks() {
+        // language=Java — multi-line array initializer is preserved
+        String input = """
+                public class FormatterTest {
+                    int[] values = {
+                        1, 2, 3
+                    };
+                }
+                """;
+
+        // language=Java
+        String expected = """
+                public class FormatterTest {
+                    int[] values = {
+                        1, 2, 3
+                    };
+                }
+                """;
+
+        assertEquals(expected, formatJava(input));
+    }
 }

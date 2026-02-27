@@ -75,3 +75,15 @@ enum constant onto its own line regardless of line length.
 Working values from real projects:
 - `49` — used by [Eclipse SmartHome](https://github.com/eclipse-archived/smarthome/pull/211/files)
 - `17` — reported working on [Stack Overflow](https://stackoverflow.com/questions/6676305/how-to-stop-eclipse-formatter-from-placing-all-enums-on-one-line)
+
+### `join_wrapped_lines` preserves author line breaks
+
+The global setting `org.eclipse.jdt.core.formatter.join_wrapped_lines` (`true`/`false`)
+controls whether the formatter joins lines the author has already wrapped. Setting it to
+`false` prevents Eclipse from collapsing multi-line constructs (like array initializers)
+back to single lines. This is the correct way to make Eclipse "hands off" about wrapping
+decisions the author has already made — alignment bitmask values alone cannot achieve this.
+
+References:
+- [VS Code Java issue #2181](https://github.com/redhat-developer/vscode-java/issues/2181)
+- [Eclipse bug #454865](https://bugs.eclipse.org/bugs/show_bug.cgi?id=454865)

@@ -89,7 +89,8 @@ Same for the `@return `
    */
 
 ---
-
+Force braces to be added in all places they can exit
+Exception: Early exit if statements
 
 ---
 Linting:

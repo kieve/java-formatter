@@ -32,6 +32,7 @@ All setting IDs are relative to `org.eclipse.jdt.core.formatter.` unless otherwi
 
 - [x] `lineSplit` — max line width before wrapping
 - [x] `number_of_empty_lines_to_preserve` — max consecutive blank lines to keep
+- [x] `join_wrapped_lines` — preserve author's line breaks (set to `false`)
 
 ---
 
