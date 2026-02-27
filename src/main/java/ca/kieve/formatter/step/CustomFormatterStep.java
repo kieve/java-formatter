@@ -3,6 +3,7 @@ package ca.kieve.formatter.step;
 import ca.kieve.formatter.FormatConfig;
 import ca.kieve.formatter.rules.ClassBodyBlankLines;
 import ca.kieve.formatter.rules.LeadingBlankLines;
+import ca.kieve.formatter.rules.SwitchCaseBlankLines;
 import com.diffplug.spotless.FormatterFunc;
 import com.diffplug.spotless.FormatterStep;
 
@@ -39,6 +40,7 @@ public final class CustomFormatterStep {
         String result = source;
         result = LeadingBlankLines.apply(result);
         result = ClassBodyBlankLines.apply(result);
+        result = SwitchCaseBlankLines.apply(result);
         return result;
     }
 

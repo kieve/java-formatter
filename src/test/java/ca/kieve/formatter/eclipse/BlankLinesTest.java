@@ -216,4 +216,198 @@ class BlankLinesTest {
 
         assertEquals(expected, formatJava(input));
     }
+
+    // blank_lines_before_method
+    @Test
+    void blankLinesBeforeMethodEnsuresOneBlankLine() {
+        // language=Java
+        String input = """
+                public class FormatterTest {
+                    void methodOne() {
+                    }
+                    void methodTwo() {
+                    }
+                    void methodThree() {
+                    }
+                }
+                """;
+
+        // language=Java
+        String expected = """
+                public class FormatterTest {
+                    void methodOne() {
+                    }
+
+                    void methodTwo() {
+                    }
+
+                    void methodThree() {
+                    }
+                }
+                """;
+
+        assertEquals(expected, formatJava(input));
+    }
+
+    // blank_lines_before_field
+    @Test
+    void blankLinesBeforeFieldDoesNotInsertBlankLine() {
+        // language=Java
+        String input = """
+                public class FormatterTest {
+                    int fieldOne;
+                    int fieldTwo;
+                    String fieldThree;
+                }
+                """;
+
+        // language=Java
+        String expected = """
+                public class FormatterTest {
+                    int fieldOne;
+                    int fieldTwo;
+                    String fieldThree;
+                }
+                """;
+
+        assertEquals(expected, formatJava(input));
+    }
+
+    // blank_lines_before_abstract_method
+    @Test
+    void blankLinesBeforeAbstractMethodDoesNotInsertBlankLine() {
+        // language=Java
+        String input = """
+                public abstract class FormatterTest {
+                    abstract void methodOne();
+                    abstract void methodTwo();
+                    abstract void methodThree();
+                }
+                """;
+
+        // language=Java
+        String expected = """
+                public abstract class FormatterTest {
+                    abstract void methodOne();
+                    abstract void methodTwo();
+                    abstract void methodThree();
+                }
+                """;
+
+        assertEquals(expected, formatJava(input));
+    }
+
+    // blank_lines_before_new_chunk
+    @Test
+    void blankLinesBeforeNewChunkEnsuresOneBlankLine() {
+        // language=Java
+        String input = """
+                public class FormatterTest {
+                    int fieldOne;
+                    int fieldTwo;
+                    void methodOne() {
+                    }
+                    void methodTwo() {
+                    }
+                }
+                """;
+
+        // language=Java
+        String expected = """
+                public class FormatterTest {
+                    int fieldOne;
+                    int fieldTwo;
+
+                    void methodOne() {
+                    }
+
+                    void methodTwo() {
+                    }
+                }
+                """;
+
+        assertEquals(expected, formatJava(input));
+    }
+
+    // blank_lines_between_import_groups
+    @Test
+    void blankLinesBetweenImportGroupsNormalizesToOneBlankLine() {
+        // language=Java
+        String input = """
+                package com.example;
+
+                import java.util.List;
+                import java.util.Map;
+
+
+
+                import javax.swing.JFrame;
+                import javax.swing.JPanel;
+
+                public class FormatterTest {
+                }
+                """;
+
+        // language=Java
+        String expected = """
+                package com.example;
+
+                import java.util.List;
+                import java.util.Map;
+
+                import javax.swing.JFrame;
+                import javax.swing.JPanel;
+
+                public class FormatterTest {
+                }
+                """;
+
+        assertEquals(expected, formatJava(input));
+    }
+
+    // blank_lines_between_statement_groups_in_switch
+    @Test
+    void blankLinesBetweenStatementGroupsInSwitchRemovesBlankLines() {
+        // language=Java
+        String input = """
+                public class FormatterTest {
+                    void method(int x) {
+                        switch (x) {
+                        case 1:
+                            System.out.println("one");
+                            break;
+
+                        case 2:
+                            System.out.println("two");
+                            break;
+
+                        default:
+                            System.out.println("other");
+                            break;
+                        }
+                    }
+                }
+                """;
+
+        // language=Java
+        String expected = """
+                public class FormatterTest {
+                    void method(int x) {
+                        switch (x) {
+                        case 1:
+                            System.out.println("one");
+                            break;
+                        case 2:
+                            System.out.println("two");
+                            break;
+                        default:
+                            System.out.println("other");
+                            break;
+                        }
+                    }
+                }
+                """;
+
+        assertEquals(expected, formatJava(input));
+    }
 }

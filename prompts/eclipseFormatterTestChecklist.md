@@ -69,12 +69,12 @@ Values: `end_of_line`, `next_line`, `next_line_shifted`, `next_line_on_wrap`
 - [x] `blank_lines_before_member_type`
 - [x] `blank_lines_before_first_class_body_declaration`
 - [x] `blank_lines_after_last_class_body_declaration`
-- [ ] `blank_lines_before_method`
-- [ ] `blank_lines_before_field`
-- [ ] `blank_lines_before_abstract_method` — blank lines before abstract methods
-- [ ] `blank_lines_before_new_chunk` — blank lines before a new "chunk" of declarations
-- [ ] `blank_lines_between_import_groups` — blank lines between import groups
-- [ ] `blank_lines_between_statement_groups_in_switch` — blank lines between switch case groups
+- [x] `blank_lines_before_method`
+- [x] `blank_lines_before_field`
+- [x] `blank_lines_before_abstract_method` — blank lines before abstract methods
+- [x] `blank_lines_before_new_chunk` — blank lines before a new "chunk" of declarations
+- [x] `blank_lines_between_import_groups` — blank lines between import groups
+- [x] `blank_lines_between_statement_groups_in_switch` — blank lines between switch case groups
 - [ ] `number_of_blank_lines_after_code_block` — blank lines after a code block *(excluded)*
 - [ ] `number_of_blank_lines_before_code_block` — blank lines before a code block *(excluded)*
 - [ ] `number_of_blank_lines_at_beginning_of_code_block` — blank lines at start of code block

@@ -8,6 +8,9 @@ Support
 Can we enforce these on code inside JavaDoc comments (incl Markdown ones)
 
 ---
+Import sorting
+
+---
 All Inner types must be declared at the top, before any members.
 Might have to edit the setting `blank_lines_before_member_type`
 
