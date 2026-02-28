@@ -102,9 +102,12 @@ becomes `<setting id="org.eclipse.jdt.core.formatter.tabulation.char" value="tab
 ## Adding a New Formatting Rule
 
 1. Create the rule class in `ca.kieve.formatter.rules` — a static method taking `String` and returning `String`
-2. Wire it into `CustomFormatterStep.State.toFormatter()` in the rule chain
+2. Wire it into `CustomFormatterStep.applyCustomRules()` in the rule chain
 3. Add unit tests in `ca.kieve.formatter.rules` with input/expected string pairs
-4. Optionally add fixture files in `src/test/resources/fixtures/` for larger test cases
+4. Include a `respectsFormatterOffTags()` test that verifies content inside `// @formatter:off` / `// @formatter:on` blocks is preserved (run through `CustomFormatterStep.applyCustomRules()`)
+5. Optionally add fixture files in `src/test/resources/fixtures/` for larger test cases
+
+**Formatter tag protection:** `FormatterTags.protect()` replaces `// @formatter:off` ... `// @formatter:on` blocks with placeholder comments (`// __PROTECTED_N__`) before any rule runs, then `restore()` puts the original content back. This is handled centrally in `applyCustomRules()` — individual rules do not need to implement it. Comment-formatting rules must not modify lines matching `// __PROTECTED_\d+__`.
 
 ## Testing Tips
 

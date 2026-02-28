@@ -1,10 +1,11 @@
 package ca.kieve.formatter.rules;
 
+import ca.kieve.formatter.step.CustomFormatterStep;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class ClassBodyBlankLinesTest {
+class ClassBodyBlankLinesTest extends FormatterRuleTestBase {
 
     @Test
     void removesBlankLineAfterClassBrace() {
@@ -145,5 +146,22 @@ class ClassBodyBlankLinesTest {
                 """;
 
         assertEquals(expected, ClassBodyBlankLines.apply(input));
+    }
+
+    @Override
+    void respectsFormatterOffTags() {
+        // language=Java
+        String input = """
+                public class Foo {
+                    // @formatter:off
+                    public class Bar {
+
+                        int x;
+                    }
+                    // @formatter:on
+                }
+                """;
+
+        assertEquals(input, CustomFormatterStep.applyCustomRules(input));
     }
 }

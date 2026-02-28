@@ -1,6 +1,8 @@
 package ca.kieve.formatter.step;
 
 import ca.kieve.formatter.FormatConfig;
+import ca.kieve.formatter.FormatterTags;
+import ca.kieve.formatter.FormatterTags.ProtectedSource;
 import ca.kieve.formatter.rules.ClassBodyBlankLines;
 import ca.kieve.formatter.rules.LeadingBlankLines;
 import ca.kieve.formatter.rules.SwitchCaseBlankLines;
@@ -37,11 +39,12 @@ public final class CustomFormatterStep {
      * Both the Spotless step and the direct test utility call this method.
      */
     public static String applyCustomRules(String source) {
-        String result = source;
+        ProtectedSource ps = FormatterTags.protect(source);
+        String result = ps.source();
         result = LeadingBlankLines.apply(result);
         result = ClassBodyBlankLines.apply(result);
         result = SwitchCaseBlankLines.apply(result);
-        return result;
+        return ps.restore(result);
     }
 
     private static final class State implements Serializable {

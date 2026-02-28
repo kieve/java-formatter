@@ -1,10 +1,11 @@
 package ca.kieve.formatter.rules;
 
+import ca.kieve.formatter.step.CustomFormatterStep;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class SwitchCaseBlankLinesTest {
+class SwitchCaseBlankLinesTest extends FormatterRuleTestBase {
 
     @Test
     void removesBlankLineBeforeCase() {
@@ -114,5 +115,23 @@ class SwitchCaseBlankLinesTest {
                 """;
 
         assertEquals(input, SwitchCaseBlankLines.apply(input));
+    }
+
+    @Override
+    void respectsFormatterOffTags() {
+        // language=Java
+        String input = """
+                // @formatter:off
+                switch (x) {
+                case 1:
+                    break;
+
+                case 2:
+                    break;
+                }
+                // @formatter:on
+                """;
+
+        assertEquals(input, CustomFormatterStep.applyCustomRules(input));
     }
 }

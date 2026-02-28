@@ -1,10 +1,11 @@
 package ca.kieve.formatter.rules;
 
+import ca.kieve.formatter.step.CustomFormatterStep;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class LeadingBlankLinesTest {
+class LeadingBlankLinesTest extends FormatterRuleTestBase {
 
     @Test
     void stripsMultipleLeadingBlankLines() {
@@ -88,5 +89,21 @@ class LeadingBlankLinesTest {
                 """;
 
         assertEquals(expected, LeadingBlankLines.apply(input));
+    }
+
+    @Override
+    void respectsFormatterOffTags() {
+        // language=Java
+        String input = """
+                // @formatter:off
+
+                package com.example;
+                // @formatter:on
+
+                public class Foo {
+                }
+                """;
+
+        assertEquals(input, CustomFormatterStep.applyCustomRules(input));
     }
 }

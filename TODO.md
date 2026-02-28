@@ -1,10 +1,5 @@
 Styles to enforce:
 ---
-Support
-// @formatter:off
-// @formatter:on 
-
----
 Can we enforce these on code inside JavaDoc comments (incl Markdown ones)
 
 ---
