@@ -165,10 +165,10 @@ class BlankLinesTest {
         // @formatter:off
         String expected = """
                 public class FormatterTest {
-                    int field;
-
                     static class Inner {
                     }
+
+                    int field;
                 }
                 """;
                 // @formatter:on
