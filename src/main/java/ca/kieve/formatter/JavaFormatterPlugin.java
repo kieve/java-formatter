@@ -43,6 +43,7 @@ public class JavaFormatterPlugin implements Plugin<Project> {
                 task.setGroup("formatting");
                 task.setDescription(
                     "Extract formatter and linter config files from the plugin JAR");
+                task.setOutputDir(outputDir);
             });
 
         project.getPlugins().apply("com.diffplug.spotless");
@@ -112,10 +113,14 @@ public class JavaFormatterPlugin implements Plugin<Project> {
     }
 
     public static abstract class ExtractConfigTask extends DefaultTask {
+        private File outputDir;
+
+        public void setOutputDir(File outputDir) {
+            this.outputDir = outputDir;
+        }
+
         @TaskAction
         public void extract() {
-            File outputDir = getProject().getLayout().getBuildDirectory()
-                .dir("java-formatter").get().getAsFile();
             outputDir.mkdirs();
 
             extractResource(ECLIPSE_CONFIG_RESOURCE, outputDir);
