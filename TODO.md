@@ -106,6 +106,26 @@ doesn't have its own wrapping.
 Test to update: `WrapAlignTest.alignmentForAssignmentDoesNotWrap`
 
 ---
+Custom rule for throws clause wrapping. Eclipse JDT always keeps `throws` + first exception on the
+same line. Need a custom formatter step to break after `throws` so each exception starts on its own
+line.
+Disabled tests: `WrapAlignTest.alignmentForThrowsClauseInMethodDeclarationWrapsAllElements`,
+`WrapAlignTest.alignmentForThrowsClauseInConstructorDeclarationWrapsAllElements`
+
+---
+Fix switch case body indentation. When `case` expressions in a switch case wrap, Eclipse JDT indents
+the body (after `->` or `:`) at the same level as the case expressions. The body should be indented
+further to distinguish it from the case labels. Not solvable via Eclipse settings (`INDENT_BY_ONE`
+adds only 1 space, `INDENT_ON_COLUMN` forces wrapping on all cases). Needs a custom rule.
+Disabled tests: `WrapAlignTest.alignmentForExpressionsInSwitchCaseWithArrowWrapsAllElements`,
+`WrapAlignTest.alignmentForExpressionsInSwitchCaseWithColonWrapsAllElements`
+
+---
+Custom rule for annotations on wrapped parameters. When parameters wrap one-per-line, Eclipse keeps
+annotations inline with each parameter. They should go on their own lines above each parameter.
+Disabled test: `rules.TodoTests.annotationsOnWrappedParametersShouldGoOnOwnLines`
+
+---
 Linting:
 - Find a way to effectively "ban" nested ternary operators
 - Ban multiple field declarations in one line. ex. `int x, y, z;`

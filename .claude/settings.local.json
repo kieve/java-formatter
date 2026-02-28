@@ -1,22 +1,13 @@
 {
   "permissions": {
     "allow": [
-      "WebSearch",
       "Bash(./gradlew build:*)",
-      "WebFetch(domain:central.sonatype.com)",
       "Bash(./gradlew clean:*)",
-      "WebFetch(domain:help.eclipse.org)",
-      "WebFetch(domain:github.com)",
       "Bash(./gradlew dependencies:*)",
-      "WebFetch(domain:raw.githubusercontent.com)",
       "Bash(gh api:*)",
       "Bash(./gradlew test:*)",
       "Bash(curl:*)",
-      "WebFetch(domain:stackoverflow.com)",
-      "Bash(./gradlew:*)",
-      "WebFetch(domain:bugs.eclipse.org)",
-      "WebFetch(domain:javadoc.io)",
-      "WebFetch(domain:eclipse.googlesource.com)"
+      "Bash(./gradlew:*)"
     ]
   }
 }

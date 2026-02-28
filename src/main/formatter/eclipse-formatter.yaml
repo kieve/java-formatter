@@ -300,14 +300,14 @@ org:
           alignment_for_switch_case_with_arrow: 48
           alignment_for_expressions_in_switch_case_with_arrow: 48
           alignment_for_expressions_in_switch_case_with_colon: 48
-          alignment_for_annotations_on_type: 48
-          alignment_for_annotations_on_method: 48
-          alignment_for_annotations_on_field: 48
-          alignment_for_annotations_on_local_variable: 48
+          alignment_for_annotations_on_type: 49
+          alignment_for_annotations_on_method: 49
+          alignment_for_annotations_on_field: 49
+          alignment_for_annotations_on_local_variable: 49
           alignment_for_annotations_on_parameter: 48
-          alignment_for_annotations_on_package: 48
-          alignment_for_annotations_on_enum_constant: 48
-          alignment_for_type_annotations: 48
+          alignment_for_annotations_on_package: 49
+          alignment_for_annotations_on_enum_constant: 49
+          alignment_for_type_annotations: 49
           wrap_before_binary_operator: true
           wrap_before_or_operator_multicatch: true
           align_type_members_on_columns: false

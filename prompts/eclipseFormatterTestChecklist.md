@@ -166,23 +166,23 @@ Alignment values are bitmask integers. Key bits: `0` = no wrap, `16` = wrap wher
 - [x] `alignment_for_superinterfaces_in_type_declaration` — `implements` clause
 - [x] `alignment_for_superinterfaces_in_enum_declaration` — enum `implements`
 - [x] `alignment_for_superinterfaces_in_record_declaration` — record `implements`
-- [ ] `alignment_for_throws_clause_in_method_declaration` — method `throws`
-- [ ] `alignment_for_throws_clause_in_constructor_declaration` — constructor `throws`
-- [ ] `alignment_for_type_arguments` — type arguments `<A, B>`
-- [ ] `alignment_for_type_parameters` — type parameters `<T extends ...>`
-- [ ] `alignment_for_parameterized_type_references` — parameterized type refs
-- [ ] `alignment_for_union_type_in_multicatch` — multi-catch `|` types
-- [ ] `alignment_for_switch_case_with_arrow` — switch case arrow alignment
-- [ ] `alignment_for_expressions_in_switch_case_with_arrow` — expressions in arrow case
-- [ ] `alignment_for_expressions_in_switch_case_with_colon` — expressions in colon case
-- [ ] `alignment_for_annotations_on_type` — annotation wrapping on types
-- [ ] `alignment_for_annotations_on_method` — annotation wrapping on methods
-- [ ] `alignment_for_annotations_on_field` — annotation wrapping on fields
-- [ ] `alignment_for_annotations_on_local_variable` — annotation wrapping on locals
-- [ ] `alignment_for_annotations_on_parameter` — annotation wrapping on params
-- [ ] `alignment_for_annotations_on_package` — annotation wrapping on package
-- [ ] `alignment_for_annotations_on_enum_constant` — annotation wrapping on enum constants
-- [ ] `alignment_for_type_annotations` — type annotation wrapping
+- [x] `alignment_for_throws_clause_in_method_declaration` — method `throws`
+- [x] `alignment_for_throws_clause_in_constructor_declaration` — constructor `throws`
+- [x] `alignment_for_type_arguments` — type arguments `<A, B>`
+- [x] `alignment_for_type_parameters` — type parameters `<T extends ...>`
+- [x] `alignment_for_parameterized_type_references` — parameterized type refs
+- [x] `alignment_for_union_type_in_multicatch` — multi-catch `|` types
+- [x] `alignment_for_switch_case_with_arrow` — switch case arrow alignment
+- [x] `alignment_for_expressions_in_switch_case_with_arrow` — expressions in arrow case
+- [x] `alignment_for_expressions_in_switch_case_with_colon` — expressions in colon case
+- [x] `alignment_for_annotations_on_type` — annotation wrapping on types
+- [x] `alignment_for_annotations_on_method` — annotation wrapping on methods
+- [x] `alignment_for_annotations_on_field` — annotation wrapping on fields
+- [x] `alignment_for_annotations_on_local_variable` — annotation wrapping on locals
+- [x] `alignment_for_annotations_on_parameter` — annotation wrapping on params
+- [x] `alignment_for_annotations_on_package` — annotation wrapping on package
+- [x] `alignment_for_annotations_on_enum_constant` — annotation wrapping on enum constants
+- [x] `alignment_for_type_annotations` — type annotation wrapping
 
 ### Operator Wrapping
 
