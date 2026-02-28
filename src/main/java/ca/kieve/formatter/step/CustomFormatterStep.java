@@ -9,6 +9,7 @@ import ca.kieve.formatter.FormatterTags.ProtectedSource;
 import ca.kieve.formatter.rules.style.ClassBodyBlankLines;
 import ca.kieve.formatter.rules.style.ImportSorting;
 import ca.kieve.formatter.rules.style.LeadingBlankLines;
+import ca.kieve.formatter.rules.style.SplitFieldDeclarations;
 import ca.kieve.formatter.rules.style.SwitchCaseBlankLines;
 
 import java.io.Serializable;
@@ -56,6 +57,7 @@ public final class CustomFormatterStep {
         result = ImportSorting.apply(result, config);
         result = ClassBodyBlankLines.apply(result);
         result = SwitchCaseBlankLines.apply(result);
+        result = SplitFieldDeclarations.apply(result);
         return ps.restore(result);
     }
 

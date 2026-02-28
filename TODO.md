@@ -163,5 +163,4 @@ try (InputStream is = JavaFormatterPlugin.class.getResourceAsStream(resourcePath
 
 ---
 Linting:
-- Ban multiple field declarations in one line. ex. `int x, y, z;`
 - No qualified imports? (unless a collision exists)
