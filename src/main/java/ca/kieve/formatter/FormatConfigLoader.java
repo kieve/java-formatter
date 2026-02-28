@@ -22,13 +22,15 @@ import java.util.Map;
 public final class FormatConfigLoader {
     private static final String CONFIG_FILE_NAME = "kieve-formatter.yaml";
     private static final ObjectMapper MAPPER = new ObjectMapper(new YAMLFactory())
-            .enable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+        .enable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
 
-    private FormatConfigLoader() {}
+    private FormatConfigLoader() {
+    }
 
     private record RawConfig(
-            Integer maxLineLength,
-            List<Object> importLayout) {}
+        Integer maxLineLength,
+        List<Object> importLayout) {
+    }
 
     /**
      * Load config from the given YAML file, or return defaults if null.
@@ -41,7 +43,8 @@ public final class FormatConfigLoader {
             return load(in);
         } catch (IOException e) {
             throw new IllegalArgumentException(
-                    "Failed to read config file: " + yamlFile, e);
+                "Failed to read config file: " + yamlFile,
+                e);
         }
     }
 
@@ -58,7 +61,8 @@ public final class FormatConfigLoader {
             return toFormatConfig(raw);
         } catch (IOException e) {
             throw new IllegalArgumentException(
-                    "Failed to parse config YAML: " + e.getMessage(), e);
+                "Failed to parse config YAML: " + e.getMessage(),
+                e);
         }
     }
 
@@ -75,12 +79,12 @@ public final class FormatConfigLoader {
         FormatConfig defaults = FormatConfig.defaults();
 
         int maxLineLength = raw.maxLineLength() != null
-                ? raw.maxLineLength()
-                : defaults.getMaxLineLength();
+            ? raw.maxLineLength()
+            : defaults.getMaxLineLength();
 
         List<ImportGroup> importLayout = raw.importLayout() != null
-                ? parseImportLayout(raw.importLayout())
-                : defaults.getImportLayout();
+            ? parseImportLayout(raw.importLayout())
+            : defaults.getImportLayout();
 
         return new FormatConfig(maxLineLength, importLayout);
     }
@@ -98,9 +102,9 @@ public final class FormatConfigLoader {
                 groups.add(parseMapEntry((Map<String, Object>) map, i));
             } else {
                 throw new IllegalArgumentException(
-                        "importLayout[" + i + "]: expected a string, list, "
-                                + "or map, got: "
-                                + entry.getClass().getSimpleName());
+                    "importLayout[" + i + "]: expected a string, list, "
+                        + "or map, got: "
+                        + entry.getClass().getSimpleName());
             }
         }
         return groups;
@@ -108,52 +112,56 @@ public final class FormatConfigLoader {
 
     private static ImportGroup parseStringEntry(String value, int index) {
         return switch (value) {
-            case "catch-all" -> ImportGroup.catchAll();
-            case "static-catch-all" -> ImportGroup.staticCatchAll();
-            default -> throw new IllegalArgumentException(
-                    "importLayout[" + index + "]: unknown string entry '"
-                            + value + "'. Expected 'catch-all' or "
-                            + "'static-catch-all'.");
+        case "catch-all" -> ImportGroup.catchAll();
+        case "static-catch-all" -> ImportGroup.staticCatchAll();
+        default ->
+            throw new IllegalArgumentException(
+                "importLayout[" + index + "]: unknown string entry '"
+                    + value + "'. Expected 'catch-all' or "
+                    + "'static-catch-all'.");
         };
     }
 
     private static ImportGroup parsePrefixList(
-            List<?> list, boolean isStatic, int index) {
+        List<?> list,
+        boolean isStatic,
+        int index) {
         List<String> prefixes = new ArrayList<>();
         for (Object item : list) {
             if (item instanceof String s) {
                 prefixes.add(s);
             } else {
                 throw new IllegalArgumentException(
-                        "importLayout[" + index
-                                + "]: prefix list entries must be strings, "
-                                + "got: "
-                                + item.getClass().getSimpleName());
+                    "importLayout[" + index
+                        + "]: prefix list entries must be strings, "
+                        + "got: "
+                        + item.getClass().getSimpleName());
             }
         }
         if (prefixes.isEmpty()) {
             throw new IllegalArgumentException(
-                    "importLayout[" + index
-                            + "]: prefix list must not be empty");
+                "importLayout[" + index
+                    + "]: prefix list must not be empty");
         }
         return new ImportGroup(prefixes, isStatic);
     }
 
     private static ImportGroup parseMapEntry(
-            Map<String, Object> map, int index) {
+        Map<String, Object> map,
+        int index) {
         if (map.size() != 1 || !map.containsKey("static")) {
             throw new IllegalArgumentException(
-                    "importLayout[" + index
-                            + "]: map entry must have exactly one key "
-                            + "'static', got keys: " + map.keySet());
+                "importLayout[" + index
+                    + "]: map entry must have exactly one key "
+                    + "'static', got keys: " + map.keySet());
         }
         Object val = map.get("static");
         if (val instanceof List<?> list) {
             return parsePrefixList(list, true, index);
         }
         throw new IllegalArgumentException(
-                "importLayout[" + index
-                        + "]: 'static' value must be a list of prefixes, "
-                        + "got: " + val.getClass().getSimpleName());
+            "importLayout[" + index
+                + "]: 'static' value must be a list of prefixes, "
+                + "got: " + val.getClass().getSimpleName());
     }
 }

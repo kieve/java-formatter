@@ -1,10 +1,13 @@
 package ca.kieve.formatter;
 
 import com.diffplug.gradle.spotless.SpotlessExtension;
+import org.gradle.api.DefaultTask;
 import org.gradle.api.GradleException;
 import org.gradle.api.Plugin;
 import org.gradle.api.Project;
 import org.gradle.api.plugins.quality.CheckstyleExtension;
+import org.gradle.api.tasks.TaskAction;
+import org.gradle.api.tasks.TaskProvider;
 
 import ca.kieve.formatter.step.CustomFormatterStep;
 
@@ -28,12 +31,23 @@ public class JavaFormatterPlugin implements Plugin<Project> {
 
     @Override
     public void apply(Project project) {
+        File outputDir = project.getLayout().getBuildDirectory()
+            .dir("java-formatter").get().getAsFile();
+        File eclipseConfig = new File(outputDir, "eclipse-formatter.xml");
+        File checkstyleConfig = new File(outputDir, "checkstyle.xml");
+
+        TaskProvider<ExtractConfigTask> extractTask = project.getTasks()
+            .register("extractFormatterConfig", ExtractConfigTask.class, task -> {
+                task.setGroup("formatting");
+                task.setDescription(
+                    "Extract formatter and linter config files from the plugin JAR");
+            });
+
         project.getPlugins().apply("com.diffplug.spotless");
 
         SpotlessExtension spotless = project.getExtensions()
             .getByType(SpotlessExtension.class);
 
-        File eclipseConfig = extractResource(project, ECLIPSE_CONFIG_RESOURCE);
         FormatConfig config = FormatConfigLoader.loadFromDirectory(
             project.getProjectDir());
 
@@ -46,9 +60,16 @@ public class JavaFormatterPlugin implements Plugin<Project> {
         project.getPlugins().apply("checkstyle");
         CheckstyleExtension checkstyle = project.getExtensions()
             .getByType(CheckstyleExtension.class);
-        checkstyle.setConfigFile(
-            extractResource(project, CHECKSTYLE_CONFIG_RESOURCE));
+        checkstyle.setConfigFile(checkstyleConfig);
         checkstyle.setToolVersion("10.22.0");
+
+        // Wire extraction to run before any spotless or checkstyle task
+        project.getTasks().configureEach(task -> {
+            String name = task.getName();
+            if (name.startsWith("spotless") || name.startsWith("checkstyle")) {
+                task.dependsOn(extractTask);
+            }
+        });
 
         project.getTasks().register("format", task -> {
             task.dependsOn("spotlessApply");
@@ -72,23 +93,38 @@ public class JavaFormatterPlugin implements Plugin<Project> {
         });
     }
 
-    private File extractResource(Project project, String resourcePath) {
-        File outputDir = project.getLayout().getBuildDirectory()
-            .dir("java-formatter").get().getAsFile();
-        outputDir.mkdirs();
+    public static abstract class ExtractConfigTask extends DefaultTask {
+        @TaskAction
+        public void extract() {
+            File outputDir = getProject().getLayout().getBuildDirectory()
+                .dir("java-formatter").get().getAsFile();
+            outputDir.mkdirs();
 
-        String fileName = resourcePath.substring(resourcePath.lastIndexOf('/') + 1);
-        File outputFile = new File(outputDir, fileName);
-
-        try (InputStream is = getClass().getResourceAsStream(resourcePath)) {
-            if (is == null) {
-                throw new GradleException("Resource not found: " + resourcePath);
-            }
-            Files.copy(is, outputFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
-        } catch (IOException e) {
-            throw new GradleException("Failed to extract " + resourcePath, e);
+            extractResource(ECLIPSE_CONFIG_RESOURCE, outputDir);
+            extractResource(CHECKSTYLE_CONFIG_RESOURCE, outputDir);
         }
 
-        return outputFile;
+        private void extractResource(String resourcePath, File outputDir) {
+            String fileName = resourcePath.substring(
+                resourcePath.lastIndexOf('/') + 1);
+            File outputFile = new File(outputDir, fileName);
+
+            try (
+                InputStream is = JavaFormatterPlugin.class
+                    .getResourceAsStream(resourcePath)) {
+                if (is == null) {
+                    throw new GradleException(
+                        "Resource not found: " + resourcePath);
+                }
+                Files.copy(
+                    is,
+                    outputFile.toPath(),
+                    StandardCopyOption.REPLACE_EXISTING);
+            } catch (IOException e) {
+                throw new GradleException(
+                    "Failed to extract " + resourcePath,
+                    e);
+            }
+        }
     }
 }

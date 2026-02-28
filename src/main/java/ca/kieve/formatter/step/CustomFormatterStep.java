@@ -1,5 +1,8 @@
 package ca.kieve.formatter.step;
 
+import com.diffplug.spotless.FormatterFunc;
+import com.diffplug.spotless.FormatterStep;
+
 import ca.kieve.formatter.FormatConfig;
 import ca.kieve.formatter.FormatterTags;
 import ca.kieve.formatter.FormatterTags.ProtectedSource;
@@ -7,8 +10,6 @@ import ca.kieve.formatter.rules.ClassBodyBlankLines;
 import ca.kieve.formatter.rules.ImportSorting;
 import ca.kieve.formatter.rules.LeadingBlankLines;
 import ca.kieve.formatter.rules.SwitchCaseBlankLines;
-import com.diffplug.spotless.FormatterFunc;
-import com.diffplug.spotless.FormatterStep;
 
 import java.io.Serializable;
 
@@ -19,7 +20,8 @@ import java.io.Serializable;
  * them to share the parsed AST and configuration.
  */
 public final class CustomFormatterStep {
-    private CustomFormatterStep() {}
+    private CustomFormatterStep() {
+    }
 
     public static FormatterStep create() {
         return create(FormatConfig.defaults());
@@ -27,10 +29,9 @@ public final class CustomFormatterStep {
 
     public static FormatterStep create(FormatConfig config) {
         return FormatterStep.create(
-                "customJavaFormatter",
-                new State(config),
-                State::toFormatter
-        );
+            "customJavaFormatter",
+            new State(config),
+            State::toFormatter);
     }
 
     /**

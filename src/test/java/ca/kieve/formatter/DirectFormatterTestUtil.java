@@ -1,12 +1,12 @@
 package ca.kieve.formatter;
 
-import ca.kieve.formatter.step.CustomFormatterStep;
+import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.core.ToolFactory;
 import org.eclipse.jdt.core.formatter.CodeFormatter;
 import org.eclipse.jface.text.Document;
 import org.eclipse.text.edits.TextEdit;
 
-import org.eclipse.jdt.core.JavaCore;
+import ca.kieve.formatter.step.CustomFormatterStep;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.InputStream;
@@ -36,11 +36,13 @@ public final class DirectFormatterTestUtil {
         FORMATTER_OPTIONS = Collections.unmodifiableMap(options);
     }
 
-    private static final ThreadLocal<CodeFormatter> CODE_FORMATTER =
-            ThreadLocal.withInitial(() -> ToolFactory.createCodeFormatter(
-                    FORMATTER_OPTIONS, ToolFactory.M_FORMAT_EXISTING));
+    private static final ThreadLocal<CodeFormatter> CODE_FORMATTER = ThreadLocal.withInitial(
+        () -> ToolFactory.createCodeFormatter(
+            FORMATTER_OPTIONS,
+            ToolFactory.M_FORMAT_EXISTING));
 
-    private DirectFormatterTestUtil() {}
+    private DirectFormatterTestUtil() {
+    }
 
     /**
      * Format a Java source string through Eclipse JDT + custom rules, in-process.
@@ -57,12 +59,12 @@ public final class DirectFormatterTestUtil {
 
             // Eclipse JDT formatting
             TextEdit edit = CODE_FORMATTER.get().format(
-                    CodeFormatter.K_COMPILATION_UNIT,
-                    source,
-                    0,
-                    source.length(),
-                    0,
-                    "\n");
+                CodeFormatter.K_COMPILATION_UNIT,
+                source,
+                0,
+                source.length(),
+                0,
+                "\n");
             if (edit != null) {
                 Document document = new Document(source);
                 edit.apply(document);
@@ -79,12 +81,13 @@ public final class DirectFormatterTestUtil {
     }
 
     private static Map<String, String> loadFormatterOptions() {
-        try (InputStream is = DirectFormatterTestUtil.class
+        try (
+            InputStream is = DirectFormatterTestUtil.class
                 .getResourceAsStream("/eclipse-formatter.xml")) {
             if (is == null) {
                 throw new IllegalStateException(
-                        "eclipse-formatter.xml not found on classpath. "
-                                + "Run ./gradlew generateEclipseConfig first.");
+                    "eclipse-formatter.xml not found on classpath. "
+                        + "Run ./gradlew generateEclipseConfig first.");
             }
 
             var factory = DocumentBuilderFactory.newInstance();

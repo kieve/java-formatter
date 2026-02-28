@@ -11,11 +11,10 @@ public final class FormatConfig implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private static final List<ImportGroup> DEFAULT_IMPORT_LAYOUT = List.of(
-            ImportGroup.catchAll(),
-            ImportGroup.of("ca.kieve."),
-            ImportGroup.of("javax.", "java."),
-            ImportGroup.staticCatchAll()
-    );
+        ImportGroup.catchAll(),
+        ImportGroup.of("ca.kieve."),
+        ImportGroup.of("javax.", "java."),
+        ImportGroup.staticCatchAll());
 
     private final int maxLineLength;
     private final List<ImportGroup> importLayout;
@@ -25,8 +24,8 @@ public final class FormatConfig implements Serializable {
     }
 
     public FormatConfig(
-            int maxLineLength,
-            List<ImportGroup> importLayout) {
+        int maxLineLength,
+        List<ImportGroup> importLayout) {
         this.maxLineLength = maxLineLength;
         this.importLayout = List.copyOf(importLayout);
     }
@@ -42,5 +41,4 @@ public final class FormatConfig implements Serializable {
     public List<ImportGroup> getImportLayout() {
         return importLayout;
     }
-
 }

@@ -17,7 +17,8 @@ import java.util.Set;
  * imports are sorted alphabetically.
  */
 public final class ImportSorting {
-    private ImportSorting() {}
+    private ImportSorting() {
+    }
 
     public static String apply(String source, FormatConfig config) {
         String[] lines = source.split("\n", -1);
@@ -97,7 +98,7 @@ public final class ImportSorting {
 
         // Remove trailing newline from import block (we'll join with surrounding content)
         if (!importBlock.isEmpty()
-                && importBlock.charAt(importBlock.length() - 1) == '\n') {
+            && importBlock.charAt(importBlock.length() - 1) == '\n') {
             importBlock.setLength(importBlock.length() - 1);
         }
 
@@ -115,10 +116,10 @@ public final class ImportSorting {
     }
 
     private static void assignToGroups(
-            List<String> imports,
-            boolean isStatic,
-            List<ImportGroup> layout,
-            Map<Integer, List<String>> groupedImports) {
+        List<String> imports,
+        boolean isStatic,
+        List<ImportGroup> layout,
+        Map<Integer, List<String>> groupedImports) {
         int catchAllIndex = -1;
         for (int i = 0; i < layout.size(); i++) {
             ImportGroup group = layout.get(i);

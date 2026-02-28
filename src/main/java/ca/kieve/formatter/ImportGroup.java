@@ -16,7 +16,6 @@ import java.util.List;
  * @param isStatic  whether this group matches static or regular imports
  */
 public record ImportGroup(List<String> prefixes, boolean isStatic) implements Serializable {
-
     public ImportGroup {
         prefixes = List.copyOf(prefixes);
     }

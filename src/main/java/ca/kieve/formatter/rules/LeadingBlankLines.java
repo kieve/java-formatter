@@ -8,7 +8,8 @@ package ca.kieve.formatter.rules;
  * so this rule compensates.
  */
 public final class LeadingBlankLines {
-    private LeadingBlankLines() {}
+    private LeadingBlankLines() {
+    }
 
     public static String apply(String source) {
         return source.stripLeading();
