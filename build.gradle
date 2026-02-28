@@ -139,6 +139,9 @@ dependencies {
     // Eclipse JDT for direct (in-process) formatter tests
     testImplementation 'org.eclipse.jdt:org.eclipse.jdt.core:3.40.0'
     testImplementation 'org.eclipse.platform:org.eclipse.text:3.14.200'
+
+    // Checkstyle for in-process lint tests
+    testImplementation 'com.puppycrawl.tools:checkstyle:10.22.0'
 }
 
 
