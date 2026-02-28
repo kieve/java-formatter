@@ -11,11 +11,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * @see prompts/eclipseFormatterTestChecklist.md — "Line Width"
  */
 class LineWidthTest {
-
     // lineSplit
     @Test
     void lineSplitWrapsLinesExceedingOneHundredCharacters() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     void method() {
@@ -23,8 +23,10 @@ class LineWidthTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     void method() {
@@ -38,6 +40,7 @@ class LineWidthTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -46,6 +49,7 @@ class LineWidthTest {
     @Test
     void numberOfEmptyLinesToPreserveCollapsesMultipleBlanksToOne() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     int fieldOne;
@@ -61,8 +65,10 @@ class LineWidthTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     int fieldOne;
@@ -73,6 +79,7 @@ class LineWidthTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -81,6 +88,7 @@ class LineWidthTest {
     @Test
     void joinWrappedLinesPreservesAuthorLineBreaks() {
         // language=Java — multi-line array initializer is preserved
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     int[] values = {
@@ -88,8 +96,10 @@ class LineWidthTest {
                     };
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     int[] values = {
@@ -97,6 +107,7 @@ class LineWidthTest {
                     };
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }

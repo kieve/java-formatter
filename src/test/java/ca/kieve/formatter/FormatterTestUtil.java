@@ -16,6 +16,7 @@ import java.nio.file.Path;
  * and normalizing line endings.
  */
 public final class FormatterTestUtil {
+    // @formatter:off
     private static final String BUILD_GRADLE = """
             plugins {
                 id 'java'
@@ -25,8 +26,10 @@ public final class FormatterTestUtil {
                 mavenCentral()
             }
             """;
+            // @formatter:on
 
-    private FormatterTestUtil() {}
+    private FormatterTestUtil() {
+    }
 
     private static final String CLASS_NAME = "FormatterTest";
     private static final String RELATIVE_PATH = "src/main/java/" + CLASS_NAME + ".java";
@@ -39,31 +42,31 @@ public final class FormatterTestUtil {
      * and returns the formatted result.
      *
      * @param testProjectDir a JUnit {@code @TempDir} unique to the calling test
-     * @param javaSource     unformatted Java source code
+     * @param javaSource unformatted Java source code
      * @return the formatted source with normalized (Unix) line endings
      */
     public static String formatJava(Path testProjectDir, String javaSource)
-            throws IOException {
+        throws IOException {
         writeFile(testProjectDir, "settings.gradle", "");
         writeFile(testProjectDir, "build.gradle", BUILD_GRADLE);
 
         writeFile(testProjectDir, RELATIVE_PATH, javaSource);
 
         GradleRunner.create()
-                .withProjectDir(testProjectDir.toFile())
-                .withPluginClasspath()
-                .withArguments("spotlessApply")
-                .build();
+            .withProjectDir(testProjectDir.toFile())
+            .withPluginClasspath()
+            .withArguments("spotlessApply")
+            .build();
 
         return normalizeLineEndings(
-                Files.readString(testProjectDir.resolve(RELATIVE_PATH)));
+            Files.readString(testProjectDir.resolve(RELATIVE_PATH)));
     }
 
     /**
      * Write a file into the test project directory, creating parent dirs as needed.
      */
     public static void writeFile(Path testProjectDir, String relativePath, String content)
-            throws IOException {
+        throws IOException {
         Path file = testProjectDir.resolve(relativePath);
         Files.createDirectories(file.getParent());
         Files.writeString(file, content);

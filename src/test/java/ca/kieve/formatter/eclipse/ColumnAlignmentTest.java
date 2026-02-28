@@ -11,11 +11,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * @see prompts/eclipseFormatterTestChecklist.md — "Column Alignment"
  */
 class ColumnAlignmentTest {
-
     // align_type_members_on_columns
     @Test
     void alignTypeMembersOnColumnsDisabledRemovesAlignment() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     int    x        = 1;
@@ -23,8 +23,10 @@ class ColumnAlignmentTest {
                     double d        = 3.14;
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     int x = 1;
@@ -32,6 +34,7 @@ class ColumnAlignmentTest {
                     double d = 3.14;
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -40,6 +43,7 @@ class ColumnAlignmentTest {
     @Test
     void alignVariableDeclarationsOnColumnsDisabledRemovesAlignment() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     void method() {
@@ -49,8 +53,10 @@ class ColumnAlignmentTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     void method() {
@@ -60,6 +66,7 @@ class ColumnAlignmentTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -68,6 +75,7 @@ class ColumnAlignmentTest {
     @Test
     void alignAssignmentStatementsOnColumnsDisabledRemovesAlignment() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     void method() {
@@ -80,8 +88,10 @@ class ColumnAlignmentTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     void method() {
@@ -94,6 +104,7 @@ class ColumnAlignmentTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -102,6 +113,7 @@ class ColumnAlignmentTest {
     @Test
     void alignArrowsInSwitchOnColumnsDisabledRemovesAlignment() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     void method(int x) {
@@ -114,8 +126,10 @@ class ColumnAlignmentTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     void method(int x) {
@@ -128,6 +142,7 @@ class ColumnAlignmentTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -136,6 +151,7 @@ class ColumnAlignmentTest {
     @Test
     void alignFieldsGroupingBlankLinesIsNotApplicableWithAlignmentDisabled() {
         // language=Java — blank lines between field groups do not trigger alignment
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     int x = 1;
@@ -145,8 +161,10 @@ class ColumnAlignmentTest {
                     float f = 2.0f;
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     int x = 1;
@@ -156,6 +174,7 @@ class ColumnAlignmentTest {
                     float f = 2.0f;
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }

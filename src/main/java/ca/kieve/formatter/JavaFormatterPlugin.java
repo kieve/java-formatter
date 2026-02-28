@@ -1,11 +1,12 @@
 package ca.kieve.formatter;
 
-import ca.kieve.formatter.step.CustomFormatterStep;
 import com.diffplug.gradle.spotless.SpotlessExtension;
 import org.gradle.api.GradleException;
 import org.gradle.api.Plugin;
 import org.gradle.api.Project;
 import org.gradle.api.plugins.quality.CheckstyleExtension;
+
+import ca.kieve.formatter.step.CustomFormatterStep;
 
 import java.io.File;
 import java.io.IOException;
@@ -30,11 +31,11 @@ public class JavaFormatterPlugin implements Plugin<Project> {
         project.getPlugins().apply("com.diffplug.spotless");
 
         SpotlessExtension spotless = project.getExtensions()
-                .getByType(SpotlessExtension.class);
+            .getByType(SpotlessExtension.class);
 
         File eclipseConfig = extractResource(project, ECLIPSE_CONFIG_RESOURCE);
         FormatConfig config = FormatConfigLoader.loadFromDirectory(
-                project.getProjectDir());
+            project.getProjectDir());
 
         spotless.java(java -> {
             java.target("src/*/java/**/*.java");
@@ -44,15 +45,36 @@ public class JavaFormatterPlugin implements Plugin<Project> {
 
         project.getPlugins().apply("checkstyle");
         CheckstyleExtension checkstyle = project.getExtensions()
-                .getByType(CheckstyleExtension.class);
+            .getByType(CheckstyleExtension.class);
         checkstyle.setConfigFile(
-                extractResource(project, CHECKSTYLE_CONFIG_RESOURCE));
+            extractResource(project, CHECKSTYLE_CONFIG_RESOURCE));
         checkstyle.setToolVersion("10.22.0");
+
+        project.getTasks().register("format", task -> {
+            task.dependsOn("spotlessApply");
+            task.setGroup("formatting");
+            task.setDescription("Auto-format all Java source files");
+        });
+        project.getTasks().register("formatCheck", task -> {
+            task.dependsOn("spotlessCheck");
+            task.setGroup("formatting");
+            task.setDescription("Verify formatting (fails if files need changes)");
+        });
+        project.getTasks().register("lint", task -> {
+            task.dependsOn("checkstyleMain");
+            task.setGroup("verification");
+            task.setDescription("Lint main source files");
+        });
+        project.getTasks().register("lintTest", task -> {
+            task.dependsOn("checkstyleTest");
+            task.setGroup("verification");
+            task.setDescription("Lint test source files");
+        });
     }
 
     private File extractResource(Project project, String resourcePath) {
         File outputDir = project.getLayout().getBuildDirectory()
-                .dir("java-formatter").get().getAsFile();
+            .dir("java-formatter").get().getAsFile();
         outputDir.mkdirs();
 
         String fileName = resourcePath.substring(resourcePath.lastIndexOf('/') + 1);

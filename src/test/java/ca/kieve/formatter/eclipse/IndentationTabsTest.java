@@ -12,11 +12,11 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
  * @see prompts/eclipseFormatterTestChecklist.md — "Indentation & Tabs"
  */
 class IndentationTabsTest {
-
     // tabulation.char
     @Test
     void tabulationCharConvertsTabsToSpaces() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                 \tpublic void method() {
@@ -24,8 +24,10 @@ class IndentationTabsTest {
                 \t}
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     public void method() {
@@ -33,6 +35,7 @@ class IndentationTabsTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -41,6 +44,7 @@ class IndentationTabsTest {
     @Test
     void indentationSizeUsesFourSpacesPerLevel() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                 public void method() {
@@ -52,8 +56,10 @@ class IndentationTabsTest {
                 }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     public void method() {
@@ -65,6 +71,7 @@ class IndentationTabsTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -73,14 +80,17 @@ class IndentationTabsTest {
     @Test
     void continuationIndentationIndentsByOneUnit() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     void method(int parameterOne, int parameterTwo, int parameterThree, int parameterFour, int paramFive) {
                     }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     void method(
@@ -92,6 +102,7 @@ class IndentationTabsTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -100,6 +111,7 @@ class IndentationTabsTest {
     @Test
     void continuationIndentationForArrayInitializerIndentsByOneUnit() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     void method() {
@@ -107,8 +119,10 @@ class IndentationTabsTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     void method() {
@@ -117,6 +131,7 @@ class IndentationTabsTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -125,6 +140,7 @@ class IndentationTabsTest {
     @Test
     void indentBodyDeclarationsCompareToTypeHeader() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                 int field;
@@ -132,8 +148,10 @@ class IndentationTabsTest {
                 }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     int field;
@@ -142,6 +160,7 @@ class IndentationTabsTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -150,6 +169,7 @@ class IndentationTabsTest {
     @Test
     void indentBodyDeclarationsCompareToEnumDeclarationHeader() {
         // language=Java
+        // @formatter:off
         String input = """
                 public enum FormatterTest {
                 VALUE_ONE,
@@ -159,8 +179,10 @@ class IndentationTabsTest {
                 }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public enum FormatterTest {
                     VALUE_ONE,
@@ -172,6 +194,7 @@ class IndentationTabsTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -180,6 +203,7 @@ class IndentationTabsTest {
     @Test
     void indentBodyDeclarationsCompareToEnumConstantHeader() {
         // language=Java
+        // @formatter:off
         String input = """
                 public enum FormatterTest {
                 VALUE_ONE {
@@ -189,8 +213,10 @@ class IndentationTabsTest {
                 };
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public enum FormatterTest {
                     VALUE_ONE {
@@ -200,6 +226,7 @@ class IndentationTabsTest {
                     };
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -208,14 +235,17 @@ class IndentationTabsTest {
     @Test
     void indentBodyDeclarationsCompareToAnnotationDeclarationHeader() {
         // language=Java
+        // @formatter:off
         String input = """
                 public @interface FormatterTest {
                 String value();
                 int count() default 0;
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public @interface FormatterTest {
                     String value();
@@ -223,6 +253,7 @@ class IndentationTabsTest {
                     int count() default 0;
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -231,6 +262,7 @@ class IndentationTabsTest {
     @Test
     void indentBodyDeclarationsCompareToRecordHeader() {
         // language=Java
+        // @formatter:off
         String input = """
                 public record FormatterTest(int x, int y) {
                 public int sum() {
@@ -238,8 +270,10 @@ class IndentationTabsTest {
                 }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public record FormatterTest(int x, int y) {
                     public int sum() {
@@ -247,6 +281,7 @@ class IndentationTabsTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -255,6 +290,7 @@ class IndentationTabsTest {
     @Test
     void indentStatementsCompareToBlock() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     void method() {
@@ -265,8 +301,10 @@ class IndentationTabsTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     void method() {
@@ -277,6 +315,7 @@ class IndentationTabsTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -285,6 +324,7 @@ class IndentationTabsTest {
     @Test
     void indentStatementsCompareToBody() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     void method() {
@@ -294,8 +334,10 @@ class IndentationTabsTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     void method() {
@@ -305,6 +347,7 @@ class IndentationTabsTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -313,6 +356,7 @@ class IndentationTabsTest {
     @Test
     void indentSwitchStatementsCompareToSwitch() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     void method(int x) {
@@ -325,8 +369,10 @@ class IndentationTabsTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     void method(int x) {
@@ -339,6 +385,7 @@ class IndentationTabsTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -347,6 +394,7 @@ class IndentationTabsTest {
     @Test
     void indentSwitchStatementsCompareToCases() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     void method(int x) {
@@ -361,8 +409,10 @@ class IndentationTabsTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     void method(int x) {
@@ -377,6 +427,7 @@ class IndentationTabsTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -385,6 +436,7 @@ class IndentationTabsTest {
     @Test
     void indentBreaksCompareToCases() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     void method(int x) {
@@ -402,8 +454,10 @@ class IndentationTabsTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     void method(int x) {
@@ -421,6 +475,7 @@ class IndentationTabsTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -429,6 +484,7 @@ class IndentationTabsTest {
     @Test
     void indentEmptyLinesDoesNotIndentBlankLines() {
         // language=Java — \s preserves trailing spaces on blank lines
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     int fieldOne;
@@ -439,8 +495,10 @@ class IndentationTabsTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     int fieldOne;
@@ -451,6 +509,7 @@ class IndentationTabsTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -459,6 +518,7 @@ class IndentationTabsTest {
     @Test
     void useTabsOnlyForLeadingIndentationIsNotApplicableWithSpaces() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                 \tvoid method() {
@@ -466,15 +526,19 @@ class IndentationTabsTest {
                 \t}
                 }
                 """;
+                // @formatter:on
 
         String result = formatJava(input);
-        assertFalse(result.contains("\t"), "Output should contain no tab characters with space indentation");
+        assertFalse(
+            result.contains("\t"),
+            "Output should contain no tab characters with space indentation");
     }
 
     // tabulation.size
     @Test
     void tabulationSizeExpandsTabsToFourSpaces() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                 \tpublic void method() {
@@ -484,8 +548,10 @@ class IndentationTabsTest {
                 \t}
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     public void method() {
@@ -495,6 +561,7 @@ class IndentationTabsTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }

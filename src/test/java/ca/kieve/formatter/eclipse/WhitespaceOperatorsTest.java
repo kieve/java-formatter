@@ -11,7 +11,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * @see prompts/eclipseFormatterTestChecklist.md — "Whitespace — Operators"
  */
 class WhitespaceOperatorsTest {
-
     // insert_space_before_assignment_operator
     // insert_space_after_assignment_operator
     // insert_space_before_additive_operator
@@ -38,6 +37,7 @@ class WhitespaceOperatorsTest {
     @Test
     void operatorSpacing() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     void method(int a) {
@@ -95,8 +95,10 @@ class WhitespaceOperatorsTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     void method(int a) {
@@ -154,6 +156,7 @@ class WhitespaceOperatorsTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }

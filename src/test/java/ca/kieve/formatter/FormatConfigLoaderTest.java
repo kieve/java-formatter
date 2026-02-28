@@ -14,15 +14,15 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class FormatConfigLoaderTest {
-
     private static FormatConfig loadYaml(String yaml) {
         InputStream in = new ByteArrayInputStream(
-                yaml.getBytes(StandardCharsets.UTF_8));
+            yaml.getBytes(StandardCharsets.UTF_8));
         return FormatConfigLoader.load(in);
     }
 
     @Test
     void loadsAllFields() {
+        // @formatter:off
         String yaml = """
                 maxLineLength: 120
                 importLayout:
@@ -30,6 +30,7 @@ class FormatConfigLoaderTest {
                   - ["org.example."]
                   - static-catch-all
                 """;
+                // @formatter:on
         FormatConfig config = loadYaml(yaml);
         assertEquals(120, config.getMaxLineLength());
         assertEquals(3, config.getImportLayout().size());
@@ -58,17 +59,20 @@ class FormatConfigLoaderTest {
     @Test
     void noFileReturnsDefaults() {
         FormatConfig config = FormatConfigLoader.load((File) null);
-        assertEquals(FormatConfig.defaults().getMaxLineLength(),
-                config.getMaxLineLength());
+        assertEquals(
+            FormatConfig.defaults().getMaxLineLength(),
+            config.getMaxLineLength());
 
         File nonExistent = new File("/does/not/exist/kieve-formatter.yaml");
         config = FormatConfigLoader.load(nonExistent);
-        assertEquals(FormatConfig.defaults().getMaxLineLength(),
-                config.getMaxLineLength());
+        assertEquals(
+            FormatConfig.defaults().getMaxLineLength(),
+            config.getMaxLineLength());
     }
 
     @Test
     void parsesStaticGroupWithPrefixes() {
+        // @formatter:off
         String yaml = """
                 importLayout:
                   - catch-all
@@ -77,22 +81,26 @@ class FormatConfigLoaderTest {
                     - "org.junit."
                   - static-catch-all
                 """;
+                // @formatter:on
         FormatConfig config = loadYaml(yaml);
         assertEquals(3, config.getImportLayout().size());
 
         ImportGroup staticGroup = config.getImportLayout().get(1);
         assertTrue(staticGroup.isStatic());
-        assertEquals(List.of("org.mockito.", "org.junit."),
-                staticGroup.prefixes());
+        assertEquals(
+            List.of("org.mockito.", "org.junit."),
+            staticGroup.prefixes());
     }
 
     @Test
     void parsesCatchAllStrings() {
+        // @formatter:off
         String yaml = """
                 importLayout:
                   - catch-all
                   - static-catch-all
                 """;
+                // @formatter:on
         FormatConfig config = loadYaml(yaml);
         assertEquals(2, config.getImportLayout().size());
 
@@ -105,10 +113,12 @@ class FormatConfigLoaderTest {
 
     @Test
     void parsesListOfPrefixes() {
+        // @formatter:off
         String yaml = """
                 importLayout:
                   - ["javax.", "java."]
                 """;
+                // @formatter:on
         FormatConfig config = loadYaml(yaml);
         assertEquals(1, config.getImportLayout().size());
 
@@ -119,44 +129,54 @@ class FormatConfigLoaderTest {
 
     @Test
     void invalidLayoutEntryThrows() {
+        // @formatter:off
         String yaml = """
                 importLayout:
                   - 42
                 """;
+                // @formatter:on
         assertThrows(IllegalArgumentException.class, () -> loadYaml(yaml));
     }
 
     @Test
     void unknownKeyThrows() {
+        // @formatter:off
         String yaml = """
                 maxLineLength: 100
                 unknownOption: true
                 """;
+                // @formatter:on
         assertThrows(IllegalArgumentException.class, () -> loadYaml(yaml));
     }
 
     @Test
     void invalidStringEntryThrows() {
+        // @formatter:off
         String yaml = """
                 importLayout:
                   - "not-a-valid-entry"
                 """;
+                // @formatter:on
         assertThrows(IllegalArgumentException.class, () -> loadYaml(yaml));
     }
 
     @Test
     void badTypeForMaxLineLengthThrows() {
+        // @formatter:off
         String yaml = """
                 maxLineLength: "not a number"
                 """;
+                // @formatter:on
         assertThrows(IllegalArgumentException.class, () -> loadYaml(yaml));
     }
 
     @Test
     void partialConfigMergesWithDefaults() {
+        // @formatter:off
         String yaml = """
                 maxLineLength: 80
                 """;
+                // @formatter:on
         FormatConfig config = loadYaml(yaml);
         assertEquals(80, config.getMaxLineLength());
         // Other fields should use defaults

@@ -1,15 +1,16 @@
 package ca.kieve.formatter.rules;
 
-import ca.kieve.formatter.step.CustomFormatterStep;
 import org.junit.jupiter.api.Test;
+
+import ca.kieve.formatter.step.CustomFormatterStep;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class SwitchCaseBlankLinesTest extends FormatterRuleTestBase {
-
     @Test
     void removesBlankLineBeforeCase() {
         // language=Java
+        // @formatter:off
         String input = """
                 switch (x) {
                 case 1:
@@ -19,8 +20,10 @@ class SwitchCaseBlankLinesTest extends FormatterRuleTestBase {
                     break;
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 switch (x) {
                 case 1:
@@ -29,6 +32,7 @@ class SwitchCaseBlankLinesTest extends FormatterRuleTestBase {
                     break;
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, SwitchCaseBlankLines.apply(input));
     }
@@ -36,6 +40,7 @@ class SwitchCaseBlankLinesTest extends FormatterRuleTestBase {
     @Test
     void removesBlankLineBeforeDefault() {
         // language=Java
+        // @formatter:off
         String input = """
                 switch (x) {
                 case 1:
@@ -45,8 +50,10 @@ class SwitchCaseBlankLinesTest extends FormatterRuleTestBase {
                     break;
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 switch (x) {
                 case 1:
@@ -55,6 +62,7 @@ class SwitchCaseBlankLinesTest extends FormatterRuleTestBase {
                     break;
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, SwitchCaseBlankLines.apply(input));
     }
@@ -62,6 +70,7 @@ class SwitchCaseBlankLinesTest extends FormatterRuleTestBase {
     @Test
     void removesMultipleBlankLinesBeforeCase() {
         // language=Java
+        // @formatter:off
         String input = """
                 switch (x) {
                 case 1:
@@ -72,8 +81,10 @@ class SwitchCaseBlankLinesTest extends FormatterRuleTestBase {
                     break;
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 switch (x) {
                 case 1:
@@ -82,6 +93,7 @@ class SwitchCaseBlankLinesTest extends FormatterRuleTestBase {
                     break;
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, SwitchCaseBlankLines.apply(input));
     }
@@ -89,6 +101,7 @@ class SwitchCaseBlankLinesTest extends FormatterRuleTestBase {
     @Test
     void preservesNonSwitchBlankLines() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class Foo {
                     int x;
@@ -96,6 +109,7 @@ class SwitchCaseBlankLinesTest extends FormatterRuleTestBase {
                     int y;
                 }
                 """;
+                // @formatter:on
 
         assertEquals(input, SwitchCaseBlankLines.apply(input));
     }
@@ -103,6 +117,7 @@ class SwitchCaseBlankLinesTest extends FormatterRuleTestBase {
     @Test
     void preservesSwitchWithNoBlankLines() {
         // language=Java
+        // @formatter:off
         String input = """
                 switch (x) {
                 case 1:
@@ -113,6 +128,7 @@ class SwitchCaseBlankLinesTest extends FormatterRuleTestBase {
                     break;
                 }
                 """;
+                // @formatter:on
 
         assertEquals(input, SwitchCaseBlankLines.apply(input));
     }
@@ -120,6 +136,7 @@ class SwitchCaseBlankLinesTest extends FormatterRuleTestBase {
     @Override
     void respectsFormatterOffTags() {
         // language=Java
+        // @formatter:off
         String input = """
                 // @formatter:off
                 switch (x) {
@@ -131,6 +148,7 @@ class SwitchCaseBlankLinesTest extends FormatterRuleTestBase {
                 }
                 // @formatter:on
                 """;
+                // @formatter:on
 
         assertEquals(input, CustomFormatterStep.applyCustomRules(input));
     }

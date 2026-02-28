@@ -67,12 +67,13 @@ We need a complete custom formatter for array initializers
           3,
 
 ---
-Custom comment / doc comment formatter. Eclipse JDT's comment formatter doesn't properly handle
-tag separation (e.g., expanding single-line javadocs with `@param`/`@return` onto separate lines,
-even with `insert_new_line_before_root_tags` set). All `comment.*` settings have been removed from
-the Eclipse config and `F_INCLUDE_COMMENTS` disabled. Need a custom formatter that handles:
-- Javadoc comments (`/** */`): expand tags onto separate lines, wrap long descriptions, indent
-  continuation lines, enforce boundaries (`/**` and `*/` on own lines)
+Custom comment / doc comment formatter. Eclipse JDT's comment formatting is disabled via
+`comment.format_javadoc_comments: false`, `comment.format_block_comments: false`, and
+`comment.format_line_comments: false` in the Eclipse config. `comment.line_length` is set to 100
+but has no effect while formatting is disabled. Need a custom formatter that handles:
+- Enforce 100-character line limit for all comment types (wrap long lines)
+- Javadoc comments (`/** */`): expand tags onto separate lines, indent continuation lines,
+  enforce boundaries (`/**` and `*/` on own lines)
 - Block comments (`/* */`): boundary newlines
 - Markdown doc comments (`///`): formatting support
 - Line comments (`//`): preserve spacing between code and comment

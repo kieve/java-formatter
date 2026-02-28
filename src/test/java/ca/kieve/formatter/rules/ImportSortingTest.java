@@ -1,21 +1,22 @@
 package ca.kieve.formatter.rules;
 
+import org.junit.jupiter.api.Test;
+
 import ca.kieve.formatter.FormatConfig;
 import ca.kieve.formatter.ImportGroup;
 import ca.kieve.formatter.step.CustomFormatterStep;
-import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ImportSortingTest extends FormatterRuleTestBase {
-
     private static final FormatConfig CONFIG = FormatConfig.defaults();
 
     @Test
     void sortsImportsIntoGroups() {
         // language=Java
+        // @formatter:off
         String input = """
                 package com.example;
 
@@ -31,8 +32,10 @@ class ImportSortingTest extends FormatterRuleTestBase {
                 public class Foo {
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 package com.example;
 
@@ -51,6 +54,7 @@ class ImportSortingTest extends FormatterRuleTestBase {
                 public class Foo {
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, ImportSorting.apply(input, CONFIG));
     }
@@ -58,6 +62,7 @@ class ImportSortingTest extends FormatterRuleTestBase {
     @Test
     void alreadySortedRemainsUnchanged() {
         // language=Java
+        // @formatter:off
         String input = """
                 package com.example;
 
@@ -74,6 +79,7 @@ class ImportSortingTest extends FormatterRuleTestBase {
                 public class Foo {
                 }
                 """;
+                // @formatter:on
 
         assertEquals(input, ImportSorting.apply(input, CONFIG));
     }
@@ -81,6 +87,7 @@ class ImportSortingTest extends FormatterRuleTestBase {
     @Test
     void handlesOnlyJavaAndJavaxImports() {
         // language=Java
+        // @formatter:off
         String input = """
                 package com.example;
 
@@ -92,8 +99,10 @@ class ImportSortingTest extends FormatterRuleTestBase {
                 public class Foo {
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 package com.example;
 
@@ -105,6 +114,7 @@ class ImportSortingTest extends FormatterRuleTestBase {
                 public class Foo {
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, ImportSorting.apply(input, CONFIG));
     }
@@ -112,6 +122,7 @@ class ImportSortingTest extends FormatterRuleTestBase {
     @Test
     void handlesOnlyStaticImports() {
         // language=Java
+        // @formatter:off
         String input = """
                 package com.example;
 
@@ -121,8 +132,10 @@ class ImportSortingTest extends FormatterRuleTestBase {
                 public class Foo {
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 package com.example;
 
@@ -132,6 +145,7 @@ class ImportSortingTest extends FormatterRuleTestBase {
                 public class Foo {
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, ImportSorting.apply(input, CONFIG));
     }
@@ -139,6 +153,7 @@ class ImportSortingTest extends FormatterRuleTestBase {
     @Test
     void handlesOnlyOtherImports() {
         // language=Java
+        // @formatter:off
         String input = """
                 package com.example;
 
@@ -149,8 +164,10 @@ class ImportSortingTest extends FormatterRuleTestBase {
                 public class Foo {
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 package com.example;
 
@@ -161,6 +178,7 @@ class ImportSortingTest extends FormatterRuleTestBase {
                 public class Foo {
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, ImportSorting.apply(input, CONFIG));
     }
@@ -168,6 +186,7 @@ class ImportSortingTest extends FormatterRuleTestBase {
     @Test
     void removesBlankLinesBetweenImportsInSameGroup() {
         // language=Java
+        // @formatter:off
         String input = """
                 package com.example;
 
@@ -180,8 +199,10 @@ class ImportSortingTest extends FormatterRuleTestBase {
                 public class Foo {
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 package com.example;
 
@@ -192,6 +213,7 @@ class ImportSortingTest extends FormatterRuleTestBase {
                 public class Foo {
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, ImportSorting.apply(input, CONFIG));
     }
@@ -199,6 +221,7 @@ class ImportSortingTest extends FormatterRuleTestBase {
     @Test
     void deduplicatesImports() {
         // language=Java
+        // @formatter:off
         String input = """
                 package com.example;
 
@@ -209,8 +232,10 @@ class ImportSortingTest extends FormatterRuleTestBase {
                 public class Foo {
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 package com.example;
 
@@ -220,6 +245,7 @@ class ImportSortingTest extends FormatterRuleTestBase {
                 public class Foo {
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, ImportSorting.apply(input, CONFIG));
     }
@@ -227,12 +253,14 @@ class ImportSortingTest extends FormatterRuleTestBase {
     @Test
     void noImportsReturnsUnchanged() {
         // language=Java
+        // @formatter:off
         String input = """
                 package com.example;
 
                 public class Foo {
                 }
                 """;
+                // @formatter:on
 
         assertEquals(input, ImportSorting.apply(input, CONFIG));
     }
@@ -240,6 +268,7 @@ class ImportSortingTest extends FormatterRuleTestBase {
     @Test
     void preservesSurroundingContent() {
         // language=Java
+        // @formatter:off
         String input = """
                 package com.example;
 
@@ -253,8 +282,10 @@ class ImportSortingTest extends FormatterRuleTestBase {
                     private int x = 42;
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 package com.example;
 
@@ -269,6 +300,7 @@ class ImportSortingTest extends FormatterRuleTestBase {
                     private int x = 42;
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, ImportSorting.apply(input, CONFIG));
     }
@@ -276,6 +308,7 @@ class ImportSortingTest extends FormatterRuleTestBase {
     @Test
     void handlesNoPackageStatement() {
         // language=Java
+        // @formatter:off
         String input = """
                 import java.util.Map;
                 import org.slf4j.Logger;
@@ -283,8 +316,10 @@ class ImportSortingTest extends FormatterRuleTestBase {
                 public class Foo {
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 import org.slf4j.Logger;
 
@@ -293,6 +328,7 @@ class ImportSortingTest extends FormatterRuleTestBase {
                 public class Foo {
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, ImportSorting.apply(input, CONFIG));
     }
@@ -300,6 +336,7 @@ class ImportSortingTest extends FormatterRuleTestBase {
     @Override
     void respectsFormatterOffTags() {
         // language=Java
+        // @formatter:off
         String input = """
                 package com.example;
 
@@ -311,6 +348,7 @@ class ImportSortingTest extends FormatterRuleTestBase {
                 public class Foo {
                 }
                 """;
+                // @formatter:on
 
         assertEquals(input, CustomFormatterStep.applyCustomRules(input));
     }
@@ -318,13 +356,15 @@ class ImportSortingTest extends FormatterRuleTestBase {
     @Test
     void customLayoutReordersGroups() {
         // Layout: static catch-all, then java/javax, then regular catch-all
-        FormatConfig customConfig = new FormatConfig(100, List.of(
+        FormatConfig customConfig = new FormatConfig(
+            100,
+            List.of(
                 ImportGroup.staticCatchAll(),
                 ImportGroup.of("java.", "javax."),
-                ImportGroup.catchAll()
-        ));
+                ImportGroup.catchAll()));
 
         // language=Java
+        // @formatter:off
         String input = """
                 package com.example;
 
@@ -336,8 +376,10 @@ class ImportSortingTest extends FormatterRuleTestBase {
                 public class Foo {
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 package com.example;
 
@@ -351,20 +393,23 @@ class ImportSortingTest extends FormatterRuleTestBase {
                 public class Foo {
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, ImportSorting.apply(input, customConfig));
     }
 
     @Test
     void customProjectPrefix() {
-        FormatConfig customConfig = new FormatConfig(100, List.of(
+        FormatConfig customConfig = new FormatConfig(
+            100,
+            List.of(
                 ImportGroup.catchAll(),
                 ImportGroup.of("com.mycompany."),
                 ImportGroup.of("javax.", "java."),
-                ImportGroup.staticCatchAll()
-        ));
+                ImportGroup.staticCatchAll()));
 
         // language=Java
+        // @formatter:off
         String input = """
                 package com.mycompany.app;
 
@@ -376,8 +421,10 @@ class ImportSortingTest extends FormatterRuleTestBase {
                 public class Foo {
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 package com.mycompany.app;
 
@@ -391,6 +438,7 @@ class ImportSortingTest extends FormatterRuleTestBase {
                 public class Foo {
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, ImportSorting.apply(input, customConfig));
     }

@@ -14,15 +14,16 @@ public final class FormatterTags {
     private static final String PLACEHOLDER_PREFIX = "// __PROTECTED_";
     private static final String PLACEHOLDER_SUFFIX = "__";
 
-    private FormatterTags() {}
+    private FormatterTags() {
+    }
 
     public record ProtectedSource(String source, List<String> protectedBlocks) {
         public String restore(String formatted) {
             String result = formatted;
             for (int i = 0; i < protectedBlocks.size(); i++) {
                 result = result.replace(
-                        PLACEHOLDER_PREFIX + i + PLACEHOLDER_SUFFIX,
-                        protectedBlocks.get(i));
+                    PLACEHOLDER_PREFIX + i + PLACEHOLDER_SUFFIX,
+                    protectedBlocks.get(i));
             }
             return result;
         }
@@ -48,7 +49,7 @@ public final class FormatterTags {
                 int index = protectedBlocks.size();
                 protectedBlocks.add(block.toString());
                 output.append(PLACEHOLDER_PREFIX).append(index)
-                        .append(PLACEHOLDER_SUFFIX);
+                    .append(PLACEHOLDER_SUFFIX);
                 block = null;
                 inside = false;
             } else if (inside) {

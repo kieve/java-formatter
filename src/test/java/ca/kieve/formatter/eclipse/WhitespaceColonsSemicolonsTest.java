@@ -11,7 +11,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * @see prompts/eclipseFormatterTestChecklist.md — "Whitespace — Colons & Semicolons"
  */
 class WhitespaceColonsSemicolonsTest {
-
     // insert_space_before_colon_in_for
     // insert_space_after_colon_in_for
     // insert_space_before_semicolon
@@ -30,6 +29,7 @@ class WhitespaceColonsSemicolonsTest {
     @Test
     void colonAndSemicolonSpacing() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     void method() {
@@ -65,8 +65,10 @@ class WhitespaceColonsSemicolonsTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     void method() {
@@ -102,6 +104,7 @@ class WhitespaceColonsSemicolonsTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }

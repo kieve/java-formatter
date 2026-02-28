@@ -11,7 +11,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * @see prompts/eclipseFormatterTestChecklist.md — "Whitespace — Miscellaneous"
  */
 class WhitespaceMiscellaneousTest {
-
     // insert_space_after_at_in_annotation
     // insert_space_after_at_in_annotation_type_declaration
     // insert_space_before_ellipsis
@@ -27,6 +26,7 @@ class WhitespaceMiscellaneousTest {
     @Test
     void miscellaneousSpacing() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     @ interface Config {
@@ -50,8 +50,10 @@ class WhitespaceMiscellaneousTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     @interface Config {
@@ -75,6 +77,7 @@ class WhitespaceMiscellaneousTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }

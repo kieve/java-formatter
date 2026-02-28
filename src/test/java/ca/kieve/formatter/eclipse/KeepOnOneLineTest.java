@@ -11,18 +11,20 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * @see prompts/eclipseFormatterTestChecklist.md — "Keep On One Line"
  */
 class KeepOnOneLineTest {
-
     // keep_method_body_on_one_line
     @Test
     void keepMethodBodyOnOneLineNeverExpandsBody() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     void method() { return; }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     void method() {
@@ -30,6 +32,7 @@ class KeepOnOneLineTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -38,6 +41,7 @@ class KeepOnOneLineTest {
     @Test
     void keepSimpleGetterSetterOnOneLineNeverExpandsGetterSetter() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     private int value;
@@ -47,8 +51,10 @@ class KeepOnOneLineTest {
                     void setValue(int value) { this.value = value; }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     private int value;
@@ -62,6 +68,7 @@ class KeepOnOneLineTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -70,6 +77,7 @@ class KeepOnOneLineTest {
     @Test
     void keepCodeBlockOnOneLineNeverExpandsBlock() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     void method(boolean flag) {
@@ -77,8 +85,10 @@ class KeepOnOneLineTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     void method(boolean flag) {
@@ -88,6 +98,7 @@ class KeepOnOneLineTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -96,6 +107,7 @@ class KeepOnOneLineTest {
     @Test
     void keepLambdaBodyBlockOnOneLineKeepsEmptyButExpandsNonEmpty() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     void method() {
@@ -104,8 +116,10 @@ class KeepOnOneLineTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     void method() {
@@ -116,6 +130,7 @@ class KeepOnOneLineTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -124,6 +139,7 @@ class KeepOnOneLineTest {
     @Test
     void keepLoopBodyBlockOnOneLineNeverExpandsLoop() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     void method() {
@@ -131,8 +147,10 @@ class KeepOnOneLineTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     void method() {
@@ -142,6 +160,7 @@ class KeepOnOneLineTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -150,6 +169,7 @@ class KeepOnOneLineTest {
     @Test
     void keepIfThenBodyBlockOnOneLineNeverExpandsIfBody() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     void method(int x) {
@@ -157,8 +177,10 @@ class KeepOnOneLineTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     void method(int x) {
@@ -170,6 +192,7 @@ class KeepOnOneLineTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -178,13 +201,16 @@ class KeepOnOneLineTest {
     @Test
     void keepTypeDeclarationOnOneLineNeverExpandsType() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     static class Inner { int field; }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     static class Inner {
@@ -192,6 +218,7 @@ class KeepOnOneLineTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -200,16 +227,20 @@ class KeepOnOneLineTest {
     @Test
     void keepAnnotationDeclarationOnOneLineNeverExpandsAnnotation() {
         // language=Java
+        // @formatter:off
         String input = """
                 public @interface FormatterTest { String value(); }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public @interface FormatterTest {
                     String value();
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -218,6 +249,7 @@ class KeepOnOneLineTest {
     @Test
     void keepAnonymousTypeDeclarationOnOneLineNeverExpandsAnonymous() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     void method() {
@@ -225,8 +257,10 @@ class KeepOnOneLineTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     void method() {
@@ -238,6 +272,7 @@ class KeepOnOneLineTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -246,11 +281,14 @@ class KeepOnOneLineTest {
     @Test
     void keepEnumDeclarationOnOneLineNeverExpandsEnum() {
         // language=Java
+        // @formatter:off
         String input = """
                 public enum FormatterTest { ONE, TWO, THREE }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public enum FormatterTest {
                     ONE,
@@ -258,6 +296,7 @@ class KeepOnOneLineTest {
                     THREE
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -266,13 +305,16 @@ class KeepOnOneLineTest {
     @Test
     void keepEnumConstantDeclarationOnOneLineNeverExpandsEnumConstant() {
         // language=Java
+        // @formatter:off
         String input = """
                 public enum FormatterTest {
                     ONE { public String toString() { return "one"; } }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public enum FormatterTest {
                     ONE {
@@ -282,6 +324,7 @@ class KeepOnOneLineTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -290,11 +333,14 @@ class KeepOnOneLineTest {
     @Test
     void keepRecordDeclarationOnOneLineNeverExpandsRecord() {
         // language=Java
+        // @formatter:off
         String input = """
                 public record FormatterTest(int x, int y) { public int sum() { return x + y; } }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public record FormatterTest(int x, int y) {
                     public int sum() {
@@ -302,6 +348,7 @@ class KeepOnOneLineTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -310,13 +357,16 @@ class KeepOnOneLineTest {
     @Test
     void keepRecordConstructorOnOneLineNeverExpandsRecordConstructor() {
         // language=Java
+        // @formatter:off
         String input = """
                 public record FormatterTest(int x, int y) {
                     public FormatterTest { if (x < 0) { throw new IllegalArgumentException(); } }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public record FormatterTest(int x, int y) {
                     public FormatterTest {
@@ -326,6 +376,7 @@ class KeepOnOneLineTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }

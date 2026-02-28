@@ -11,7 +11,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * @see prompts/eclipseFormatterTestChecklist.md — "Whitespace — Braces"
  */
 class WhitespaceBracesTest {
-
     // insert_space_before_opening_brace_in_type_declaration
     // insert_space_before_opening_brace_in_method_declaration
     // insert_space_before_opening_brace_in_block
@@ -22,6 +21,7 @@ class WhitespaceBracesTest {
     @Test
     void braceSpacing() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class FormatterTest{
                     void method(){
@@ -51,8 +51,10 @@ class WhitespaceBracesTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     void method() {
@@ -82,6 +84,7 @@ class WhitespaceBracesTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }

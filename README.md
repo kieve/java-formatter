@@ -26,10 +26,10 @@ plugins {
 ## Usage
 
 ```bash
-./gradlew spotlessApply   # auto-format all Java source files
-./gradlew spotlessCheck   # verify formatting (fails if files need changes)
-./gradlew checkstyleMain  # lint main source files
-./gradlew checkstyleTest  # lint test source files
+./gradlew format        # auto-format all Java source files
+./gradlew formatCheck   # verify formatting (fails if files need changes)
+./gradlew lint          # lint main source files
+./gradlew lintTest      # lint test source files
 ```
 
 ## Configuration
@@ -91,6 +91,18 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 ```
+
+## Self-Formatting (Development)
+
+This project uses a published version of itself from mavenLocal to format and lint its own code.
+
+```bash
+./gradlew publishToMavenLocal   # bootstrap: publish the plugin locally
+./gradlew format                # format this project using the published plugin
+```
+
+After changing formatting or linting rules, re-publish before running `format` to apply the
+updated rules to this project.
 
 ## Checkstyle Rules
 

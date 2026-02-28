@@ -9,10 +9,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * Tests for Eclipse JDT Formatter — Whitespace Parentheses sections.
  *
  * @see prompts/eclipseFormatterTestChecklist.md — "Whitespace — Parentheses (Opening)"
- * @see prompts/eclipseFormatterTestChecklist.md — "Whitespace — Parentheses (After Opening / Before Closing)"
+ * @see prompts/eclipseFormatterTestChecklist.md —
+ *      "Whitespace — Parentheses (After Opening / Before Closing)"
  */
 class WhitespaceParenthesesTest {
-
     // insert_space_before_opening_paren_in_method_declaration
     // insert_space_before_opening_paren_in_method_invocation
     // insert_space_before_opening_paren_in_if
@@ -55,6 +55,7 @@ class WhitespaceParenthesesTest {
     @Test
     void parenthesisSpacing() {
         // language=Java
+        // @formatter:off
         String input = """
                 @SuppressWarnings ( "unchecked" )
                 public class FormatterTest {
@@ -101,8 +102,10 @@ class WhitespaceParenthesesTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 @SuppressWarnings("unchecked")
                 public class FormatterTest {
@@ -149,6 +152,7 @@ class WhitespaceParenthesesTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }

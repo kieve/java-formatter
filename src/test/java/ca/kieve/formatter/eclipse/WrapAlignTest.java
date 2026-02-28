@@ -13,11 +13,11 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
  * @see prompts/eclipseFormatterTestChecklist.md — "Wrapping & Alignment"
  */
 class WrapAlignTest {
-
     // alignment_for_arguments_in_method_invocation
     @Test
     void alignmentForArgumentsInMethodInvocationWrapsAllElements() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     void caller() {
@@ -28,8 +28,10 @@ class WrapAlignTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     void caller() {
@@ -52,6 +54,7 @@ class WrapAlignTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -60,14 +63,17 @@ class WrapAlignTest {
     @Test
     void alignmentForParametersInMethodDeclarationWrapsAllElements() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     void longMethodName(String firstParam, String secondParam, String thirdParam, String fourthParam) {
                     }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     void longMethodName(
@@ -78,6 +84,7 @@ class WrapAlignTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -86,6 +93,7 @@ class WrapAlignTest {
     @Test
     void alignmentForArgumentsInAllocationExpressionWrapsAllElements() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     void method() {
@@ -93,8 +101,10 @@ class WrapAlignTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     void method() {
@@ -106,6 +116,7 @@ class WrapAlignTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -114,6 +125,7 @@ class WrapAlignTest {
     @Test
     void alignmentForArgumentsInAnnotationWrapsAllElements() {
         // language=Java
+        // @formatter:off
         String input = """
                 @interface MyAnnotation {
                     String first() default "";
@@ -126,8 +138,10 @@ class WrapAlignTest {
                 public class FormatterTest {
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 @interface MyAnnotation {
                     String first() default "";
@@ -147,6 +161,7 @@ class WrapAlignTest {
                 public class FormatterTest {
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -155,6 +170,7 @@ class WrapAlignTest {
     @Test
     void alignmentForArgumentsInEnumConstantWrapsAllElements() {
         // language=Java
+        // @formatter:off
         String input = """
                 public enum FormatterTest {
                     VALUE_ONE("firstArgument", "secondArgument", "thirdArgument", "fourthArgument", "fifthArgument");
@@ -163,8 +179,10 @@ class WrapAlignTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public enum FormatterTest {
                     VALUE_ONE(
@@ -178,6 +196,7 @@ class WrapAlignTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -186,6 +205,7 @@ class WrapAlignTest {
     @Test
     void alignmentForArgumentsInExplicitConstructorCallWrapsAllElements() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     FormatterTest(String first, String second, String third, String fourth) {
@@ -196,8 +216,10 @@ class WrapAlignTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     FormatterTest(String first, String second, String third, String fourth) {
@@ -212,6 +234,7 @@ class WrapAlignTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -220,6 +243,7 @@ class WrapAlignTest {
     @Test
     void alignmentForArgumentsInQualifiedAllocationExpressionWrapsAllElements() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     class Inner {
@@ -233,8 +257,10 @@ class WrapAlignTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     class Inner {
@@ -252,6 +278,7 @@ class WrapAlignTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -260,6 +287,7 @@ class WrapAlignTest {
     @Test
     void alignmentForAssertionMessageWrapsAllElements() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     void method(boolean condition) {
@@ -267,8 +295,10 @@ class WrapAlignTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     void method(boolean condition) {
@@ -277,6 +307,7 @@ class WrapAlignTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -285,6 +316,7 @@ class WrapAlignTest {
     @Test
     void alignmentForAssignmentDoesNotWrap() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     void method() {
@@ -292,8 +324,10 @@ class WrapAlignTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     void method() {
@@ -301,6 +335,7 @@ class WrapAlignTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -309,6 +344,7 @@ class WrapAlignTest {
     @Test
     void alignmentForConditionalExpressionWrapsAllElements() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     void method(boolean condition) {
@@ -316,8 +352,10 @@ class WrapAlignTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     void method(boolean condition) {
@@ -327,6 +365,7 @@ class WrapAlignTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -335,13 +374,16 @@ class WrapAlignTest {
     @Test
     void alignmentForEnumConstantsWrapsOnePerLine() {
         // language=Java
+        // @formatter:off
         String input = """
                 public enum FormatterTest {
                     VALUE_ONE, VALUE_TWO, VALUE_THREE
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public enum FormatterTest {
                     VALUE_ONE,
@@ -349,6 +391,7 @@ class WrapAlignTest {
                     VALUE_THREE
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -357,6 +400,7 @@ class WrapAlignTest {
     @Test
     void alignmentForForLoopHeaderWrapsAllElements() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     void method() {
@@ -365,8 +409,10 @@ class WrapAlignTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     void method() {
@@ -378,6 +424,7 @@ class WrapAlignTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -386,6 +433,7 @@ class WrapAlignTest {
     @Test
     void alignmentForMethodDeclarationDoesNotWrap() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     public static synchronized String veryLongMethodNameThatExceedsTheLineWidthLimit() {
@@ -393,8 +441,10 @@ class WrapAlignTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     public static synchronized String veryLongMethodNameThatExceedsTheLineWidthLimit() {
@@ -402,6 +452,7 @@ class WrapAlignTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -410,14 +461,17 @@ class WrapAlignTest {
     @Test
     void alignmentForParametersInConstructorDeclarationWrapsAllElements() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     FormatterTest(String firstParameter, String secondParameter, String thirdParameter, String fourth) {
                     }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     FormatterTest(
@@ -428,6 +482,7 @@ class WrapAlignTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -436,6 +491,7 @@ class WrapAlignTest {
     @Test
     void alignmentForPermittedTypesInTypeDeclarationWrapsAllElements() {
         // language=Java
+        // @formatter:off
         String input = """
                 public sealed class FormatterTest permits SubclassAlpha, SubclassBeta, SubclassGamma, SubclassDelta {
                 }
@@ -452,8 +508,10 @@ class WrapAlignTest {
                 final class SubclassDelta extends FormatterTest {
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public sealed class FormatterTest
                     permits
@@ -475,6 +533,7 @@ class WrapAlignTest {
                 final class SubclassDelta extends FormatterTest {
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -483,12 +542,15 @@ class WrapAlignTest {
     @Test
     void alignmentForRecordComponentsWrapsAllElements() {
         // language=Java
+        // @formatter:off
         String input = """
                 public record FormatterTest(String firstComponent, String secondComponent, String thirdComponentXx) {
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public record FormatterTest(
                     String firstComponent,
@@ -496,6 +558,7 @@ class WrapAlignTest {
                     String thirdComponentXx) {
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -504,6 +567,7 @@ class WrapAlignTest {
     @Test
     void alignmentForResourcesInTryWrapsAllElements() {
         // language=Java
+        // @formatter:off
         String input = """
                 import java.io.FileInputStream;
                 import java.io.InputStream;
@@ -515,8 +579,10 @@ class WrapAlignTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 import java.io.FileInputStream;
                 import java.io.InputStream;
@@ -530,6 +596,7 @@ class WrapAlignTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -538,6 +605,7 @@ class WrapAlignTest {
     @Test
     void alignmentForSelectorInMethodInvocationWrapsWhereNecessary() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     void method() {
@@ -545,8 +613,10 @@ class WrapAlignTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     void method() {
@@ -555,6 +625,7 @@ class WrapAlignTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -563,18 +634,22 @@ class WrapAlignTest {
     @Test
     void alignmentForSuperclassInTypeDeclarationWrapsAllElements() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class VeryLongClassNameFormatterTest extends VeryLongBaseClassNameThatExceedsTheLineWidthLimitXx {
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class VeryLongClassNameFormatterTest
                     extends
                     VeryLongBaseClassNameThatExceedsTheLineWidthLimitXx {
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -583,12 +658,15 @@ class WrapAlignTest {
     @Test
     void alignmentForSuperinterfacesInTypeDeclarationWrapsAllElements() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class FormatterTest implements FirstInterface, SecondInterface, ThirdInterface, FourthInterface {
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest
                     implements
@@ -598,6 +676,7 @@ class WrapAlignTest {
                     FourthInterface {
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -606,13 +685,16 @@ class WrapAlignTest {
     @Test
     void alignmentForSuperinterfacesInEnumDeclarationWrapsAllElements() {
         // language=Java
+        // @formatter:off
         String input = """
                 public enum FormatterTest implements FirstInterface, SecondInterface, ThirdInterface, FourthInterface {
                     VALUE
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public enum FormatterTest
                     implements
@@ -623,6 +705,7 @@ class WrapAlignTest {
                     VALUE
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -631,12 +714,15 @@ class WrapAlignTest {
     @Test
     void alignmentForSuperinterfacesInRecordDeclarationWrapsAllElements() {
         // language=Java
+        // @formatter:off
         String input = """
                 public record FormatterTest(int x) implements FirstLongerInterface, SecondLongerInterface, ThirdLongerInterface, FourthIface {
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public record FormatterTest(int x)
                     implements
@@ -646,6 +732,7 @@ class WrapAlignTest {
                     FourthIface {
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -657,14 +744,17 @@ class WrapAlignTest {
     @Test
     void alignmentForThrowsClauseInMethodDeclarationWrapsAllElements() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     void method() throws FirstLongerException, SecondLongerException, ThirdLongerException, FourthLongerException {
                     }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     void method()
@@ -676,6 +766,7 @@ class WrapAlignTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -687,14 +778,17 @@ class WrapAlignTest {
     @Test
     void alignmentForThrowsClauseInConstructorDeclarationWrapsAllElements() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     FormatterTest() throws FirstLongerException, SecondLongerException, ThirdLongerException, FourthLongerException {
                     }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     FormatterTest()
@@ -706,6 +800,7 @@ class WrapAlignTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -714,6 +809,7 @@ class WrapAlignTest {
     @Test
     void alignmentForTypeArgumentsWrapsAllElements() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     <A, B, C, D> void genericMethod() {
@@ -724,8 +820,10 @@ class WrapAlignTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     <A, B, C, D> void genericMethod() {
@@ -740,6 +838,7 @@ class WrapAlignTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -748,14 +847,17 @@ class WrapAlignTest {
     @Test
     void alignmentForTypeParametersWrapsAllElements() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     <FirstLongerParam, SecondLongerParam, ThirdLongerParam, FourthLongerParam> void genericMethod() {
                     }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     <
@@ -766,6 +868,7 @@ class WrapAlignTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -774,6 +877,7 @@ class WrapAlignTest {
     @Test
     void alignmentForParameterizedTypeReferencesDoesNotWrap() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     void method() {
@@ -781,8 +885,10 @@ class WrapAlignTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     void method() {
@@ -790,6 +896,7 @@ class WrapAlignTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -798,6 +905,7 @@ class WrapAlignTest {
     @Test
     void alignmentForUnionTypeInMulticatchWrapsAllElements() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     void method() {
@@ -807,8 +915,10 @@ class WrapAlignTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     void method() {
@@ -822,6 +932,7 @@ class WrapAlignTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -830,6 +941,7 @@ class WrapAlignTest {
     @Test
     void alignmentForSwitchCaseWithArrowWrapsAllElements() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     void method(int x) {
@@ -841,8 +953,10 @@ class WrapAlignTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     void method(int x) {
@@ -855,6 +969,7 @@ class WrapAlignTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -866,6 +981,7 @@ class WrapAlignTest {
     @Test
     void alignmentForExpressionsInSwitchCaseWithArrowWrapsAllElements() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     void method(String x) {
@@ -876,8 +992,10 @@ class WrapAlignTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     void method(String x) {
@@ -893,16 +1011,19 @@ class WrapAlignTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
 
     // alignment_for_expressions_in_switch_case_with_colon
-    // DISABLED: Same issue as arrow case — body indented at same level as case expressions. See TODO.md.
+    // DISABLED: Same issue as arrow case — body indented at same level as case
+    // expressions. See TODO.md.
     @Disabled("Case body should be indented further than case expressions — needs custom rule")
     @Test
     void alignmentForExpressionsInSwitchCaseWithColonWrapsAllElements() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     void method(String x) {
@@ -917,8 +1038,10 @@ class WrapAlignTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     void method(String x) {
@@ -937,6 +1060,7 @@ class WrapAlignTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -945,18 +1069,22 @@ class WrapAlignTest {
     @Test
     void alignmentForAnnotationsOnTypeWrapsAllElements() {
         // language=Java — two short annotations that fit on one line should still split
+        // @formatter:off
         String input = """
                 @SuppressWarnings("unchecked") @Deprecated public class FormatterTest {
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 @SuppressWarnings("unchecked")
                 @Deprecated
                 public class FormatterTest {
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -965,14 +1093,17 @@ class WrapAlignTest {
     @Test
     void alignmentForAnnotationsOnMethodWrapsAllElements() {
         // language=Java — two short annotations that fit on one line should still split
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     @SuppressWarnings("unchecked") @Deprecated void method() {
                     }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     @SuppressWarnings("unchecked")
@@ -981,6 +1112,7 @@ class WrapAlignTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -989,13 +1121,16 @@ class WrapAlignTest {
     @Test
     void alignmentForAnnotationsOnFieldWrapsAllElements() {
         // language=Java — two short annotations that fit on one line should still split
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     @SuppressWarnings("unchecked") @Deprecated int field;
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     @SuppressWarnings("unchecked")
@@ -1003,6 +1138,7 @@ class WrapAlignTest {
                     int field;
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -1011,6 +1147,7 @@ class WrapAlignTest {
     @Test
     void alignmentForAnnotationsOnLocalVariableWrapsAllElements() {
         // language=Java — two short annotations that fit on one line should still split
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     void method() {
@@ -1018,8 +1155,10 @@ class WrapAlignTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     void method() {
@@ -1029,6 +1168,7 @@ class WrapAlignTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -1037,20 +1177,24 @@ class WrapAlignTest {
     @Test
     void alignmentForAnnotationsOnParameterKeepsShortAnnotationsOnSameLine() {
         // language=Java — short annotations on parameters stay on the same line
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     void method(@SuppressWarnings("unchecked") @Deprecated int param) {
                     }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     void method(@SuppressWarnings("unchecked") @Deprecated int param) {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -1059,14 +1203,17 @@ class WrapAlignTest {
     @Test
     void alignmentForAnnotationsOnPackageWrapsAllElements() {
         // language=Java — two short annotations that fit on one line should still split
+        // @formatter:off
         String input = """
                 @SuppressWarnings("unchecked") @Deprecated package com.example;
 
                 public class FormatterTest {
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 @SuppressWarnings("unchecked")
                 @Deprecated
@@ -1075,6 +1222,7 @@ class WrapAlignTest {
                 public class FormatterTest {
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -1083,14 +1231,17 @@ class WrapAlignTest {
     @Test
     void alignmentForAnnotationsOnEnumConstantWrapsAllElements() {
         // language=Java — two short annotations that fit on one line should still split
+        // @formatter:off
         String input = """
                 public enum FormatterTest {
                     @SuppressWarnings("unchecked") @Deprecated VALUE_ONE,
                     VALUE_TWO
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public enum FormatterTest {
                     @SuppressWarnings("unchecked")
@@ -1099,6 +1250,7 @@ class WrapAlignTest {
                     VALUE_TWO
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -1107,6 +1259,7 @@ class WrapAlignTest {
     @Test
     void alignmentForTypeAnnotationsWrapsAllElements() {
         // language=Java — two short type annotations that fit on one line should still split
+        // @formatter:off
         String input = """
                 import java.lang.annotation.ElementType;
                 import java.lang.annotation.Target;
@@ -1125,8 +1278,10 @@ class WrapAlignTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 import java.lang.annotation.ElementType;
                 import java.lang.annotation.Target;
@@ -1147,6 +1302,7 @@ class WrapAlignTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }

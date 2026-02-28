@@ -36,10 +36,10 @@ plugins {
 ```
 
 Then run:
-- `./gradlew spotlessApply` — auto-format all Java source files
-- `./gradlew spotlessCheck` — verify formatting (fails if files need changes)
-- `./gradlew checkstyleMain` — lint main source files
-- `./gradlew checkstyleTest` — lint test source files
+- `./gradlew format` — auto-format all Java source files
+- `./gradlew formatCheck` — verify formatting (fails if files need changes)
+- `./gradlew lint` — lint main source files
+- `./gradlew lintTest` — lint test source files
 
 ## Project Structure
 
@@ -107,6 +107,28 @@ becomes `<setting id="org.eclipse.jdt.core.formatter.tabulation.char" value="tab
 ./gradlew clean build    # clean rebuild
 ```
 
+## Self-Formatting
+
+This project formats and lints its own code using a previously published version of itself
+from mavenLocal. Bootstrap on first clone or after rule changes:
+
+```
+./gradlew publishToMavenLocal   # publish the plugin to ~/.m2/repository
+./gradlew format                # now uses the published plugin to format this project
+```
+
+The build detects whether the plugin is available in mavenLocal automatically. If not found,
+`./gradlew build` works normally without self-formatting, and a log message reminds you to
+publish.
+
+**Updating rules:** after changing formatting or linting rules, the new rules do not apply to
+this project until you re-publish:
+
+```
+./gradlew publishToMavenLocal   # publish updated rules
+./gradlew format                # now applies updated rules to this project
+```
+
 ## Checkstyle Configuration
 
 Checkstyle linting rules are defined in `src/main/resources/checkstyle.xml`. This file is bundled
@@ -120,7 +142,7 @@ available checks.
 ## Adding a New Linting Rule
 
 1. Add the Checkstyle module to `src/main/resources/checkstyle.xml` inside the `TreeWalker` block
-2. Test in a consuming project with `./gradlew checkstyleMain` to verify the rule fires correctly
+2. Test in a consuming project with `./gradlew lint` to verify the rule fires correctly
 
 ## Adding a New Formatting Rule
 

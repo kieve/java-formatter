@@ -11,25 +11,28 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * @see prompts/eclipseFormatterTestChecklist.md — "Blank Lines"
  */
 class BlankLinesTest {
-
     // blank_lines_before_package
     @Test
     void blankLinesBeforePackageRemovesLeadingBlanks() {
         // language=Java
+        // @formatter:off
         String input = """
                 \n\npackage com.example;
 
                 public class FormatterTest {
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 package com.example;
 
                 public class FormatterTest {
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -38,19 +41,23 @@ class BlankLinesTest {
     @Test
     void blankLinesAfterPackageEnsuresOneBlankLine() {
         // language=Java
+        // @formatter:off
         String input = """
                 package com.example;
                 public class FormatterTest {
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 package com.example;
 
                 public class FormatterTest {
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -59,6 +66,7 @@ class BlankLinesTest {
     @Test
     void blankLinesBeforeImportsEnsuresOneBlankLine() {
         // language=Java
+        // @formatter:off
         String input = """
                 package com.example;
                 import java.util.List;
@@ -66,8 +74,10 @@ class BlankLinesTest {
                 public class FormatterTest {
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 package com.example;
 
@@ -76,6 +86,7 @@ class BlankLinesTest {
                 public class FormatterTest {
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -84,6 +95,7 @@ class BlankLinesTest {
     @Test
     void blankLinesAfterImportsEnsuresOneBlankLine() {
         // language=Java
+        // @formatter:off
         String input = """
                 package com.example;
 
@@ -91,8 +103,10 @@ class BlankLinesTest {
                 public class FormatterTest {
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 package com.example;
 
@@ -101,6 +115,7 @@ class BlankLinesTest {
                 public class FormatterTest {
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -109,14 +124,17 @@ class BlankLinesTest {
     @Test
     void blankLinesBetweenTypeDeclarationsEnsuresOneBlankLine() {
         // language=Java
+        // @formatter:off
         String input = """
                 class FormatterTest {
                 }
                 class AnotherClass {
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 class FormatterTest {
                 }
@@ -124,6 +142,7 @@ class BlankLinesTest {
                 class AnotherClass {
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -132,6 +151,7 @@ class BlankLinesTest {
     @Test
     void blankLinesBeforeMemberTypeEnsuresOneBlankLine() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     int field;
@@ -139,8 +159,10 @@ class BlankLinesTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     int field;
@@ -149,6 +171,7 @@ class BlankLinesTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -157,18 +180,22 @@ class BlankLinesTest {
     @Test
     void blankLinesBeforeFirstClassBodyDeclarationDoesNotInsertBlank() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                 int field;
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     int field;
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -177,19 +204,23 @@ class BlankLinesTest {
     @Test
     void blankLinesBeforeFirstClassBodyDeclarationRemovesExistingBlank() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class FormatterTest {
 
                     int field;
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     int field;
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -198,6 +229,7 @@ class BlankLinesTest {
     @Test
     void blankLinesAfterLastClassBodyDeclarationRemovesTrailingBlank() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     void method() {
@@ -205,14 +237,17 @@ class BlankLinesTest {
 
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     void method() {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -221,6 +256,7 @@ class BlankLinesTest {
     @Test
     void blankLinesBeforeMethodEnsuresOneBlankLine() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     void methodOne() {
@@ -231,8 +267,10 @@ class BlankLinesTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     void methodOne() {
@@ -245,6 +283,7 @@ class BlankLinesTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -253,6 +292,7 @@ class BlankLinesTest {
     @Test
     void blankLinesBeforeFieldDoesNotInsertBlankLine() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     int fieldOne;
@@ -260,8 +300,10 @@ class BlankLinesTest {
                     String fieldThree;
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     int fieldOne;
@@ -269,6 +311,7 @@ class BlankLinesTest {
                     String fieldThree;
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -277,6 +320,7 @@ class BlankLinesTest {
     @Test
     void blankLinesBeforeAbstractMethodDoesNotInsertBlankLine() {
         // language=Java
+        // @formatter:off
         String input = """
                 public abstract class FormatterTest {
                     abstract void methodOne();
@@ -284,8 +328,10 @@ class BlankLinesTest {
                     abstract void methodThree();
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public abstract class FormatterTest {
                     abstract void methodOne();
@@ -293,6 +339,7 @@ class BlankLinesTest {
                     abstract void methodThree();
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -301,6 +348,7 @@ class BlankLinesTest {
     @Test
     void blankLinesBeforeNewChunkEnsuresOneBlankLine() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     int fieldOne;
@@ -311,8 +359,10 @@ class BlankLinesTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     int fieldOne;
@@ -325,6 +375,7 @@ class BlankLinesTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -333,6 +384,7 @@ class BlankLinesTest {
     @Test
     void blankLinesBetweenImportGroupsNormalizesToOneBlankLine() {
         // language=Java
+        // @formatter:off
         String input = """
                 package com.example;
 
@@ -347,8 +399,10 @@ class BlankLinesTest {
                 public class FormatterTest {
                 }
                 """;
+                // @formatter:on
 
         // language=Java — custom import sorter groups javax/java together, javax first
+        // @formatter:off
         String expected = """
                 package com.example;
 
@@ -360,6 +414,7 @@ class BlankLinesTest {
                 public class FormatterTest {
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -368,6 +423,7 @@ class BlankLinesTest {
     @Test
     void numberOfBlankLinesAfterCodeBlockDoesNotInsertBlankLines() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     void method() {
@@ -378,8 +434,10 @@ class BlankLinesTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     void method() {
@@ -390,14 +448,17 @@ class BlankLinesTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
 
-    // number_of_blank_lines_after_code_block (excluded) — preserves existing blank line
+    // number_of_blank_lines_after_code_block (excluded) — preserves existing blank
+    // line
     @Test
     void numberOfBlankLinesAfterCodeBlockPreservesExistingBlankLine() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     void method() {
@@ -409,8 +470,10 @@ class BlankLinesTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     void method() {
@@ -422,6 +485,7 @@ class BlankLinesTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -430,6 +494,7 @@ class BlankLinesTest {
     @Test
     void numberOfBlankLinesBeforeCodeBlockDoesNotInsertBlankLines() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     void method() {
@@ -440,8 +505,10 @@ class BlankLinesTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     void method() {
@@ -452,6 +519,7 @@ class BlankLinesTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -460,6 +528,7 @@ class BlankLinesTest {
     @Test
     void numberOfBlankLinesBeforeCodeBlockPreservesExistingBlankLine() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     void method() {
@@ -471,8 +540,10 @@ class BlankLinesTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     void method() {
@@ -484,6 +555,7 @@ class BlankLinesTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -492,6 +564,7 @@ class BlankLinesTest {
     @Test
     void numberOfBlankLinesAtBeginningOfCodeBlockRemovesBlankLines() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     void method() {
@@ -502,8 +575,10 @@ class BlankLinesTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     void method() {
@@ -513,6 +588,7 @@ class BlankLinesTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -521,6 +597,7 @@ class BlankLinesTest {
     @Test
     void numberOfBlankLinesAtEndOfCodeBlockRemovesBlankLines() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     void method() {
@@ -531,8 +608,10 @@ class BlankLinesTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     void method() {
@@ -542,6 +621,7 @@ class BlankLinesTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -550,6 +630,7 @@ class BlankLinesTest {
     @Test
     void numberOfBlankLinesAtBeginningOfMethodBodyRemovesBlankLines() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     void method() {
@@ -558,8 +639,10 @@ class BlankLinesTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     void method() {
@@ -567,6 +650,7 @@ class BlankLinesTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -575,6 +659,7 @@ class BlankLinesTest {
     @Test
     void numberOfBlankLinesAtEndOfMethodBodyRemovesBlankLines() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     void method() {
@@ -583,8 +668,10 @@ class BlankLinesTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     void method() {
@@ -592,6 +679,7 @@ class BlankLinesTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -600,6 +688,7 @@ class BlankLinesTest {
     @Test
     void blankLinesBetweenStatementGroupsInSwitchRemovesBlankLines() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     void method(int x) {
@@ -619,8 +708,10 @@ class BlankLinesTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     void method(int x) {
@@ -638,6 +729,7 @@ class BlankLinesTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }

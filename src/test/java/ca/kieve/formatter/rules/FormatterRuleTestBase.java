@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Test;
  * {@code // @formatter:off} / {@code // @formatter:on} blocks is preserved.
  */
 abstract class FormatterRuleTestBase {
-
     @Test
     abstract void respectsFormatterOffTags();
 }

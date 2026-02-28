@@ -11,7 +11,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * @see prompts/eclipseFormatterTestChecklist.md — "Whitespace — Angle Brackets (Generics)"
  */
 class WhitespaceAngleBracketsTest {
-
     // insert_space_before_opening_angle_bracket_in_type_arguments
     // insert_space_after_opening_angle_bracket_in_type_arguments
     // insert_space_before_closing_angle_bracket_in_type_arguments
@@ -23,6 +22,7 @@ class WhitespaceAngleBracketsTest {
     @Test
     void angleBracketSpacing() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class FormatterTest < T, U > {
                     class Container < K, V > {
@@ -37,8 +37,10 @@ class WhitespaceAngleBracketsTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest<T, U> {
                     class Container<K, V> {
@@ -53,6 +55,7 @@ class WhitespaceAngleBracketsTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }

@@ -11,7 +11,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * @see prompts/eclipseFormatterTestChecklist.md — "Whitespace — Commas"
  */
 class WhitespaceCommasTest {
-
     // insert_space_before_comma_in_method_invocation_arguments
     // insert_space_after_comma_in_method_invocation_arguments
     // insert_space_before_comma_in_method_declaration_parameters
@@ -49,6 +48,7 @@ class WhitespaceCommasTest {
     @Test
     void commaSpacing() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     @interface Config {
@@ -102,8 +102,10 @@ class WhitespaceCommasTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     @interface Config {
@@ -157,6 +159,7 @@ class WhitespaceCommasTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }

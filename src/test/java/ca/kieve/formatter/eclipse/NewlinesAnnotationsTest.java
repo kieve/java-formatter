@@ -11,19 +11,21 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * @see prompts/eclipseFormatterTestChecklist.md — "Annotations on Newlines"
  */
 class NewlinesAnnotationsTest {
-
     // insert_new_line_after_annotation_on_type
     @Test
     void insertNewLineAfterAnnotationOnTypeInsertsNewLine() {
         // language=Java — annotation on same line as type gets moved to its own line
+        // @formatter:off
         String input = """
                 @SuppressWarnings("unchecked") public class FormatterTest {
                     void method() {
                     }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 @SuppressWarnings("unchecked")
                 public class FormatterTest {
@@ -31,6 +33,7 @@ class NewlinesAnnotationsTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -39,6 +42,7 @@ class NewlinesAnnotationsTest {
     @Test
     void insertNewLineAfterAnnotationOnMethodInsertsNewLine() {
         // language=Java — annotation on same line as method gets moved to its own line
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     @Override public String toString() {
@@ -46,8 +50,10 @@ class NewlinesAnnotationsTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     @Override
@@ -56,6 +62,7 @@ class NewlinesAnnotationsTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -64,19 +71,23 @@ class NewlinesAnnotationsTest {
     @Test
     void insertNewLineAfterAnnotationOnFieldInsertsNewLine() {
         // language=Java — annotation on same line as field gets moved to its own line
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     @Deprecated private int value = 0;
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     @Deprecated
                     private int value = 0;
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -84,7 +95,9 @@ class NewlinesAnnotationsTest {
     // insert_new_line_after_annotation_on_local_variable
     @Test
     void insertNewLineAfterAnnotationOnLocalVariableInsertsNewLine() {
-        // language=Java — annotation on same line as local variable gets moved to its own line
+        // language=Java — annotation on same line as local variable gets moved to its
+        // own line
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     void method() {
@@ -92,8 +105,10 @@ class NewlinesAnnotationsTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     void method() {
@@ -102,6 +117,7 @@ class NewlinesAnnotationsTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -110,20 +126,24 @@ class NewlinesAnnotationsTest {
     @Test
     void insertNewLineAfterAnnotationOnParameterDoesNotInsert() {
         // language=Java — annotation on parameter stays on the same line
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     void method(@SuppressWarnings("unchecked") int value) {
                     }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     void method(@SuppressWarnings("unchecked") int value) {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -132,14 +152,17 @@ class NewlinesAnnotationsTest {
     @Test
     void insertNewLineAfterAnnotationOnPackageInsertsNewLine() {
         // language=Java — annotation on same line as package gets moved to its own line
+        // @formatter:off
         String input = """
                 @SuppressWarnings("unchecked") package com.example;
 
                 public class FormatterTest {
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 @SuppressWarnings("unchecked")
                 package com.example;
@@ -147,6 +170,7 @@ class NewlinesAnnotationsTest {
                 public class FormatterTest {
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -155,14 +179,17 @@ class NewlinesAnnotationsTest {
     @Test
     void insertNewLineAfterAnnotationOnEnumConstantInsertsNewLine() {
         // language=Java — annotation on same line as enum constant gets moved to its own line
+        // @formatter:off
         String input = """
                 public enum FormatterTest {
                     @Deprecated VALUE_ONE,
                     @Deprecated VALUE_TWO
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public enum FormatterTest {
                     @Deprecated
@@ -171,6 +198,7 @@ class NewlinesAnnotationsTest {
                     VALUE_TWO
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -179,6 +207,7 @@ class NewlinesAnnotationsTest {
     @Test
     void insertNewLineAfterTypeAnnotationDoesNotInsert() {
         // language=Java — type annotation in a type-use position stays inline
+        // @formatter:off
         String input = """
                 import java.lang.annotation.ElementType;
                 import java.lang.annotation.Target;
@@ -194,8 +223,10 @@ class NewlinesAnnotationsTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 import java.lang.annotation.ElementType;
                 import java.lang.annotation.Target;
@@ -211,6 +242,7 @@ class NewlinesAnnotationsTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }

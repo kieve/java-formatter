@@ -11,24 +11,27 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * @see prompts/eclipseFormatterTestChecklist.md — "Brace Positions"
  */
 class BracePositionsTest {
-
     // brace_position_for_type_declaration
     @Test
     void bracePositionForTypeDeclarationIsEndOfLine() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class FormatterTest
                 {
                     int field;
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     int field;
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -37,6 +40,7 @@ class BracePositionsTest {
     @Test
     void bracePositionForMethodDeclarationIsEndOfLine() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     void method()
@@ -45,8 +49,10 @@ class BracePositionsTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     void method() {
@@ -54,6 +60,7 @@ class BracePositionsTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -62,6 +69,7 @@ class BracePositionsTest {
     @Test
     void bracePositionForConstructorDeclarationIsEndOfLine() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class FormatterTest
                 {
@@ -71,8 +79,10 @@ class BracePositionsTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     public FormatterTest() {
@@ -80,6 +90,7 @@ class BracePositionsTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -88,6 +99,7 @@ class BracePositionsTest {
     @Test
     void bracePositionForBlockIsEndOfLine() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     void method() {
@@ -98,8 +110,10 @@ class BracePositionsTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     void method() {
@@ -109,6 +123,7 @@ class BracePositionsTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -117,6 +132,7 @@ class BracePositionsTest {
     @Test
     void bracePositionForSwitchIsEndOfLine() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     void method(int x) {
@@ -128,8 +144,10 @@ class BracePositionsTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     void method(int x) {
@@ -140,6 +158,7 @@ class BracePositionsTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -148,6 +167,7 @@ class BracePositionsTest {
     @Test
     void bracePositionForAnonymousTypeDeclarationIsEndOfLine() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     Runnable r = new Runnable()
@@ -158,8 +178,10 @@ class BracePositionsTest {
                     };
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     Runnable r = new Runnable() {
@@ -168,6 +190,7 @@ class BracePositionsTest {
                     };
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -176,19 +199,23 @@ class BracePositionsTest {
     @Test
     void bracePositionForArrayInitializerIsEndOfLine() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     int[] values = new int[]
                     { 1, 2, 3 };
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     int[] values = new int[] { 1, 2, 3 };
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -197,6 +224,7 @@ class BracePositionsTest {
     @Test
     void bracePositionForEnumDeclarationIsEndOfLine() {
         // language=Java
+        // @formatter:off
         String input = """
                 public enum FormatterTest
                 {
@@ -204,14 +232,17 @@ class BracePositionsTest {
                     VALUE_TWO
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public enum FormatterTest {
                     VALUE_ONE,
                     VALUE_TWO
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -220,6 +251,7 @@ class BracePositionsTest {
     @Test
     void bracePositionForEnumConstantIsEndOfLine() {
         // language=Java
+        // @formatter:off
         String input = """
                 public enum FormatterTest {
                     VALUE_ONE
@@ -230,8 +262,10 @@ class BracePositionsTest {
                     };
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public enum FormatterTest {
                     VALUE_ONE {
@@ -241,6 +275,7 @@ class BracePositionsTest {
                     };
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -249,19 +284,23 @@ class BracePositionsTest {
     @Test
     void bracePositionForAnnotationTypeDeclarationIsEndOfLine() {
         // language=Java
+        // @formatter:off
         String input = """
                 public @interface FormatterTest
                 {
                     String value();
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public @interface FormatterTest {
                     String value();
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -270,6 +309,7 @@ class BracePositionsTest {
     @Test
     void bracePositionForRecordDeclarationIsEndOfLine() {
         // language=Java
+        // @formatter:off
         String input = """
                 public record FormatterTest(int x, int y)
                 {
@@ -278,8 +318,10 @@ class BracePositionsTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public record FormatterTest(int x, int y) {
                     public int sum() {
@@ -287,6 +329,7 @@ class BracePositionsTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -295,6 +338,7 @@ class BracePositionsTest {
     @Test
     void bracePositionForRecordConstructorIsEndOfLine() {
         // language=Java
+        // @formatter:off
         String input = """
                 public record FormatterTest(int x, int y)
                 {
@@ -306,8 +350,10 @@ class BracePositionsTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public record FormatterTest(int x, int y) {
                     public FormatterTest {
@@ -317,6 +363,7 @@ class BracePositionsTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -325,6 +372,7 @@ class BracePositionsTest {
     @Test
     void bracePositionForLambdaBodyIsEndOfLine() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     Runnable r = () ->
@@ -333,8 +381,10 @@ class BracePositionsTest {
                     };
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     Runnable r = () -> {
@@ -342,6 +392,7 @@ class BracePositionsTest {
                     };
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -350,6 +401,7 @@ class BracePositionsTest {
     @Test
     void bracePositionForBlockInCaseIsEndOfLine() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     void method(int x) {
@@ -363,8 +415,10 @@ class BracePositionsTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     void method(int x) {
@@ -377,6 +431,7 @@ class BracePositionsTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -385,6 +440,7 @@ class BracePositionsTest {
     @Test
     void bracePositionForBlockInCaseAfterArrowIsEndOfLine() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     void method(int x) {
@@ -401,8 +457,10 @@ class BracePositionsTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     void method(int x) {
@@ -417,6 +475,7 @@ class BracePositionsTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }

@@ -3,14 +3,34 @@ import org.yaml.snakeyaml.Yaml
 buildscript {
     repositories {
         mavenCentral()
+        mavenLocal()
+        gradlePluginPortal()
     }
+
+    def selfFormatVersion = '0.1.0'
+    def m2Dir = new File(
+            "${System.getProperty('user.home')}/.m2/repository/ca/kieve/java-formatter/${selfFormatVersion}")
+
     dependencies {
         classpath 'org.yaml:snakeyaml:2.3'
+        if (m2Dir.exists()) {
+            classpath "ca.kieve:java-formatter:${selfFormatVersion}"
+        }
     }
 }
 
 plugins {
     id 'java-gradle-plugin'
+    id 'maven-publish'
+}
+
+// Apply self-formatting plugin from mavenLocal if available.
+// Run './gradlew publishToMavenLocal' to bootstrap.
+if (buildscript.configurations.classpath.any { it.name.startsWith('java-formatter') }) {
+    apply plugin: 'ca.kieve.java-formatter'
+} else {
+    logger.lifecycle('Self-formatting not available. ' +
+            'Run \'./gradlew publishToMavenLocal\' to enable.')
 }
 
 group = 'ca.kieve'
@@ -120,6 +140,7 @@ dependencies {
     testImplementation 'org.eclipse.jdt:org.eclipse.jdt.core:3.40.0'
     testImplementation 'org.eclipse.platform:org.eclipse.text:3.14.200'
 }
+
 
 tasks.named('test') {
     useJUnitPlatform()

@@ -11,7 +11,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * @see prompts/eclipseFormatterTestChecklist.md — "Whitespace — Switch Arrows"
  */
 class WhitespaceSwitchArrowsTest {
-
     // insert_space_before_arrow_in_switch_case
     // insert_space_after_arrow_in_switch_case
     // insert_space_before_arrow_in_switch_default
@@ -19,6 +18,7 @@ class WhitespaceSwitchArrowsTest {
     @Test
     void switchArrowSpacing() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     void method(int x) {
@@ -30,8 +30,10 @@ class WhitespaceSwitchArrowsTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     void method(int x) {
@@ -43,6 +45,7 @@ class WhitespaceSwitchArrowsTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }

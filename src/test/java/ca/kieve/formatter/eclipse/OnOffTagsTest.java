@@ -11,11 +11,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * @see prompts/eclipseFormatterTestChecklist.md — "On/Off Tags"
  */
 class OnOffTagsTest {
-
     // use_on_off_tags, enabling_tag, disabling_tag
     @Test
     void formatterOffOnTagsPreserveUnformattedCode() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     void method() {
@@ -27,8 +27,10 @@ class OnOffTagsTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     void method() {
@@ -40,6 +42,7 @@ class OnOffTagsTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }

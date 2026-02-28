@@ -15,3 +15,6 @@ The tags used to disable the formatter from processing specific blocks are as fo
 We've added config loading, and can have configuration options if we want them
 
 ---
+We've also setup so this project can self-publish and format itself.
+
+---

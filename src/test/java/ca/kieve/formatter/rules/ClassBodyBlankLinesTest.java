@@ -1,28 +1,32 @@
 package ca.kieve.formatter.rules;
 
-import ca.kieve.formatter.step.CustomFormatterStep;
 import org.junit.jupiter.api.Test;
+
+import ca.kieve.formatter.step.CustomFormatterStep;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ClassBodyBlankLinesTest extends FormatterRuleTestBase {
-
     @Test
     void removesBlankLineAfterClassBrace() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class Foo {
 
                     int x;
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class Foo {
                     int x;
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, ClassBodyBlankLines.apply(input));
     }
@@ -30,6 +34,7 @@ class ClassBodyBlankLinesTest extends FormatterRuleTestBase {
     @Test
     void removesMultipleBlankLinesAfterClassBrace() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class Foo {
 
@@ -37,13 +42,16 @@ class ClassBodyBlankLinesTest extends FormatterRuleTestBase {
                     int x;
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class Foo {
                     int x;
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, ClassBodyBlankLines.apply(input));
     }
@@ -51,6 +59,7 @@ class ClassBodyBlankLinesTest extends FormatterRuleTestBase {
     @Test
     void removesBlankLineAfterMethodBrace() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class Foo {
                     void bar() {
@@ -59,8 +68,10 @@ class ClassBodyBlankLinesTest extends FormatterRuleTestBase {
                     }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class Foo {
                     void bar() {
@@ -68,6 +79,7 @@ class ClassBodyBlankLinesTest extends FormatterRuleTestBase {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, ClassBodyBlankLines.apply(input));
     }
@@ -75,6 +87,7 @@ class ClassBodyBlankLinesTest extends FormatterRuleTestBase {
     @Test
     void removesBlankLineAfterNestedBraces() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class Foo {
 
@@ -87,8 +100,10 @@ class ClassBodyBlankLinesTest extends FormatterRuleTestBase {
                     }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class Foo {
                     static class Inner {
@@ -98,6 +113,7 @@ class ClassBodyBlankLinesTest extends FormatterRuleTestBase {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, ClassBodyBlankLines.apply(input));
     }
@@ -105,6 +121,7 @@ class ClassBodyBlankLinesTest extends FormatterRuleTestBase {
     @Test
     void preservesBlankLinesBetweenMembers() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class Foo {
                     int x;
@@ -112,6 +129,7 @@ class ClassBodyBlankLinesTest extends FormatterRuleTestBase {
                     int y;
                 }
                 """;
+                // @formatter:on
 
         assertEquals(input, ClassBodyBlankLines.apply(input));
     }
@@ -119,11 +137,13 @@ class ClassBodyBlankLinesTest extends FormatterRuleTestBase {
     @Test
     void preservesSourceWithNoBlankLinesAfterBrace() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class Foo {
                     int x;
                 }
                 """;
+                // @formatter:on
 
         assertEquals(input, ClassBodyBlankLines.apply(input));
     }
@@ -131,19 +151,23 @@ class ClassBodyBlankLinesTest extends FormatterRuleTestBase {
     @Test
     void handlesIndentedBlankLines() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class Foo {
                 \s\s\s\s
                     int x;
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class Foo {
                     int x;
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, ClassBodyBlankLines.apply(input));
     }
@@ -151,6 +175,7 @@ class ClassBodyBlankLinesTest extends FormatterRuleTestBase {
     @Override
     void respectsFormatterOffTags() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class Foo {
                     // @formatter:off
@@ -161,6 +186,7 @@ class ClassBodyBlankLinesTest extends FormatterRuleTestBase {
                     // @formatter:on
                 }
                 """;
+                // @formatter:on
 
         assertEquals(input, CustomFormatterStep.applyCustomRules(input));
     }

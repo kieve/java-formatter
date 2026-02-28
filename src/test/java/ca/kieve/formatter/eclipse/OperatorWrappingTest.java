@@ -11,11 +11,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * @see prompts/eclipseFormatterTestChecklist.md — "Operator Wrapping"
  */
 class OperatorWrappingTest {
-
     // alignment_for_additive_operator (excluded — custom formatter)
     @Test
     void alignmentForAdditiveOperatorWrapsBeforeOperator() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     void method() {
@@ -23,8 +23,10 @@ class OperatorWrappingTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     void method() {
@@ -33,6 +35,7 @@ class OperatorWrappingTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -41,6 +44,7 @@ class OperatorWrappingTest {
     @Test
     void alignmentForMultiplicativeOperatorWrapsBeforeOperator() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     void method() {
@@ -48,8 +52,10 @@ class OperatorWrappingTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     void method() {
@@ -58,6 +64,7 @@ class OperatorWrappingTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -66,6 +73,7 @@ class OperatorWrappingTest {
     @Test
     void alignmentForStringConcatenationWrapsBeforeOperator() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     void method() {
@@ -73,8 +81,10 @@ class OperatorWrappingTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     void method() {
@@ -83,6 +93,7 @@ class OperatorWrappingTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -91,6 +102,7 @@ class OperatorWrappingTest {
     @Test
     void alignmentForBitwiseOperatorWrapsBeforeOperator() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     void method() {
@@ -98,8 +110,10 @@ class OperatorWrappingTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     void method() {
@@ -108,6 +122,7 @@ class OperatorWrappingTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -116,6 +131,7 @@ class OperatorWrappingTest {
     @Test
     void alignmentForLogicalOperatorWrapsBeforeOperator() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     void method() {
@@ -123,8 +139,10 @@ class OperatorWrappingTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     void method() {
@@ -133,6 +151,7 @@ class OperatorWrappingTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -141,6 +160,7 @@ class OperatorWrappingTest {
     @Test
     void alignmentForRelationalOperatorWrapsBeforeOperator() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     void method() {
@@ -148,8 +168,10 @@ class OperatorWrappingTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     void method() {
@@ -158,6 +180,7 @@ class OperatorWrappingTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -166,6 +189,7 @@ class OperatorWrappingTest {
     @Test
     void alignmentForShiftOperatorWrapsBeforeOperator() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     void method() {
@@ -173,8 +197,10 @@ class OperatorWrappingTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     void method() {
@@ -183,6 +209,7 @@ class OperatorWrappingTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -191,6 +218,7 @@ class OperatorWrappingTest {
     @Test
     void wrapBeforeBinaryOperatorPlacesOperatorOnContinuationLine() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     void method() {
@@ -198,8 +226,10 @@ class OperatorWrappingTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     void method() {
@@ -208,6 +238,7 @@ class OperatorWrappingTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -216,6 +247,7 @@ class OperatorWrappingTest {
     @Test
     void wrapBeforeOrOperatorMulticatchPlacesPipeOnContinuationLine() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     void method() {
@@ -225,8 +257,10 @@ class OperatorWrappingTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     void method() {
@@ -240,6 +274,7 @@ class OperatorWrappingTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }

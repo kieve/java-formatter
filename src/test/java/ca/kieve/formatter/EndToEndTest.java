@@ -19,7 +19,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * via {@link DirectFormatterTestUtil} in the eclipse/ package tests.
  */
 class EndToEndTest {
-
     @TempDir
     Path testProjectDir;
 
@@ -27,6 +26,7 @@ class EndToEndTest {
     @Test
     void fullPipelineFormatsComprehensiveInput() throws IOException {
         // language=Java
+        // @formatter:off
         String input = """
                 public class FormatterTest
                 {
@@ -63,8 +63,10 @@ class EndToEndTest {
 
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     int fieldOne;
@@ -99,6 +101,7 @@ class EndToEndTest {
                     };
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(testProjectDir, input));
     }

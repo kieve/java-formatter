@@ -7,7 +7,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class CustomFormatterStepTest {
-
     @Test
     void stepCreatesSuccessfully() {
         FormatterStep step = CustomFormatterStep.create();
@@ -18,6 +17,7 @@ class CustomFormatterStepTest {
     @Test
     void identityFormattingPreservesInput() throws Exception {
         FormatterStep step = CustomFormatterStep.create();
+        // @formatter:off
         String input = """
                 public class Hello {
                     public static void main(String[] args) {
@@ -25,6 +25,7 @@ class CustomFormatterStepTest {
                     }
                 }
                 """;
+                // @formatter:on
         String result = step.format(input, new java.io.File("Hello.java"));
         assertEquals(input, result);
     }

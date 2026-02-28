@@ -12,7 +12,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * @see prompts/eclipseFormatterTestChecklist.md — "Newlines"
  */
 class NewlinesTest {
-
     // insert_new_line_at_end_of_file_if_missing
     @Test
     void insertNewLineAtEndOfFileIfMissing() {
@@ -27,6 +26,7 @@ class NewlinesTest {
     @Test
     void keepElseStatementOnSameLineIsNotApplicableWithBraces() {
         // language=Java — else on its own line gets moved up
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     void method(boolean flag) {
@@ -39,8 +39,10 @@ class NewlinesTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     void method(boolean flag) {
@@ -52,6 +54,7 @@ class NewlinesTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -60,6 +63,7 @@ class NewlinesTest {
     @Test
     void keepThenStatementOnSameLineIsNotApplicableWithBraces() {
         // language=Java — with braces, the then body is always on its own line
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     void method(boolean flag) {
@@ -69,8 +73,10 @@ class NewlinesTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     void method(boolean flag) {
@@ -80,6 +86,7 @@ class NewlinesTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -88,6 +95,7 @@ class NewlinesTest {
     @Test
     void insertNewLineBeforeElseInIfStatementDoesNotInsert() {
         // language=Java — else on its own line gets pulled up to } else {
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     void method(boolean flag) {
@@ -100,8 +108,10 @@ class NewlinesTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     void method(boolean flag) {
@@ -113,6 +123,7 @@ class NewlinesTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -121,6 +132,7 @@ class NewlinesTest {
     @Test
     void insertNewLineBeforeCatchInTryStatementDoesNotInsert() {
         // language=Java — catch on its own line gets pulled up to } catch {
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     void method() {
@@ -133,8 +145,10 @@ class NewlinesTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     void method() {
@@ -146,6 +160,7 @@ class NewlinesTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -154,6 +169,7 @@ class NewlinesTest {
     @Test
     void insertNewLineBeforeFinallyInTryStatementDoesNotInsert() {
         // language=Java — finally on its own line gets pulled up to } finally {
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     void method() {
@@ -168,8 +184,10 @@ class NewlinesTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     void method() {
@@ -183,6 +201,7 @@ class NewlinesTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -191,6 +210,7 @@ class NewlinesTest {
     @Test
     void insertNewLineBeforeWhileInDoStatementDoesNotInsert() {
         // language=Java — while on its own line gets pulled up to } while
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     void method() {
@@ -201,8 +221,10 @@ class NewlinesTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     void method() {
@@ -212,6 +234,7 @@ class NewlinesTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -221,18 +244,22 @@ class NewlinesTest {
     @Test
     void arrayInitializerPreservesSingleLineLayout() {
         // language=Java — single-line layout is preserved
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     int[] values = { 1, 2, 3 };
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     int[] values = { 1, 2, 3 };
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -242,6 +269,7 @@ class NewlinesTest {
     @Test
     void arrayInitializerPreservesMultiLineLayout() {
         // language=Java — multi-line layout is preserved
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     int[] values = {
@@ -249,8 +277,10 @@ class NewlinesTest {
                     };
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     int[] values = {
@@ -258,6 +288,7 @@ class NewlinesTest {
                     };
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -266,6 +297,7 @@ class NewlinesTest {
     @Test
     void insertNewLineAfterLabelInsertsNewLine() {
         // language=Java — statement after label gets moved to its own line
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     void method() {
@@ -275,8 +307,10 @@ class NewlinesTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     void method() {
@@ -287,6 +321,7 @@ class NewlinesTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -295,6 +330,7 @@ class NewlinesTest {
     @Test
     void compactElseIfTreatsAsOneUnit() {
         // language=Java — split else / if gets compacted to else if
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     void method(int x) {
@@ -311,8 +347,10 @@ class NewlinesTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     void method(int x) {
@@ -326,6 +364,7 @@ class NewlinesTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
@@ -334,6 +373,7 @@ class NewlinesTest {
     @Test
     void putEmptyStatementOnNewLineKeepsOnSameLine() {
         // language=Java — empty statement on its own line gets pulled up
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     void method() {
@@ -342,8 +382,10 @@ class NewlinesTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     void method() {
@@ -351,6 +393,7 @@ class NewlinesTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }

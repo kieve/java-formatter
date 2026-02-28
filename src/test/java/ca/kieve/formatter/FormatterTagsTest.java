@@ -1,22 +1,21 @@
 package ca.kieve.formatter;
 
-import ca.kieve.formatter.FormatterTags.ProtectedSource;
 import org.junit.jupiter.api.Test;
 
+import ca.kieve.formatter.FormatterTags.ProtectedSource;
+
+import java.io.IOException;
+
+import static ca.kieve.formatter.FormatterTestUtil.loadFixture;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class FormatterTagsTest {
+    private static final String FIXTURE_DIR = "formatter-tags/";
 
     @Test
-    void singleProtectedBlock() {
-        String input = """
-                before
-                // @formatter:off
-                protected content
-                // @formatter:on
-                after
-                """;
+    void singleProtectedBlock() throws IOException {
+        String input = loadFixture(FIXTURE_DIR + "single-protected-block.java");
 
         ProtectedSource ps = FormatterTags.protect(input);
 
@@ -29,18 +28,8 @@ class FormatterTagsTest {
     }
 
     @Test
-    void multipleProtectedBlocks() {
-        String input = """
-                before
-                // @formatter:off
-                block one
-                // @formatter:on
-                middle
-                // @formatter:off
-                block two
-                // @formatter:on
-                after
-                """;
+    void multipleProtectedBlocks() throws IOException {
+        String input = loadFixture(FIXTURE_DIR + "multiple-protected-blocks.java");
 
         ProtectedSource ps = FormatterTags.protect(input);
 
@@ -52,12 +41,8 @@ class FormatterTagsTest {
     }
 
     @Test
-    void unclosedFormatterOff() {
-        String input = """
-                before
-                // @formatter:off
-                protected to end
-                more content""";
+    void unclosedFormatterOff() throws IOException {
+        String input = loadFixture(FIXTURE_DIR + "unclosed-formatter-off.java");
 
         ProtectedSource ps = FormatterTags.protect(input);
 
@@ -67,12 +52,8 @@ class FormatterTagsTest {
     }
 
     @Test
-    void noFormatterTags() {
-        String input = """
-                public class Foo {
-                    int x;
-                }
-                """;
+    void noFormatterTags() throws IOException {
+        String input = loadFixture(FIXTURE_DIR + "no-formatter-tags.java");
 
         ProtectedSource ps = FormatterTags.protect(input);
 
@@ -82,16 +63,8 @@ class FormatterTagsTest {
     }
 
     @Test
-    void nestedFormatterOffInsideBlock() {
-        String input = """
-                before
-                // @formatter:off
-                first off
-                // @formatter:off
-                still off
-                // @formatter:on
-                after
-                """;
+    void nestedFormatterOffInsideBlock() throws IOException {
+        String input = loadFixture(FIXTURE_DIR + "nested-formatter-off.java");
 
         ProtectedSource ps = FormatterTags.protect(input);
 
@@ -102,14 +75,8 @@ class FormatterTagsTest {
     }
 
     @Test
-    void indentedFormatterTags() {
-        String input = """
-                public class Foo {
-                    // @formatter:off
-                    int   x   =   1;
-                    // @formatter:on
-                }
-                """;
+    void indentedFormatterTags() throws IOException {
+        String input = loadFixture(FIXTURE_DIR + "indented-formatter-tags.java");
 
         ProtectedSource ps = FormatterTags.protect(input);
 

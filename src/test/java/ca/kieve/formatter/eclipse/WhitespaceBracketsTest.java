@@ -11,13 +11,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * @see prompts/eclipseFormatterTestChecklist.md — "Whitespace — Brackets (Array Access)"
  */
 class WhitespaceBracketsTest {
-
     // insert_space_before_opening_bracket_in_array_access
     // insert_space_after_opening_bracket_in_array_access
     // insert_space_before_closing_bracket_in_array_access
     @Test
     void bracketSpacing() {
         // language=Java
+        // @formatter:off
         String input = """
                 public class FormatterTest {
                     void method() {
@@ -30,8 +30,10 @@ class WhitespaceBracketsTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         // language=Java
+        // @formatter:off
         String expected = """
                 public class FormatterTest {
                     void method() {
@@ -44,6 +46,7 @@ class WhitespaceBracketsTest {
                     }
                 }
                 """;
+                // @formatter:on
 
         assertEquals(expected, formatJava(input));
     }
