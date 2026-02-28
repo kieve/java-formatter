@@ -186,15 +186,15 @@ Alignment values are bitmask integers. Key bits: `0` = no wrap, `16` = wrap wher
 
 ### Operator Wrapping
 
-- [ ] `alignment_for_additive_operator` — `+` `-` wrapping *(excluded — custom formatter)*
-- [ ] `alignment_for_multiplicative_operator` — `*` `/` `%` wrapping *(excluded — custom formatter)*
-- [ ] `alignment_for_string_concatenation` — string `+` wrapping *(excluded — custom formatter)*
-- [ ] `alignment_for_bitwise_operator` — `&` `|` `^` wrapping *(excluded — custom formatter)*
-- [ ] `alignment_for_logical_operator` — `&&` `||` wrapping *(excluded — custom formatter)*
-- [ ] `alignment_for_relational_operator` — `<` `>` `<=` `>=` `==` `!=` wrapping *(excluded — custom formatter)*
-- [ ] `alignment_for_shift_operator` — `<<` `>>` `>>>` wrapping *(excluded — custom formatter)*
-- [ ] `wrap_before_binary_operator` — wrap before or after binary operators
-- [ ] `wrap_before_or_operator_multicatch` — wrap before `|` in multi-catch
+- [x] `alignment_for_additive_operator` — `+` `-` wrapping *(excluded — custom formatter)*
+- [x] `alignment_for_multiplicative_operator` — `*` `/` `%` wrapping *(excluded — custom formatter)*
+- [x] `alignment_for_string_concatenation` — string `+` wrapping *(excluded — custom formatter)*
+- [x] `alignment_for_bitwise_operator` — `&` `|` `^` wrapping *(excluded — custom formatter)*
+- [x] `alignment_for_logical_operator` — `&&` `||` wrapping *(excluded — custom formatter)*
+- [x] `alignment_for_relational_operator` — `<` `>` `<=` `>=` `==` `!=` wrapping *(excluded — custom formatter)*
+- [x] `alignment_for_shift_operator` — `<<` `>>` `>>>` wrapping *(excluded — custom formatter)*
+- [x] `wrap_before_binary_operator` — wrap before or after binary operators
+- [x] `wrap_before_or_operator_multicatch` — wrap before `|` in multi-catch
 
 ### Column Alignment
 

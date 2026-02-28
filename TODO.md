@@ -126,6 +126,12 @@ annotations inline with each parameter. They should go on their own lines above 
 Disabled test: `rules.TodoTests.annotationsOnWrappedParametersShouldGoOnOwnLines`
 
 ---
+Custom rule for wrap-before-operator enforcement. Eclipse's `wrap_before_binary_operator` only
+affects wrapping that Eclipse introduces — it does not fix existing wrap-after-operator style.
+Need a custom rule to move trailing operators to the beginning of the next line.
+Disabled test: `rules.TodoTests.wrapAfterOperatorShouldMoveOperatorBeforeNextLine`
+
+---
 Linting:
 - Find a way to effectively "ban" nested ternary operators
 - Ban multiple field declarations in one line. ex. `int x, y, z;`

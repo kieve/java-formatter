@@ -287,6 +287,7 @@ org:
           alignment_for_record_components: 48
           alignment_for_resources_in_try: 48
           alignment_for_selector_in_method_invocation: 16
+          alignment_for_shift_operator: 16
           alignment_for_superclass_in_type_declaration: 48
           alignment_for_superinterfaces_in_type_declaration: 48
           alignment_for_superinterfaces_in_enum_declaration: 48

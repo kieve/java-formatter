@@ -41,4 +41,34 @@ class TodoTests {
 
         assertEquals(expected, formatJava(input));
     }
+
+    // wrap_before_binary_operator — when author wraps after an operator, the formatter should move
+    // the operator to the beginning of the next line. See TODO.md.
+    @Disabled("Needs custom formatter step — Eclipse preserves author's wrap-after-operator style")
+    @Test
+    void wrapAfterOperatorShouldMoveOperatorBeforeNextLine() {
+        // language=Java
+        String input = """
+                public class FormatterTest {
+                    void method() {
+                        int result = firstValue +
+                            secondValue +
+                            thirdValue;
+                    }
+                }
+                """;
+
+        // language=Java
+        String expected = """
+                public class FormatterTest {
+                    void method() {
+                        int result = firstValue
+                            + secondValue
+                            + thirdValue;
+                    }
+                }
+                """;
+
+        assertEquals(expected, formatJava(input));
+    }
 }
