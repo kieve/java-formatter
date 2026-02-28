@@ -7,7 +7,7 @@ import org.junit.jupiter.api.io.TempDir;
 import java.io.IOException;
 import java.nio.file.Path;
 
-import static ca.kieve.formatter.FormatterTestUtil.formatJava;
+import static ca.kieve.formatter.util.FormatterTestUtil.formatJava;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**

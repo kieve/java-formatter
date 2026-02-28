@@ -8,13 +8,15 @@ Checkstyle for linting rules like wildcard import detection.
 
 This project is a **Gradle plugin** (`ca.kieve.java-formatter`). When applied to a project, it:
 
-1. Applies the Spotless Gradle plugin
-2. Configures Eclipse JDT formatter as the baseline (config generated from `src/main/formatter/eclipse-formatter.yaml`)
-3. Applies custom formatting rules on top via `CustomFormatterStep`
-4. Applies the Checkstyle plugin with bundled linting rules (e.g., `AvoidStarImport`)
+1. Runs **pre-format rules** via `PreFormatTask` (e.g., qualified import resolution)
+2. Applies the Spotless Gradle plugin
+3. Configures Eclipse JDT formatter as the baseline (config generated from `src/main/formatter/eclipse-formatter.yaml`)
+4. Applies custom formatting rules on top via `CustomFormatterStep`
+5. Applies the Checkstyle plugin with bundled linting rules (e.g., `AvoidStarImport`)
 
-Spotless provides the `spotlessApply` (auto-format) and `spotlessCheck` (CI validation) tasks.
-Checkstyle provides the `checkstyleMain` and `checkstyleTest` tasks for linting.
+Pre-format rules run before Spotless so their output (e.g., new imports) flows through Eclipse JDT
+and the custom rule chain. Spotless provides the `spotlessApply` (auto-format) and `spotlessCheck`
+(CI validation) tasks. Checkstyle provides the `checkstyleMain` and `checkstyleTest` tasks for linting.
 
 ## Usage in Consuming Projects
 
@@ -49,29 +51,43 @@ src/main/java/ca/kieve/formatter/
     FormatConfig.java               — Configuration (line length, etc.)
     step/
         CustomFormatterStep.java    — Main Spotless FormatterStep (chains all custom rules)
+    task/
+        PreFormatTask.java          — Gradle task for pre-format rules (runs before Spotless)
     printer/                        — Custom pretty printer visitors (future)
-    rules/                          — Individual formatting rules (future)
+    rules/                          — Individual formatting rules
 src/main/resources/
     checkstyle.xml                  — Checkstyle linting config (bundled in JAR)
 src/main/formatter/
     eclipse-formatter.yaml          — Eclipse JDT config (human-editable source of truth)
 src/test/java/ca/kieve/formatter/
-    FormatterTestUtil.java          — Test helpers (fixture loading, line ending normalization)
+    util/                           — Test utilities
+        FormatterTestUtil.java      — Fixture loading, line ending normalization
+        DirectFormatterTestUtil.java — In-process Eclipse JDT + custom rules formatting
+        CheckstyleTestUtil.java     — In-process Checkstyle linting
     step/
         CustomFormatterStepTest.java
-    rules/                          — Rule-level unit tests (future)
+    rules/                          — Rule-level unit tests
 src/test/resources/fixtures/        — Input/expected Java files for comparison tests
 ```
 
 ## Architecture
 
+- **Pre-format rules** run as a separate Gradle task (`PreFormatTask`) before Spotless, for
+  transformations that must happen before Eclipse JDT (e.g., qualified import resolution adds
+  imports that Eclipse then formats)
 - **Spotless** handles file discovery, caching, and Gradle task integration
 - **Eclipse JDT** provides baseline formatting (indentation, spacing, braces)
 - **JavaParser** provides AST parsing for custom rules that need structural understanding
 - **Custom rules** are `String -> String` transformations chained inside `CustomFormatterStep`
 - **Checkstyle** provides linting rules (e.g., `AvoidStarImport`) via `checkstyleMain`/`checkstyleTest` tasks
 
-Each custom rule should be independently testable with simple input/output string pairs.
+The formatting pipeline runs in this order:
+
+```
+preFormat → Eclipse JDT (via Spotless) → CustomFormatterStep rules
+```
+
+Each rule (pre-format or custom) should be independently testable with simple input/output string pairs.
 
 ## Eclipse Formatter Configuration
 
@@ -148,9 +164,21 @@ available checks.
 
 1. Create the rule class in `ca.kieve.formatter.rules` — a static method taking `String` and returning `String`
 2. Wire it into `CustomFormatterStep.applyCustomRules()` in the rule chain
-3. Add unit tests in `ca.kieve.formatter.rules` with input/expected string pairs
+3. Add unit tests in `ca.kieve.formatter.rules` with fixture files in `src/test/resources/fixtures/`
 4. Include a `respectsFormatterOffTags()` test that verifies content inside `// @formatter:off` / `// @formatter:on` blocks is preserved (run through `CustomFormatterStep.applyCustomRules()`)
-5. Optionally add fixture files in `src/test/resources/fixtures/` for larger test cases
+
+## Adding a New Pre-Format Rule
+
+Pre-format rules run before Eclipse JDT. Use these when the rule produces output that needs
+further formatting by Eclipse (e.g., adding import statements that Eclipse will indent/sort).
+
+1. Create the rule class in `ca.kieve.formatter.rules` — a static method taking `String` and returning `String`
+2. Wire it into `PreFormatTask.applyPreFormatRules()`
+3. Add unit tests in `ca.kieve.formatter.rules` with fixture files in `src/test/resources/fixtures/`
+4. Include a `respectsFormatterOffTags()` test (run through `CustomFormatterStep.applyCustomRules()`)
+
+Pre-format rules must call `FormatterTags.protect()` / `restore()` themselves since they run
+outside `CustomFormatterStep`.
 
 **Formatter tag protection:** `FormatterTags.protect()` replaces `// @formatter:off` ... `// @formatter:on` blocks with placeholder comments (`// __PROTECTED_N__`) before any rule runs, then `restore()` puts the original content back. This is handled centrally in `applyCustomRules()` — individual rules do not need to implement it. Comment-formatting rules must not modify lines matching `// __PROTECTED_\d+__`.
 

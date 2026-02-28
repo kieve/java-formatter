@@ -3,7 +3,7 @@ package ca.kieve.formatter.eclipse;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-import static ca.kieve.formatter.DirectFormatterTestUtil.formatJava;
+import static ca.kieve.formatter.util.DirectFormatterTestUtil.formatJava;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 

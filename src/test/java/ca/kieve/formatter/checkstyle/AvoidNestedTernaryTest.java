@@ -2,8 +2,8 @@ package ca.kieve.formatter.checkstyle;
 
 import org.junit.jupiter.api.Test;
 
-import ca.kieve.formatter.CheckstyleTestUtil;
-import ca.kieve.formatter.CheckstyleTestUtil.Violation;
+import ca.kieve.formatter.util.CheckstyleTestUtil;
+import ca.kieve.formatter.util.CheckstyleTestUtil.Violation;
 
 import java.util.List;
 

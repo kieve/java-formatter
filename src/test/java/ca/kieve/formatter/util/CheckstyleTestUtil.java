@@ -1,4 +1,4 @@
-package ca.kieve.formatter;
+package ca.kieve.formatter.util;
 
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.ConfigurationLoader;

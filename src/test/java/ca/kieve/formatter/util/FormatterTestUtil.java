@@ -1,4 +1,4 @@
-package ca.kieve.formatter;
+package ca.kieve.formatter.util;
 
 import org.gradle.testkit.runner.GradleRunner;
 

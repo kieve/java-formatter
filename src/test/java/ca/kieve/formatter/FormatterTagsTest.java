@@ -6,7 +6,7 @@ import ca.kieve.formatter.FormatterTags.ProtectedSource;
 
 import java.io.IOException;
 
-import static ca.kieve.formatter.FormatterTestUtil.loadFixture;
+import static ca.kieve.formatter.util.FormatterTestUtil.loadFixture;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
