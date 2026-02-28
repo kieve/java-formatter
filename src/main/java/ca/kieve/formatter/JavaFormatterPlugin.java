@@ -5,6 +5,7 @@ import org.gradle.api.DefaultTask;
 import org.gradle.api.GradleException;
 import org.gradle.api.Plugin;
 import org.gradle.api.Project;
+import org.gradle.api.plugins.quality.Checkstyle;
 import org.gradle.api.plugins.quality.CheckstyleExtension;
 import org.gradle.api.tasks.TaskAction;
 import org.gradle.api.tasks.TaskProvider;
@@ -64,15 +65,16 @@ public class JavaFormatterPlugin implements Plugin<Project> {
         checkstyle.setConfigFile(checkstyleConfig);
         checkstyle.setToolVersion("10.22.0");
 
-        // Add our plugin classes to Checkstyle's classpath so custom checks are
-        // discoverable at runtime.
+        // Add our plugin classes to each Checkstyle task's tool classpath so
+        // custom checks are discoverable at runtime.
         try {
             File pluginClasses = new File(
                 JavaFormatterPlugin.class.getProtectionDomain()
                     .getCodeSource().getLocation().toURI());
-            project.getDependencies().add(
-                "checkstyle",
-                project.files(pluginClasses));
+            project.getTasks().withType(Checkstyle.class).configureEach(
+                task -> task.setCheckstyleClasspath(
+                    task.getCheckstyleClasspath()
+                        .plus(project.files(pluginClasses))));
         } catch (URISyntaxException e) {
             throw new GradleException(
                 "Failed to locate plugin classes for Checkstyle classpath",
