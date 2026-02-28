@@ -209,29 +209,29 @@ Alignment values are bitmask integers. Key bits: `0` = no wrap, `16` = wrap wher
 
 ## Whitespace — Operators
 
-- [ ] `insert_space_before_assignment_operator`
-- [ ] `insert_space_after_assignment_operator`
-- [ ] `insert_space_before_additive_operator`
-- [ ] `insert_space_after_additive_operator`
-- [ ] `insert_space_before_multiplicative_operator`
-- [ ] `insert_space_after_multiplicative_operator`
-- [ ] `insert_space_before_bitwise_operator`
-- [ ] `insert_space_after_bitwise_operator`
-- [ ] `insert_space_before_logical_operator`
-- [ ] `insert_space_after_logical_operator`
-- [ ] `insert_space_before_relational_operator`
-- [ ] `insert_space_after_relational_operator`
-- [ ] `insert_space_before_shift_operator`
-- [ ] `insert_space_after_shift_operator`
-- [ ] `insert_space_before_string_concatenation`
-- [ ] `insert_space_after_string_concatenation`
-- [ ] `insert_space_before_unary_operator`
-- [ ] `insert_space_after_unary_operator`
-- [ ] `insert_space_before_prefix_operator`
-- [ ] `insert_space_after_prefix_operator`
-- [ ] `insert_space_before_postfix_operator`
-- [ ] `insert_space_after_postfix_operator`
-- [ ] `insert_space_after_not_operator`
+- [x] `insert_space_before_assignment_operator`
+- [x] `insert_space_after_assignment_operator`
+- [x] `insert_space_before_additive_operator`
+- [x] `insert_space_after_additive_operator`
+- [x] `insert_space_before_multiplicative_operator`
+- [x] `insert_space_after_multiplicative_operator`
+- [x] `insert_space_before_bitwise_operator`
+- [x] `insert_space_after_bitwise_operator`
+- [x] `insert_space_before_logical_operator`
+- [x] `insert_space_after_logical_operator`
+- [x] `insert_space_before_relational_operator`
+- [x] `insert_space_after_relational_operator`
+- [x] `insert_space_before_shift_operator`
+- [x] `insert_space_after_shift_operator`
+- [x] `insert_space_before_string_concatenation`
+- [x] `insert_space_after_string_concatenation`
+- [x] `insert_space_before_unary_operator`
+- [x] `insert_space_after_unary_operator`
+- [x] `insert_space_before_prefix_operator`
+- [x] `insert_space_after_prefix_operator`
+- [x] `insert_space_before_postfix_operator`
+- [x] `insert_space_after_postfix_operator`
+- [x] `insert_space_after_not_operator`
 
 ---
 
