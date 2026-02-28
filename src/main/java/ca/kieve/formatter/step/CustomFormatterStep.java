@@ -4,6 +4,7 @@ import ca.kieve.formatter.FormatConfig;
 import ca.kieve.formatter.FormatterTags;
 import ca.kieve.formatter.FormatterTags.ProtectedSource;
 import ca.kieve.formatter.rules.ClassBodyBlankLines;
+import ca.kieve.formatter.rules.ImportSorting;
 import ca.kieve.formatter.rules.LeadingBlankLines;
 import ca.kieve.formatter.rules.SwitchCaseBlankLines;
 import com.diffplug.spotless.FormatterFunc;
@@ -33,15 +34,25 @@ public final class CustomFormatterStep {
     }
 
     /**
-     * Apply all custom formatting rules to the given source string.
+     * Apply all custom formatting rules to the given source string
+     * using default configuration.
      * <p>
      * This is the single source of truth for the custom rule chain.
      * Both the Spotless step and the direct test utility call this method.
      */
     public static String applyCustomRules(String source) {
+        return applyCustomRules(source, FormatConfig.defaults());
+    }
+
+    /**
+     * Apply all custom formatting rules to the given source string
+     * using the provided configuration.
+     */
+    public static String applyCustomRules(String source, FormatConfig config) {
         ProtectedSource ps = FormatterTags.protect(source);
         String result = ps.source();
         result = LeadingBlankLines.apply(result);
+        result = ImportSorting.apply(result, config);
         result = ClassBodyBlankLines.apply(result);
         result = SwitchCaseBlankLines.apply(result);
         return ps.restore(result);
@@ -56,7 +67,7 @@ public final class CustomFormatterStep {
         }
 
         FormatterFunc toFormatter() {
-            return CustomFormatterStep::applyCustomRules;
+            return source -> applyCustomRules(source, config);
         }
     }
 }

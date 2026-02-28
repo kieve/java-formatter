@@ -1,0 +1,8 @@
+maxLineLength: 100
+banWildcardImports: true
+
+importLayout:
+  - catch-all
+  - ["ca.kieve."]
+  - ["javax.", "java."]
+  - static-catch-all

@@ -348,15 +348,14 @@ class BlankLinesTest {
                 }
                 """;
 
-        // language=Java
+        // language=Java — custom import sorter groups javax/java together, javax first
         String expected = """
                 package com.example;
 
-                import java.util.List;
-                import java.util.Map;
-
                 import javax.swing.JFrame;
                 import javax.swing.JPanel;
+                import java.util.List;
+                import java.util.Map;
 
                 public class FormatterTest {
                 }

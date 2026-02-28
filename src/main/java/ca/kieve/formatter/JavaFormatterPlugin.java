@@ -30,11 +30,13 @@ public class JavaFormatterPlugin implements Plugin<Project> {
                 .getByType(SpotlessExtension.class);
 
         File eclipseConfig = extractResource(project, ECLIPSE_CONFIG_RESOURCE);
+        FormatConfig config = FormatConfigLoader.loadFromDirectory(
+                project.getProjectDir());
 
         spotless.java(java -> {
             java.target("src/*/java/**/*.java");
             java.eclipse().configFile(eclipseConfig);
-            java.addStep(CustomFormatterStep.create());
+            java.addStep(CustomFormatterStep.create(config));
         });
     }
 

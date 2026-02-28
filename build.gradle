@@ -107,6 +107,9 @@ dependencies {
     // JavaParser for AST parsing and transformation
     implementation 'com.github.javaparser:javaparser-core:3.28.0'
 
+    // Jackson YAML for reading kieve-formatter.yaml config files
+    implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.18.2'
+
     // Testing
     testImplementation gradleTestKit()
     testImplementation platform('org.junit:junit-bom:5.11.4')

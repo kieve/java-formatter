@@ -505,7 +505,8 @@ class WrapAlignTest {
     void alignmentForResourcesInTryWrapsAllElements() {
         // language=Java
         String input = """
-                import java.io.*;
+                import java.io.FileInputStream;
+                import java.io.InputStream;
 
                 public class FormatterTest {
                     void method() throws Exception {
@@ -517,7 +518,8 @@ class WrapAlignTest {
 
         // language=Java
         String expected = """
-                import java.io.*;
+                import java.io.FileInputStream;
+                import java.io.InputStream;
 
                 public class FormatterTest {
                     void method() throws Exception {
@@ -1106,7 +1108,8 @@ class WrapAlignTest {
     void alignmentForTypeAnnotationsWrapsAllElements() {
         // language=Java — two short type annotations that fit on one line should still split
         String input = """
-                import java.lang.annotation.*;
+                import java.lang.annotation.ElementType;
+                import java.lang.annotation.Target;
 
                 @Target(ElementType.TYPE_USE)
                 @interface NotNull {
@@ -1125,7 +1128,8 @@ class WrapAlignTest {
 
         // language=Java
         String expected = """
-                import java.lang.annotation.*;
+                import java.lang.annotation.ElementType;
+                import java.lang.annotation.Target;
 
                 @Target(ElementType.TYPE_USE)
                 @interface NotNull {
