@@ -315,25 +315,3 @@ org:
           align_variable_declarations_on_columns: false
           align_assignment_statements_on_columns: false
           align_arrows_in_switch_on_columns: false
-
-          # Comments
-          comment:
-            format_javadoc_comments: true
-            format_block_comments: true
-            format_line_comments: false
-            format_markdown_comments: true
-            format_header: false
-            format_source_code: true
-            clear_blank_lines_in_block_comment: false
-            clear_blank_lines_in_javadoc_comment: false
-            count_line_length_from_starting_position: false
-            indent_parameter_description: true
-            indent_return_description: true
-            insert_new_line_before_root_tags: true
-            insert_new_line_between_different_tags: true
-            insert_new_line_for_parameter: true
-            new_lines_at_block_boundaries: true
-            new_lines_at_javadoc_boundaries: true
-            preserve_white_space_between_code_and_line_comments: true
-            javadoc_paragraphs_tags_with_content: UNIFIED_TAGS_ON_NEW_LINE
-            line_length: 100

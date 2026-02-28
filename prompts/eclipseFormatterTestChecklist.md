@@ -237,193 +237,195 @@ Alignment values are bitmask integers. Key bits: `0` = no wrap, `16` = wrap wher
 
 ## Whitespace — Parentheses (Opening)
 
-- [ ] `insert_space_before_opening_paren_in_method_declaration`
-- [ ] `insert_space_before_opening_paren_in_method_invocation`
-- [ ] `insert_space_before_opening_paren_in_if`
-- [ ] `insert_space_before_opening_paren_in_for`
-- [ ] `insert_space_before_opening_paren_in_while`
-- [ ] `insert_space_before_opening_paren_in_switch`
-- [ ] `insert_space_before_opening_paren_in_catch`
-- [ ] `insert_space_before_opening_paren_in_constructor_declaration`
-- [ ] `insert_space_before_opening_paren_in_annotation`
-- [ ] `insert_space_before_opening_paren_in_enum_constant`
-- [ ] `insert_space_before_opening_paren_in_record_declaration`
-- [ ] `insert_space_before_opening_paren_in_synchronized`
+- [x] `insert_space_before_opening_paren_in_method_declaration`
+- [x] `insert_space_before_opening_paren_in_method_invocation`
+- [x] `insert_space_before_opening_paren_in_if`
+- [x] `insert_space_before_opening_paren_in_for`
+- [x] `insert_space_before_opening_paren_in_while`
+- [x] `insert_space_before_opening_paren_in_switch`
+- [x] `insert_space_before_opening_paren_in_catch`
+- [x] `insert_space_before_opening_paren_in_constructor_declaration`
+- [x] `insert_space_before_opening_paren_in_annotation`
+- [x] `insert_space_before_opening_paren_in_enum_constant`
+- [x] `insert_space_before_opening_paren_in_record_declaration`
+- [x] `insert_space_before_opening_paren_in_synchronized`
 
 ---
 
 ## Whitespace — Parentheses (After Opening / Before Closing)
 
-- [ ] `insert_space_after_opening_paren_in_method_declaration`
-- [ ] `insert_space_after_opening_paren_in_method_invocation`
-- [ ] `insert_space_after_opening_paren_in_constructor_declaration`
-- [ ] `insert_space_after_opening_paren_in_if`
-- [ ] `insert_space_after_opening_paren_in_for`
-- [ ] `insert_space_after_opening_paren_in_while`
-- [ ] `insert_space_after_opening_paren_in_switch`
-- [ ] `insert_space_after_opening_paren_in_catch`
-- [ ] `insert_space_after_opening_paren_in_synchronized`
-- [ ] `insert_space_after_opening_paren_in_cast`
-- [ ] `insert_space_after_opening_paren_in_annotation`
-- [ ] `insert_space_after_opening_paren_in_enum_constant`
-- [ ] `insert_space_after_opening_paren_in_record_declaration`
-- [ ] `insert_space_before_closing_paren_in_method_declaration`
-- [ ] `insert_space_before_closing_paren_in_method_invocation`
-- [ ] `insert_space_before_closing_paren_in_constructor_declaration`
-- [ ] `insert_space_before_closing_paren_in_if`
-- [ ] `insert_space_before_closing_paren_in_for`
-- [ ] `insert_space_before_closing_paren_in_while`
-- [ ] `insert_space_before_closing_paren_in_switch`
-- [ ] `insert_space_before_closing_paren_in_catch`
-- [ ] `insert_space_before_closing_paren_in_synchronized`
-- [ ] `insert_space_before_closing_paren_in_cast`
-- [ ] `insert_space_before_closing_paren_in_annotation`
-- [ ] `insert_space_before_closing_paren_in_enum_constant`
-- [ ] `insert_space_before_closing_paren_in_record_declaration`
-- [ ] `insert_space_after_closing_paren_in_cast` — space after `)` in cast
+- [x] `insert_space_after_opening_paren_in_method_declaration`
+- [x] `insert_space_after_opening_paren_in_method_invocation`
+- [x] `insert_space_after_opening_paren_in_constructor_declaration`
+- [x] `insert_space_after_opening_paren_in_if`
+- [x] `insert_space_after_opening_paren_in_for`
+- [x] `insert_space_after_opening_paren_in_while`
+- [x] `insert_space_after_opening_paren_in_switch`
+- [x] `insert_space_after_opening_paren_in_catch`
+- [x] `insert_space_after_opening_paren_in_synchronized`
+- [x] `insert_space_after_opening_paren_in_cast`
+- [x] `insert_space_after_opening_paren_in_annotation`
+- [x] `insert_space_after_opening_paren_in_enum_constant`
+- [x] `insert_space_after_opening_paren_in_record_declaration`
+- [x] `insert_space_before_closing_paren_in_method_declaration`
+- [x] `insert_space_before_closing_paren_in_method_invocation`
+- [x] `insert_space_before_closing_paren_in_constructor_declaration`
+- [x] `insert_space_before_closing_paren_in_if`
+- [x] `insert_space_before_closing_paren_in_for`
+- [x] `insert_space_before_closing_paren_in_while`
+- [x] `insert_space_before_closing_paren_in_switch`
+- [x] `insert_space_before_closing_paren_in_catch`
+- [x] `insert_space_before_closing_paren_in_synchronized`
+- [x] `insert_space_before_closing_paren_in_cast`
+- [x] `insert_space_before_closing_paren_in_annotation`
+- [x] `insert_space_before_closing_paren_in_enum_constant`
+- [x] `insert_space_before_closing_paren_in_record_declaration`
+- [x] `insert_space_after_closing_paren_in_cast` — space after `)` in cast
 
 ---
 
 ## Whitespace — Braces
 
-- [ ] `insert_space_before_opening_brace_in_type_declaration`
-- [ ] `insert_space_before_opening_brace_in_method_declaration`
-- [ ] `insert_space_before_opening_brace_in_block`
-- [ ] `insert_space_before_opening_brace_in_array_initializer`
-- [ ] `insert_space_after_opening_brace_in_array_initializer`
-- [ ] `insert_space_before_closing_brace_in_array_initializer`
-- [ ] `insert_space_after_closing_brace_in_block`
+- [x] `insert_space_before_opening_brace_in_type_declaration`
+- [x] `insert_space_before_opening_brace_in_method_declaration`
+- [x] `insert_space_before_opening_brace_in_block`
+- [x] `insert_space_before_opening_brace_in_array_initializer`
+- [x] `insert_space_after_opening_brace_in_array_initializer`
+- [x] `insert_space_before_closing_brace_in_array_initializer`
+- [x] `insert_space_after_closing_brace_in_block`
 
 ---
 
 ## Whitespace — Commas
 
-- [ ] `insert_space_before_comma_in_method_invocation_arguments`
-- [ ] `insert_space_after_comma_in_method_invocation_arguments`
-- [ ] `insert_space_before_comma_in_method_declaration_parameters`
-- [ ] `insert_space_after_comma_in_method_declaration_parameters`
-- [ ] `insert_space_before_comma_in_constructor_declaration_parameters`
-- [ ] `insert_space_after_comma_in_constructor_declaration_parameters`
-- [ ] `insert_space_before_comma_in_allocation_expression`
-- [ ] `insert_space_after_comma_in_allocation_expression`
-- [ ] `insert_space_before_comma_in_array_initializer`
-- [ ] `insert_space_after_comma_in_array_initializer`
-- [ ] `insert_space_before_comma_in_enum_constant_arguments`
-- [ ] `insert_space_after_comma_in_enum_constant_arguments`
-- [ ] `insert_space_before_comma_in_enum_declarations`
-- [ ] `insert_space_after_comma_in_enum_declarations`
-- [ ] `insert_space_before_comma_in_for_increments`
-- [ ] `insert_space_after_comma_in_for_increments`
-- [ ] `insert_space_before_comma_in_for_inits`
-- [ ] `insert_space_after_comma_in_for_inits`
-- [ ] `insert_space_before_comma_in_multiple_field_declarations`
-- [ ] `insert_space_after_comma_in_multiple_field_declarations`
-- [ ] `insert_space_before_comma_in_multiple_local_declarations`
-- [ ] `insert_space_after_comma_in_multiple_local_declarations`
-- [ ] `insert_space_before_comma_in_annotation`
-- [ ] `insert_space_after_comma_in_annotation`
-- [ ] `insert_space_before_comma_in_record_components`
-- [ ] `insert_space_after_comma_in_record_components`
-- [ ] `insert_space_before_comma_in_switch_case_expressions`
-- [ ] `insert_space_after_comma_in_switch_case_expressions`
-- [ ] `insert_space_before_comma_in_type_arguments`
-- [ ] `insert_space_after_comma_in_type_arguments`
-- [ ] `insert_space_before_comma_in_type_parameters`
-- [ ] `insert_space_after_comma_in_type_parameters`
-- [ ] `insert_space_before_comma_in_parameterized_type_reference`
-- [ ] `insert_space_after_comma_in_parameterized_type_reference`
+- [x] `insert_space_before_comma_in_method_invocation_arguments`
+- [x] `insert_space_after_comma_in_method_invocation_arguments`
+- [x] `insert_space_before_comma_in_method_declaration_parameters`
+- [x] `insert_space_after_comma_in_method_declaration_parameters`
+- [x] `insert_space_before_comma_in_constructor_declaration_parameters`
+- [x] `insert_space_after_comma_in_constructor_declaration_parameters`
+- [x] `insert_space_before_comma_in_allocation_expression`
+- [x] `insert_space_after_comma_in_allocation_expression`
+- [x] `insert_space_before_comma_in_array_initializer`
+- [x] `insert_space_after_comma_in_array_initializer`
+- [x] `insert_space_before_comma_in_enum_constant_arguments`
+- [x] `insert_space_after_comma_in_enum_constant_arguments`
+- [x] `insert_space_before_comma_in_enum_declarations`
+- [x] `insert_space_after_comma_in_enum_declarations`
+- [x] `insert_space_before_comma_in_for_increments`
+- [x] `insert_space_after_comma_in_for_increments`
+- [x] `insert_space_before_comma_in_for_inits`
+- [x] `insert_space_after_comma_in_for_inits`
+- [x] `insert_space_before_comma_in_multiple_field_declarations`
+- [x] `insert_space_after_comma_in_multiple_field_declarations`
+- [x] `insert_space_before_comma_in_multiple_local_declarations`
+- [x] `insert_space_after_comma_in_multiple_local_declarations`
+- [x] `insert_space_before_comma_in_annotation`
+- [x] `insert_space_after_comma_in_annotation`
+- [x] `insert_space_before_comma_in_record_components`
+- [x] `insert_space_after_comma_in_record_components`
+- [x] `insert_space_before_comma_in_switch_case_expressions`
+- [x] `insert_space_after_comma_in_switch_case_expressions`
+- [x] `insert_space_before_comma_in_type_arguments`
+- [x] `insert_space_after_comma_in_type_arguments`
+- [x] `insert_space_before_comma_in_type_parameters`
+- [x] `insert_space_after_comma_in_type_parameters`
+- [x] `insert_space_before_comma_in_parameterized_type_reference`
+- [x] `insert_space_after_comma_in_parameterized_type_reference`
 
 ---
 
 ## Whitespace — Colons & Semicolons
 
-- [ ] `insert_space_before_colon_in_for`
-- [ ] `insert_space_after_colon_in_for`
-- [ ] `insert_space_before_semicolon`
-- [ ] `insert_space_before_colon_in_assert`
-- [ ] `insert_space_after_colon_in_assert`
-- [ ] `insert_space_before_colon_in_case`
-- [ ] `insert_space_after_colon_in_case`
-- [ ] `insert_space_before_colon_in_default` — space before `:` in default
-- [ ] `insert_space_after_colon_in_default` — space after `:` in default
-- [ ] `insert_space_before_colon_in_conditional`
-- [ ] `insert_space_after_colon_in_conditional`
-- [ ] `insert_space_before_colon_in_labeled_statement`
-- [ ] `insert_space_after_colon_in_labeled_statement`
-- [ ] `insert_space_before_semicolon_in_for`
-- [ ] `insert_space_before_semicolon_in_try_with_resources`
+- [x] `insert_space_before_colon_in_for`
+- [x] `insert_space_after_colon_in_for`
+- [x] `insert_space_before_semicolon`
+- [x] `insert_space_before_colon_in_assert`
+- [x] `insert_space_after_colon_in_assert`
+- [x] `insert_space_before_colon_in_case`
+- [x] `insert_space_after_colon_in_case`
+- [x] `insert_space_before_colon_in_default` — space before `:` in default
+- [x] `insert_space_after_colon_in_default` — space after `:` in default
+- [x] `insert_space_before_colon_in_conditional`
+- [x] `insert_space_after_colon_in_conditional`
+- [x] `insert_space_before_colon_in_labeled_statement`
+- [x] `insert_space_after_colon_in_labeled_statement`
+- [x] `insert_space_before_semicolon_in_for`
+- [x] `insert_space_before_semicolon_in_try_with_resources`
 
 ---
 
 ## Whitespace — Angle Brackets (Generics)
 
-- [ ] `insert_space_before_opening_angle_bracket_in_type_arguments`
-- [ ] `insert_space_after_opening_angle_bracket_in_type_arguments`
-- [ ] `insert_space_before_closing_angle_bracket_in_type_arguments`
-- [ ] `insert_space_after_closing_angle_bracket_in_type_arguments`
-- [ ] `insert_space_before_opening_angle_bracket_in_type_parameters`
-- [ ] `insert_space_after_opening_angle_bracket_in_type_parameters`
-- [ ] `insert_space_before_closing_angle_bracket_in_type_parameters`
-- [ ] `insert_space_after_closing_angle_bracket_in_type_parameters`
+- [x] `insert_space_before_opening_angle_bracket_in_type_arguments`
+- [x] `insert_space_after_opening_angle_bracket_in_type_arguments`
+- [x] `insert_space_before_closing_angle_bracket_in_type_arguments`
+- [x] `insert_space_after_closing_angle_bracket_in_type_arguments`
+- [x] `insert_space_before_opening_angle_bracket_in_type_parameters`
+- [x] `insert_space_after_opening_angle_bracket_in_type_parameters`
+- [x] `insert_space_before_closing_angle_bracket_in_type_parameters`
+- [x] `insert_space_after_closing_angle_bracket_in_type_parameters`
 
 ---
 
 ## Whitespace — Brackets (Array Access)
 
-- [ ] `insert_space_before_opening_bracket_in_array_access`
-- [ ] `insert_space_after_opening_bracket_in_array_access`
-- [ ] `insert_space_before_closing_bracket_in_array_access`
+- [x] `insert_space_before_opening_bracket_in_array_access`
+- [x] `insert_space_after_opening_bracket_in_array_access`
+- [x] `insert_space_before_closing_bracket_in_array_access`
 
 ---
 
 ## Whitespace — Switch Arrows
 
-- [ ] `insert_space_before_arrow_in_switch_case`
-- [ ] `insert_space_after_arrow_in_switch_case`
-- [ ] `insert_space_before_arrow_in_switch_default`
-- [ ] `insert_space_after_arrow_in_switch_default`
+- [x] `insert_space_before_arrow_in_switch_case`
+- [x] `insert_space_after_arrow_in_switch_case`
+- [x] `insert_space_before_arrow_in_switch_default`
+- [x] `insert_space_after_arrow_in_switch_default`
 
 ---
 
 ## Whitespace — Miscellaneous
 
-- [ ] `insert_space_after_at_in_annotation`
-- [ ] `insert_space_after_at_in_annotation_type_declaration`
-- [ ] `insert_space_before_ellipsis` — space before varargs `...`
-- [ ] `insert_space_after_ellipsis` — space after varargs `...`
-- [ ] `insert_space_before_and_in_type_parameter` — space before `&` in `T extends A & B`
-- [ ] `insert_space_after_and_in_type_parameter` — space after `&` in `T extends A & B`
-- [ ] `insert_space_before_question_in_conditional` — space before `?` in ternary
-- [ ] `insert_space_after_question_in_conditional` — space after `?` in ternary
-- [ ] `insert_space_before_question_in_wildcard` — space before `?` in `<?>` wildcard
-- [ ] `insert_space_after_question_in_wildcard` — space after `?` in `<?>` wildcard
-- [ ] `insert_space_after_lambda_arrow` — space after `->` in lambda
-- [ ] `insert_space_before_lambda_arrow` — space before `->` in lambda
+- [x] `insert_space_after_at_in_annotation`
+- [x] `insert_space_after_at_in_annotation_type_declaration`
+- [x] `insert_space_before_ellipsis` — space before varargs `...`
+- [x] `insert_space_after_ellipsis` — space after varargs `...`
+- [x] `insert_space_before_and_in_type_parameter` — space before `&` in `T extends A & B`
+- [x] `insert_space_after_and_in_type_parameter` — space after `&` in `T extends A & B`
+- [x] `insert_space_before_question_in_conditional` — space before `?` in ternary
+- [x] `insert_space_after_question_in_conditional` — space after `?` in ternary
+- [x] `insert_space_before_question_in_wildcard` — space before `?` in `<?>` wildcard
+- [x] `insert_space_after_question_in_wildcard` — space after `?` in `<?>` wildcard
+- [x] `insert_space_after_lambda_arrow` — space after `->` in lambda
+- [x] `insert_space_before_lambda_arrow` — space before `->` in lambda
 
 ---
 
 ## Comments
 
-- [ ] `comment.format_javadoc_comments`
-- [ ] `comment.format_block_comments`
-- [ ] `comment.format_line_comments`
-- [ ] `comment.line_length`
-- [ ] `comment.format_markdown_comments` — format markdown-style doc comments
-- [ ] `comment.format_header` — format file header comments
-- [ ] `comment.format_source_code` — format source code inside comments
-- [ ] `comment.clear_blank_lines_in_block_comment` — remove blank lines in block comments
-- [ ] `comment.clear_blank_lines_in_javadoc_comment` — remove blank lines in javadoc
-- [ ] `comment.count_line_length_from_starting_position` — count line length from comment start
-- [ ] `comment.indent_parameter_description` — indent `@param` description *(will be replaced by custom rule for alignment after param name)*
-- [ ] `comment.indent_return_description` — indent `@return` description
-- [ ] `comment.insert_new_line_before_root_tags` — blank line before `@param`, `@return`, etc.
-- [ ] `comment.insert_new_line_between_different_tags` — blank line between different tag types
-- [ ] `comment.insert_new_line_for_parameter` — each `@param` on its own line
-- [ ] `comment.new_lines_at_block_boundaries` — newlines after `/*` and before `*/`
-- [ ] `comment.new_lines_at_javadoc_boundaries` — newlines after `/**` and before `*/`
-- [ ] `comment.preserve_white_space_between_code_and_line_comments` — keep space before `//`
-- [ ] `comment.javadoc_paragraphs_tags_with_content` — javadoc paragraph tag handling
-- [ ] `format_line_comment_starting_on_first_column` — format `//` comments starting at column 0
+*(excluded — Eclipse JDT comment formatter disabled; custom comment/doc comment formatter needed)*
+
+- [x] `comment.format_javadoc_comments` *(excluded)*
+- [x] `comment.format_block_comments` *(excluded)*
+- [x] `comment.format_line_comments` *(excluded)*
+- [x] `comment.line_length` *(excluded)*
+- [x] `comment.format_markdown_comments` *(excluded)*
+- [x] `comment.format_header` *(excluded)*
+- [x] `comment.format_source_code` *(excluded)*
+- [x] `comment.clear_blank_lines_in_block_comment` *(excluded)*
+- [x] `comment.clear_blank_lines_in_javadoc_comment` *(excluded)*
+- [x] `comment.count_line_length_from_starting_position` *(excluded)*
+- [x] `comment.indent_parameter_description` *(excluded)*
+- [x] `comment.indent_return_description` *(excluded)*
+- [x] `comment.insert_new_line_before_root_tags` *(excluded)*
+- [x] `comment.insert_new_line_between_different_tags` *(excluded)*
+- [x] `comment.insert_new_line_for_parameter` *(excluded)*
+- [x] `comment.new_lines_at_block_boundaries` *(excluded)*
+- [x] `comment.new_lines_at_javadoc_boundaries` *(excluded)*
+- [x] `comment.preserve_white_space_between_code_and_line_comments` *(excluded)*
+- [x] `comment.javadoc_paragraphs_tags_with_content` *(excluded)*
+- [x] `format_line_comment_starting_on_first_column` *(excluded)*
 
 ---
 
