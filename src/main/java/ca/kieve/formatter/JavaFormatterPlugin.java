@@ -14,6 +14,7 @@ import ca.kieve.formatter.step.CustomFormatterStep;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 
@@ -62,6 +63,21 @@ public class JavaFormatterPlugin implements Plugin<Project> {
             .getByType(CheckstyleExtension.class);
         checkstyle.setConfigFile(checkstyleConfig);
         checkstyle.setToolVersion("10.22.0");
+
+        // Add our plugin classes to Checkstyle's classpath so custom checks are
+        // discoverable at runtime.
+        try {
+            File pluginClasses = new File(
+                JavaFormatterPlugin.class.getProtectionDomain()
+                    .getCodeSource().getLocation().toURI());
+            project.getDependencies().add(
+                "checkstyle",
+                project.files(pluginClasses));
+        } catch (URISyntaxException e) {
+            throw new GradleException(
+                "Failed to locate plugin classes for Checkstyle classpath",
+                e);
+        }
 
         // Wire extraction to run before any spotless or checkstyle task
         project.getTasks().configureEach(task -> {

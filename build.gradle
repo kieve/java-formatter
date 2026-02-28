@@ -127,6 +127,9 @@ dependencies {
     // JavaParser for AST parsing and transformation
     implementation 'com.github.javaparser:javaparser-core:3.28.0'
 
+    // Checkstyle API for custom lint checks (provided at runtime by the Checkstyle plugin)
+    compileOnly 'com.puppycrawl.tools:checkstyle:10.22.0'
+
     // Jackson YAML for reading kieve-formatter.yaml config files
     implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.18.2'
 

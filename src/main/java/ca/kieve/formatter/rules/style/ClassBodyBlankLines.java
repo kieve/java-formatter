@@ -1,4 +1,4 @@
-package ca.kieve.formatter.rules;
+package ca.kieve.formatter.rules.style;
 
 import java.util.regex.Pattern;
 

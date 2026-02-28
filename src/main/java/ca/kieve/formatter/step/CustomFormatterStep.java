@@ -6,10 +6,10 @@ import com.diffplug.spotless.FormatterStep;
 import ca.kieve.formatter.FormatConfig;
 import ca.kieve.formatter.FormatterTags;
 import ca.kieve.formatter.FormatterTags.ProtectedSource;
-import ca.kieve.formatter.rules.ClassBodyBlankLines;
-import ca.kieve.formatter.rules.ImportSorting;
-import ca.kieve.formatter.rules.LeadingBlankLines;
-import ca.kieve.formatter.rules.SwitchCaseBlankLines;
+import ca.kieve.formatter.rules.style.ClassBodyBlankLines;
+import ca.kieve.formatter.rules.style.ImportSorting;
+import ca.kieve.formatter.rules.style.LeadingBlankLines;
+import ca.kieve.formatter.rules.style.SwitchCaseBlankLines;
 
 import java.io.Serializable;
 

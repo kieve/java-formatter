@@ -11,58 +11,77 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
- * Tests for the bundled Checkstyle configuration — AvoidStarImport rule.
+ * Tests for the bundled Checkstyle configuration — AvoidNestedTernaryCheck.
  */
-class AvoidStarImportTest {
+class AvoidNestedTernaryTest {
     @Test
-    void detectsWildcardImport() {
+    void detectsNestedTernary() {
         // language=Java
         // @formatter:off
 		String input = """
 				package com.example;
 
-				import java.util.*;
-
 				public class Foo {
+				    int x = (a == b) ? -1 : (c == d) ? 0 : 1;
 				}
 				""";
 		// @formatter:on
 
         List<Violation> violations = CheckstyleTestUtil.lint(input);
         assertEquals(1, violations.size());
-        assertEquals("AvoidStarImportCheck", violations.get(0).checkName());
-        assertEquals(3, violations.get(0).line());
+        assertEquals(
+            "AvoidNestedTernaryCheck",
+            violations.get(0).checkName());
+        assertEquals(4, violations.get(0).line());
     }
 
     @Test
-    void detectsStaticWildcardImport() {
+    void detectsNestedTernaryInCondition() {
         // language=Java
         // @formatter:off
 		String input = """
 				package com.example;
 
-				import static org.junit.jupiter.api.Assertions.*;
-
 				public class Foo {
+				    int x = (a > 0 ? true : false) ? 1 : 2;
 				}
 				""";
 		// @formatter:on
 
         List<Violation> violations = CheckstyleTestUtil.lint(input);
         assertEquals(1, violations.size());
-        assertEquals("AvoidStarImportCheck", violations.get(0).checkName());
+        assertEquals(
+            "AvoidNestedTernaryCheck",
+            violations.get(0).checkName());
     }
 
     @Test
-    void acceptsExplicitImport() {
+    void detectsDeeplyNestedTernary() {
         // language=Java
         // @formatter:off
 		String input = """
 				package com.example;
 
-				import java.util.List;
+				public class Foo {
+				    int x = a ? b ? c ? 1 : 2 : 3 : 4;
+				}
+				""";
+		// @formatter:on
+
+        List<Violation> violations = CheckstyleTestUtil.lint(input);
+        // b?...:3 is nested in a?...:4, and c?1:2 is nested in b?...:3
+        assertEquals(2, violations.size());
+    }
+
+    @Test
+    void acceptsSimpleTernary() {
+        // language=Java
+        // @formatter:off
+		String input = """
+				package com.example;
 
 				public class Foo {
+				    int x = (a == b) ? 1 : 2;
 				}
 				""";
 		// @formatter:on
@@ -72,21 +91,20 @@ class AvoidStarImportTest {
     }
 
     @Test
-    void detectsMultipleWildcardImports() {
+    void acceptsMultipleSeparateTernaries() {
         // language=Java
         // @formatter:off
 		String input = """
 				package com.example;
 
-				import java.util.*;
-				import java.io.*;
-
 				public class Foo {
+				    int x = a ? 1 : 2;
+				    int y = b ? 3 : 4;
 				}
 				""";
 		// @formatter:on
 
         List<Violation> violations = CheckstyleTestUtil.lint(input);
-        assertEquals(2, violations.size());
+        assertTrue(violations.isEmpty());
     }
 }

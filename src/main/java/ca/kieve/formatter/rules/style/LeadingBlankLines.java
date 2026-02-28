@@ -1,4 +1,4 @@
-package ca.kieve.formatter.rules;
+package ca.kieve.formatter.rules.style;
 
 /**
  * Strips all leading blank lines from source code.

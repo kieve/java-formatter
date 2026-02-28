@@ -1,4 +1,4 @@
-package ca.kieve.formatter.rules;
+package ca.kieve.formatter.rules.style;
 
 import ca.kieve.formatter.FormatConfig;
 import ca.kieve.formatter.ImportGroup;
