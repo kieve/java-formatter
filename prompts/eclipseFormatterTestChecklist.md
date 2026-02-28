@@ -198,12 +198,12 @@ Alignment values are bitmask integers. Key bits: `0` = no wrap, `16` = wrap wher
 
 ### Column Alignment
 
-- [ ] `align_type_members_on_columns` — align fields/methods on columns
-- [ ] `align_variable_declarations_on_columns` — align variable declarations
-- [ ] `align_assignment_statements_on_columns` — align assignment `=` on columns
-- [ ] `align_arrows_in_switch_on_columns` — align switch case arrows
-- [ ] `align_fields_grouping_blank_lines` — blank line grouping for field alignment *(excluded — N/A, alignment disabled)*
-- [ ] `align_with_spaces` — use spaces for alignment *(excluded — N/A, alignment disabled)*
+- [x] `align_type_members_on_columns` — align fields/methods on columns
+- [x] `align_variable_declarations_on_columns` — align variable declarations
+- [x] `align_assignment_statements_on_columns` — align assignment `=` on columns
+- [x] `align_arrows_in_switch_on_columns` — align switch case arrows
+- [x] `align_fields_grouping_blank_lines` — blank line grouping for field alignment *(excluded — N/A, alignment disabled)*
+- [x] `align_with_spaces` — use spaces for alignment *(excluded — N/A, alignment disabled)*
 
 ---
 
