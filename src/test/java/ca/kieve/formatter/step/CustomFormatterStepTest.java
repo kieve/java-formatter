@@ -3,6 +3,8 @@ package ca.kieve.formatter.step;
 import com.diffplug.spotless.FormatterStep;
 import org.junit.jupiter.api.Test;
 
+import java.io.File;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
@@ -26,7 +28,7 @@ class CustomFormatterStepTest {
                 }
                 """;
                 // @formatter:on
-        String result = step.format(input, new java.io.File("Hello.java"));
+        String result = step.format(input, new File("Hello.java"));
         assertEquals(input, result);
     }
 }

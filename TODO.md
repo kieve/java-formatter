@@ -1,3 +1,6 @@
+Things to do:
+- Move test util classes into a util package
+
 Styles to enforce:
 ---
 All Inner types must be declared at the top, before any members.

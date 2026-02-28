@@ -11,6 +11,7 @@ import org.gradle.api.tasks.TaskAction;
 import org.gradle.api.tasks.TaskProvider;
 
 import ca.kieve.formatter.step.CustomFormatterStep;
+import ca.kieve.formatter.task.PreFormatTask;
 
 import java.io.File;
 import java.io.IOException;
@@ -82,12 +83,38 @@ public class JavaFormatterPlugin implements Plugin<Project> {
                 e);
         }
 
+        // Register pre-format tasks
+        TaskProvider<PreFormatTask> preFormat = project.getTasks()
+            .register("preFormat", PreFormatTask.class, task -> {
+                task.setGroup("formatting");
+                task.setDescription(
+                    "Apply pre-format rules to Java source files");
+                task.setCheckOnly(false);
+            });
+        TaskProvider<PreFormatTask> preFormatCheck = project.getTasks()
+            .register("preFormatCheck", PreFormatTask.class, task -> {
+                task.setGroup("formatting");
+                task.setDescription(
+                    "Check pre-format rules (fails if files need changes)");
+                task.setCheckOnly(true);
+            });
+
         // Wire extraction to run before any spotless or checkstyle task
         project.getTasks().configureEach(task -> {
             String name = task.getName();
             if (name.startsWith("spotless") || name.startsWith("checkstyle")) {
                 task.dependsOn(extractTask);
             }
+        });
+
+        // Wire pre-format to run before spotless
+        project.afterEvaluate(p -> {
+            p.getTasks().named(
+                "spotlessApply",
+                task -> task.dependsOn(preFormat));
+            p.getTasks().named(
+                "spotlessCheck",
+                task -> task.dependsOn(preFormatCheck));
         });
 
         project.getTasks().register("format", task -> {
