@@ -19,19 +19,16 @@ public final class FormatConfig implements Serializable {
 
     private final int maxLineLength;
     private final List<ImportGroup> importLayout;
-    private final boolean banWildcardImports;
 
     public FormatConfig(int maxLineLength) {
-        this(maxLineLength, DEFAULT_IMPORT_LAYOUT, true);
+        this(maxLineLength, DEFAULT_IMPORT_LAYOUT);
     }
 
     public FormatConfig(
             int maxLineLength,
-            List<ImportGroup> importLayout,
-            boolean banWildcardImports) {
+            List<ImportGroup> importLayout) {
         this.maxLineLength = maxLineLength;
         this.importLayout = List.copyOf(importLayout);
-        this.banWildcardImports = banWildcardImports;
     }
 
     public static FormatConfig defaults() {
@@ -46,7 +43,4 @@ public final class FormatConfig implements Serializable {
         return importLayout;
     }
 
-    public boolean isBanWildcardImports() {
-        return banWildcardImports;
-    }
 }

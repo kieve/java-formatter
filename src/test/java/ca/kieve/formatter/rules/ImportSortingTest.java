@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class ImportSortingTest extends FormatterRuleTestBase {
 
@@ -239,38 +238,6 @@ class ImportSortingTest extends FormatterRuleTestBase {
     }
 
     @Test
-    void wildcardImportThrows() {
-        // language=Java
-        String input = """
-                package com.example;
-
-                import java.util.*;
-
-                public class Foo {
-                }
-                """;
-
-        assertThrows(IllegalStateException.class,
-                () -> ImportSorting.apply(input, CONFIG));
-    }
-
-    @Test
-    void staticWildcardImportThrows() {
-        // language=Java
-        String input = """
-                package com.example;
-
-                import static org.junit.jupiter.api.Assertions.*;
-
-                public class Foo {
-                }
-                """;
-
-        assertThrows(IllegalStateException.class,
-                () -> ImportSorting.apply(input, CONFIG));
-    }
-
-    @Test
     void preservesSurroundingContent() {
         // language=Java
         String input = """
@@ -355,7 +322,7 @@ class ImportSortingTest extends FormatterRuleTestBase {
                 ImportGroup.staticCatchAll(),
                 ImportGroup.of("java.", "javax."),
                 ImportGroup.catchAll()
-        ), true);
+        ));
 
         // language=Java
         String input = """
@@ -395,7 +362,7 @@ class ImportSortingTest extends FormatterRuleTestBase {
                 ImportGroup.of("com.mycompany."),
                 ImportGroup.of("javax.", "java."),
                 ImportGroup.staticCatchAll()
-        ), true);
+        ));
 
         // language=Java
         String input = """

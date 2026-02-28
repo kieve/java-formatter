@@ -28,7 +28,6 @@ public final class FormatConfigLoader {
 
     private record RawConfig(
             Integer maxLineLength,
-            Boolean banWildcardImports,
             List<Object> importLayout) {}
 
     /**
@@ -79,15 +78,11 @@ public final class FormatConfigLoader {
                 ? raw.maxLineLength()
                 : defaults.getMaxLineLength();
 
-        boolean banWildcardImports = raw.banWildcardImports() != null
-                ? raw.banWildcardImports()
-                : defaults.isBanWildcardImports();
-
         List<ImportGroup> importLayout = raw.importLayout() != null
                 ? parseImportLayout(raw.importLayout())
                 : defaults.getImportLayout();
 
-        return new FormatConfig(maxLineLength, importLayout, banWildcardImports);
+        return new FormatConfig(maxLineLength, importLayout);
     }
 
     @SuppressWarnings("unchecked")

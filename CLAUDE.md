@@ -1,7 +1,8 @@
 # java-formatter
 
-A custom Java auto-formatter built as a Gradle convention plugin. It applies an Eclipse JDT
-baseline formatter followed by custom formatting rules implemented with JavaParser.
+A custom Java auto-formatter and linter built as a Gradle convention plugin. It applies an Eclipse
+JDT baseline formatter followed by custom formatting rules implemented with JavaParser, plus
+Checkstyle for linting rules like wildcard import detection.
 
 ## How It Works
 
@@ -10,8 +11,10 @@ This project is a **Gradle plugin** (`ca.kieve.java-formatter`). When applied to
 1. Applies the Spotless Gradle plugin
 2. Configures Eclipse JDT formatter as the baseline (config generated from `src/main/formatter/eclipse-formatter.yaml`)
 3. Applies custom formatting rules on top via `CustomFormatterStep`
+4. Applies the Checkstyle plugin with bundled linting rules (e.g., `AvoidStarImport`)
 
 Spotless provides the `spotlessApply` (auto-format) and `spotlessCheck` (CI validation) tasks.
+Checkstyle provides the `checkstyleMain` and `checkstyleTest` tasks for linting.
 
 ## Usage in Consuming Projects
 
@@ -35,6 +38,8 @@ plugins {
 Then run:
 - `./gradlew spotlessApply` — auto-format all Java source files
 - `./gradlew spotlessCheck` — verify formatting (fails if files need changes)
+- `./gradlew checkstyleMain` — lint main source files
+- `./gradlew checkstyleTest` — lint test source files
 
 ## Project Structure
 
@@ -46,6 +51,8 @@ src/main/java/ca/kieve/formatter/
         CustomFormatterStep.java    — Main Spotless FormatterStep (chains all custom rules)
     printer/                        — Custom pretty printer visitors (future)
     rules/                          — Individual formatting rules (future)
+src/main/resources/
+    checkstyle.xml                  — Checkstyle linting config (bundled in JAR)
 src/main/formatter/
     eclipse-formatter.yaml          — Eclipse JDT config (human-editable source of truth)
 src/test/java/ca/kieve/formatter/
@@ -62,6 +69,7 @@ src/test/resources/fixtures/        — Input/expected Java files for comparison
 - **Eclipse JDT** provides baseline formatting (indentation, spacing, braces)
 - **JavaParser** provides AST parsing for custom rules that need structural understanding
 - **Custom rules** are `String -> String` transformations chained inside `CustomFormatterStep`
+- **Checkstyle** provides linting rules (e.g., `AvoidStarImport`) via `checkstyleMain`/`checkstyleTest` tasks
 
 Each custom rule should be independently testable with simple input/output string pairs.
 
@@ -99,6 +107,21 @@ becomes `<setting id="org.eclipse.jdt.core.formatter.tabulation.char" value="tab
 ./gradlew clean build    # clean rebuild
 ```
 
+## Checkstyle Configuration
+
+Checkstyle linting rules are defined in `src/main/resources/checkstyle.xml`. This file is bundled
+in the plugin JAR and extracted at runtime (like the Eclipse formatter config). The plugin sets
+`toolVersion` to a specific Checkstyle release for reproducibility.
+
+To add a new Checkstyle rule, add a `<module>` entry inside the `<module name="TreeWalker">` block
+in `checkstyle.xml`. See the [Checkstyle documentation](https://checkstyle.org/checks.html) for
+available checks.
+
+## Adding a New Linting Rule
+
+1. Add the Checkstyle module to `src/main/resources/checkstyle.xml` inside the `TreeWalker` block
+2. Test in a consuming project with `./gradlew checkstyleMain` to verify the rule fires correctly
+
 ## Adding a New Formatting Rule
 
 1. Create the rule class in `ca.kieve.formatter.rules` — a static method taking `String` and returning `String`
@@ -131,4 +154,5 @@ The `\s` escape (Java 15+) produces a literal space that survives text block pro
 - **Gradle 9.3.1** (wrapper included)
 - **Spotless Plugin for Gradle 8.2.1**
 - **JavaParser 3.28.0**
+- **Checkstyle 10.22.0** for linting
 - **JUnit 5** for testing

@@ -25,7 +25,6 @@ class FormatConfigLoaderTest {
     void loadsAllFields() {
         String yaml = """
                 maxLineLength: 120
-                banWildcardImports: false
                 importLayout:
                   - catch-all
                   - ["org.example."]
@@ -33,7 +32,6 @@ class FormatConfigLoaderTest {
                 """;
         FormatConfig config = loadYaml(yaml);
         assertEquals(120, config.getMaxLineLength());
-        assertFalse(config.isBanWildcardImports());
         assertEquals(3, config.getImportLayout().size());
 
         ImportGroup first = config.getImportLayout().get(0);
@@ -54,8 +52,6 @@ class FormatConfigLoaderTest {
         FormatConfig config = loadYaml("");
         FormatConfig defaults = FormatConfig.defaults();
         assertEquals(defaults.getMaxLineLength(), config.getMaxLineLength());
-        assertEquals(defaults.isBanWildcardImports(),
-                config.isBanWildcardImports());
         assertEquals(defaults.getImportLayout(), config.getImportLayout());
     }
 
@@ -157,14 +153,6 @@ class FormatConfigLoaderTest {
     }
 
     @Test
-    void badTypeForBanWildcardImportsThrows() {
-        String yaml = """
-                banWildcardImports: "not a boolean"
-                """;
-        assertThrows(IllegalArgumentException.class, () -> loadYaml(yaml));
-    }
-
-    @Test
     void partialConfigMergesWithDefaults() {
         String yaml = """
                 maxLineLength: 80
@@ -173,8 +161,6 @@ class FormatConfigLoaderTest {
         assertEquals(80, config.getMaxLineLength());
         // Other fields should use defaults
         FormatConfig defaults = FormatConfig.defaults();
-        assertEquals(defaults.isBanWildcardImports(),
-                config.isBanWildcardImports());
         assertEquals(defaults.getImportLayout(), config.getImportLayout());
     }
 }

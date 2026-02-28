@@ -1,5 +1,4 @@
 maxLineLength: 100
-banWildcardImports: true
 
 importLayout:
   - catch-all

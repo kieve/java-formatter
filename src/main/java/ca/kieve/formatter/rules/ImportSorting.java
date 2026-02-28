@@ -14,8 +14,7 @@ import java.util.Set;
  * Sorts and groups import statements according to the configured import layout.
  * <p>
  * Imports are organized into groups separated by blank lines. Within each group,
- * imports are sorted alphabetically. Wildcard imports ({@code .*}) are banned by
- * default.
+ * imports are sorted alphabetically.
  */
 public final class ImportSorting {
     private ImportSorting() {}
@@ -46,16 +45,6 @@ public final class ImportSorting {
             String trimmed = lines[i].trim();
             if (trimmed.startsWith("import ")) {
                 imports.add(trimmed);
-            }
-        }
-
-        // Check for wildcard imports
-        if (config.isBanWildcardImports()) {
-            for (String imp : imports) {
-                if (imp.endsWith(".*;")) {
-                    throw new IllegalStateException(
-                            "Wildcard imports are banned: " + imp);
-                }
             }
         }
 

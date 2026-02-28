@@ -136,3 +136,4 @@ Disabled test: `rules.TodoTests.wrapAfterOperatorShouldMoveOperatorBeforeNextLin
 Linting:
 - Find a way to effectively "ban" nested ternary operators
 - Ban multiple field declarations in one line. ex. `int x, y, z;`
+- No qualified imports? (unless a collision exists)

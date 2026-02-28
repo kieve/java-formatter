@@ -1,7 +1,8 @@
 # java-formatter
 
-A custom Java auto-formatter built as a Gradle convention plugin. It applies an Eclipse JDT
-baseline formatter followed by custom formatting rules implemented with JavaParser.
+A custom Java auto-formatter and linter built as a Gradle convention plugin. It applies an Eclipse
+JDT baseline formatter followed by custom formatting rules implemented with JavaParser, plus
+Checkstyle for linting rules like wildcard import detection.
 
 ## Setup
 
@@ -27,6 +28,8 @@ plugins {
 ```bash
 ./gradlew spotlessApply   # auto-format all Java source files
 ./gradlew spotlessCheck   # verify formatting (fails if files need changes)
+./gradlew checkstyleMain  # lint main source files
+./gradlew checkstyleTest  # lint test source files
 ```
 
 ## Configuration
@@ -38,7 +41,6 @@ optional — missing fields use their default values.
 
 ```yaml
 maxLineLength: 100
-banWildcardImports: true
 
 importLayout:
   - catch-all
@@ -52,7 +54,6 @@ importLayout:
 | Option | Type | Default | Description |
 |--------|------|---------|-------------|
 | `maxLineLength` | integer | `100` | Maximum line length for wrapping rules |
-| `banWildcardImports` | boolean | `true` | Whether to expand wildcard imports |
 | `importLayout` | list | *(see below)* | Import grouping and ordering |
 
 ### Import Layout
@@ -90,3 +91,12 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 ```
+
+## Checkstyle Rules
+
+The plugin applies [Checkstyle](https://checkstyle.org/) for linting. Rules are bundled in the
+plugin and run automatically via `checkstyleMain` / `checkstyleTest`.
+
+| Rule | Description |
+|------|-------------|
+| [`AvoidStarImport`](https://checkstyle.org/checks/imports/avoidstarimport.html) | Bans wildcard imports (`import java.util.*`) |

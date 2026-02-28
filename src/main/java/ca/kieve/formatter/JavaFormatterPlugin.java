@@ -5,6 +5,7 @@ import com.diffplug.gradle.spotless.SpotlessExtension;
 import org.gradle.api.GradleException;
 import org.gradle.api.Plugin;
 import org.gradle.api.Project;
+import org.gradle.api.plugins.quality.CheckstyleExtension;
 
 import java.io.File;
 import java.io.IOException;
@@ -14,13 +15,15 @@ import java.nio.file.StandardCopyOption;
 
 /**
  * Gradle plugin that applies Spotless with an Eclipse baseline formatter
- * and custom formatting rules on top.
+ * and custom formatting rules on top, plus Checkstyle for linting.
  * <p>
  * Consuming projects apply this plugin and get {@code spotlessApply} /
- * {@code spotlessCheck} tasks automatically.
+ * {@code spotlessCheck} tasks for formatting and {@code checkstyleMain} /
+ * {@code checkstyleTest} tasks for linting automatically.
  */
 public class JavaFormatterPlugin implements Plugin<Project> {
     private static final String ECLIPSE_CONFIG_RESOURCE = "/eclipse-formatter.xml";
+    private static final String CHECKSTYLE_CONFIG_RESOURCE = "/checkstyle.xml";
 
     @Override
     public void apply(Project project) {
@@ -38,6 +41,13 @@ public class JavaFormatterPlugin implements Plugin<Project> {
             java.eclipse().configFile(eclipseConfig);
             java.addStep(CustomFormatterStep.create(config));
         });
+
+        project.getPlugins().apply("checkstyle");
+        CheckstyleExtension checkstyle = project.getExtensions()
+                .getByType(CheckstyleExtension.class);
+        checkstyle.setConfigFile(
+                extractResource(project, CHECKSTYLE_CONFIG_RESOURCE));
+        checkstyle.setToolVersion("10.22.0");
     }
 
     private File extractResource(Project project, String resourcePath) {
