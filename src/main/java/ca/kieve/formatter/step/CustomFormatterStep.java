@@ -22,6 +22,19 @@ import java.io.Serializable;
  * them to share the parsed AST and configuration.
  */
 public final class CustomFormatterStep {
+    private static final class State implements Serializable {
+        private static final long serialVersionUID = 1L;
+        private final FormatConfig config;
+
+        State(FormatConfig config) {
+            this.config = config;
+        }
+
+        FormatterFunc toFormatter() {
+            return source -> applyCustomRules(source, config);
+        }
+    }
+
     private CustomFormatterStep() {
     }
 
@@ -61,18 +74,5 @@ public final class CustomFormatterStep {
         result = SwitchCaseBlankLines.apply(result);
         result = SplitFieldDeclarations.apply(result);
         return ps.restore(result);
-    }
-
-    private static final class State implements Serializable {
-        private static final long serialVersionUID = 1L;
-        private final FormatConfig config;
-
-        State(FormatConfig config) {
-            this.config = config;
-        }
-
-        FormatterFunc toFormatter() {
-            return source -> applyCustomRules(source, config);
-        }
     }
 }

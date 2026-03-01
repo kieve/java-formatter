@@ -35,6 +35,23 @@ import java.util.Set;
  * imports can be sorted and grouped by downstream rules.
  */
 public final class QualifiedImportResolution {
+    private record Occurrence(
+        int startLine,
+        int startCol,
+        int endLine,
+        int endCol,
+        String simpleName,
+        String simplifiedText) {
+    }
+
+    private record Replacement(
+        int startLine,
+        int startCol,
+        int endLine,
+        int endCol,
+        String replacement) {
+    }
+
     private QualifiedImportResolution() {
     }
 
@@ -560,22 +577,5 @@ public final class QualifiedImportResolution {
         }
 
         return result.toString();
-    }
-
-    private record Occurrence(
-        int startLine,
-        int startCol,
-        int endLine,
-        int endCol,
-        String simpleName,
-        String simplifiedText) {
-    }
-
-    private record Replacement(
-        int startLine,
-        int startCol,
-        int endLine,
-        int endCol,
-        String replacement) {
     }
 }

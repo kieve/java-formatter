@@ -21,6 +21,12 @@ import java.util.List;
  * but does not touch for-loop initializers or try-with-resources.
  */
 public final class SplitFieldDeclarations {
+    private record Replacement(
+        int startLine,
+        int endLine,
+        List<String> newLines) {
+    }
+
     private SplitFieldDeclarations() {
     }
 
@@ -235,11 +241,5 @@ public final class SplitFieldDeclarations {
             result.add(lines[i]);
         }
         return result.toArray(new String[0]);
-    }
-
-    private record Replacement(
-        int startLine,
-        int endLine,
-        List<String> newLines) {
     }
 }

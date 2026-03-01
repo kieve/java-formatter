@@ -20,16 +20,16 @@ import java.util.Map;
  * {@link FormatConfig#defaults()}.
  */
 public final class FormatConfigLoader {
+    private record RawConfig(
+        Integer maxLineLength,
+        List<Object> importLayout) {
+    }
+
     private static final String CONFIG_FILE_NAME = "kieve-formatter.yaml";
     private static final ObjectMapper MAPPER = new ObjectMapper(new YAMLFactory())
         .enable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
 
     private FormatConfigLoader() {
-    }
-
-    private record RawConfig(
-        Integer maxLineLength,
-        List<Object> importLayout) {
     }
 
     /**

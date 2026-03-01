@@ -29,6 +29,45 @@ import java.nio.file.StandardCopyOption;
  * {@code checkstyleTest} tasks for linting automatically.
  */
 public class JavaFormatterPlugin implements Plugin<Project> {
+    public static abstract class ExtractConfigTask extends DefaultTask {
+        private File outputDir;
+
+        public void setOutputDir(File outputDir) {
+            this.outputDir = outputDir;
+        }
+
+        @TaskAction
+        public void extract() {
+            outputDir.mkdirs();
+
+            extractResource(ECLIPSE_CONFIG_RESOURCE, outputDir);
+            extractResource(CHECKSTYLE_CONFIG_RESOURCE, outputDir);
+        }
+
+        private void extractResource(String resourcePath, File outputDir) {
+            String fileName = resourcePath.substring(
+                resourcePath.lastIndexOf('/') + 1);
+            File outputFile = new File(outputDir, fileName);
+
+            try (
+                InputStream is = JavaFormatterPlugin.class
+                    .getResourceAsStream(resourcePath)) {
+                if (is == null) {
+                    throw new GradleException(
+                        "Resource not found: " + resourcePath);
+                }
+                Files.copy(
+                    is,
+                    outputFile.toPath(),
+                    StandardCopyOption.REPLACE_EXISTING);
+            } catch (IOException e) {
+                throw new GradleException(
+                    "Failed to extract " + resourcePath,
+                    e);
+            }
+        }
+    }
+
     private static final String ECLIPSE_CONFIG_RESOURCE = "/eclipse-formatter.xml";
     private static final String CHECKSTYLE_CONFIG_RESOURCE = "/checkstyle.xml";
 
@@ -137,44 +176,5 @@ public class JavaFormatterPlugin implements Plugin<Project> {
             task.setGroup("verification");
             task.setDescription("Lint test source files");
         });
-    }
-
-    public static abstract class ExtractConfigTask extends DefaultTask {
-        private File outputDir;
-
-        public void setOutputDir(File outputDir) {
-            this.outputDir = outputDir;
-        }
-
-        @TaskAction
-        public void extract() {
-            outputDir.mkdirs();
-
-            extractResource(ECLIPSE_CONFIG_RESOURCE, outputDir);
-            extractResource(CHECKSTYLE_CONFIG_RESOURCE, outputDir);
-        }
-
-        private void extractResource(String resourcePath, File outputDir) {
-            String fileName = resourcePath.substring(
-                resourcePath.lastIndexOf('/') + 1);
-            File outputFile = new File(outputDir, fileName);
-
-            try (
-                InputStream is = JavaFormatterPlugin.class
-                    .getResourceAsStream(resourcePath)) {
-                if (is == null) {
-                    throw new GradleException(
-                        "Resource not found: " + resourcePath);
-                }
-                Files.copy(
-                    is,
-                    outputFile.toPath(),
-                    StandardCopyOption.REPLACE_EXISTING);
-            } catch (IOException e) {
-                throw new GradleException(
-                    "Failed to extract " + resourcePath,
-                    e);
-            }
-        }
     }
 }

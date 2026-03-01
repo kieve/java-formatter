@@ -21,6 +21,9 @@ import java.util.List;
  * need reordering: each pass reorders one type, then re-parses.
  */
 public final class InnerTypeOrdering {
+    private record Region(List<String> lines, boolean isType) {
+    }
+
     private InnerTypeOrdering() {
     }
 
@@ -311,8 +314,5 @@ public final class InnerTypeOrdering {
             start++;
         }
         return new ArrayList<>(lines.subList(start, lines.size()));
-    }
-
-    private record Region(List<String> lines, boolean isType) {
     }
 }

@@ -9,14 +9,6 @@ import java.util.List;
  * rules run, then restoring the original content afterward.
  */
 public final class FormatterTags {
-    private static final String OFF_TAG = "// @formatter:off";
-    private static final String ON_TAG = "// @formatter:on";
-    private static final String PLACEHOLDER_PREFIX = "// __PROTECTED_";
-    private static final String PLACEHOLDER_SUFFIX = "__";
-
-    private FormatterTags() {
-    }
-
     public record ProtectedSource(String source, List<String> protectedBlocks) {
         public String restore(String formatted) {
             String result = formatted;
@@ -27,6 +19,14 @@ public final class FormatterTags {
             }
             return result;
         }
+    }
+
+    private static final String OFF_TAG = "// @formatter:off";
+    private static final String ON_TAG = "// @formatter:on";
+    private static final String PLACEHOLDER_PREFIX = "// __PROTECTED_";
+    private static final String PLACEHOLDER_SUFFIX = "__";
+
+    private FormatterTags() {
     }
 
     public static ProtectedSource protect(String source) {
