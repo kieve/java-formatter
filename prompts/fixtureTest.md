@@ -198,7 +198,7 @@ Tests still using inline Java text blocks that should be converted to fixtures.
 - [x] `NewlinesTest`
 - [x] `OnOffTagsTest`
 - [x] `OperatorWrappingTest`
-- [ ] `ParenthesesPreservationTest`
+- [x] `ParenthesesPreservationTest`
 - [ ] `WhitespaceAngleBracketsTest`
 - [ ] `WhitespaceBracesTest`
 - [ ] `WhitespaceBracketsTest`

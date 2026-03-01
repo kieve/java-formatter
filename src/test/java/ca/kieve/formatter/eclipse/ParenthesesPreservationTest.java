@@ -2,51 +2,25 @@ package ca.kieve.formatter.eclipse;
 
 import org.junit.jupiter.api.Test;
 
+import ca.kieve.formatter.util.FormatterTestBase;
+
+import java.io.IOException;
+
 import static ca.kieve.formatter.util.DirectFormatterTestUtil.formatJava;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Tests for Eclipse JDT Formatter — Parentheses Preservation section.
  *
  * @see prompts/eclipseFormatterTestChecklist.md — "Parentheses Preservation"
  */
-class ParenthesesPreservationTest {
+class ParenthesesPreservationTest extends FormatterTestBase {
+    ParenthesesPreservationTest() {
+        super("parentheses-preservation/", s -> formatJava(s));
+    }
+
     // parentheses_preservation_mode (DO_NOT_PRESERVE_EMPTY)
     @Test
-    void parenthesesPreservationModeCollapsesEmptyParentheses() {
-        // language=Java
-        // @formatter:off
-        String input = """
-                public class FormatterTest {
-                    void method(
-                    ) {
-                    }
-
-                    void other(
-                            int a,
-                            int b
-                    ) {
-                    }
-                }
-                """;
-                // @formatter:on
-
-        // Empty parens are collapsed; non-empty parens preserve their positioning
-        // language=Java
-        // @formatter:off
-        String expected = """
-                public class FormatterTest {
-                    void method() {
-                    }
-
-                    void other(
-                        int a,
-                        int b) {
-                    }
-                }
-                """;
-                // @formatter:on
-
-        assertEquals(expected, formatJava(input));
+    void parenthesesPreservationModeCollapsesEmptyParentheses() throws IOException {
+        test("empty-parens-input.java", "empty-parens-expected.java");
     }
 }
