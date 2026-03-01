@@ -77,6 +77,18 @@ class FieldOrderingTest extends FormatterRuleTestBase {
     }
 
     @Test
+    void keepsStaticInitBlockWithField() throws IOException {
+        test(
+            "static-init-block-input.java",
+            "static-init-block-expected.java");
+    }
+
+    @Test
+    void preservesStaticInitBlockAlreadyOrdered() throws IOException {
+        test("static-init-block-unchanged.java");
+    }
+
+    @Test
     @Override
     void respectsFormatterOffTags() {
         try {

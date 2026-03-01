@@ -7,6 +7,7 @@ import com.github.javaparser.ast.body.BodyDeclaration;
 import com.github.javaparser.ast.body.EnumConstantDeclaration;
 import com.github.javaparser.ast.body.EnumDeclaration;
 import com.github.javaparser.ast.body.FieldDeclaration;
+import com.github.javaparser.ast.body.InitializerDeclaration;
 import com.github.javaparser.ast.body.TypeDeclaration;
 
 import java.util.ArrayList;
@@ -39,12 +40,12 @@ public final class FieldOrdering {
     private record Region(List<String> lines, int group) {
     }
 
-    private FieldOrdering() {
-    }
-
     private static final int MAX_PASSES = 10;
 
     private static final int NON_FIELD = -1;
+
+    private FieldOrdering() {
+    }
 
     public static String apply(String source) {
         String current = source;
@@ -102,14 +103,23 @@ public final class FieldOrdering {
             return null;
         }
 
-        // Partition into fields and non-fields
+        // Partition into fields and non-fields.
+        // Static initializer blocks that follow a field are treated as
+        // companions (they initialize the preceding field) and excluded
+        // from the non-field list so they move with their field.
         List<FieldDeclaration> fields = new ArrayList<>();
         List<BodyDeclaration<?>> nonFields = new ArrayList<>();
+        boolean lastWasFieldOrCompanion = false;
         for (BodyDeclaration<?> member : members) {
             if (member instanceof FieldDeclaration fd) {
                 fields.add(fd);
+                lastWasFieldOrCompanion = true;
+            } else if (member instanceof InitializerDeclaration id
+                && id.isStatic() && lastWasFieldOrCompanion) {
+                // Static init block attached to preceding field — skip
             } else {
                 nonFields.add(member);
+                lastWasFieldOrCompanion = false;
             }
         }
 
@@ -149,8 +159,11 @@ public final class FieldOrdering {
             Comparator.comparingInt(
                 m -> m.getBegin().map(p -> p.line).orElse(0)));
 
-        // Build regions: each member "owns" the gap above it
+        // Build regions: each member "owns" the gap above it.
+        // Static initializer blocks that follow a field get the same
+        // group as that field so they sort together.
         List<Region> regions = new ArrayList<>();
+        int lastFieldGroup = NON_FIELD;
         for (int i = 0; i < sortedMembers.size(); i++) {
             BodyDeclaration<?> member = sortedMembers.get(i);
             int regionStart;
@@ -168,6 +181,12 @@ public final class FieldOrdering {
             int group = NON_FIELD;
             if (member instanceof FieldDeclaration fd) {
                 group = computeGroup(fd);
+                lastFieldGroup = group;
+            } else if (member instanceof InitializerDeclaration id
+                && id.isStatic() && lastFieldGroup != NON_FIELD) {
+                group = lastFieldGroup;
+            } else {
+                lastFieldGroup = NON_FIELD;
             }
 
             List<String> regionLines = new ArrayList<>();

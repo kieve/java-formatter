@@ -16,6 +16,9 @@ import java.nio.file.Path;
  * and normalizing line endings.
  */
 public final class FormatterTestUtil {
+    private static final String CLASS_NAME = "FormatterTest";
+    private static final String RELATIVE_PATH = "src/main/java/" + CLASS_NAME + ".java";
+
     // @formatter:off
     private static final String BUILD_GRADLE = """
             plugins {
@@ -30,9 +33,6 @@ public final class FormatterTestUtil {
 
     private FormatterTestUtil() {
     }
-
-    private static final String CLASS_NAME = "FormatterTest";
-    private static final String RELATIVE_PATH = "src/main/java/" + CLASS_NAME + ".java";
 
     /**
      * Format a Java source string through the full formatter pipeline (Eclipse JDT + custom rules).

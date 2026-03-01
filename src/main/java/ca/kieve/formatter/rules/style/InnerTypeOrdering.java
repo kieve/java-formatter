@@ -24,10 +24,10 @@ public final class InnerTypeOrdering {
     private record Region(List<String> lines, boolean isType) {
     }
 
+    private static final int MAX_PASSES = 10;
+
     private InnerTypeOrdering() {
     }
-
-    private static final int MAX_PASSES = 10;
 
     public static String apply(String source) {
         String current = source;

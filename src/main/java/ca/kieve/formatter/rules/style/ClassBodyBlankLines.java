@@ -12,14 +12,14 @@ import java.util.regex.Pattern;
  * collapsing any blank lines that follow an opening brace or precede a closing brace.
  */
 public final class ClassBodyBlankLines {
-    private ClassBodyBlankLines() {
-    }
-
     private static final Pattern BLANK_AFTER_BRACE = Pattern.compile(
         "(\\{[^\\S\\n]*\\n)(\\s*\\n)+");
 
     private static final Pattern BLANK_BEFORE_BRACE = Pattern.compile(
         "\\n(\\s*\\n)+(\\s*})");
+
+    private ClassBodyBlankLines() {
+    }
 
     public static String apply(String source) {
         String result = BLANK_AFTER_BRACE.matcher(source).replaceAll("$1");

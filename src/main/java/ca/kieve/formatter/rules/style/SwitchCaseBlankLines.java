@@ -12,11 +12,11 @@ import java.util.regex.Pattern;
  * collapsing any blank lines that appear before a case or default label.
  */
 public final class SwitchCaseBlankLines {
-    private SwitchCaseBlankLines() {
-    }
-
     private static final Pattern BLANK_BEFORE_CASE = Pattern.compile(
         "\\n(\\s*\\n)+(\\s*(?:case\\s|default[:\\s]))");
+
+    private SwitchCaseBlankLines() {
+    }
 
     public static String apply(String source) {
         return BLANK_BEFORE_CASE.matcher(source).replaceAll("\n$2");
