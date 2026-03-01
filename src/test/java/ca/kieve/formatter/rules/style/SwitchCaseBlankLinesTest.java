@@ -4,152 +4,44 @@ import org.junit.jupiter.api.Test;
 
 import ca.kieve.formatter.step.CustomFormatterStep;
 
+import java.io.IOException;
+
+import static ca.kieve.formatter.util.FormatterTestUtil.loadFixture;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class SwitchCaseBlankLinesTest extends FormatterRuleTestBase {
-    @Test
-    void removesBlankLineBeforeCase() {
-        // language=Java
-        // @formatter:off
-        String input = """
-                switch (x) {
-                case 1:
-                    break;
-
-                case 2:
-                    break;
-                }
-                """;
-                // @formatter:on
-
-        // language=Java
-        // @formatter:off
-        String expected = """
-                switch (x) {
-                case 1:
-                    break;
-                case 2:
-                    break;
-                }
-                """;
-                // @formatter:on
-
-        assertEquals(expected, SwitchCaseBlankLines.apply(input));
+    SwitchCaseBlankLinesTest() {
+        super("switch-case-blank-lines/", SwitchCaseBlankLines::apply);
     }
 
     @Test
-    void removesBlankLineBeforeDefault() {
-        // language=Java
-        // @formatter:off
-        String input = """
-                switch (x) {
-                case 1:
-                    break;
-
-                default:
-                    break;
-                }
-                """;
-                // @formatter:on
-
-        // language=Java
-        // @formatter:off
-        String expected = """
-                switch (x) {
-                case 1:
-                    break;
-                default:
-                    break;
-                }
-                """;
-                // @formatter:on
-
-        assertEquals(expected, SwitchCaseBlankLines.apply(input));
+    void removesBlankLineBeforeCase() throws IOException {
+        test("before-case-input.java", "case-expected.java");
     }
 
     @Test
-    void removesMultipleBlankLinesBeforeCase() {
-        // language=Java
-        // @formatter:off
-        String input = """
-                switch (x) {
-                case 1:
-                    break;
-
-
-                case 2:
-                    break;
-                }
-                """;
-                // @formatter:on
-
-        // language=Java
-        // @formatter:off
-        String expected = """
-                switch (x) {
-                case 1:
-                    break;
-                case 2:
-                    break;
-                }
-                """;
-                // @formatter:on
-
-        assertEquals(expected, SwitchCaseBlankLines.apply(input));
+    void removesBlankLineBeforeDefault() throws IOException {
+        test("before-default-input.java", "before-default-expected.java");
     }
 
     @Test
-    void preservesNonSwitchBlankLines() {
-        // language=Java
-        // @formatter:off
-        String input = """
-                public class Foo {
-                    int x;
-
-                    int y;
-                }
-                """;
-                // @formatter:on
-
-        assertEquals(input, SwitchCaseBlankLines.apply(input));
+    void removesMultipleBlankLinesBeforeCase() throws IOException {
+        test("multiple-blanks-input.java", "case-expected.java");
     }
 
     @Test
-    void preservesSwitchWithNoBlankLines() {
-        // language=Java
-        // @formatter:off
-        String input = """
-                switch (x) {
-                case 1:
-                    break;
-                case 2:
-                    break;
-                default:
-                    break;
-                }
-                """;
-                // @formatter:on
+    void preservesNonSwitchBlankLines() throws IOException {
+        test("non-switch-unchanged.java");
+    }
 
-        assertEquals(input, SwitchCaseBlankLines.apply(input));
+    @Test
+    void preservesSwitchWithNoBlankLines() throws IOException {
+        test("no-blank-lines-unchanged.java");
     }
 
     @Override
-    void respectsFormatterOffTags() {
-        // language=Java
-        // @formatter:off
-        String input = """
-                // @formatter:off
-                switch (x) {
-                case 1:
-                    break;
-
-                case 2:
-                    break;
-                }
-                // @formatter:on
-                """;
-                // @formatter:on
-
+    void respectsFormatterOffTags() throws IOException {
+        String input = loadFixture("switch-case-blank-lines/formatter-off-unchanged.java");
         assertEquals(input, CustomFormatterStep.applyCustomRules(input));
     }
 }
