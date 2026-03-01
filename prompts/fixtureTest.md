@@ -162,7 +162,7 @@ Tests still using inline Java text blocks that should be converted to fixtures.
 - [x] `ClassBodyBlankLinesTest`
 - [x] `LeadingBlankLinesTest`
 - [x] `SwitchCaseBlankLinesTest`
-- [ ] `ImportSortingTest`
+- [x] `ImportSortingTest`
 
 ### Checkstyle Lint Rules (`checkstyle/`)
 
