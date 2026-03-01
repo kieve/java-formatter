@@ -199,7 +199,7 @@ Tests still using inline Java text blocks that should be converted to fixtures.
 - [x] `OnOffTagsTest`
 - [x] `OperatorWrappingTest`
 - [x] `ParenthesesPreservationTest`
-- [ ] `WhitespaceAngleBracketsTest`
+- [x] `WhitespaceAngleBracketsTest`
 - [ ] `WhitespaceBracesTest`
 - [ ] `WhitespaceBracketsTest`
 - [ ] `WhitespaceColonsSemicolonsTest`
