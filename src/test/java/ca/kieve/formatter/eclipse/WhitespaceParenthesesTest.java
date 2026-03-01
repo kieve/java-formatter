@@ -12,8 +12,8 @@ import static ca.kieve.formatter.util.DirectFormatterTestUtil.formatJava;
  * Tests for Eclipse JDT Formatter — Whitespace Parentheses sections.
  *
  * @see prompts/eclipseFormatterTestChecklist.md — "Whitespace — Parentheses (Opening)"
- * @see prompts/eclipseFormatterTestChecklist.md —
- *      "Whitespace — Parentheses (After Opening / Before Closing)"
+ * @see prompts/eclipseFormatterTestChecklist.md — "Whitespace — Parentheses (After Opening / Before
+ *      Closing)"
  */
 class WhitespaceParenthesesTest extends FormatterTestBase {
     WhitespaceParenthesesTest() {

@@ -16,7 +16,8 @@ class CommentFormattingTest extends FormatterRuleTestBase {
     CommentFormattingTest() {
         super(
             "comment-formatting-rule/",
-            s -> CommentFormatting.apply(s, CONFIG));
+            s -> CommentFormatting.apply(s, CONFIG)
+        );
     }
 
     @Test
@@ -33,42 +34,48 @@ class CommentFormattingTest extends FormatterRuleTestBase {
     void paramContinuationAlign() throws IOException {
         test(
             "param-continuation-input.java",
-            "param-continuation-expected.java");
+            "param-continuation-expected.java"
+        );
     }
 
     @Test
     void returnContinuationAlign() throws IOException {
         test(
             "return-continuation-input.java",
-            "return-continuation-expected.java");
+            "return-continuation-expected.java"
+        );
     }
 
     @Test
     void throwsContinuationAlign() throws IOException {
         test(
             "throws-continuation-input.java",
-            "throws-continuation-expected.java");
+            "throws-continuation-expected.java"
+        );
     }
 
     @Test
     void blockCommentWraps() throws IOException {
         test(
             "block-comment-wrap-input.java",
-            "block-comment-wrap-expected.java");
+            "block-comment-wrap-expected.java"
+        );
     }
 
     @Test
     void lineCommentWraps() throws IOException {
         test(
             "line-comment-wrap-input.java",
-            "line-comment-wrap-expected.java");
+            "line-comment-wrap-expected.java"
+        );
     }
 
     @Test
     void markdownDocWraps() throws IOException {
         test(
             "markdown-doc-wrap-input.java",
-            "markdown-doc-wrap-expected.java");
+            "markdown-doc-wrap-expected.java"
+        );
     }
 
     @Test
@@ -99,7 +106,8 @@ class CommentFormattingTest extends FormatterRuleTestBase {
     @Override
     void respectsFormatterOffTags() throws IOException {
         String input = loadFixture(
-            "comment-formatting-rule/formatter-off-unchanged.java");
+            "comment-formatting-rule/formatter-off-unchanged.java"
+        );
         assertEquals(input, CustomFormatterStep.applyCustomRules(input));
     }
 }

@@ -11,9 +11,9 @@ import java.util.List;
  * Multiple prefixes in one group means those imports are sub-ordered by
  * prefix list order with no blank line between them.
  *
- * @param prefixes  package prefixes to match (e.g., {@code "ca.kieve."},
- *                  {@code "javax."}). Empty list = catch-all.
- * @param isStatic  whether this group matches static or regular imports
+ * @param prefixes package prefixes to match (e.g., {@code "ca.kieve."} , {@code "javax."} ). Empty
+ *                 list = catch-all.
+ * @param isStatic whether this group matches static or regular imports
  */
 public record ImportGroup(List<String> prefixes, boolean isStatic) implements Serializable {
     public ImportGroup {

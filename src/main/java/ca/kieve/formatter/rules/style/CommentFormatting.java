@@ -20,9 +20,88 @@ import java.util.regex.Pattern;
  * alignment.
  */
 public final class CommentFormatting {
-    private static final Pattern PROTECTED_PLACEHOLDER =
-        Pattern.compile("^\\s*// __PROTECTED_\\d+__\\s*$");
+    // ── Segment types for javadoc parsing ───────────────────────────────
 
+    private sealed interface Segment {
+    }
+
+    private record DescriptionSegment(List<String> lines) implements Segment {
+    }
+
+    private static final class TagSegment implements Segment {
+        final String tagLine;
+        final String indent;
+        private final List<String> continuationLines = new ArrayList<>();
+
+        TagSegment(String tagLine, String indent) {
+            this.tagLine = tagLine;
+            this.indent = indent;
+        }
+
+        void addContinuation(String line) {
+            if (line.isEmpty()) {
+                return;
+            }
+            continuationLines.add(line);
+        }
+
+        String getFullText() {
+            StringBuilder sb = new StringBuilder(tagLine);
+            for (String cont : continuationLines) {
+                sb.append(' ').append(cont);
+            }
+            return sb.toString();
+        }
+
+        String getContinuationIndent() {
+            // @param name text → align under text
+            // @return text → align under text
+            // @throws Type text → align under text
+            String text = tagLine;
+            if (text.startsWith("@param ")) {
+                String rest = text.substring("@param ".length());
+                // Find the parameter name
+                int spaceIdx = rest.indexOf(' ');
+                if (spaceIdx >= 0) {
+                    return " ".repeat("@param ".length() + spaceIdx + 1);
+                }
+                return " ".repeat("@param ".length());
+            }
+            if (text.startsWith("@return ") || text.startsWith("@returns ")) {
+                String tag = text.startsWith("@returns ")
+                    ? "@returns "
+                    : "@return ";
+                return " ".repeat(tag.length());
+            }
+            if (text.startsWith("@throws ")
+                || text.startsWith("@exception ")) {
+                String tag = text.startsWith("@exception ")
+                    ? "@exception "
+                    : "@throws ";
+                String rest = text.substring(tag.length());
+                int spaceIdx = rest.indexOf(' ');
+                if (spaceIdx >= 0) {
+                    return " ".repeat(tag.length() + spaceIdx + 1);
+                }
+                return " ".repeat(tag.length());
+            }
+            // Other tags: just indent past @tag
+            int spaceIdx = text.indexOf(' ');
+            if (spaceIdx >= 0) {
+                return " ".repeat(spaceIdx + 1);
+            }
+            return "    ";
+        }
+    }
+
+    private static final Pattern PROTECTED_PLACEHOLDER = Pattern
+        .compile("^\\s*// __PROTECTED_\\d+__\\s*$");
+
+    private static final Pattern TAG_START_PATTERN = Pattern.compile(
+        "@(param|return|returns|throws|exception"
+            + "|see|since|version|author|deprecated|serial|serialField"
+            + "|serialData|hidden|provides|uses)\\b"
+    );
 
     private CommentFormatting() {
     }
@@ -67,7 +146,8 @@ public final class CommentFormatting {
                 inTextBlock = true;
                 result.add(line);
                 if (containsTextBlockEnd(
-                    line.substring(line.indexOf("\"\"\"") + 3))) {
+                    line.substring(line.indexOf("\"\"\"") + 3)
+                )) {
                     inTextBlock = false;
                 }
                 i++;
@@ -79,8 +159,7 @@ public final class CommentFormatting {
                 int blockStart = i;
                 if (trimmed.endsWith("*/") && !trimmed.equals("/***/")) {
                     // Single-line javadoc
-                    List<String> formatted =
-                        formatSingleLineJavadoc(line, maxLen);
+                    List<String> formatted = formatSingleLineJavadoc(line, maxLen);
                     result.addAll(formatted);
                     i++;
                 } else {
@@ -191,8 +270,7 @@ public final class CommentFormatting {
         String indent = extractIndent(line);
         String trimmed = line.trim();
         // Strip /** and */
-        String content =
-            trimmed.substring(3, trimmed.length() - 2).trim();
+        String content = trimmed.substring(3, trimmed.length() - 2).trim();
         List<String> expanded = new ArrayList<>();
         expanded.add(indent + "/**");
         expanded.add(indent + " * " + content);
@@ -240,7 +318,8 @@ public final class CommentFormatting {
                     }
                     // Split-only for description lines
                     result.addAll(
-                        splitOverlength(descLine, starPrefix, maxLen));
+                        splitOverlength(descLine, starPrefix, maxLen)
+                    );
                 }
                 continue;
             }
@@ -253,11 +332,6 @@ public final class CommentFormatting {
         result.add(indent + " */");
         return result;
     }
-
-    private static final Pattern TAG_START_PATTERN =
-        Pattern.compile("@(param|return|returns|throws|exception"
-            + "|see|since|version|author|deprecated|serial|serialField"
-            + "|serialData|hidden|provides|uses)\\b");
 
     private static List<Segment> parseJavadocSegments(
         List<String> lines,
@@ -298,8 +372,11 @@ public final class CommentFormatting {
             if (isTag) {
                 // Flush description
                 if (!currentDescLines.isEmpty()) {
-                    segments.add(new DescriptionSegment(
-                        new ArrayList<>(currentDescLines)));
+                    segments.add(
+                        new DescriptionSegment(
+                            new ArrayList<>(currentDescLines)
+                        )
+                    );
                     currentDescLines.clear();
                 }
                 // Flush previous tag
@@ -325,7 +402,8 @@ public final class CommentFormatting {
         // Flush remaining
         if (!currentDescLines.isEmpty()) {
             segments.add(
-                new DescriptionSegment(new ArrayList<>(currentDescLines)));
+                new DescriptionSegment(new ArrayList<>(currentDescLines))
+            );
         }
         if (currentTag != null) {
             segments.add(currentTag);
@@ -755,77 +833,5 @@ public final class CommentFormatting {
             }
         }
         return braceDepth > 0;
-    }
-
-    // ── Segment types for javadoc parsing ───────────────────────────────
-
-    private sealed interface Segment {
-    }
-
-    private record DescriptionSegment(List<String> lines) implements Segment {
-    }
-
-    private static final class TagSegment implements Segment {
-        final String tagLine;
-        final String indent;
-        private final List<String> continuationLines = new ArrayList<>();
-
-        TagSegment(String tagLine, String indent) {
-            this.tagLine = tagLine;
-            this.indent = indent;
-        }
-
-        void addContinuation(String line) {
-            if (line.isEmpty()) {
-                return;
-            }
-            continuationLines.add(line);
-        }
-
-        String getFullText() {
-            StringBuilder sb = new StringBuilder(tagLine);
-            for (String cont : continuationLines) {
-                sb.append(' ').append(cont);
-            }
-            return sb.toString();
-        }
-
-        String getContinuationIndent() {
-            // @param name text → align under text
-            // @return text → align under text
-            // @throws Type text → align under text
-            String text = tagLine;
-            if (text.startsWith("@param ")) {
-                String rest = text.substring("@param ".length());
-                // Find the parameter name
-                int spaceIdx = rest.indexOf(' ');
-                if (spaceIdx >= 0) {
-                    return " ".repeat("@param ".length() + spaceIdx + 1);
-                }
-                return " ".repeat("@param ".length());
-            }
-            if (text.startsWith("@return ") || text.startsWith("@returns ")) {
-                String tag = text.startsWith("@returns ")
-                    ? "@returns " : "@return ";
-                return " ".repeat(tag.length());
-            }
-            if (text.startsWith("@throws ")
-                || text.startsWith("@exception ")) {
-                String tag = text.startsWith("@exception ")
-                    ? "@exception " : "@throws ";
-                String rest = text.substring(tag.length());
-                int spaceIdx = rest.indexOf(' ');
-                if (spaceIdx >= 0) {
-                    return " ".repeat(tag.length() + spaceIdx + 1);
-                }
-                return " ".repeat(tag.length());
-            }
-            // Other tags: just indent past @tag
-            int spaceIdx = text.indexOf(' ');
-            if (spaceIdx >= 0) {
-                return " ".repeat(spaceIdx + 1);
-            }
-            return "    ";
-        }
     }
 }
