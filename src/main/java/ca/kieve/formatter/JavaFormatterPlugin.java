@@ -154,9 +154,10 @@ public class JavaFormatterPlugin implements Plugin<Project> {
         // Wire extraction to run before any spotless or checkstyle task
         project.getTasks().configureEach(task -> {
             String name = task.getName();
-            if (name.startsWith("spotless") || name.startsWith("checkstyle")) {
-                task.dependsOn(extractTask);
+            if (!name.startsWith("spotless") && !name.startsWith("checkstyle")) {
+                return;
             }
+            task.dependsOn(extractTask);
         });
 
         // Wire pre-format to run before spotless

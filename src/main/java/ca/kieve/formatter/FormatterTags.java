@@ -59,9 +59,10 @@ public final class FormatterTags {
                 output.append(line);
             }
 
-            if (!inside && i < lines.length - 1) {
-                output.append("\n");
+            if (inside || i >= lines.length - 1) {
+                continue;
             }
+            output.append("\n");
         }
 
         // Unclosed @formatter:off — protect to end of file

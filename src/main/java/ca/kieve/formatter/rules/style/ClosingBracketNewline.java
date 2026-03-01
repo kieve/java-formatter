@@ -104,9 +104,10 @@ public final class ClosingBracketNewline {
                 }
 
                 // Code character
-                if (!Character.isWhitespace(ch)) {
-                    lastCodePos = col;
+                if (Character.isWhitespace(ch)) {
+                    continue;
                 }
+                lastCodePos = col;
             }
 
             if (lastCodePos < 0) {
@@ -143,10 +144,11 @@ public final class ClosingBracketNewline {
             // Check if there's non-whitespace before the closer on its line
             boolean hasContentBefore = false;
             for (int j = 0; j < closerCol; j++) {
-                if (!Character.isWhitespace(lines[closerLine].charAt(j))) {
-                    hasContentBefore = true;
-                    break;
+                if (Character.isWhitespace(lines[closerLine].charAt(j))) {
+                    continue;
                 }
+                hasContentBefore = true;
+                break;
             }
 
             if (!hasContentBefore) {
@@ -320,11 +322,14 @@ public final class ClosingBracketNewline {
                 // Track depth
                 if (ch == opener) {
                     depth++;
-                } else if (ch == closer) {
-                    depth--;
-                    if (depth == 0) {
-                        return new int[] { lineIdx, col };
-                    }
+                    continue;
+                }
+                if (ch != closer) {
+                    continue;
+                }
+                depth--;
+                if (depth == 0) {
+                    return new int[] { lineIdx, col };
                 }
             }
         }

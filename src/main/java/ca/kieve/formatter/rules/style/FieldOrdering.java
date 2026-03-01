@@ -117,13 +117,15 @@ public final class FieldOrdering {
             if (member instanceof FieldDeclaration fd) {
                 fields.add(fd);
                 lastWasFieldOrCompanion = true;
-            } else if (member instanceof InitializerDeclaration id
+                continue;
+            }
+            if (member instanceof InitializerDeclaration id
                 && id.isStatic() && lastWasFieldOrCompanion) {
                 // Static init block attached to preceding field — skip
-            } else {
-                nonFields.add(member);
-                lastWasFieldOrCompanion = false;
+                continue;
             }
+            nonFields.add(member);
+            lastWasFieldOrCompanion = false;
         }
 
         if (fields.isEmpty()) {
@@ -208,9 +210,9 @@ public final class FieldOrdering {
         for (Region r : regions) {
             if (r.group != NON_FIELD) {
                 fieldRegions.add(r);
-            } else {
-                nonFieldRegions.add(r);
+                continue;
             }
+            nonFieldRegions.add(r);
         }
 
         // Stable-sort field regions by group number
@@ -353,9 +355,13 @@ public final class FieldOrdering {
                 }
                 if (c == '(') {
                     parenDepth++;
-                } else if (c == ')') {
+                    continue;
+                }
+                if (c == ')') {
                     parenDepth--;
-                } else if (c == '{' && parenDepth == 0) {
+                    continue;
+                }
+                if (c == '{' && parenDepth == 0) {
                     return li;
                 }
             }
@@ -400,9 +406,13 @@ public final class FieldOrdering {
                 }
                 if (c == '{') {
                     braceDepth++;
-                } else if (c == '}') {
+                    continue;
+                }
+                if (c == '}') {
                     braceDepth--;
-                } else if (c == ';' && braceDepth == 0) {
+                    continue;
+                }
+                if (c == ';' && braceDepth == 0) {
                     return li + 1;
                 }
             }

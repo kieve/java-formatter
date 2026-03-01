@@ -91,9 +91,9 @@ public final class InnerTypeOrdering {
         for (BodyDeclaration<?> member : members) {
             if (member instanceof TypeDeclaration) {
                 innerTypes.add(member);
-            } else {
-                others.add(member);
+                continue;
             }
+            others.add(member);
         }
 
         if (innerTypes.isEmpty() || others.isEmpty()) {
@@ -172,9 +172,9 @@ public final class InnerTypeOrdering {
         for (Region r : regions) {
             if (r.isType) {
                 innerRegions.add(r);
-            } else {
-                otherRegions.add(r);
+                continue;
             }
+            otherRegions.add(r);
         }
 
         // Build new body content
@@ -258,9 +258,13 @@ public final class InnerTypeOrdering {
                 }
                 if (c == '(') {
                     parenDepth++;
-                } else if (c == ')') {
+                    continue;
+                }
+                if (c == ')') {
                     parenDepth--;
-                } else if (c == '{' && parenDepth == 0) {
+                    continue;
+                }
+                if (c == '{' && parenDepth == 0) {
                     return li;
                 }
             }
@@ -305,9 +309,13 @@ public final class InnerTypeOrdering {
                 }
                 if (c == '{') {
                     braceDepth++;
-                } else if (c == '}') {
+                    continue;
+                }
+                if (c == '}') {
                     braceDepth--;
-                } else if (c == ';' && braceDepth == 0) {
+                    continue;
+                }
+                if (c == ';' && braceDepth == 0) {
                     return li + 1;
                 }
             }

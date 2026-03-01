@@ -28,12 +28,13 @@ public final class ImportSorting {
 
         for (int i = 0; i < lines.length; i++) {
             String trimmed = lines[i].trim();
-            if (trimmed.startsWith("import ")) {
-                if (importStart == -1) {
-                    importStart = i;
-                }
-                importEnd = i;
+            if (!trimmed.startsWith("import ")) {
+                continue;
             }
+            if (importStart == -1) {
+                importStart = i;
+            }
+            importEnd = i;
         }
 
         if (importStart == -1) {
@@ -44,9 +45,10 @@ public final class ImportSorting {
         List<String> imports = new ArrayList<>();
         for (int i = importStart; i <= importEnd; i++) {
             String trimmed = lines[i].trim();
-            if (trimmed.startsWith("import ")) {
-                imports.add(trimmed);
+            if (!trimmed.startsWith("import ")) {
+                continue;
             }
+            imports.add(trimmed);
         }
 
         // Deduplicate while preserving order
@@ -58,9 +60,9 @@ public final class ImportSorting {
         for (String imp : imports) {
             if (imp.startsWith("import static ")) {
                 staticImports.add(imp);
-            } else {
-                regularImports.add(imp);
+                continue;
             }
+            regularImports.add(imp);
         }
 
         // Assign imports to groups
@@ -124,10 +126,11 @@ public final class ImportSorting {
         int catchAllIndex = -1;
         for (int i = 0; i < layout.size(); i++) {
             ImportGroup group = layout.get(i);
-            if (group.isStatic() == isStatic && group.isCatchAll()) {
-                catchAllIndex = i;
-                break;
+            if (group.isStatic() != isStatic || !group.isCatchAll()) {
+                continue;
             }
+            catchAllIndex = i;
+            break;
         }
 
         for (String imp : imports) {
@@ -140,10 +143,11 @@ public final class ImportSorting {
                     continue;
                 }
                 for (String prefix : group.prefixes()) {
-                    if (packagePart.startsWith(prefix)) {
-                        matchedGroup = i;
-                        break;
+                    if (!packagePart.startsWith(prefix)) {
+                        continue;
                     }
+                    matchedGroup = i;
+                    break;
                 }
                 if (matchedGroup != -1) {
                     break;
@@ -154,9 +158,10 @@ public final class ImportSorting {
                 matchedGroup = catchAllIndex;
             }
 
-            if (matchedGroup != -1) {
-                groupedImports.get(matchedGroup).add(imp);
+            if (matchedGroup == -1) {
+                continue;
             }
+            groupedImports.get(matchedGroup).add(imp);
         }
     }
 

@@ -99,17 +99,21 @@ public final class FormatConfigLoader {
             Object entry = entries.get(i);
             if (entry instanceof String s) {
                 groups.add(parseStringEntry(s, i));
-            } else if (entry instanceof List<?> list) {
-                groups.add(parsePrefixList(list, false, i));
-            } else if (entry instanceof Map<?, ?> map) {
-                groups.add(parseMapEntry((Map<String, Object>) map, i));
-            } else {
-                throw new IllegalArgumentException(
-                    "importLayout[" + i + "]: expected a string, list, "
-                        + "or map, got: "
-                        + entry.getClass().getSimpleName()
-                );
+                continue;
             }
+            if (entry instanceof List<?> list) {
+                groups.add(parsePrefixList(list, false, i));
+                continue;
+            }
+            if (entry instanceof Map<?, ?> map) {
+                groups.add(parseMapEntry((Map<String, Object>) map, i));
+                continue;
+            }
+            throw new IllegalArgumentException(
+                "importLayout[" + i + "]: expected a string, list, "
+                    + "or map, got: "
+                    + entry.getClass().getSimpleName()
+            );
         }
         return groups;
     }
@@ -136,14 +140,14 @@ public final class FormatConfigLoader {
         for (Object item : list) {
             if (item instanceof String s) {
                 prefixes.add(s);
-            } else {
-                throw new IllegalArgumentException(
-                    "importLayout[" + index
-                        + "]: prefix list entries must be strings, "
-                        + "got: "
-                        + item.getClass().getSimpleName()
-                );
+                continue;
             }
+            throw new IllegalArgumentException(
+                "importLayout[" + index
+                    + "]: prefix list entries must be strings, "
+                    + "got: "
+                    + item.getClass().getSimpleName()
+            );
         }
         if (prefixes.isEmpty()) {
             throw new IllegalArgumentException(

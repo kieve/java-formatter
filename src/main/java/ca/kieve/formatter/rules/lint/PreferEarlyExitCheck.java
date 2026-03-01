@@ -65,9 +65,12 @@ public class PreferEarlyExitCheck extends AbstractCheck {
         DetailAST elseClause = ast.findFirstToken(TokenTypes.LITERAL_ELSE);
         if (elseClause != null) {
             log(ast, String.format(MSG_ELSE, exitKeyword));
-        } else if (!isGuardClause(ast)) {
-            log(ast, String.format(MSG_WRAP, exitKeyword));
+            return;
         }
+        if (isGuardClause(ast)) {
+            return;
+        }
+        log(ast, String.format(MSG_WRAP, exitKeyword));
     }
 
     private boolean isLastStatement(DetailAST ast, DetailAST parent) {

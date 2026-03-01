@@ -112,10 +112,11 @@ public final class ArrayInitializerWrapping {
                         && line.charAt(j + 1) == '/') {
                         break;
                     }
-                    if (!Character.isWhitespace(after)) {
-                        hasContentAfter = true;
-                        break;
+                    if (Character.isWhitespace(after)) {
+                        continue;
                     }
+                    hasContentAfter = true;
+                    break;
                 }
 
                 if (!hasContentAfter) {
@@ -281,11 +282,14 @@ public final class ArrayInitializerWrapping {
                 // Track depth
                 if (ch == '{') {
                     depth++;
-                } else if (ch == '}') {
-                    depth--;
-                    if (depth == 0) {
-                        return new int[] { lineIdx, col };
-                    }
+                    continue;
+                }
+                if (ch != '}') {
+                    continue;
+                }
+                depth--;
+                if (depth == 0) {
+                    return new int[] { lineIdx, col };
                 }
             }
         }

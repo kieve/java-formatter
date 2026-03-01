@@ -72,17 +72,18 @@ public abstract class PreFormatTask extends DefaultTask {
             }
         }
 
-        if (checkOnly && !changedFiles.isEmpty()) {
-            StringBuilder msg = new StringBuilder();
-            msg.append("The following files need pre-formatting:\n");
-            for (Path file : changedFiles) {
-                msg.append("  ")
-                    .append(projectDir.toPath().relativize(file))
-                    .append("\n");
-            }
-            msg.append("Run './gradlew format' to fix.");
-            throw new GradleException(msg.toString());
+        if (!checkOnly || changedFiles.isEmpty()) {
+            return;
         }
+        StringBuilder msg = new StringBuilder();
+        msg.append("The following files need pre-formatting:\n");
+        for (Path file : changedFiles) {
+            msg.append("  ")
+                .append(projectDir.toPath().relativize(file))
+                .append("\n");
+        }
+        msg.append("Run './gradlew format' to fix.");
+        throw new GradleException(msg.toString());
     }
 
     private static String applyPreFormatRules(String source) {

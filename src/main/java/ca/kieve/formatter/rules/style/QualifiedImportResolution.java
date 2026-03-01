@@ -79,11 +79,11 @@ public final class QualifiedImportResolution {
             }
             if (imp.isAsterisk()) {
                 wildcardPackages.add(imp.getName().asString());
-            } else {
-                String fqcn = imp.getName().asString();
-                String simple = fqcn.substring(fqcn.lastIndexOf('.') + 1);
-                existingImports.put(simple, fqcn);
+                continue;
             }
+            String fqcn = imp.getName().asString();
+            String simple = fqcn.substring(fqcn.lastIndexOf('.') + 1);
+            existingImports.put(simple, fqcn);
         }
 
         String currentPackage = cu.getPackageDeclaration()
@@ -174,15 +174,19 @@ public final class QualifiedImportResolution {
 
             if (fqcnPackage.equals("java.lang")) {
                 simplifiableNames.add(simpleName);
-            } else if (!currentPackage.isEmpty()
+                continue;
+            }
+            if (!currentPackage.isEmpty()
                 && fqcnPackage.equals(currentPackage)) {
                 simplifiableNames.add(simpleName);
-            } else if (wildcardPackages.contains(fqcnPackage)) {
-                simplifiableNames.add(simpleName);
-            } else {
-                newImports.add(fqcn);
-                simplifiableNames.add(simpleName);
+                continue;
             }
+            if (wildcardPackages.contains(fqcnPackage)) {
+                simplifiableNames.add(simpleName);
+                continue;
+            }
+            newImports.add(fqcn);
+            simplifiableNames.add(simpleName);
         }
 
         // Phase 6: Apply replacements
@@ -192,17 +196,18 @@ public final class QualifiedImportResolution {
                 continue;
             }
             Set<String> fqcns = candidates.get(occ.simpleName);
-            if (fqcns != null && fqcns.size() == 1) {
-                replacements.add(
-                    new Replacement(
-                        occ.startLine,
-                        occ.startCol,
-                        occ.endLine,
-                        occ.endCol,
-                        occ.simplifiedText
-                    )
-                );
+            if (fqcns == null || fqcns.size() != 1) {
+                continue;
             }
+            replacements.add(
+                new Replacement(
+                    occ.startLine,
+                    occ.startCol,
+                    occ.endLine,
+                    occ.endCol,
+                    occ.simplifiedText
+                )
+            );
         }
 
         if (replacements.isEmpty() && newImports.isEmpty()) {
@@ -545,10 +550,11 @@ public final class QualifiedImportResolution {
         boolean hasImports = false;
 
         for (int i = 0; i < lines.length; i++) {
-            if (lines[i].trim().startsWith("import ")) {
-                lastImportLine = i;
-                hasImports = true;
+            if (!lines[i].trim().startsWith("import ")) {
+                continue;
             }
+            lastImportLine = i;
+            hasImports = true;
         }
 
         List<String> sortedImports = new ArrayList<>(newImports);
@@ -570,18 +576,20 @@ public final class QualifiedImportResolution {
             }
             for (int i = lastImportLine + 1; i < lines.length; i++) {
                 result.append(lines[i]);
-                if (i < lines.length - 1) {
-                    result.append("\n");
+                if (i >= lines.length - 1) {
+                    continue;
                 }
+                result.append("\n");
             }
         } else {
             // No existing imports — insert after package statement
             int packageLine = -1;
             for (int i = 0; i < lines.length; i++) {
-                if (lines[i].trim().startsWith("package ")) {
-                    packageLine = i;
-                    break;
+                if (!lines[i].trim().startsWith("package ")) {
+                    continue;
                 }
+                packageLine = i;
+                break;
             }
 
             if (packageLine >= 0) {
@@ -594,9 +602,10 @@ public final class QualifiedImportResolution {
                 }
                 for (int i = packageLine + 1; i < lines.length; i++) {
                     result.append(lines[i]);
-                    if (i < lines.length - 1) {
-                        result.append("\n");
+                    if (i >= lines.length - 1) {
+                        continue;
                     }
+                    result.append("\n");
                 }
             } else {
                 // No package statement — insert at top
@@ -605,9 +614,10 @@ public final class QualifiedImportResolution {
                 }
                 for (int i = 0; i < lines.length; i++) {
                     result.append(lines[i]);
-                    if (i < lines.length - 1) {
-                        result.append("\n");
+                    if (i >= lines.length - 1) {
+                        continue;
                     }
+                    result.append("\n");
                 }
             }
         }
