@@ -2,8 +2,12 @@ package ca.kieve.formatter.eclipse;
 
 import org.junit.jupiter.api.Test;
 
+import ca.kieve.formatter.util.FormatterTestBase;
+
+import java.io.IOException;
+
 import static ca.kieve.formatter.util.DirectFormatterTestUtil.formatJava;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static ca.kieve.formatter.util.FormatterTestUtil.loadFixture;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
@@ -11,390 +15,84 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  *
  * @see prompts/eclipseFormatterTestChecklist.md — "Newlines"
  */
-class NewlinesTest {
+class NewlinesTest extends FormatterTestBase {
+    NewlinesTest() {
+        super("newlines/", s -> formatJava(s));
+    }
+
     // insert_new_line_at_end_of_file_if_missing
     @Test
-    void insertNewLineAtEndOfFileIfMissing() {
-        // language=Java — no trailing newline
-        String input = "public class FormatterTest {\n}";
-
+    void insertNewLineAtEndOfFileIfMissing() throws IOException {
+        String input = loadFixture("newlines/missing-eof-newline-input.java");
         String result = formatJava(input);
         assertTrue(result.endsWith("\n"), "Output should end with a newline");
     }
 
     // keep_else_statement_on_same_line (excluded — N/A, braces always required)
     @Test
-    void keepElseStatementOnSameLineIsNotApplicableWithBraces() {
-        // language=Java — else on its own line gets moved up
-        // @formatter:off
-        String input = """
-                public class FormatterTest {
-                    void method(boolean flag) {
-                        if (flag) {
-                            System.out.println("yes");
-                        }
-                        else {
-                            System.out.println("no");
-                        }
-                    }
-                }
-                """;
-                // @formatter:on
-
-        // language=Java
-        // @formatter:off
-        String expected = """
-                public class FormatterTest {
-                    void method(boolean flag) {
-                        if (flag) {
-                            System.out.println("yes");
-                        } else {
-                            System.out.println("no");
-                        }
-                    }
-                }
-                """;
-                // @formatter:on
-
-        assertEquals(expected, formatJava(input));
+    void keepElseStatementOnSameLineIsNotApplicableWithBraces() throws IOException {
+        test("else-on-same-line-input.java", "else-on-same-line-expected.java");
     }
 
     // keep_then_statement_on_same_line (excluded — N/A, braces always required)
     @Test
-    void keepThenStatementOnSameLineIsNotApplicableWithBraces() {
-        // language=Java — with braces, the then body is always on its own line
-        // @formatter:off
-        String input = """
-                public class FormatterTest {
-                    void method(boolean flag) {
-                        if (flag) {
-                            System.out.println("yes");
-                        }
-                    }
-                }
-                """;
-                // @formatter:on
-
-        // language=Java
-        // @formatter:off
-        String expected = """
-                public class FormatterTest {
-                    void method(boolean flag) {
-                        if (flag) {
-                            System.out.println("yes");
-                        }
-                    }
-                }
-                """;
-                // @formatter:on
-
-        assertEquals(expected, formatJava(input));
+    void keepThenStatementOnSameLineIsNotApplicableWithBraces() throws IOException {
+        test("then-with-braces-unchanged.java");
     }
 
     // insert_new_line_before_else_in_if_statement
     @Test
-    void insertNewLineBeforeElseInIfStatementDoesNotInsert() {
-        // language=Java — else on its own line gets pulled up to } else {
-        // @formatter:off
-        String input = """
-                public class FormatterTest {
-                    void method(boolean flag) {
-                        if (flag) {
-                            System.out.println("yes");
-                        }
-                        else {
-                            System.out.println("no");
-                        }
-                    }
-                }
-                """;
-                // @formatter:on
-
-        // language=Java
-        // @formatter:off
-        String expected = """
-                public class FormatterTest {
-                    void method(boolean flag) {
-                        if (flag) {
-                            System.out.println("yes");
-                        } else {
-                            System.out.println("no");
-                        }
-                    }
-                }
-                """;
-                // @formatter:on
-
-        assertEquals(expected, formatJava(input));
+    void insertNewLineBeforeElseInIfStatementDoesNotInsert() throws IOException {
+        test("else-on-same-line-input.java", "else-on-same-line-expected.java");
     }
 
     // insert_new_line_before_catch_in_try_statement
     @Test
-    void insertNewLineBeforeCatchInTryStatementDoesNotInsert() {
-        // language=Java — catch on its own line gets pulled up to } catch {
-        // @formatter:off
-        String input = """
-                public class FormatterTest {
-                    void method() {
-                        try {
-                            System.out.println("try");
-                        }
-                        catch (Exception e) {
-                            System.out.println("catch");
-                        }
-                    }
-                }
-                """;
-                // @formatter:on
-
-        // language=Java
-        // @formatter:off
-        String expected = """
-                public class FormatterTest {
-                    void method() {
-                        try {
-                            System.out.println("try");
-                        } catch (Exception e) {
-                            System.out.println("catch");
-                        }
-                    }
-                }
-                """;
-                // @formatter:on
-
-        assertEquals(expected, formatJava(input));
+    void insertNewLineBeforeCatchInTryStatementDoesNotInsert() throws IOException {
+        test("catch-on-same-line-input.java", "catch-on-same-line-expected.java");
     }
 
     // insert_new_line_before_finally_in_try_statement
     @Test
-    void insertNewLineBeforeFinallyInTryStatementDoesNotInsert() {
-        // language=Java — finally on its own line gets pulled up to } finally {
-        // @formatter:off
-        String input = """
-                public class FormatterTest {
-                    void method() {
-                        try {
-                            System.out.println("try");
-                        } catch (Exception e) {
-                            System.out.println("catch");
-                        }
-                        finally {
-                            System.out.println("finally");
-                        }
-                    }
-                }
-                """;
-                // @formatter:on
-
-        // language=Java
-        // @formatter:off
-        String expected = """
-                public class FormatterTest {
-                    void method() {
-                        try {
-                            System.out.println("try");
-                        } catch (Exception e) {
-                            System.out.println("catch");
-                        } finally {
-                            System.out.println("finally");
-                        }
-                    }
-                }
-                """;
-                // @formatter:on
-
-        assertEquals(expected, formatJava(input));
+    void insertNewLineBeforeFinallyInTryStatementDoesNotInsert() throws IOException {
+        test("finally-on-same-line-input.java", "finally-on-same-line-expected.java");
     }
 
     // insert_new_line_before_while_in_do_statement
     @Test
-    void insertNewLineBeforeWhileInDoStatementDoesNotInsert() {
-        // language=Java — while on its own line gets pulled up to } while
-        // @formatter:off
-        String input = """
-                public class FormatterTest {
-                    void method() {
-                        do {
-                            System.out.println("loop");
-                        }
-                        while (false);
-                    }
-                }
-                """;
-                // @formatter:on
-
-        // language=Java
-        // @formatter:off
-        String expected = """
-                public class FormatterTest {
-                    void method() {
-                        do {
-                            System.out.println("loop");
-                        } while (false);
-                    }
-                }
-                """;
-                // @formatter:on
-
-        assertEquals(expected, formatJava(input));
+    void insertNewLineBeforeWhileInDoStatementDoesNotInsert() throws IOException {
+        test("do-while-on-same-line-input.java", "do-while-on-same-line-expected.java");
     }
 
     // insert_new_line_after_opening_brace_in_array_initializer (removed — leave to author)
     // insert_new_line_before_closing_brace_in_array_initializer (removed — leave to author)
     @Test
-    void arrayInitializerPreservesSingleLineLayout() {
-        // language=Java — single-line layout is preserved
-        // @formatter:off
-        String input = """
-                public class FormatterTest {
-                    int[] values = { 1, 2, 3 };
-                }
-                """;
-                // @formatter:on
-
-        // language=Java
-        // @formatter:off
-        String expected = """
-                public class FormatterTest {
-                    int[] values = { 1, 2, 3 };
-                }
-                """;
-                // @formatter:on
-
-        assertEquals(expected, formatJava(input));
+    void arrayInitializerPreservesSingleLineLayout() throws IOException {
+        test("array-single-line-unchanged.java");
     }
 
     // insert_new_line_after_opening_brace_in_array_initializer (removed — leave to author)
     // insert_new_line_before_closing_brace_in_array_initializer (removed — leave to author)
     @Test
-    void arrayInitializerPreservesMultiLineLayout() {
-        // language=Java — multi-line layout is preserved
-        // @formatter:off
-        String input = """
-                public class FormatterTest {
-                    int[] values = {
-                        1, 2, 3
-                    };
-                }
-                """;
-                // @formatter:on
-
-        // language=Java
-        // @formatter:off
-        String expected = """
-                public class FormatterTest {
-                    int[] values = {
-                        1, 2, 3
-                    };
-                }
-                """;
-                // @formatter:on
-
-        assertEquals(expected, formatJava(input));
+    void arrayInitializerPreservesMultiLineLayout() throws IOException {
+        test("array-multi-line-unchanged.java");
     }
 
     // insert_new_line_after_label
     @Test
-    void insertNewLineAfterLabelInsertsNewLine() {
-        // language=Java — statement after label gets moved to its own line
-        // @formatter:off
-        String input = """
-                public class FormatterTest {
-                    void method() {
-                        outer: for (int i = 0; i < 10; i++) {
-                            break outer;
-                        }
-                    }
-                }
-                """;
-                // @formatter:on
-
-        // language=Java
-        // @formatter:off
-        String expected = """
-                public class FormatterTest {
-                    void method() {
-                        outer:
-                        for (int i = 0; i < 10; i++) {
-                            break outer;
-                        }
-                    }
-                }
-                """;
-                // @formatter:on
-
-        assertEquals(expected, formatJava(input));
+    void insertNewLineAfterLabelInsertsNewLine() throws IOException {
+        test("label-input.java", "label-expected.java");
     }
 
     // compact_else_if
     @Test
-    void compactElseIfTreatsAsOneUnit() {
-        // language=Java — split else / if gets compacted to else if
-        // @formatter:off
-        String input = """
-                public class FormatterTest {
-                    void method(int x) {
-                        if (x == 1) {
-                            System.out.println("one");
-                        }
-                        else
-                        if (x == 2) {
-                            System.out.println("two");
-                        }
-                        else {
-                            System.out.println("other");
-                        }
-                    }
-                }
-                """;
-                // @formatter:on
-
-        // language=Java
-        // @formatter:off
-        String expected = """
-                public class FormatterTest {
-                    void method(int x) {
-                        if (x == 1) {
-                            System.out.println("one");
-                        } else if (x == 2) {
-                            System.out.println("two");
-                        } else {
-                            System.out.println("other");
-                        }
-                    }
-                }
-                """;
-                // @formatter:on
-
-        assertEquals(expected, formatJava(input));
+    void compactElseIfTreatsAsOneUnit() throws IOException {
+        test("compact-else-if-input.java", "compact-else-if-expected.java");
     }
 
     // put_empty_statement_on_new_line
     @Test
-    void putEmptyStatementOnNewLineKeepsOnSameLine() {
-        // language=Java — empty statement on its own line gets pulled up
-        // @formatter:off
-        String input = """
-                public class FormatterTest {
-                    void method() {
-                        int x = 1;
-                        ;
-                    }
-                }
-                """;
-                // @formatter:on
-
-        // language=Java
-        // @formatter:off
-        String expected = """
-                public class FormatterTest {
-                    void method() {
-                        int x = 1;;
-                    }
-                }
-                """;
-                // @formatter:on
-
-        assertEquals(expected, formatJava(input));
+    void putEmptyStatementOnNewLineKeepsOnSameLine() throws IOException {
+        test("empty-statement-input.java", "empty-statement-expected.java");
     }
 }
