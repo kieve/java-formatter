@@ -190,7 +190,7 @@ Tests still using inline Java text blocks that should be converted to fixtures.
 - [x] `BracePositionsTest`
 - [x] `BlankLinesTest`
 - [x] `ColumnAlignmentTest`
-- [ ] `CommentFormattingTest`
+- [x] `CommentFormattingTest`
 - [ ] `IndentationTabsTest`
 - [ ] `KeepOnOneLineTest`
 - [ ] `LineWidthTest`

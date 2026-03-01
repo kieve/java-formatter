@@ -2,8 +2,11 @@ package ca.kieve.formatter.eclipse;
 
 import org.junit.jupiter.api.Test;
 
+import ca.kieve.formatter.util.FormatterTestBase;
+
+import java.io.IOException;
+
 import static ca.kieve.formatter.util.DirectFormatterTestUtil.formatJava;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Tests for Eclipse JDT Formatter — Comment Formatting section.
@@ -12,107 +15,38 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * comments are not reformatted) while the comment line length limit of 100 is
  * respected.
  */
-class CommentFormattingTest {
+class CommentFormattingTest extends FormatterTestBase {
+    CommentFormattingTest() {
+        super("comment-formatting/", s -> formatJava(s));
+    }
+
     // comment.format_javadoc_comments: false — Javadoc not reformatted
     @Test
-    void javadocCommentPreservesOriginalFormatting() {
-        // language=Java
-        // @formatter:off
-        String input = """
-                public class FormatterTest {
-                    /**
-                     * Configuration for the custom formatter.
-                     * All formatting rules reference this for their settings.
-                     */
-                    void method() {
-                    }
-                }
-                """;
-                // @formatter:on
-
-        assertEquals(input, formatJava(input));
+    void javadocCommentPreservesOriginalFormatting() throws IOException {
+        test("javadoc-unchanged.java");
     }
 
     // comment.format_javadoc_comments: false — multi-paragraph Javadoc preserved
     @Test
-    void javadocMultiParagraphPreservesFormatting() {
-        // language=Java
-        // @formatter:off
-        String input = """
-                public class FormatterTest {
-                    /**
-                     * First paragraph of the Javadoc.
-                     * <p>
-                     * Second paragraph with more detail.
-                     *
-                     * @param x the input value
-                     * @return the result
-                     */
-                    int method(int x) {
-                        return x;
-                    }
-                }
-                """;
-                // @formatter:on
-
-        assertEquals(input, formatJava(input));
+    void javadocMultiParagraphPreservesFormatting() throws IOException {
+        test("javadoc-multi-paragraph-unchanged.java");
     }
 
     // comment.format_block_comments: false — block comments not reformatted
     @Test
-    void blockCommentPreservesOriginalFormatting() {
-        // language=Java
-        // @formatter:off
-        String input = """
-                public class FormatterTest {
-                    /*
-                     * This is a block comment.
-                     * It has multiple lines that should not be joined or reflowed.
-                     */
-                    void method() {
-                    }
-                }
-                """;
-                // @formatter:on
-
-        assertEquals(input, formatJava(input));
+    void blockCommentPreservesOriginalFormatting() throws IOException {
+        test("block-comment-unchanged.java");
     }
 
     // comment.format_line_comments: false — line comments not reformatted
     @Test
-    void lineCommentPreservesOriginalFormatting() {
-        // language=Java
-        // @formatter:off
-        String input = """
-                public class FormatterTest {
-                    // This is a line comment that should stay exactly as written
-                    void method() {
-                    }
-                }
-                """;
-                // @formatter:on
-
-        assertEquals(input, formatJava(input));
+    void lineCommentPreservesOriginalFormatting() throws IOException {
+        test("line-comment-unchanged.java");
     }
 
     // Javadoc with short lines should not be joined together
     @Test
-    void javadocShortLinesNotJoined() {
-        // language=Java
-        // @formatter:off
-        String input = """
-                public class FormatterTest {
-                    /**
-                     * Short line one.
-                     * Short line two.
-                     * Short line three.
-                     */
-                    void method() {
-                    }
-                }
-                """;
-                // @formatter:on
-
-        assertEquals(input, formatJava(input));
+    void javadocShortLinesNotJoined() throws IOException {
+        test("javadoc-short-lines-unchanged.java");
     }
 }
