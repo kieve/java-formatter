@@ -7,6 +7,7 @@ import ca.kieve.formatter.FormatConfig;
 import ca.kieve.formatter.FormatterTags;
 import ca.kieve.formatter.FormatterTags.ProtectedSource;
 import ca.kieve.formatter.rules.style.ClassBodyBlankLines;
+import ca.kieve.formatter.rules.style.FieldOrdering;
 import ca.kieve.formatter.rules.style.ImportSorting;
 import ca.kieve.formatter.rules.style.InnerTypeOrdering;
 import ca.kieve.formatter.rules.style.LeadingBlankLines;
@@ -69,6 +70,7 @@ public final class CustomFormatterStep {
         String result = ps.source();
         result = LeadingBlankLines.apply(result);
         result = ImportSorting.apply(result, config);
+        result = FieldOrdering.apply(result);
         result = InnerTypeOrdering.apply(result);
         result = ClassBodyBlankLines.apply(result);
         result = SwitchCaseBlankLines.apply(result);
