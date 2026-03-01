@@ -66,7 +66,15 @@ trailing whitespace on blank lines:
 printf 'public class Foo {\n    \n    int x;\n}\n' > fixture.java
 ```
 
-### 3. Add constructor to wire the rule and fixture directory
+### 3. Extend the appropriate base class and wire the fixture directory
+
+Every converted test **must** extend the base class for its category. The base classes provide
+`test(input, expected)` and `test(unchanged)` helpers that load fixtures and assert results.
+
+`FormatterTestBase` (in `ca.kieve.formatter.util`) is the shared base — it takes a fixture
+directory and a `FormatterRule` (`String -> String`). Custom rule tests extend
+`FormatterRuleTestBase` (which adds the `respectsFormatterOffTags()` requirement). Eclipse
+formatter tests extend `FormatterTestBase` directly. Checkstyle tests extend `CheckstyleTestBase`.
 
 For custom formatter rules (extending `FormatterRuleTestBase`):
 ```java
@@ -80,7 +88,15 @@ For checkstyle lint rules (extending `CheckstyleTestBase`):
 ```java
 class MyCheckTest extends CheckstyleTestBase {
     MyCheckTest() {
-        super("<rule-name>/", new MyCheck());
+        super("<rule-name>/", "MyCheckName");
+    }
+```
+
+For Eclipse formatter tests (extending `FormatterTestBase` directly):
+```java
+class MyEclipseTest extends FormatterTestBase {
+    MyEclipseTest() {
+        super("<rule-name>/", s -> formatJava(s));
     }
 ```
 
@@ -171,7 +187,7 @@ Tests still using inline Java text blocks that should be converted to fixtures.
 
 ### Eclipse Formatter Tests (`eclipse/`)
 
-- [ ] `BracePositionsTest`
+- [x] `BracePositionsTest`
 - [ ] `BlankLinesTest`
 - [ ] `ColumnAlignmentTest`
 - [ ] `CommentFormattingTest`

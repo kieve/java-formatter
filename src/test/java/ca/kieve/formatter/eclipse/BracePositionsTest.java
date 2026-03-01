@@ -2,481 +2,109 @@ package ca.kieve.formatter.eclipse;
 
 import org.junit.jupiter.api.Test;
 
+import ca.kieve.formatter.util.FormatterTestBase;
+
+import java.io.IOException;
+
 import static ca.kieve.formatter.util.DirectFormatterTestUtil.formatJava;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Tests for Eclipse JDT Formatter — Brace Positions section.
  *
  * @see prompts/eclipseFormatterTestChecklist.md — "Brace Positions"
  */
-class BracePositionsTest {
+class BracePositionsTest extends FormatterTestBase {
+    BracePositionsTest() {
+        super("brace-positions/", s -> formatJava(s));
+    }
+
     // brace_position_for_type_declaration
     @Test
-    void bracePositionForTypeDeclarationIsEndOfLine() {
-        // language=Java
-        // @formatter:off
-        String input = """
-                public class FormatterTest
-                {
-                    int field;
-                }
-                """;
-                // @formatter:on
-
-        // language=Java
-        // @formatter:off
-        String expected = """
-                public class FormatterTest {
-                    int field;
-                }
-                """;
-                // @formatter:on
-
-        assertEquals(expected, formatJava(input));
+    void bracePositionForTypeDeclarationIsEndOfLine() throws IOException {
+        test("type-declaration-input.java", "type-declaration-expected.java");
     }
 
     // brace_position_for_method_declaration
     @Test
-    void bracePositionForMethodDeclarationIsEndOfLine() {
-        // language=Java
-        // @formatter:off
-        String input = """
-                public class FormatterTest {
-                    void method()
-                    {
-                        System.out.println("hello");
-                    }
-                }
-                """;
-                // @formatter:on
-
-        // language=Java
-        // @formatter:off
-        String expected = """
-                public class FormatterTest {
-                    void method() {
-                        System.out.println("hello");
-                    }
-                }
-                """;
-                // @formatter:on
-
-        assertEquals(expected, formatJava(input));
+    void bracePositionForMethodDeclarationIsEndOfLine() throws IOException {
+        test("method-declaration-input.java", "method-declaration-expected.java");
     }
 
     // brace_position_for_constructor_declaration
     @Test
-    void bracePositionForConstructorDeclarationIsEndOfLine() {
-        // language=Java
-        // @formatter:off
-        String input = """
-                public class FormatterTest
-                {
-                    public FormatterTest()
-                    {
-                        System.out.println("constructed");
-                    }
-                }
-                """;
-                // @formatter:on
-
-        // language=Java
-        // @formatter:off
-        String expected = """
-                public class FormatterTest {
-                    public FormatterTest() {
-                        System.out.println("constructed");
-                    }
-                }
-                """;
-                // @formatter:on
-
-        assertEquals(expected, formatJava(input));
+    void bracePositionForConstructorDeclarationIsEndOfLine() throws IOException {
+        test("constructor-declaration-input.java", "constructor-declaration-expected.java");
     }
 
     // brace_position_for_block
     @Test
-    void bracePositionForBlockIsEndOfLine() {
-        // language=Java
-        // @formatter:off
-        String input = """
-                public class FormatterTest {
-                    void method() {
-                        if (true)
-                        {
-                            System.out.println("hello");
-                        }
-                    }
-                }
-                """;
-                // @formatter:on
-
-        // language=Java
-        // @formatter:off
-        String expected = """
-                public class FormatterTest {
-                    void method() {
-                        if (true) {
-                            System.out.println("hello");
-                        }
-                    }
-                }
-                """;
-                // @formatter:on
-
-        assertEquals(expected, formatJava(input));
+    void bracePositionForBlockIsEndOfLine() throws IOException {
+        test("block-input.java", "block-expected.java");
     }
 
     // brace_position_for_switch
     @Test
-    void bracePositionForSwitchIsEndOfLine() {
-        // language=Java
-        // @formatter:off
-        String input = """
-                public class FormatterTest {
-                    void method(int x) {
-                        switch (x)
-                        {
-                        case 1:
-                            break;
-                        }
-                    }
-                }
-                """;
-                // @formatter:on
-
-        // language=Java
-        // @formatter:off
-        String expected = """
-                public class FormatterTest {
-                    void method(int x) {
-                        switch (x) {
-                        case 1:
-                            break;
-                        }
-                    }
-                }
-                """;
-                // @formatter:on
-
-        assertEquals(expected, formatJava(input));
+    void bracePositionForSwitchIsEndOfLine() throws IOException {
+        test("switch-input.java", "switch-expected.java");
     }
 
     // brace_position_for_anonymous_type_declaration
     @Test
-    void bracePositionForAnonymousTypeDeclarationIsEndOfLine() {
-        // language=Java
-        // @formatter:off
-        String input = """
-                public class FormatterTest {
-                    Runnable r = new Runnable()
-                    {
-                        public void run()
-                        {
-                        }
-                    };
-                }
-                """;
-                // @formatter:on
-
-        // language=Java
-        // @formatter:off
-        String expected = """
-                public class FormatterTest {
-                    Runnable r = new Runnable() {
-                        public void run() {
-                        }
-                    };
-                }
-                """;
-                // @formatter:on
-
-        assertEquals(expected, formatJava(input));
+    void bracePositionForAnonymousTypeDeclarationIsEndOfLine() throws IOException {
+        test("anonymous-type-input.java", "anonymous-type-expected.java");
     }
 
     // brace_position_for_array_initializer
     @Test
-    void bracePositionForArrayInitializerIsEndOfLine() {
-        // language=Java
-        // @formatter:off
-        String input = """
-                public class FormatterTest {
-                    int[] values = new int[]
-                    { 1, 2, 3 };
-                }
-                """;
-                // @formatter:on
-
-        // language=Java
-        // @formatter:off
-        String expected = """
-                public class FormatterTest {
-                    int[] values = new int[] { 1, 2, 3 };
-                }
-                """;
-                // @formatter:on
-
-        assertEquals(expected, formatJava(input));
+    void bracePositionForArrayInitializerIsEndOfLine() throws IOException {
+        test("array-initializer-input.java", "array-initializer-expected.java");
     }
 
     // brace_position_for_enum_declaration
     @Test
-    void bracePositionForEnumDeclarationIsEndOfLine() {
-        // language=Java
-        // @formatter:off
-        String input = """
-                public enum FormatterTest
-                {
-                    VALUE_ONE,
-                    VALUE_TWO
-                }
-                """;
-                // @formatter:on
-
-        // language=Java
-        // @formatter:off
-        String expected = """
-                public enum FormatterTest {
-                    VALUE_ONE,
-                    VALUE_TWO
-                }
-                """;
-                // @formatter:on
-
-        assertEquals(expected, formatJava(input));
+    void bracePositionForEnumDeclarationIsEndOfLine() throws IOException {
+        test("enum-declaration-input.java", "enum-declaration-expected.java");
     }
 
     // brace_position_for_enum_constant
     @Test
-    void bracePositionForEnumConstantIsEndOfLine() {
-        // language=Java
-        // @formatter:off
-        String input = """
-                public enum FormatterTest {
-                    VALUE_ONE
-                    {
-                        public String toString() {
-                            return "one";
-                        }
-                    };
-                }
-                """;
-                // @formatter:on
-
-        // language=Java
-        // @formatter:off
-        String expected = """
-                public enum FormatterTest {
-                    VALUE_ONE {
-                        public String toString() {
-                            return "one";
-                        }
-                    };
-                }
-                """;
-                // @formatter:on
-
-        assertEquals(expected, formatJava(input));
+    void bracePositionForEnumConstantIsEndOfLine() throws IOException {
+        test("enum-constant-input.java", "enum-constant-expected.java");
     }
 
     // brace_position_for_annotation_type_declaration
     @Test
-    void bracePositionForAnnotationTypeDeclarationIsEndOfLine() {
-        // language=Java
-        // @formatter:off
-        String input = """
-                public @interface FormatterTest
-                {
-                    String value();
-                }
-                """;
-                // @formatter:on
-
-        // language=Java
-        // @formatter:off
-        String expected = """
-                public @interface FormatterTest {
-                    String value();
-                }
-                """;
-                // @formatter:on
-
-        assertEquals(expected, formatJava(input));
+    void bracePositionForAnnotationTypeDeclarationIsEndOfLine() throws IOException {
+        test("annotation-type-input.java", "annotation-type-expected.java");
     }
 
     // brace_position_for_record_declaration
     @Test
-    void bracePositionForRecordDeclarationIsEndOfLine() {
-        // language=Java
-        // @formatter:off
-        String input = """
-                public record FormatterTest(int x, int y)
-                {
-                    public int sum() {
-                        return x + y;
-                    }
-                }
-                """;
-                // @formatter:on
-
-        // language=Java
-        // @formatter:off
-        String expected = """
-                public record FormatterTest(int x, int y) {
-                    public int sum() {
-                        return x + y;
-                    }
-                }
-                """;
-                // @formatter:on
-
-        assertEquals(expected, formatJava(input));
+    void bracePositionForRecordDeclarationIsEndOfLine() throws IOException {
+        test("record-declaration-input.java", "record-declaration-expected.java");
     }
 
     // brace_position_for_record_constructor
     @Test
-    void bracePositionForRecordConstructorIsEndOfLine() {
-        // language=Java
-        // @formatter:off
-        String input = """
-                public record FormatterTest(int x, int y)
-                {
-                    public FormatterTest
-                    {
-                        if (x < 0) {
-                            throw new IllegalArgumentException();
-                        }
-                    }
-                }
-                """;
-                // @formatter:on
-
-        // language=Java
-        // @formatter:off
-        String expected = """
-                public record FormatterTest(int x, int y) {
-                    public FormatterTest {
-                        if (x < 0) {
-                            throw new IllegalArgumentException();
-                        }
-                    }
-                }
-                """;
-                // @formatter:on
-
-        assertEquals(expected, formatJava(input));
+    void bracePositionForRecordConstructorIsEndOfLine() throws IOException {
+        test("record-constructor-input.java", "record-constructor-expected.java");
     }
 
     // brace_position_for_lambda_body
     @Test
-    void bracePositionForLambdaBodyIsEndOfLine() {
-        // language=Java
-        // @formatter:off
-        String input = """
-                public class FormatterTest {
-                    Runnable r = () ->
-                    {
-                        System.out.println("hello");
-                    };
-                }
-                """;
-                // @formatter:on
-
-        // language=Java
-        // @formatter:off
-        String expected = """
-                public class FormatterTest {
-                    Runnable r = () -> {
-                        System.out.println("hello");
-                    };
-                }
-                """;
-                // @formatter:on
-
-        assertEquals(expected, formatJava(input));
+    void bracePositionForLambdaBodyIsEndOfLine() throws IOException {
+        test("lambda-body-input.java", "lambda-body-expected.java");
     }
 
     // brace_position_for_block_in_case
     @Test
-    void bracePositionForBlockInCaseIsEndOfLine() {
-        // language=Java
-        // @formatter:off
-        String input = """
-                public class FormatterTest {
-                    void method(int x) {
-                        switch (x) {
-                        case 1:
-                        {
-                            System.out.println("one");
-                            break;
-                        }
-                        }
-                    }
-                }
-                """;
-                // @formatter:on
-
-        // language=Java
-        // @formatter:off
-        String expected = """
-                public class FormatterTest {
-                    void method(int x) {
-                        switch (x) {
-                        case 1: {
-                            System.out.println("one");
-                            break;
-                        }
-                        }
-                    }
-                }
-                """;
-                // @formatter:on
-
-        assertEquals(expected, formatJava(input));
+    void bracePositionForBlockInCaseIsEndOfLine() throws IOException {
+        test("block-in-case-input.java", "block-in-case-expected.java");
     }
 
     // brace_position_for_block_in_case_after_arrow
     @Test
-    void bracePositionForBlockInCaseAfterArrowIsEndOfLine() {
-        // language=Java
-        // @formatter:off
-        String input = """
-                public class FormatterTest {
-                    void method(int x) {
-                        switch (x) {
-                        case 1 ->
-                        {
-                            System.out.println("one");
-                        }
-                        default ->
-                        {
-                            System.out.println("other");
-                        }
-                        }
-                    }
-                }
-                """;
-                // @formatter:on
-
-        // language=Java
-        // @formatter:off
-        String expected = """
-                public class FormatterTest {
-                    void method(int x) {
-                        switch (x) {
-                        case 1 -> {
-                            System.out.println("one");
-                        }
-                        default -> {
-                            System.out.println("other");
-                        }
-                        }
-                    }
-                }
-                """;
-                // @formatter:on
-
-        assertEquals(expected, formatJava(input));
+    void bracePositionForBlockInCaseAfterArrowIsEndOfLine() throws IOException {
+        test("block-in-case-arrow-input.java", "block-in-case-arrow-expected.java");
     }
 }
