@@ -1,26 +1,5 @@
 Styles to enforce:
 ---
-We need a complete custom formatter for array initializers
-
-3. alignment_for_expressions_in_array_initializer
-
-  Controls how array initializer elements wrap. Currently set to 16 in YAML.
-
-  // 16 — wrap where necessary (current)
-  int[] values = {1, 2, 3, 4, 5, 6, 7, 8, 9,
-          10, 11, 12};
-
-  // 80 — wrap next per line
-  int[] values = {
-          1, 2, 3, 4, 5, 6, 7, 8, 9,
-          10, 11, 12};
-
-  // 48 — wrap all elements (one per line)
-  int[] values = {1,
-          2,
-          3,
-
----
 Custom comment / doc comment formatter. Eclipse JDT's comment formatting is disabled via
 `comment.format_javadoc_comments: false`, `comment.format_block_comments: false`, and
 `comment.format_line_comments: false` in the Eclipse config. `comment.line_length` is set to 100
