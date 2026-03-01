@@ -167,7 +167,7 @@ Tests still using inline Java text blocks that should be converted to fixtures.
 ### Checkstyle Lint Rules (`checkstyle/`)
 
 - [x] `AvoidStarImportTest`
-- [ ] `AvoidNestedTernaryTest`
+- [x] `AvoidNestedTernaryTest`
 
 ### Eclipse Formatter Tests (`eclipse/`)
 
