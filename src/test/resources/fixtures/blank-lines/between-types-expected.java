@@ -1,0 +1,5 @@
+class FormatterTest {
+}
+
+class AnotherClass {
+}

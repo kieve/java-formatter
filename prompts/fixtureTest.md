@@ -188,7 +188,7 @@ Tests still using inline Java text blocks that should be converted to fixtures.
 ### Eclipse Formatter Tests (`eclipse/`)
 
 - [x] `BracePositionsTest`
-- [ ] `BlankLinesTest`
+- [x] `BlankLinesTest`
 - [ ] `ColumnAlignmentTest`
 - [ ] `CommentFormattingTest`
 - [ ] `IndentationTabsTest`
