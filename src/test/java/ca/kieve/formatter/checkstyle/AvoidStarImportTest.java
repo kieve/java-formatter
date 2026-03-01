@@ -2,91 +2,41 @@ package ca.kieve.formatter.checkstyle;
 
 import org.junit.jupiter.api.Test;
 
-import ca.kieve.formatter.util.CheckstyleTestUtil;
 import ca.kieve.formatter.util.CheckstyleTestUtil.Violation;
 
+import java.io.IOException;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Tests for the bundled Checkstyle configuration — AvoidStarImport rule.
  */
-class AvoidStarImportTest {
+class AvoidStarImportTest extends CheckstyleTestBase {
+    AvoidStarImportTest() {
+        super("avoid-star-import/", "AvoidStarImportCheck");
+    }
+
     @Test
-    void detectsWildcardImport() {
-        // language=Java
-        // @formatter:off
-		String input = """
-				package com.example;
-
-				import java.util.*;
-
-				public class Foo {
-				}
-				""";
-		// @formatter:on
-
-        List<Violation> violations = CheckstyleTestUtil.lint(input);
+    void detectsWildcardImport() throws IOException {
+        List<Violation> violations = lint("wildcard-import.java");
         assertEquals(1, violations.size());
         assertEquals("AvoidStarImportCheck", violations.get(0).checkName());
         assertEquals(3, violations.get(0).line());
     }
 
     @Test
-    void detectsStaticWildcardImport() {
-        // language=Java
-        // @formatter:off
-		String input = """
-				package com.example;
-
-				import static org.junit.jupiter.api.Assertions.*;
-
-				public class Foo {
-				}
-				""";
-		// @formatter:on
-
-        List<Violation> violations = CheckstyleTestUtil.lint(input);
-        assertEquals(1, violations.size());
-        assertEquals("AvoidStarImportCheck", violations.get(0).checkName());
+    void detectsStaticWildcardImport() throws IOException {
+        assertViolation("static-wildcard-import.java");
     }
 
     @Test
-    void acceptsExplicitImport() {
-        // language=Java
-        // @formatter:off
-		String input = """
-				package com.example;
-
-				import java.util.List;
-
-				public class Foo {
-				}
-				""";
-		// @formatter:on
-
-        List<Violation> violations = CheckstyleTestUtil.lint(input);
-        assertTrue(violations.isEmpty());
+    void acceptsExplicitImport() throws IOException {
+        assertClean("explicit-import-clean.java");
     }
 
     @Test
-    void detectsMultipleWildcardImports() {
-        // language=Java
-        // @formatter:off
-		String input = """
-				package com.example;
-
-				import java.util.*;
-				import java.io.*;
-
-				public class Foo {
-				}
-				""";
-		// @formatter:on
-
-        List<Violation> violations = CheckstyleTestUtil.lint(input);
-        assertEquals(2, violations.size());
+    void detectsMultipleWildcardImports() throws IOException {
+        assertViolations("multiple-wildcards.java", 2);
     }
 }
