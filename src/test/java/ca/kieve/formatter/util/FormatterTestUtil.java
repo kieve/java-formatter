@@ -59,7 +59,8 @@ public final class FormatterTestUtil {
             .build();
 
         return normalizeLineEndings(
-            Files.readString(testProjectDir.resolve(RELATIVE_PATH)));
+            Files.readString(testProjectDir.resolve(RELATIVE_PATH))
+        );
     }
 
     /**

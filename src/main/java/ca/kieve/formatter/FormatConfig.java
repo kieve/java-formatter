@@ -14,7 +14,8 @@ public final class FormatConfig implements Serializable {
         ImportGroup.catchAll(),
         ImportGroup.of("ca.kieve."),
         ImportGroup.of("javax.", "java."),
-        ImportGroup.staticCatchAll());
+        ImportGroup.staticCatchAll()
+    );
 
     private final int maxLineLength;
     private final List<ImportGroup> importLayout;
@@ -25,7 +26,8 @@ public final class FormatConfig implements Serializable {
 
     public FormatConfig(
         int maxLineLength,
-        List<ImportGroup> importLayout) {
+        List<ImportGroup> importLayout
+    ) {
         this.maxLineLength = maxLineLength;
         this.importLayout = List.copyOf(importLayout);
     }

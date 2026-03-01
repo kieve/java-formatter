@@ -39,7 +39,9 @@ public final class DirectFormatterTestUtil {
     private static final ThreadLocal<CodeFormatter> CODE_FORMATTER = ThreadLocal.withInitial(
         () -> ToolFactory.createCodeFormatter(
             FORMATTER_OPTIONS,
-            ToolFactory.M_FORMAT_EXISTING));
+            ToolFactory.M_FORMAT_EXISTING
+        )
+    );
 
     private DirectFormatterTestUtil() {
     }
@@ -64,7 +66,8 @@ public final class DirectFormatterTestUtil {
                 0,
                 source.length(),
                 0,
-                "\n");
+                "\n"
+            );
             if (edit != null) {
                 Document document = new Document(source);
                 edit.apply(document);
@@ -83,11 +86,13 @@ public final class DirectFormatterTestUtil {
     private static Map<String, String> loadFormatterOptions() {
         try (
             InputStream is = DirectFormatterTestUtil.class
-                .getResourceAsStream("/eclipse-formatter.xml")) {
+                .getResourceAsStream("/eclipse-formatter.xml")
+        ) {
             if (is == null) {
                 throw new IllegalStateException(
                     "eclipse-formatter.xml not found on classpath. "
-                        + "Run ./gradlew generateEclipseConfig first.");
+                        + "Run ./gradlew generateEclipseConfig first."
+                );
             }
 
             var factory = DocumentBuilderFactory.newInstance();

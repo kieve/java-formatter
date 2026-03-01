@@ -46,24 +46,29 @@ public class JavaFormatterPlugin implements Plugin<Project> {
 
         private void extractResource(String resourcePath, File outputDir) {
             String fileName = resourcePath.substring(
-                resourcePath.lastIndexOf('/') + 1);
+                resourcePath.lastIndexOf('/') + 1
+            );
             File outputFile = new File(outputDir, fileName);
 
             try (
                 InputStream is = JavaFormatterPlugin.class
-                    .getResourceAsStream(resourcePath)) {
+                    .getResourceAsStream(resourcePath)
+            ) {
                 if (is == null) {
                     throw new GradleException(
-                        "Resource not found: " + resourcePath);
+                        "Resource not found: " + resourcePath
+                    );
                 }
                 Files.copy(
                     is,
                     outputFile.toPath(),
-                    StandardCopyOption.REPLACE_EXISTING);
+                    StandardCopyOption.REPLACE_EXISTING
+                );
             } catch (IOException e) {
                 throw new GradleException(
                     "Failed to extract " + resourcePath,
-                    e);
+                    e
+                );
             }
         }
     }
@@ -82,7 +87,8 @@ public class JavaFormatterPlugin implements Plugin<Project> {
             .register("extractFormatterConfig", ExtractConfigTask.class, task -> {
                 task.setGroup("formatting");
                 task.setDescription(
-                    "Extract formatter and linter config files from the plugin JAR");
+                    "Extract formatter and linter config files from the plugin JAR"
+                );
                 task.setOutputDir(outputDir);
             });
 
@@ -92,7 +98,8 @@ public class JavaFormatterPlugin implements Plugin<Project> {
             .getByType(SpotlessExtension.class);
 
         FormatConfig config = FormatConfigLoader.loadFromDirectory(
-            project.getProjectDir());
+            project.getProjectDir()
+        );
 
         spotless.java(java -> {
             java.target("src/*/java/**/*.java");
@@ -111,15 +118,19 @@ public class JavaFormatterPlugin implements Plugin<Project> {
         try {
             File pluginClasses = new File(
                 JavaFormatterPlugin.class.getProtectionDomain()
-                    .getCodeSource().getLocation().toURI());
+                    .getCodeSource().getLocation().toURI()
+            );
             project.getTasks().withType(Checkstyle.class).configureEach(
                 task -> task.setCheckstyleClasspath(
                     task.getCheckstyleClasspath()
-                        .plus(project.files(pluginClasses))));
+                        .plus(project.files(pluginClasses))
+                )
+            );
         } catch (URISyntaxException e) {
             throw new GradleException(
                 "Failed to locate plugin classes for Checkstyle classpath",
-                e);
+                e
+            );
         }
 
         // Register pre-format tasks
@@ -127,14 +138,16 @@ public class JavaFormatterPlugin implements Plugin<Project> {
             .register("preFormat", PreFormatTask.class, task -> {
                 task.setGroup("formatting");
                 task.setDescription(
-                    "Apply pre-format rules to Java source files");
+                    "Apply pre-format rules to Java source files"
+                );
                 task.setCheckOnly(false);
             });
         TaskProvider<PreFormatTask> preFormatCheck = project.getTasks()
             .register("preFormatCheck", PreFormatTask.class, task -> {
                 task.setGroup("formatting");
                 task.setDescription(
-                    "Check pre-format rules (fails if files need changes)");
+                    "Check pre-format rules (fails if files need changes)"
+                );
                 task.setCheckOnly(true);
             });
 
@@ -150,10 +163,12 @@ public class JavaFormatterPlugin implements Plugin<Project> {
         project.afterEvaluate(p -> {
             p.getTasks().named(
                 "spotlessApply",
-                task -> task.dependsOn(preFormat));
+                task -> task.dependsOn(preFormat)
+            );
             p.getTasks().named(
                 "spotlessCheck",
-                task -> task.dependsOn(preFormatCheck));
+                task -> task.dependsOn(preFormatCheck)
+            );
         });
 
         project.getTasks().register("format", task -> {

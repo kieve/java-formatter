@@ -13,7 +13,8 @@ import java.util.regex.Pattern;
  */
 public final class SwitchCaseBlankLines {
     private static final Pattern BLANK_BEFORE_CASE = Pattern.compile(
-        "\\n(\\s*\\n)+(\\s*(?:case\\s|default[:\\s]))");
+        "\\n(\\s*\\n)+(\\s*(?:case\\s|default[:\\s]))"
+    );
 
     private SwitchCaseBlankLines() {
     }

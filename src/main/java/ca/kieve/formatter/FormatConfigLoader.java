@@ -22,7 +22,8 @@ import java.util.Map;
 public final class FormatConfigLoader {
     private record RawConfig(
         Integer maxLineLength,
-        List<Object> importLayout) {
+        List<Object> importLayout
+    ) {
     }
 
     private static final String CONFIG_FILE_NAME = "kieve-formatter.yaml";
@@ -44,7 +45,8 @@ public final class FormatConfigLoader {
         } catch (IOException e) {
             throw new IllegalArgumentException(
                 "Failed to read config file: " + yamlFile,
-                e);
+                e
+            );
         }
     }
 
@@ -62,7 +64,8 @@ public final class FormatConfigLoader {
         } catch (IOException e) {
             throw new IllegalArgumentException(
                 "Failed to parse config YAML: " + e.getMessage(),
-                e);
+                e
+            );
         }
     }
 
@@ -104,7 +107,8 @@ public final class FormatConfigLoader {
                 throw new IllegalArgumentException(
                     "importLayout[" + i + "]: expected a string, list, "
                         + "or map, got: "
-                        + entry.getClass().getSimpleName());
+                        + entry.getClass().getSimpleName()
+                );
             }
         }
         return groups;
@@ -118,14 +122,16 @@ public final class FormatConfigLoader {
             throw new IllegalArgumentException(
                 "importLayout[" + index + "]: unknown string entry '"
                     + value + "'. Expected 'catch-all' or "
-                    + "'static-catch-all'.");
+                    + "'static-catch-all'."
+            );
         };
     }
 
     private static ImportGroup parsePrefixList(
         List<?> list,
         boolean isStatic,
-        int index) {
+        int index
+    ) {
         List<String> prefixes = new ArrayList<>();
         for (Object item : list) {
             if (item instanceof String s) {
@@ -135,25 +141,29 @@ public final class FormatConfigLoader {
                     "importLayout[" + index
                         + "]: prefix list entries must be strings, "
                         + "got: "
-                        + item.getClass().getSimpleName());
+                        + item.getClass().getSimpleName()
+                );
             }
         }
         if (prefixes.isEmpty()) {
             throw new IllegalArgumentException(
                 "importLayout[" + index
-                    + "]: prefix list must not be empty");
+                    + "]: prefix list must not be empty"
+            );
         }
         return new ImportGroup(prefixes, isStatic);
     }
 
     private static ImportGroup parseMapEntry(
         Map<String, Object> map,
-        int index) {
+        int index
+    ) {
         if (map.size() != 1 || !map.containsKey("static")) {
             throw new IllegalArgumentException(
                 "importLayout[" + index
                     + "]: map entry must have exactly one key "
-                    + "'static', got keys: " + map.keySet());
+                    + "'static', got keys: " + map.keySet()
+            );
         }
         Object val = map.get("static");
         if (val instanceof List<?> list) {
@@ -162,6 +172,7 @@ public final class FormatConfigLoader {
         throw new IllegalArgumentException(
             "importLayout[" + index
                 + "]: 'static' value must be a list of prefixes, "
-                + "got: " + val.getClass().getSimpleName());
+                + "got: " + val.getClass().getSimpleName()
+        );
     }
 }

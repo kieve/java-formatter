@@ -18,35 +18,40 @@ class FieldOrderingTest extends FormatterRuleTestBase {
     void sortsStaticBeforeInstance() throws IOException {
         test(
             "static-before-instance-input.java",
-            "static-before-instance-expected.java");
+            "static-before-instance-expected.java"
+        );
     }
 
     @Test
     void sortsPublicBeforeNonPublic() throws IOException {
         test(
             "public-before-nonpublic-input.java",
-            "public-before-nonpublic-expected.java");
+            "public-before-nonpublic-expected.java"
+        );
     }
 
     @Test
     void sortsFinalBeforeNonFinal() throws IOException {
         test(
             "final-before-nonfinal-input.java",
-            "final-before-nonfinal-expected.java");
+            "final-before-nonfinal-expected.java"
+        );
     }
 
     @Test
     void sortsFullGroupOrdering() throws IOException {
         test(
             "full-group-ordering-input.java",
-            "full-group-ordering-expected.java");
+            "full-group-ordering-expected.java"
+        );
     }
 
     @Test
     void movesFieldsBeforeConstructor() throws IOException {
         test(
             "fields-before-constructor-input.java",
-            "fields-before-constructor-expected.java");
+            "fields-before-constructor-expected.java"
+        );
     }
 
     @Test
@@ -63,7 +68,8 @@ class FieldOrderingTest extends FormatterRuleTestBase {
     void handlesEnumWithConstants() throws IOException {
         test(
             "enum-with-constants-input.java",
-            "enum-with-constants-expected.java");
+            "enum-with-constants-expected.java"
+        );
     }
 
     @Test
@@ -80,7 +86,8 @@ class FieldOrderingTest extends FormatterRuleTestBase {
     void keepsStaticInitBlockWithField() throws IOException {
         test(
             "static-init-block-input.java",
-            "static-init-block-expected.java");
+            "static-init-block-expected.java"
+        );
     }
 
     @Test

@@ -117,7 +117,8 @@ class IndentationTabsTest extends FormatterTestBase {
         String result = formatJava(input);
         assertFalse(
             result.contains("\t"),
-            "Output should contain no tab characters with space indentation");
+            "Output should contain no tab characters with space indentation"
+        );
     }
 
     // tabulation.size

@@ -15,7 +15,8 @@ public final class FormatterTags {
             for (int i = 0; i < protectedBlocks.size(); i++) {
                 result = result.replace(
                     PLACEHOLDER_PREFIX + i + PLACEHOLDER_SUFFIX,
-                    protectedBlocks.get(i));
+                    protectedBlocks.get(i)
+                );
             }
             return result;
         }

@@ -127,7 +127,12 @@ public final class ClosingBracketNewline {
 
             char closer = closerFor(lastChar);
             int[] closerPos = findMatchingCloser(
-                lines, lineIdx, lastCodePos, lastChar, closer);
+                lines,
+                lineIdx,
+                lastCodePos,
+                lastChar,
+                closer
+            );
             if (closerPos == null) {
                 continue;
             }
@@ -148,8 +153,13 @@ public final class ClosingBracketNewline {
                 continue;
             }
 
-            splits.add(new Split(
-                closerLine, closerCol, extractIndent(lines[lineIdx])));
+            splits.add(
+                new Split(
+                    closerLine,
+                    closerCol,
+                    extractIndent(lines[lineIdx])
+                )
+            );
         }
 
         if (splits.isEmpty()) {
@@ -168,10 +178,8 @@ public final class ClosingBracketNewline {
         List<String> result = new ArrayList<>(Arrays.asList(lines));
         for (Split split : splits) {
             String originalLine = result.get(split.line);
-            String before =
-                originalLine.substring(0, split.col).stripTrailing();
-            String after =
-                split.indent + originalLine.substring(split.col);
+            String before = originalLine.substring(0, split.col).stripTrailing();
+            String after = split.indent + originalLine.substring(split.col);
             result.set(split.line, after);
             result.add(split.line, before);
         }
@@ -181,11 +189,11 @@ public final class ClosingBracketNewline {
 
     private static char closerFor(char opener) {
         return switch (opener) {
-            case '(' -> ')';
-            case '[' -> ']';
-            case '{' -> '}';
-            case '<' -> '>';
-            default -> throw new IllegalArgumentException();
+        case '(' -> ')';
+        case '[' -> ']';
+        case '{' -> '}';
+        case '<' -> '>';
+        default -> throw new IllegalArgumentException();
         };
     }
 
@@ -238,8 +246,8 @@ public final class ClosingBracketNewline {
         int startLine,
         int startCol,
         char opener,
-        char closer) {
-
+        char closer
+    ) {
         int depth = 1;
         boolean inBlockComment = false;
         boolean inTextBlock = false;

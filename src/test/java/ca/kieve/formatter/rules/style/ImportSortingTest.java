@@ -83,7 +83,9 @@ class ImportSortingTest extends FormatterRuleTestBase {
             List.of(
                 ImportGroup.staticCatchAll(),
                 ImportGroup.of("java.", "javax."),
-                ImportGroup.catchAll()));
+                ImportGroup.catchAll()
+            )
+        );
 
         String input = loadFixture("import-sorting/custom-layout-input.java");
         String expected = loadFixture("import-sorting/custom-layout-expected.java");
@@ -98,7 +100,9 @@ class ImportSortingTest extends FormatterRuleTestBase {
                 ImportGroup.catchAll(),
                 ImportGroup.of("com.mycompany."),
                 ImportGroup.of("javax.", "java."),
-                ImportGroup.staticCatchAll()));
+                ImportGroup.staticCatchAll()
+            )
+        );
 
         String input = loadFixture("import-sorting/custom-project-input.java");
         String expected = loadFixture("import-sorting/custom-project-expected.java");

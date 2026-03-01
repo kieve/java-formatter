@@ -24,7 +24,8 @@ public final class SplitFieldDeclarations {
     private record Replacement(
         int startLine,
         int endLine,
-        List<String> newLines) {
+        List<String> newLines
+    ) {
     }
 
     private SplitFieldDeclarations() {
@@ -46,7 +47,8 @@ public final class SplitFieldDeclarations {
             .filter(f -> f.getVariables().size() > 1)
             .forEach(
                 f -> buildReplacement(f, f.getVariables(), sourceLines)
-                    .ifPresent(replacements::add));
+                    .ifPresent(replacements::add)
+            );
 
         // Find multi-variable local declarations in expression statements
         cu.findAll(VariableDeclarationExpr.class).stream()
@@ -65,7 +67,9 @@ public final class SplitFieldDeclarations {
         // Apply bottom-to-top so line numbers stay valid
         replacements.sort(
             Comparator.comparingInt(
-                (Replacement r) -> r.startLine).reversed());
+                (Replacement r) -> r.startLine
+            ).reversed()
+        );
 
         String[] lines = sourceLines;
         for (Replacement r : replacements) {
@@ -84,7 +88,8 @@ public final class SplitFieldDeclarations {
     private static java.util.Optional<Replacement> buildReplacement(
         FieldDeclaration field,
         List<VariableDeclarator> variables,
-        String[] lines) {
+        String[] lines
+    ) {
         if (!field.getBegin().isPresent() || !field.getEnd().isPresent()) {
             return java.util.Optional.empty();
         }
@@ -99,7 +104,8 @@ public final class SplitFieldDeclarations {
             startLine,
             begin.column - 1,
             endLine,
-            end.column);
+            end.column
+        );
 
         String firstName = variables.get(0).getName().asString();
         int nameIdx = findFirstVariableName(fullText, firstName);
@@ -120,13 +126,15 @@ public final class SplitFieldDeclarations {
         }
 
         return java.util.Optional.of(
-            new Replacement(startLine, endLine, newLines));
+            new Replacement(startLine, endLine, newLines)
+        );
     }
 
     private static java.util.Optional<Replacement> buildReplacementForLocal(
         ExpressionStmt stmt,
         VariableDeclarationExpr expr,
-        String[] lines) {
+        String[] lines
+    ) {
         if (!stmt.getBegin().isPresent() || !stmt.getEnd().isPresent()) {
             return java.util.Optional.empty();
         }
@@ -141,7 +149,8 @@ public final class SplitFieldDeclarations {
             startLine,
             begin.column - 1,
             endLine,
-            end.column);
+            end.column
+        );
 
         List<VariableDeclarator> variables = expr.getVariables();
         String firstName = variables.get(0).getName().asString();
@@ -163,7 +172,8 @@ public final class SplitFieldDeclarations {
         }
 
         return java.util.Optional.of(
-            new Replacement(startLine, endLine, newLines));
+            new Replacement(startLine, endLine, newLines)
+        );
     }
 
     private static String extractText(
@@ -171,7 +181,8 @@ public final class SplitFieldDeclarations {
         int startLine,
         int startCol,
         int endLine,
-        int endCol) {
+        int endCol
+    ) {
         if (startLine == endLine) {
             return lines[startLine].substring(startCol, endCol);
         }
@@ -218,7 +229,8 @@ public final class SplitFieldDeclarations {
     private static String extractTrailingComment(
         String[] lines,
         int endLine,
-        int endCol) {
+        int endCol
+    ) {
         String line = lines[endLine];
         if (endCol < line.length()) {
             String rest = line.substring(endCol).trim();
@@ -231,7 +243,8 @@ public final class SplitFieldDeclarations {
 
     private static String[] applyReplacement(
         String[] lines,
-        Replacement replacement) {
+        Replacement replacement
+    ) {
         List<String> result = new ArrayList<>();
         for (int i = 0; i < replacement.startLine; i++) {
             result.add(lines[i]);

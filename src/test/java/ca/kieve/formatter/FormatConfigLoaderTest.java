@@ -16,7 +16,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class FormatConfigLoaderTest {
     private static FormatConfig loadYaml(String yaml) {
         InputStream in = new ByteArrayInputStream(
-            yaml.getBytes(StandardCharsets.UTF_8));
+            yaml.getBytes(StandardCharsets.UTF_8)
+        );
         return FormatConfigLoader.load(in);
     }
 
@@ -61,13 +62,15 @@ class FormatConfigLoaderTest {
         FormatConfig config = FormatConfigLoader.load((File) null);
         assertEquals(
             FormatConfig.defaults().getMaxLineLength(),
-            config.getMaxLineLength());
+            config.getMaxLineLength()
+        );
 
         File nonExistent = new File("/does/not/exist/kieve-formatter.yaml");
         config = FormatConfigLoader.load(nonExistent);
         assertEquals(
             FormatConfig.defaults().getMaxLineLength(),
-            config.getMaxLineLength());
+            config.getMaxLineLength()
+        );
     }
 
     @Test
@@ -89,7 +92,8 @@ class FormatConfigLoaderTest {
         assertTrue(staticGroup.isStatic());
         assertEquals(
             List.of("org.mockito.", "org.junit."),
-            staticGroup.prefixes());
+            staticGroup.prefixes()
+        );
     }
 
     @Test

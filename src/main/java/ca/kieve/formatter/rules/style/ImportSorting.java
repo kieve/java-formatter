@@ -119,7 +119,8 @@ public final class ImportSorting {
         List<String> imports,
         boolean isStatic,
         List<ImportGroup> layout,
-        Map<Integer, List<String>> groupedImports) {
+        Map<Integer, List<String>> groupedImports
+    ) {
         int catchAllIndex = -1;
         for (int i = 0; i < layout.size(); i++) {
             ImportGroup group = layout.get(i);

@@ -41,7 +41,8 @@ public final class QualifiedImportResolution {
         int endLine,
         int endCol,
         String simpleName,
-        String simplifiedText) {
+        String simplifiedText
+    ) {
     }
 
     private record Replacement(
@@ -49,7 +50,8 @@ public final class QualifiedImportResolution {
         int startCol,
         int endLine,
         int endCol,
-        String replacement) {
+        String replacement
+    ) {
     }
 
     private QualifiedImportResolution() {
@@ -104,19 +106,25 @@ public final class QualifiedImportResolution {
                 a -> collectAnnotationReference(
                     a.getName(),
                     candidates,
-                    occurrences));
+                    occurrences
+                )
+            );
         cu.findAll(SingleMemberAnnotationExpr.class)
             .forEach(
                 a -> collectAnnotationReference(
                     a.getName(),
                     candidates,
-                    occurrences));
+                    occurrences
+                )
+            );
         cu.findAll(NormalAnnotationExpr.class)
             .forEach(
                 a -> collectAnnotationReference(
                     a.getName(),
                     candidates,
-                    occurrences));
+                    occurrences
+                )
+            );
 
         // C) Static access chains
         cu.findAll(MethodCallExpr.class)
@@ -124,13 +132,17 @@ public final class QualifiedImportResolution {
                 m -> collectStaticMethodAccess(
                     m,
                     candidates,
-                    occurrences));
+                    occurrences
+                )
+            );
         cu.findAll(FieldAccessExpr.class)
             .forEach(
                 f -> collectStaticFieldAccess(
                     f,
                     candidates,
-                    occurrences));
+                    occurrences
+                )
+            );
 
         if (occurrences.isEmpty()) {
             return source;
@@ -187,7 +199,9 @@ public final class QualifiedImportResolution {
                         occ.startCol,
                         occ.endLine,
                         occ.endCol,
-                        occ.simplifiedText));
+                        occ.simplifiedText
+                    )
+                );
             }
         }
 
@@ -200,7 +214,8 @@ public final class QualifiedImportResolution {
             Comparator
                 .comparingInt((Replacement r) -> r.startLine)
                 .thenComparingInt(r -> r.startCol)
-                .reversed());
+                .reversed()
+        );
 
         String[] lines = working.split("\n", -1);
         for (Replacement r : replacements) {
@@ -221,7 +236,8 @@ public final class QualifiedImportResolution {
     private static void collectTypeReference(
         ClassOrInterfaceType type,
         Map<String, Set<String>> candidates,
-        List<Occurrence> occurrences) {
+        List<Occurrence> occurrences
+    ) {
         // Skip if this type is the scope of a parent ClassOrInterfaceType
         if (type.getParentNode().isPresent()
             && type.getParentNode().get() instanceof ClassOrInterfaceType parent
@@ -248,7 +264,8 @@ public final class QualifiedImportResolution {
         String simpleName = parts.get(classIndex);
         String simplifiedText = String.join(
             ".",
-            parts.subList(classIndex, parts.size()));
+            parts.subList(classIndex, parts.size())
+        );
 
         // Use the name's end position (not the type's, which includes
         // type arguments like <String>)
@@ -271,13 +288,16 @@ public final class QualifiedImportResolution {
                 endLine,
                 endCol,
                 simpleName,
-                simplifiedText));
+                simplifiedText
+            )
+        );
     }
 
     private static void collectAnnotationReference(
         Name name,
         Map<String, Set<String>> candidates,
-        List<Occurrence> occurrences) {
+        List<Occurrence> occurrences
+    ) {
         if (name.getQualifier().isEmpty()) {
             return;
         }
@@ -299,7 +319,8 @@ public final class QualifiedImportResolution {
         String simpleName = parts.get(classIndex);
         String simplifiedText = String.join(
             ".",
-            parts.subList(classIndex, parts.size()));
+            parts.subList(classIndex, parts.size())
+        );
 
         if (name.getBegin().isEmpty() || name.getEnd().isEmpty()) {
             return;
@@ -319,13 +340,16 @@ public final class QualifiedImportResolution {
                 endLine,
                 endCol,
                 simpleName,
-                simplifiedText));
+                simplifiedText
+            )
+        );
     }
 
     private static void collectStaticMethodAccess(
         MethodCallExpr methodCall,
         Map<String, Set<String>> candidates,
-        List<Occurrence> occurrences) {
+        List<Occurrence> occurrences
+    ) {
         if (methodCall.getScope().isEmpty()) {
             return;
         }
@@ -343,11 +367,13 @@ public final class QualifiedImportResolution {
 
         String fqcn = String.join(
             ".",
-            scopeParts.subList(0, classIndex + 1));
+            scopeParts.subList(0, classIndex + 1)
+        );
         String simpleName = scopeParts.get(classIndex);
         String simplifiedScope = String.join(
             ".",
-            scopeParts.subList(classIndex, scopeParts.size()));
+            scopeParts.subList(classIndex, scopeParts.size())
+        );
 
         if (scope.getBegin().isEmpty() || scope.getEnd().isEmpty()) {
             return;
@@ -367,13 +393,16 @@ public final class QualifiedImportResolution {
                 endLine,
                 endCol,
                 simpleName,
-                simplifiedScope));
+                simplifiedScope
+            )
+        );
     }
 
     private static void collectStaticFieldAccess(
         FieldAccessExpr fieldAccess,
         Map<String, Set<String>> candidates,
-        List<Occurrence> occurrences) {
+        List<Occurrence> occurrences
+    ) {
         // Skip if parent is a FieldAccessExpr or MethodCallExpr scope
         if (fieldAccess.getParentNode().isPresent()) {
             var parent = fieldAccess.getParentNode().get();
@@ -410,11 +439,13 @@ public final class QualifiedImportResolution {
 
         String fqcn = String.join(
             ".",
-            scopeParts.subList(0, scopeClassIndex + 1));
+            scopeParts.subList(0, scopeClassIndex + 1)
+        );
         String simpleName = scopeParts.get(scopeClassIndex);
         String simplifiedScope = String.join(
             ".",
-            scopeParts.subList(scopeClassIndex, scopeParts.size()));
+            scopeParts.subList(scopeClassIndex, scopeParts.size())
+        );
 
         var scopeExpr = fieldAccess.getScope();
         if (scopeExpr.getBegin().isEmpty()
@@ -436,12 +467,15 @@ public final class QualifiedImportResolution {
                 endLine,
                 endCol,
                 simpleName,
-                simplifiedScope));
+                simplifiedScope
+            )
+        );
     }
 
     private static boolean buildAccessChain(
         com.github.javaparser.ast.expr.Expression expr,
-        List<String> parts) {
+        List<String> parts
+    ) {
         if (expr instanceof NameExpr nameExpr) {
             parts.add(0, nameExpr.getNameAsString());
             return true;
@@ -477,7 +511,8 @@ public final class QualifiedImportResolution {
 
     private static String[] applyReplacement(
         String[] lines,
-        Replacement r) {
+        Replacement r
+    ) {
         if (r.startLine == r.endLine) {
             String line = lines[r.startLine];
             lines[r.startLine] = line.substring(0, r.startCol)
@@ -503,7 +538,8 @@ public final class QualifiedImportResolution {
 
     private static String insertImports(
         String source,
-        Set<String> newImports) {
+        Set<String> newImports
+    ) {
         String[] lines = source.split("\n", -1);
         int lastImportLine = -1;
         boolean hasImports = false;

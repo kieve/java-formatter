@@ -48,7 +48,8 @@ public final class CustomFormatterStep {
         return FormatterStep.create(
             "customJavaFormatter",
             new State(config),
-            State::toFormatter);
+            State::toFormatter
+        );
     }
 
     /**

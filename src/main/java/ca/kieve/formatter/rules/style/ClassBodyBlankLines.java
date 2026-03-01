@@ -13,10 +13,12 @@ import java.util.regex.Pattern;
  */
 public final class ClassBodyBlankLines {
     private static final Pattern BLANK_AFTER_BRACE = Pattern.compile(
-        "(\\{[^\\S\\n]*\\n)(\\s*\\n)+");
+        "(\\{[^\\S\\n]*\\n)(\\s*\\n)+"
+    );
 
     private static final Pattern BLANK_BEFORE_BRACE = Pattern.compile(
-        "\\n(\\s*\\n)+(\\s*})");
+        "\\n(\\s*\\n)+(\\s*})"
+    );
 
     private ClassBodyBlankLines() {
     }

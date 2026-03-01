@@ -64,8 +64,10 @@ public final class InnerTypeOrdering {
             Comparator.comparingInt(
                 (TypeDeclaration<?> t) -> t.getBegin()
                     .map(p -> p.line)
-                    .orElse(0))
-                .reversed());
+                    .orElse(0)
+            )
+                .reversed()
+        );
 
         for (TypeDeclaration<?> type : types) {
             String result = tryReorder(type, lines);
@@ -121,7 +123,8 @@ public final class InnerTypeOrdering {
             bodyStart = findEnumBodyStart(
                 (EnumDeclaration) type,
                 openBraceLine,
-                lines);
+                lines
+            );
         } else {
             bodyStart = openBraceLine + 1;
         }
@@ -135,7 +138,9 @@ public final class InnerTypeOrdering {
         List<BodyDeclaration<?>> sortedMembers = new ArrayList<>(members);
         sortedMembers.sort(
             Comparator.comparingInt(
-                m -> m.getBegin().map(p -> p.line).orElse(0)));
+                m -> m.getBegin().map(p -> p.line).orElse(0)
+            )
+        );
 
         // Build regions: each member "owns" the gap above it
         List<Region> regions = new ArrayList<>();
@@ -235,7 +240,8 @@ public final class InnerTypeOrdering {
      */
     private static int findOpenBraceLine(
         TypeDeclaration<?> type,
-        String[] lines) {
+        String[] lines
+    ) {
         int beginLine = type.getBegin().map(p -> p.line - 1).orElse(-1);
         if (beginLine < 0) {
             return -1;
@@ -270,7 +276,8 @@ public final class InnerTypeOrdering {
     private static int findEnumBodyStart(
         EnumDeclaration enumDecl,
         int openBraceLine,
-        String[] lines) {
+        String[] lines
+    ) {
         int searchStartLine;
         int searchStartCol;
 

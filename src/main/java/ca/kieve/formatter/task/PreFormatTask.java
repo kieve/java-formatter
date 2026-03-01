@@ -55,17 +55,20 @@ public abstract class PreFormatTask extends DefaultTask {
                         Files.writeString(
                             file,
                             formatted,
-                            StandardCharsets.UTF_8);
+                            StandardCharsets.UTF_8
+                        );
                         getLogger().lifecycle(
                             "Pre-formatted: {}",
                             projectDir.toPath()
-                                .relativize(file));
+                                .relativize(file)
+                        );
                     }
                 }
             } catch (IOException e) {
                 throw new GradleException(
                     "Failed to process " + file,
-                    e);
+                    e
+                );
             }
         }
 
@@ -98,7 +101,8 @@ public abstract class PreFormatTask extends DefaultTask {
                 @Override
                 public FileVisitResult visitFile(
                     Path file,
-                    BasicFileAttributes attrs) {
+                    BasicFileAttributes attrs
+                ) {
                     if (file.toString().endsWith(".java")) {
                         // Only include files under src/*/java/
                         Path relative = srcDir.relativize(file);
@@ -114,7 +118,8 @@ public abstract class PreFormatTask extends DefaultTask {
         } catch (IOException e) {
             throw new GradleException(
                 "Failed to scan source files",
-                e);
+                e
+            );
         }
 
         return result;

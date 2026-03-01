@@ -24,7 +24,8 @@ abstract class CheckstyleTestBase {
 
     protected List<Violation> lint(String fixture) throws IOException {
         return CheckstyleTestUtil.lint(
-            FormatterTestUtil.loadFixture(fixtureDir + fixture));
+            FormatterTestUtil.loadFixture(fixtureDir + fixture)
+        );
     }
 
     /**
@@ -40,7 +41,8 @@ abstract class CheckstyleTestBase {
             assertTrue(
                 violations.get(0).message().contains(expected),
                 "Expected message containing '" + expected
-                    + "' but got: " + violations.get(0).message());
+                    + "' but got: " + violations.get(0).message()
+            );
         }
     }
 

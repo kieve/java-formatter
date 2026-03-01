@@ -55,16 +55,19 @@ public final class CheckstyleTestUtil {
         throws Exception {
         try (
             InputStream configStream = CheckstyleTestUtil.class
-                .getResourceAsStream("/checkstyle.xml")) {
+                .getResourceAsStream("/checkstyle.xml")
+        ) {
             if (configStream == null) {
                 throw new IllegalStateException(
-                    "checkstyle.xml not found on classpath.");
+                    "checkstyle.xml not found on classpath."
+                );
             }
 
             Configuration config = ConfigurationLoader.loadConfiguration(
                 new InputSource(configStream),
                 new PropertiesExpander(new Properties()),
-                ConfigurationLoader.IgnoredModulesOptions.OMIT);
+                ConfigurationLoader.IgnoredModulesOptions.OMIT
+            );
 
             Checker checker = new Checker();
             checker.setModuleClassLoader(Checker.class.getClassLoader());
@@ -92,21 +95,26 @@ public final class CheckstyleTestUtil {
                 public void addError(AuditEvent event) {
                     String sourceName = event.getSourceName();
                     String checkName = sourceName.substring(
-                        sourceName.lastIndexOf('.') + 1);
+                        sourceName.lastIndexOf('.') + 1
+                    );
                     violations.add(
                         new Violation(
                             event.getLine(),
                             event.getMessage(),
-                            checkName));
+                            checkName
+                        )
+                    );
                 }
 
                 @Override
                 public void addException(
                     AuditEvent event,
-                    Throwable throwable) {
+                    Throwable throwable
+                ) {
                     throw new RuntimeException(
                         "Checkstyle exception",
-                        throwable);
+                        throwable
+                    );
                 }
             });
 

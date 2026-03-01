@@ -82,8 +82,10 @@ public final class FieldOrdering {
             Comparator.comparingInt(
                 (TypeDeclaration<?> t) -> t.getBegin()
                     .map(p -> p.line)
-                    .orElse(0))
-                .reversed());
+                    .orElse(0)
+            )
+                .reversed()
+        );
 
         for (TypeDeclaration<?> type : types) {
             String result = tryReorder(type, lines);
@@ -97,7 +99,8 @@ public final class FieldOrdering {
 
     private static String tryReorder(
         TypeDeclaration<?> type,
-        String[] lines) {
+        String[] lines
+    ) {
         List<BodyDeclaration<?>> members = type.getMembers();
         if (members.isEmpty()) {
             return null;
@@ -143,7 +146,8 @@ public final class FieldOrdering {
             bodyStart = findEnumBodyStart(
                 (EnumDeclaration) type,
                 openBraceLine,
-                lines);
+                lines
+            );
         } else {
             bodyStart = openBraceLine + 1;
         }
@@ -157,7 +161,9 @@ public final class FieldOrdering {
         List<BodyDeclaration<?>> sortedMembers = new ArrayList<>(members);
         sortedMembers.sort(
             Comparator.comparingInt(
-                m -> m.getBegin().map(p -> p.line).orElse(0)));
+                m -> m.getBegin().map(p -> p.line).orElse(0)
+            )
+        );
 
         // Build regions: each member "owns" the gap above it.
         // Static initializer blocks that follow a field get the same
@@ -282,7 +288,8 @@ public final class FieldOrdering {
 
     private static boolean isAlreadyOrdered(
         List<FieldDeclaration> fields,
-        List<BodyDeclaration<?>> nonFields) {
+        List<BodyDeclaration<?>> nonFields
+    ) {
         // Check that fields are in non-decreasing group order
         int prevGroup = NON_FIELD;
         for (FieldDeclaration fd : fields) {
@@ -305,7 +312,8 @@ public final class FieldOrdering {
         int firstNonFieldBegin = nonFields.stream()
             .mapToInt(
                 m -> m.getBegin().map(p -> p.line)
-                    .orElse(Integer.MAX_VALUE))
+                    .orElse(Integer.MAX_VALUE)
+            )
             .min().orElse(Integer.MAX_VALUE);
 
         return lastFieldEnd < firstNonFieldBegin;
@@ -327,7 +335,8 @@ public final class FieldOrdering {
      */
     private static int findOpenBraceLine(
         TypeDeclaration<?> type,
-        String[] lines) {
+        String[] lines
+    ) {
         int beginLine = type.getBegin().map(p -> p.line - 1).orElse(-1);
         if (beginLine < 0) {
             return -1;
@@ -362,7 +371,8 @@ public final class FieldOrdering {
     private static int findEnumBodyStart(
         EnumDeclaration enumDecl,
         int openBraceLine,
-        String[] lines) {
+        String[] lines
+    ) {
         int searchStartLine;
         int searchStartCol;
 
