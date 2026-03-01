@@ -157,15 +157,23 @@ available checks.
 
 ## Adding a New Linting Rule
 
-1. Add the Checkstyle module to `src/main/resources/checkstyle.xml` inside the `TreeWalker` block
-2. Test in a consuming project with `./gradlew lint` to verify the rule fires correctly
+1. Create the check class in `ca.kieve.formatter.rules.lint` — extends `AbstractCheck`
+2. Register it in `src/main/resources/checkstyle.xml` inside the `TreeWalker` block (short name
+   is sufficient thanks to `checkstyle_packages.xml`)
+3. Add fixture files in `src/test/resources/fixtures/<rule-name>/` (one `.java` file per test case)
+4. Add a test class in `ca.kieve.formatter.checkstyle` extending `CheckstyleTestBase`, which
+   provides `assertViolation(fixture, ...messageContains)`, `assertViolations(fixture, count)`,
+   and `assertClean(fixture)` helpers
 
 ## Adding a New Formatting Rule
 
 1. Create the rule class in `ca.kieve.formatter.rules` — a static method taking `String` and returning `String`
 2. Wire it into `CustomFormatterStep.applyCustomRules()` in the rule chain
-3. Add unit tests in `ca.kieve.formatter.rules` with fixture files in `src/test/resources/fixtures/`
-4. Include a `respectsFormatterOffTags()` test that verifies content inside `// @formatter:off` / `// @formatter:on` blocks is preserved (run through `CustomFormatterStep.applyCustomRules()`)
+3. Add fixture files in `src/test/resources/fixtures/<rule-name>/` using the naming convention:
+   `*-input.java` / `*-expected.java` for transformations, `*-unchanged.java` for preservation tests
+4. Add a test class in `ca.kieve.formatter.rules.style` extending `FormatterRuleTestBase`, which
+   provides `test(input, expected)` and `test(unchanged)` helpers
+5. Include a `respectsFormatterOffTags()` test that verifies content inside `// @formatter:off` / `// @formatter:on` blocks is preserved (run through `CustomFormatterStep.applyCustomRules()`)
 
 ## Adding a New Pre-Format Rule
 

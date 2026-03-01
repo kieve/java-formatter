@@ -1,23 +1,5 @@
 Styles to enforce:
 ---
-distinguish between public vs public final vs private fields within the same static/instance group
-Example
-
-public static final String A = "";
-public static final String B = "";
-
-public static ...
-public static ...
-
-static ...
-static ...
-
-private ...
-private ...
-
-etc...
-
----
 Can we enforce invert + early exit if statements:
 
 ---

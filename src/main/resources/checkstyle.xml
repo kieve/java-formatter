@@ -5,6 +5,7 @@
 <module name="Checker">
     <module name="TreeWalker">
         <module name="AvoidStarImport"/>
-        <module name="ca.kieve.formatter.rules.lint.AvoidNestedTernaryCheck"/>
+        <module name="AvoidNestedTernaryCheck"/>
+        <module name="PreferEarlyExitCheck"/>
     </module>
 </module>
