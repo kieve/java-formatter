@@ -7,5 +7,6 @@
         <module name="AvoidStarImport"/>
         <module name="AvoidNestedTernaryCheck"/>
         <module name="PreferEarlyExitCheck"/>
+        <module name="RequireBracesCheck"/>
     </module>
 </module>

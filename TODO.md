@@ -1,33 +1,5 @@
 Styles to enforce:
 ---
-Custom comment / doc comment formatter. Eclipse JDT's comment formatting is disabled via
-`comment.format_javadoc_comments: false`, `comment.format_block_comments: false`, and
-`comment.format_line_comments: false` in the Eclipse config. `comment.line_length` is set to 100
-but has no effect while formatting is disabled. Need a custom formatter that handles:
-- Enforce 100-character line limit for all comment types (wrap long lines)
-- Javadoc comments (`/** */`): expand tags onto separate lines, indent continuation lines,
-  enforce boundaries (`/**` and `*/` on own lines)
-- Block comments (`/* */`): boundary newlines
-- Markdown doc comments (`///`): formatting support
-- Line comments (`//`): preserve spacing between code and comment
-- Param/return alignment (see below)
-
----
-Write a formatter to align param continuation lines after the space of `@param `
-Same for the `@return `
-
-  /**
-   *
-   * @param foo some long line that wraps
-   *        and when it wraps it's aligned after the `@param `
-   * @param bar some other param
-   */
-
----
-Force braces to be added in all places they can exist
-Exception: Early exit if statements
-
----
 Remove blank lines between annotation type members. Eclipse's `blank_lines_before_method` applies
 to annotation members the same as regular methods, and `blank_lines_before_abstract_method` doesn't
 cover them. Need a custom rule to strip blank lines inside `@interface` bodies.
