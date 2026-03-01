@@ -2,15 +2,22 @@ package ca.kieve.formatter.eclipse;
 
 import org.junit.jupiter.api.Test;
 
+import ca.kieve.formatter.util.FormatterTestBase;
+
+import java.io.IOException;
+
 import static ca.kieve.formatter.util.DirectFormatterTestUtil.formatJava;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Tests for Eclipse JDT Formatter — Whitespace Braces section.
  *
  * @see prompts/eclipseFormatterTestChecklist.md — "Whitespace — Braces"
  */
-class WhitespaceBracesTest {
+class WhitespaceBracesTest extends FormatterTestBase {
+    WhitespaceBracesTest() {
+        super("whitespace-braces/", s -> formatJava(s));
+    }
+
     // insert_space_before_opening_brace_in_type_declaration
     // insert_space_before_opening_brace_in_method_declaration
     // insert_space_before_opening_brace_in_block
@@ -19,73 +26,7 @@ class WhitespaceBracesTest {
     // insert_space_before_closing_brace_in_array_initializer
     // insert_space_after_closing_brace_in_block
     @Test
-    void braceSpacing() {
-        // language=Java
-        // @formatter:off
-        String input = """
-                public class FormatterTest{
-                    void method(){
-                        if (true){
-                        }else{
-                        }
-
-                        for (int i = 0; i < 10; i++){
-                        }
-
-                        while (true){
-                            break;
-                        }
-
-                        do{
-                        }while (true);
-
-                        try{
-                        }catch (Exception e){
-                        }finally{
-                        }
-
-                        synchronized (this){
-                        }
-
-                        int[] a = new int[]{1, 2, 3};
-                    }
-                }
-                """;
-                // @formatter:on
-
-        // language=Java
-        // @formatter:off
-        String expected = """
-                public class FormatterTest {
-                    void method() {
-                        if (true) {
-                        } else {
-                        }
-
-                        for (int i = 0; i < 10; i++) {
-                        }
-
-                        while (true) {
-                            break;
-                        }
-
-                        do {
-                        } while (true);
-
-                        try {
-                        } catch (Exception e) {
-                        } finally {
-                        }
-
-                        synchronized (this) {
-                        }
-
-                        int[] a = new int[] { 1, 2, 3 };
-                    }
-                }
-                """;
-                // @formatter:on
-
-        assertEquals(expected, formatJava(input));
+    void braceSpacing() throws IOException {
+        test("brace-spacing-input.java", "brace-spacing-expected.java");
     }
 }

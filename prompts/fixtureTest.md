@@ -200,14 +200,14 @@ Tests still using inline Java text blocks that should be converted to fixtures.
 - [x] `OperatorWrappingTest`
 - [x] `ParenthesesPreservationTest`
 - [x] `WhitespaceAngleBracketsTest`
-- [ ] `WhitespaceBracesTest`
-- [ ] `WhitespaceBracketsTest`
-- [ ] `WhitespaceColonsSemicolonsTest`
-- [ ] `WhitespaceCommasTest`
-- [ ] `WhitespaceMiscellaneousTest`
-- [ ] `WhitespaceOperatorsTest`
-- [ ] `WhitespaceParenthesesTest`
-- [ ] `WhitespaceSwitchArrowsTest`
+- [x] `WhitespaceBracesTest`
+- [x] `WhitespaceBracketsTest`
+- [x] `WhitespaceColonsSemicolonsTest`
+- [x] `WhitespaceCommasTest`
+- [x] `WhitespaceMiscellaneousTest`
+- [x] `WhitespaceOperatorsTest`
+- [x] `WhitespaceParenthesesTest`
+- [x] `WhitespaceSwitchArrowsTest`
 - [ ] `WrapAlignTest`
 
 ### Other

@@ -2,8 +2,11 @@ package ca.kieve.formatter.eclipse;
 
 import org.junit.jupiter.api.Test;
 
+import ca.kieve.formatter.util.FormatterTestBase;
+
+import java.io.IOException;
+
 import static ca.kieve.formatter.util.DirectFormatterTestUtil.formatJava;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Tests for Eclipse JDT Formatter — Whitespace Parentheses sections.
@@ -12,7 +15,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * @see prompts/eclipseFormatterTestChecklist.md —
  *      "Whitespace — Parentheses (After Opening / Before Closing)"
  */
-class WhitespaceParenthesesTest {
+class WhitespaceParenthesesTest extends FormatterTestBase {
+    WhitespaceParenthesesTest() {
+        super("whitespace-parentheses/", s -> formatJava(s));
+    }
+
     // insert_space_before_opening_paren_in_method_declaration
     // insert_space_before_opening_paren_in_method_invocation
     // insert_space_before_opening_paren_in_if
@@ -53,107 +60,7 @@ class WhitespaceParenthesesTest {
     // insert_space_before_closing_paren_in_record_declaration
     // insert_space_after_closing_paren_in_cast
     @Test
-    void parenthesisSpacing() {
-        // language=Java
-        // @formatter:off
-        String input = """
-                @SuppressWarnings ( "unchecked" )
-                public class FormatterTest {
-                    enum Color {
-                        RED ( "red" );
-
-                        Color ( String s ) {
-                        }
-                    }
-
-                    record Point ( int x, int y ) {
-                    }
-
-                    FormatterTest ( int x ) {
-                    }
-
-                    void method ( int a ) {
-                        System.out.println ( "hello" );
-
-                        if( true ) {
-                        }
-
-                        for( int i = 0; i < 10; i++ ) {
-                        }
-
-                        while( true ) {
-                            break;
-                        }
-
-                        switch( a ) {
-                        case 1:
-                            break;
-                        }
-
-                        try {
-                        } catch( Exception e ) {
-                        }
-
-                        synchronized( this ) {
-                        }
-
-                        Object obj = "hello";
-                        String s = ( String )obj;
-                    }
-                }
-                """;
-                // @formatter:on
-
-        // language=Java
-        // @formatter:off
-        String expected = """
-                @SuppressWarnings("unchecked")
-                public class FormatterTest {
-                    enum Color {
-                        RED("red");
-
-                        Color(String s) {
-                        }
-                    }
-
-                    record Point(int x, int y) {
-                    }
-
-                    FormatterTest(int x) {
-                    }
-
-                    void method(int a) {
-                        System.out.println("hello");
-
-                        if (true) {
-                        }
-
-                        for (int i = 0; i < 10; i++) {
-                        }
-
-                        while (true) {
-                            break;
-                        }
-
-                        switch (a) {
-                        case 1:
-                            break;
-                        }
-
-                        try {
-                        } catch (Exception e) {
-                        }
-
-                        synchronized (this) {
-                        }
-
-                        Object obj = "hello";
-                        String s = (String) obj;
-                    }
-                }
-                """;
-                // @formatter:on
-
-        assertEquals(expected, formatJava(input));
+    void parenthesisSpacing() throws IOException {
+        test("parenthesis-spacing-input.java", "parenthesis-spacing-expected.java");
     }
 }
