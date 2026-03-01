@@ -88,17 +88,9 @@ class FieldOrderingTest extends FormatterRuleTestBase {
         test("static-init-block-unchanged.java");
     }
 
-    @Test
     @Override
-    void respectsFormatterOffTags() {
-        try {
-            String input = loadFixture(
-                "field-ordering/formatter-off-unchanged.java");
-            assertEquals(
-                input,
-                CustomFormatterStep.applyCustomRules(input));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+    void respectsFormatterOffTags() throws IOException {
+        String input = loadFixture("field-ordering/formatter-off-unchanged.java");
+        assertEquals(input, CustomFormatterStep.applyCustomRules(input));
     }
 }

@@ -84,14 +84,9 @@ class SplitFieldDeclarationsTest extends FormatterRuleTestBase {
         test("complex-initializer-input.java", "complex-initializer-expected.java");
     }
 
-    @Test
     @Override
-    void respectsFormatterOffTags() {
-        try {
-            String input = loadFixture("split-field-declarations/formatter-off-unchanged.java");
-            assertEquals(input, CustomFormatterStep.applyCustomRules(input));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+    void respectsFormatterOffTags() throws IOException {
+        String input = loadFixture("split-field-declarations/formatter-off-unchanged.java");
+        assertEquals(input, CustomFormatterStep.applyCustomRules(input));
     }
 }

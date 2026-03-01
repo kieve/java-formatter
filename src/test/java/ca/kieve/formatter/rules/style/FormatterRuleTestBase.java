@@ -49,5 +49,5 @@ abstract class FormatterRuleTestBase {
     }
 
     @Test
-    abstract void respectsFormatterOffTags();
+    abstract void respectsFormatterOffTags() throws IOException;
 }

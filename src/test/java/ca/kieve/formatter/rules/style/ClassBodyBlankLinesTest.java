@@ -4,190 +4,54 @@ import org.junit.jupiter.api.Test;
 
 import ca.kieve.formatter.step.CustomFormatterStep;
 
+import java.io.IOException;
+
+import static ca.kieve.formatter.util.FormatterTestUtil.loadFixture;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ClassBodyBlankLinesTest extends FormatterRuleTestBase {
-    @Test
-    void removesBlankLineAfterClassBrace() {
-        // language=Java
-        // @formatter:off
-        String input = """
-                public class Foo {
-
-                    int x;
-                }
-                """;
-                // @formatter:on
-
-        // language=Java
-        // @formatter:off
-        String expected = """
-                public class Foo {
-                    int x;
-                }
-                """;
-                // @formatter:on
-
-        assertEquals(expected, ClassBodyBlankLines.apply(input));
+    ClassBodyBlankLinesTest() {
+        super("class-body-blank-lines/", ClassBodyBlankLines::apply);
     }
 
     @Test
-    void removesMultipleBlankLinesAfterClassBrace() {
-        // language=Java
-        // @formatter:off
-        String input = """
-                public class Foo {
-
-
-                    int x;
-                }
-                """;
-                // @formatter:on
-
-        // language=Java
-        // @formatter:off
-        String expected = """
-                public class Foo {
-                    int x;
-                }
-                """;
-                // @formatter:on
-
-        assertEquals(expected, ClassBodyBlankLines.apply(input));
+    void removesBlankLineAfterClassBrace() throws IOException {
+        test("class-brace-input.java", "class-brace-expected.java");
     }
 
     @Test
-    void removesBlankLineAfterMethodBrace() {
-        // language=Java
-        // @formatter:off
-        String input = """
-                public class Foo {
-                    void bar() {
-
-                        int x = 1;
-                    }
-                }
-                """;
-                // @formatter:on
-
-        // language=Java
-        // @formatter:off
-        String expected = """
-                public class Foo {
-                    void bar() {
-                        int x = 1;
-                    }
-                }
-                """;
-                // @formatter:on
-
-        assertEquals(expected, ClassBodyBlankLines.apply(input));
+    void removesMultipleBlankLinesAfterClassBrace() throws IOException {
+        test("multiple-blank-lines-input.java", "multiple-blank-lines-expected.java");
     }
 
     @Test
-    void removesBlankLineAfterNestedBraces() {
-        // language=Java
-        // @formatter:off
-        String input = """
-                public class Foo {
-
-                    static class Inner {
-
-                        void bar() {
-
-                            int x = 1;
-                        }
-                    }
-                }
-                """;
-                // @formatter:on
-
-        // language=Java
-        // @formatter:off
-        String expected = """
-                public class Foo {
-                    static class Inner {
-                        void bar() {
-                            int x = 1;
-                        }
-                    }
-                }
-                """;
-                // @formatter:on
-
-        assertEquals(expected, ClassBodyBlankLines.apply(input));
+    void removesBlankLineAfterMethodBrace() throws IOException {
+        test("method-brace-input.java", "method-brace-expected.java");
     }
 
     @Test
-    void preservesBlankLinesBetweenMembers() {
-        // language=Java
-        // @formatter:off
-        String input = """
-                public class Foo {
-                    int x;
-
-                    int y;
-                }
-                """;
-                // @formatter:on
-
-        assertEquals(input, ClassBodyBlankLines.apply(input));
+    void removesBlankLineAfterNestedBraces() throws IOException {
+        test("nested-braces-input.java", "nested-braces-expected.java");
     }
 
     @Test
-    void preservesSourceWithNoBlankLinesAfterBrace() {
-        // language=Java
-        // @formatter:off
-        String input = """
-                public class Foo {
-                    int x;
-                }
-                """;
-                // @formatter:on
-
-        assertEquals(input, ClassBodyBlankLines.apply(input));
+    void preservesBlankLinesBetweenMembers() throws IOException {
+        test("between-members-unchanged.java");
     }
 
     @Test
-    void handlesIndentedBlankLines() {
-        // language=Java
-        // @formatter:off
-        String input = """
-                public class Foo {
-                \s\s\s\s
-                    int x;
-                }
-                """;
-                // @formatter:on
+    void preservesSourceWithNoBlankLinesAfterBrace() throws IOException {
+        test("no-blank-lines-unchanged.java");
+    }
 
-        // language=Java
-        // @formatter:off
-        String expected = """
-                public class Foo {
-                    int x;
-                }
-                """;
-                // @formatter:on
-
-        assertEquals(expected, ClassBodyBlankLines.apply(input));
+    @Test
+    void handlesIndentedBlankLines() throws IOException {
+        test("indented-blank-lines-input.java", "indented-blank-lines-expected.java");
     }
 
     @Override
-    void respectsFormatterOffTags() {
-        // language=Java
-        // @formatter:off
-        String input = """
-                public class Foo {
-                    // @formatter:off
-                    public class Bar {
-
-                        int x;
-                    }
-                    // @formatter:on
-                }
-                """;
-                // @formatter:on
-
+    void respectsFormatterOffTags() throws IOException {
+        String input = loadFixture("class-body-blank-lines/formatter-off-unchanged.java");
         assertEquals(input, CustomFormatterStep.applyCustomRules(input));
     }
 }

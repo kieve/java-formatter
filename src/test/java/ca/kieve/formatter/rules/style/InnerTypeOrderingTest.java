@@ -74,14 +74,9 @@ class InnerTypeOrderingTest extends FormatterRuleTestBase {
         test("no-inner-types-unchanged.java");
     }
 
-    @Test
     @Override
-    void respectsFormatterOffTags() {
-        try {
-            String input = loadFixture("inner-type-ordering/formatter-off-unchanged.java");
-            assertEquals(input, CustomFormatterStep.applyCustomRules(input));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+    void respectsFormatterOffTags() throws IOException {
+        String input = loadFixture("inner-type-ordering/formatter-off-unchanged.java");
+        assertEquals(input, CustomFormatterStep.applyCustomRules(input));
     }
 }
