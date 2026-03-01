@@ -208,7 +208,7 @@ Tests still using inline Java text blocks that should be converted to fixtures.
 - [x] `WhitespaceOperatorsTest`
 - [x] `WhitespaceParenthesesTest`
 - [x] `WhitespaceSwitchArrowsTest`
-- [ ] `WrapAlignTest`
+- [x] `WrapAlignTest`
 
 ### Other
 
