@@ -160,7 +160,7 @@ Tests still using inline Java text blocks that should be converted to fixtures.
 ### Custom Formatter Rules (`rules/style/`)
 
 - [x] `ClassBodyBlankLinesTest`
-- [ ] `LeadingBlankLinesTest`
+- [x] `LeadingBlankLinesTest`
 - [ ] `SwitchCaseBlankLinesTest`
 - [ ] `ImportSortingTest`
 
