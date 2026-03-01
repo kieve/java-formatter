@@ -2,382 +2,97 @@ package ca.kieve.formatter.eclipse;
 
 import org.junit.jupiter.api.Test;
 
+import ca.kieve.formatter.util.FormatterTestBase;
+
+import java.io.IOException;
+
 import static ca.kieve.formatter.util.DirectFormatterTestUtil.formatJava;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Tests for Eclipse JDT Formatter — Keep On One Line section.
  *
  * @see prompts/eclipseFormatterTestChecklist.md — "Keep On One Line"
  */
-class KeepOnOneLineTest {
+class KeepOnOneLineTest extends FormatterTestBase {
+    KeepOnOneLineTest() {
+        super("keep-on-one-line/", s -> formatJava(s));
+    }
+
     // keep_method_body_on_one_line
     @Test
-    void keepMethodBodyOnOneLineNeverExpandsBody() {
-        // language=Java
-        // @formatter:off
-        String input = """
-                public class FormatterTest {
-                    void method() { return; }
-                }
-                """;
-                // @formatter:on
-
-        // language=Java
-        // @formatter:off
-        String expected = """
-                public class FormatterTest {
-                    void method() {
-                        return;
-                    }
-                }
-                """;
-                // @formatter:on
-
-        assertEquals(expected, formatJava(input));
+    void keepMethodBodyOnOneLineNeverExpandsBody() throws IOException {
+        test("method-body-input.java", "method-body-expected.java");
     }
 
     // keep_simple_getter_setter_on_one_line
     @Test
-    void keepSimpleGetterSetterOnOneLineNeverExpandsGetterSetter() {
-        // language=Java
-        // @formatter:off
-        String input = """
-                public class FormatterTest {
-                    private int value;
-
-                    int getValue() { return value; }
-
-                    void setValue(int value) { this.value = value; }
-                }
-                """;
-                // @formatter:on
-
-        // language=Java
-        // @formatter:off
-        String expected = """
-                public class FormatterTest {
-                    private int value;
-
-                    int getValue() {
-                        return value;
-                    }
-
-                    void setValue(int value) {
-                        this.value = value;
-                    }
-                }
-                """;
-                // @formatter:on
-
-        assertEquals(expected, formatJava(input));
+    void keepSimpleGetterSetterOnOneLineNeverExpandsGetterSetter() throws IOException {
+        test("getter-setter-input.java", "getter-setter-expected.java");
     }
 
     // keep_code_block_on_one_line
     @Test
-    void keepCodeBlockOnOneLineNeverExpandsBlock() {
-        // language=Java
-        // @formatter:off
-        String input = """
-                public class FormatterTest {
-                    void method(boolean flag) {
-                        if (flag) { System.out.println("yes"); }
-                    }
-                }
-                """;
-                // @formatter:on
-
-        // language=Java
-        // @formatter:off
-        String expected = """
-                public class FormatterTest {
-                    void method(boolean flag) {
-                        if (flag) {
-                            System.out.println("yes");
-                        }
-                    }
-                }
-                """;
-                // @formatter:on
-
-        assertEquals(expected, formatJava(input));
+    void keepCodeBlockOnOneLineNeverExpandsBlock() throws IOException {
+        test("code-block-input.java", "code-block-expected.java");
     }
 
     // keep_lambda_body_block_on_one_line
     @Test
-    void keepLambdaBodyBlockOnOneLineKeepsEmptyButExpandsNonEmpty() {
-        // language=Java
-        // @formatter:off
-        String input = """
-                public class FormatterTest {
-                    void method() {
-                        Runnable empty = () -> {};
-                        Runnable nonEmpty = () -> { System.out.println("hello"); };
-                    }
-                }
-                """;
-                // @formatter:on
-
-        // language=Java
-        // @formatter:off
-        String expected = """
-                public class FormatterTest {
-                    void method() {
-                        Runnable empty = () -> {};
-                        Runnable nonEmpty = () -> {
-                            System.out.println("hello");
-                        };
-                    }
-                }
-                """;
-                // @formatter:on
-
-        assertEquals(expected, formatJava(input));
+    void keepLambdaBodyBlockOnOneLineKeepsEmptyButExpandsNonEmpty() throws IOException {
+        test("lambda-body-input.java", "lambda-body-expected.java");
     }
 
     // keep_loop_body_block_on_one_line
     @Test
-    void keepLoopBodyBlockOnOneLineNeverExpandsLoop() {
-        // language=Java
-        // @formatter:off
-        String input = """
-                public class FormatterTest {
-                    void method() {
-                        for (int i = 0; i < 10; i++) { System.out.println(i); }
-                    }
-                }
-                """;
-                // @formatter:on
-
-        // language=Java
-        // @formatter:off
-        String expected = """
-                public class FormatterTest {
-                    void method() {
-                        for (int i = 0; i < 10; i++) {
-                            System.out.println(i);
-                        }
-                    }
-                }
-                """;
-                // @formatter:on
-
-        assertEquals(expected, formatJava(input));
+    void keepLoopBodyBlockOnOneLineNeverExpandsLoop() throws IOException {
+        test("loop-body-input.java", "loop-body-expected.java");
     }
 
     // keep_if_then_body_block_on_one_line
     @Test
-    void keepIfThenBodyBlockOnOneLineNeverExpandsIfBody() {
-        // language=Java
-        // @formatter:off
-        String input = """
-                public class FormatterTest {
-                    void method(int x) {
-                        if (x > 0) { x++; } else { x--; }
-                    }
-                }
-                """;
-                // @formatter:on
-
-        // language=Java
-        // @formatter:off
-        String expected = """
-                public class FormatterTest {
-                    void method(int x) {
-                        if (x > 0) {
-                            x++;
-                        } else {
-                            x--;
-                        }
-                    }
-                }
-                """;
-                // @formatter:on
-
-        assertEquals(expected, formatJava(input));
+    void keepIfThenBodyBlockOnOneLineNeverExpandsIfBody() throws IOException {
+        test("if-then-body-input.java", "if-then-body-expected.java");
     }
 
     // keep_type_declaration_on_one_line
     @Test
-    void keepTypeDeclarationOnOneLineNeverExpandsType() {
-        // language=Java
-        // @formatter:off
-        String input = """
-                public class FormatterTest {
-                    static class Inner { int field; }
-                }
-                """;
-                // @formatter:on
-
-        // language=Java
-        // @formatter:off
-        String expected = """
-                public class FormatterTest {
-                    static class Inner {
-                        int field;
-                    }
-                }
-                """;
-                // @formatter:on
-
-        assertEquals(expected, formatJava(input));
+    void keepTypeDeclarationOnOneLineNeverExpandsType() throws IOException {
+        test("type-declaration-input.java", "type-declaration-expected.java");
     }
 
     // keep_annotation_declaration_on_one_line
     @Test
-    void keepAnnotationDeclarationOnOneLineNeverExpandsAnnotation() {
-        // language=Java
-        // @formatter:off
-        String input = """
-                public @interface FormatterTest { String value(); }
-                """;
-                // @formatter:on
-
-        // language=Java
-        // @formatter:off
-        String expected = """
-                public @interface FormatterTest {
-                    String value();
-                }
-                """;
-                // @formatter:on
-
-        assertEquals(expected, formatJava(input));
+    void keepAnnotationDeclarationOnOneLineNeverExpandsAnnotation() throws IOException {
+        test("annotation-declaration-input.java", "annotation-declaration-expected.java");
     }
 
     // keep_anonymous_type_declaration_on_one_line
     @Test
-    void keepAnonymousTypeDeclarationOnOneLineNeverExpandsAnonymous() {
-        // language=Java
-        // @formatter:off
-        String input = """
-                public class FormatterTest {
-                    void method() {
-                        Runnable r = new Runnable() { public void run() { System.out.println("hello"); } };
-                    }
-                }
-                """;
-                // @formatter:on
-
-        // language=Java
-        // @formatter:off
-        String expected = """
-                public class FormatterTest {
-                    void method() {
-                        Runnable r = new Runnable() {
-                            public void run() {
-                                System.out.println("hello");
-                            }
-                        };
-                    }
-                }
-                """;
-                // @formatter:on
-
-        assertEquals(expected, formatJava(input));
+    void keepAnonymousTypeDeclarationOnOneLineNeverExpandsAnonymous() throws IOException {
+        test("anonymous-type-input.java", "anonymous-type-expected.java");
     }
 
     // keep_enum_declaration_on_one_line
     @Test
-    void keepEnumDeclarationOnOneLineNeverExpandsEnum() {
-        // language=Java
-        // @formatter:off
-        String input = """
-                public enum FormatterTest { ONE, TWO, THREE }
-                """;
-                // @formatter:on
-
-        // language=Java
-        // @formatter:off
-        String expected = """
-                public enum FormatterTest {
-                    ONE,
-                    TWO,
-                    THREE
-                }
-                """;
-                // @formatter:on
-
-        assertEquals(expected, formatJava(input));
+    void keepEnumDeclarationOnOneLineNeverExpandsEnum() throws IOException {
+        test("enum-declaration-input.java", "enum-declaration-expected.java");
     }
 
     // keep_enum_constant_declaration_on_one_line
     @Test
-    void keepEnumConstantDeclarationOnOneLineNeverExpandsEnumConstant() {
-        // language=Java
-        // @formatter:off
-        String input = """
-                public enum FormatterTest {
-                    ONE { public String toString() { return "one"; } }
-                }
-                """;
-                // @formatter:on
-
-        // language=Java
-        // @formatter:off
-        String expected = """
-                public enum FormatterTest {
-                    ONE {
-                        public String toString() {
-                            return "one";
-                        }
-                    }
-                }
-                """;
-                // @formatter:on
-
-        assertEquals(expected, formatJava(input));
+    void keepEnumConstantDeclarationOnOneLineNeverExpandsEnumConstant() throws IOException {
+        test("enum-constant-input.java", "enum-constant-expected.java");
     }
 
     // keep_record_declaration_on_one_line
     @Test
-    void keepRecordDeclarationOnOneLineNeverExpandsRecord() {
-        // language=Java
-        // @formatter:off
-        String input = """
-                public record FormatterTest(int x, int y) { public int sum() { return x + y; } }
-                """;
-                // @formatter:on
-
-        // language=Java
-        // @formatter:off
-        String expected = """
-                public record FormatterTest(int x, int y) {
-                    public int sum() {
-                        return x + y;
-                    }
-                }
-                """;
-                // @formatter:on
-
-        assertEquals(expected, formatJava(input));
+    void keepRecordDeclarationOnOneLineNeverExpandsRecord() throws IOException {
+        test("record-declaration-input.java", "record-declaration-expected.java");
     }
 
     // keep_record_constructor_on_one_line
     @Test
-    void keepRecordConstructorOnOneLineNeverExpandsRecordConstructor() {
-        // language=Java
-        // @formatter:off
-        String input = """
-                public record FormatterTest(int x, int y) {
-                    public FormatterTest { if (x < 0) { throw new IllegalArgumentException(); } }
-                }
-                """;
-                // @formatter:on
-
-        // language=Java
-        // @formatter:off
-        String expected = """
-                public record FormatterTest(int x, int y) {
-                    public FormatterTest {
-                        if (x < 0) {
-                            throw new IllegalArgumentException();
-                        }
-                    }
-                }
-                """;
-                // @formatter:on
-
-        assertEquals(expected, formatJava(input));
+    void keepRecordConstructorOnOneLineNeverExpandsRecordConstructor() throws IOException {
+        test("record-constructor-input.java", "record-constructor-expected.java");
     }
 }

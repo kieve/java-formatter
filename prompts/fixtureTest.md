@@ -192,7 +192,7 @@ Tests still using inline Java text blocks that should be converted to fixtures.
 - [x] `ColumnAlignmentTest`
 - [x] `CommentFormattingTest`
 - [x] `IndentationTabsTest`
-- [ ] `KeepOnOneLineTest`
+- [x] `KeepOnOneLineTest`
 - [ ] `LineWidthTest`
 - [ ] `NewlinesAnnotationsTest`
 - [ ] `NewlinesTest`
@@ -212,5 +212,4 @@ Tests still using inline Java text blocks that should be converted to fixtures.
 
 ### Other
 
-- [ ] `CustomFormatterStepTest`
 - [ ] `TodoTests`
