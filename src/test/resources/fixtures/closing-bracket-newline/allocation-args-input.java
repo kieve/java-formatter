@@ -4,7 +4,6 @@ public class FormatterTest {
             firstArgument,
             secondArgument,
             thirdArgument,
-            fourthArgument
-        );
+            fourthArgument);
     }
 }

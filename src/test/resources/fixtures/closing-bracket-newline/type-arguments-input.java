@@ -7,7 +7,6 @@ public class FormatterTest {
             FirstLongerTypeXx,
             SecondLongerTypeXx,
             ThirdLongerTypeXx,
-            FourthLongerType
-        >genericMethod();
+            FourthLongerType>genericMethod();
     }
 }

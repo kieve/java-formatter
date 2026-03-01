@@ -5,8 +5,7 @@ public class FormatterTest {
             FirstLongerException
             | SecondLongerException
             | ThirdLongerException
-            | FourthLongerEx e
-        ) {
+            | FourthLongerEx e) {
         }
     }
 }

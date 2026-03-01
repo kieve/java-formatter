@@ -4,9 +4,5 @@ public enum FormatterTest {
         "secondArgument",
         "thirdArgument",
         "fourthArgument",
-        "fifthArgument"
-    );
-
-    FormatterTest(String a, String b, String c, String d, String e) {
-    }
+        "fifthArgument");
 }

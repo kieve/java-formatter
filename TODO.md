@@ -1,29 +1,5 @@
 Styles to enforce:
 ---
-Can we enforce invert + early exit if statements:
-
----
-Enforce if a () is wrapped, the ) goes on it's own line.
-Example
-
-public void main(
-    ... etc ...
-) {
-}
-
----
-In the following case, we need a custom formatter to for the `);` onto a new line.
-Same for `) {`
-Same for type argument `>`
-
-// Exceeds line width — wraps with first break + one per line
-result = someObject.doSomething(
-    firstArg,
-    secondArg,
-    thirdArg,
-    fourthArg);
-
----
 We need a complete custom formatter for array initializers
 
 3. alignment_for_expressions_in_array_initializer

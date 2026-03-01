@@ -7,6 +7,7 @@ import ca.kieve.formatter.FormatConfig;
 import ca.kieve.formatter.FormatterTags;
 import ca.kieve.formatter.FormatterTags.ProtectedSource;
 import ca.kieve.formatter.rules.style.ClassBodyBlankLines;
+import ca.kieve.formatter.rules.style.ClosingBracketNewline;
 import ca.kieve.formatter.rules.style.FieldOrdering;
 import ca.kieve.formatter.rules.style.ImportSorting;
 import ca.kieve.formatter.rules.style.InnerTypeOrdering;
@@ -75,6 +76,7 @@ public final class CustomFormatterStep {
         result = ClassBodyBlankLines.apply(result);
         result = SwitchCaseBlankLines.apply(result);
         result = SplitFieldDeclarations.apply(result);
+        result = ClosingBracketNewline.apply(result);
         return ps.restore(result);
     }
 }

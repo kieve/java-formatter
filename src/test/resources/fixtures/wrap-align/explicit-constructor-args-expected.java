@@ -7,6 +7,7 @@ public class FormatterTest {
             "firstLongArgument",
             "secondLongArgument",
             "thirdLongArgument",
-            "fourthLongArgumentXx");
+            "fourthLongArgumentXx"
+        );
     }
 }

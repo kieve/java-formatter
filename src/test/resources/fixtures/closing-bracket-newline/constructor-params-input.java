@@ -3,7 +3,6 @@ public class FormatterTest {
         String firstParameter,
         String secondParameter,
         String thirdParameter,
-        String fourth
-    ) {
+        String fourth) {
     }
 }

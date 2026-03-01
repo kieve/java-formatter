@@ -1,10 +1,11 @@
 public class FormatterTest {
-    void method() {
-        Object obj = new StringBuilder(
+    void caller() {
+        someMethod(
             firstArgument,
             secondArgument,
             thirdArgument,
-            fourthArgument
-        );
+            fourthArgument,
+            fifthArgument,
+            sixthArg);
     }
 }

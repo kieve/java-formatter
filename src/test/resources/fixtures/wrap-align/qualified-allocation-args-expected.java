@@ -10,6 +10,7 @@ public class FormatterTest {
             "firstLongArg",
             "secondLongArg",
             "thirdLongArgument",
-            "fourthArg");
+            "fourthArg"
+        );
     }
 }

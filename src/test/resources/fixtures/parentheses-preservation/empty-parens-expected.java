@@ -4,6 +4,7 @@ public class FormatterTest {
 
     void other(
         int a,
-        int b) {
+        int b
+    ) {
     }
 }

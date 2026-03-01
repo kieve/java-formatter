@@ -6,6 +6,7 @@ public class FormatterTest {
             "longValueTwo",
             "longValueThree",
             "longValueFour",
-            "five");
+            "five"
+        );
     }
 }

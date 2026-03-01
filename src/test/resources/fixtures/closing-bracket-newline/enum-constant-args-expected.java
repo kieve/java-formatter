@@ -6,7 +6,4 @@ public enum FormatterTest {
         "fourthArgument",
         "fifthArgument"
     );
-
-    FormatterTest(String a, String b, String c, String d, String e) {
-    }
 }

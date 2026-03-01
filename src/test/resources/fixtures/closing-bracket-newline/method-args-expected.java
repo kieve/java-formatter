@@ -9,14 +9,4 @@ public class FormatterTest {
             sixthArg
         );
     }
-
-    void someMethod(
-        int firstArgument,
-        int secondArgument,
-        int thirdArgument,
-        int fourthArgument,
-        int fifthArgument,
-        int sixthArg
-    ) {
-    }
 }

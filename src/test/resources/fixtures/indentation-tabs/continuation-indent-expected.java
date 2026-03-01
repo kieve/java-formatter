@@ -4,6 +4,7 @@ public class FormatterTest {
         int parameterTwo,
         int parameterThree,
         int parameterFour,
-        int paramFive) {
+        int paramFive
+    ) {
     }
 }

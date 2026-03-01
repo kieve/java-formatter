@@ -12,6 +12,7 @@
     first = "valueOneXx",
     second = "valueTwoXx",
     third = "valueThreeX",
-    fourth = "valueFour")
+    fourth = "valueFour"
+)
 public class FormatterTest {
 }

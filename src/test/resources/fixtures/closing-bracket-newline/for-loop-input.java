@@ -3,8 +3,7 @@ public class FormatterTest {
         for (
             int veryLongVariableNameHere = 0;
             veryLongVariableNameHere < someUpperBoundValue;
-            veryLongVariableNameHere++
-        ) {
+            veryLongVariableNameHere++) {
         }
     }
 }
