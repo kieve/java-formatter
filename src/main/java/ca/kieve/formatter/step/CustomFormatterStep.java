@@ -18,6 +18,7 @@ import ca.kieve.formatter.rules.style.InnerTypeOrdering;
 import ca.kieve.formatter.rules.style.LeadingBlankLines;
 import ca.kieve.formatter.rules.style.SplitFieldDeclarations;
 import ca.kieve.formatter.rules.style.SwitchCaseBlankLines;
+import ca.kieve.formatter.rules.style.SwitchCaseBodyIndentation;
 import ca.kieve.formatter.rules.style.ThrowsWrapping;
 
 import java.io.Serializable;
@@ -82,6 +83,7 @@ public final class CustomFormatterStep {
         result = InnerTypeOrdering.apply(result);
         result = ClassBodyBlankLines.apply(result);
         result = SwitchCaseBlankLines.apply(result);
+        result = SwitchCaseBodyIndentation.apply(result);
         result = AnnotationTypeBlankLines.apply(result);
         result = SplitFieldDeclarations.apply(result);
         result = ArrayInitializerWrapping.apply(result);

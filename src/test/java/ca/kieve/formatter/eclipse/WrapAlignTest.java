@@ -1,6 +1,5 @@
 package ca.kieve.formatter.eclipse;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import ca.kieve.formatter.util.FormatterTestBase;
@@ -194,18 +193,12 @@ class WrapAlignTest extends FormatterTestBase {
     }
 
     // alignment_for_expressions_in_switch_case_with_arrow
-    // DISABLED: Eclipse JDT indents the arrow body at the same level as the case expressions.
-    // The body should be indented further. Likely a configuration issue. See TODO.md.
-    @Disabled("Arrow body should be indented further than case expressions — needs custom rule")
     @Test
     void alignmentForExpressionsInSwitchCaseWithArrowWrapsAllElements() throws IOException {
         test("switch-arrow-expressions-input.java", "switch-arrow-expressions-expected.java");
     }
 
     // alignment_for_expressions_in_switch_case_with_colon
-    // DISABLED: Same issue as arrow case — body indented at same level as case
-    // expressions. See TODO.md.
-    @Disabled("Case body should be indented further than case expressions — needs custom rule")
     @Test
     void alignmentForExpressionsInSwitchCaseWithColonWrapsAllElements() throws IOException {
         test("switch-colon-expressions-input.java", "switch-colon-expressions-expected.java");

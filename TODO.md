@@ -1,12 +1,5 @@
 Styles to enforce:
 ---
-Custom rule for throws clause wrapping. Eclipse JDT always keeps `throws` + first exception on the
-same line. Need a custom formatter step to break after `throws` so each exception starts on its own
-line.
-Disabled tests: `WrapAlignTest.alignmentForThrowsClauseInMethodDeclarationWrapsAllElements`,
-`WrapAlignTest.alignmentForThrowsClauseInConstructorDeclarationWrapsAllElements`
-
----
 Fix switch case body indentation. When `case` expressions in a switch case wrap, Eclipse JDT indents
 the body (after `->` or `:`) at the same level as the case expressions. The body should be indented
 further to distinguish it from the case labels. Not solvable via Eclipse settings (`INDENT_BY_ONE`
