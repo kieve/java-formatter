@@ -95,6 +95,19 @@ class FieldOrderingTest extends FormatterRuleTestBase {
         test("static-init-block-unchanged.java");
     }
 
+    @Test
+    void keepsStaticInitBlockBeforeField() throws IOException {
+        test(
+            "static-init-before-field-input.java",
+            "static-init-before-field-expected.java"
+        );
+    }
+
+    @Test
+    void preservesStaticInitBlockBeforeFieldAlreadyOrdered() throws IOException {
+        test("static-init-before-field-unchanged.java");
+    }
+
     @Override
     void respectsFormatterOffTags() throws IOException {
         String input = loadFixture("field-ordering/formatter-off-unchanged.java");

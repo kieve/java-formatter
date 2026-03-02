@@ -107,21 +107,24 @@ public final class FieldOrdering {
         }
 
         // Partition into fields and non-fields.
-        // Static initializer blocks that follow a field are treated as
-        // companions (they initialize the preceding field) and excluded
-        // from the non-field list so they move with their field.
+        // Static initializer blocks adjacent to a field (before or after)
+        // are treated as companions and excluded from the non-field list
+        // so they move with their field.
         List<FieldDeclaration> fields = new ArrayList<>();
         List<BodyDeclaration<?>> nonFields = new ArrayList<>();
         boolean lastWasFieldOrCompanion = false;
-        for (BodyDeclaration<?> member : members) {
+        for (int i = 0; i < members.size(); i++) {
+            BodyDeclaration<?> member = members.get(i);
             if (member instanceof FieldDeclaration fd) {
                 fields.add(fd);
                 lastWasFieldOrCompanion = true;
                 continue;
             }
             if (member instanceof InitializerDeclaration id
-                && id.isStatic() && lastWasFieldOrCompanion) {
-                // Static init block attached to preceding field — skip
+                && id.isStatic()
+                && (lastWasFieldOrCompanion
+                    || isFollowedByField(members, i))) {
+                // Static init block attached to adjacent field — skip
                 continue;
             }
             nonFields.add(member);
@@ -193,6 +196,11 @@ public final class FieldOrdering {
             } else if (member instanceof InitializerDeclaration id
                 && id.isStatic() && lastFieldGroup != NON_FIELD) {
                 group = lastFieldGroup;
+            } else if (member instanceof InitializerDeclaration id
+                && id.isStatic()
+                && isFollowedByField(sortedMembers, i)) {
+                FieldDeclaration next = (FieldDeclaration) sortedMembers.get(i + 1);
+                group = computeGroup(next);
             } else {
                 lastFieldGroup = NON_FIELD;
             }
@@ -319,6 +327,14 @@ public final class FieldOrdering {
             .min().orElse(Integer.MAX_VALUE);
 
         return lastFieldEnd < firstNonFieldBegin;
+    }
+
+    private static boolean isFollowedByField(
+        List<? extends BodyDeclaration<?>> members,
+        int index
+    ) {
+        return index + 1 < members.size()
+            && members.get(index + 1) instanceof FieldDeclaration;
     }
 
     private static int computeGroup(FieldDeclaration fd) {
