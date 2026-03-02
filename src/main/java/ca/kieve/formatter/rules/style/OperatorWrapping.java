@@ -93,9 +93,10 @@ public final class OperatorWrapping {
                     break;
                 }
 
-                if (ch != ' ' && ch != '\t') {
-                    lastCodeEnd = col + 1;
+                if (ch == ' ' || ch == '\t') {
+                    continue;
                 }
+                lastCodeEnd = col + 1;
             }
 
             if (lastCodeEnd <= 0) {
@@ -108,8 +109,7 @@ public final class OperatorWrapping {
 
             // Check for double-char operators: &&, ||
             if (codePart.length() >= 2) {
-                String last2 =
-                    codePart.substring(codePart.length() - 2);
+                String last2 = codePart.substring(codePart.length() - 2);
                 if (last2.equals("&&") || last2.equals("||")) {
                     operator = last2;
                     operatorStart = codePart.length() - 2;
@@ -123,8 +123,7 @@ public final class OperatorWrapping {
                     // Exclude ++ and --
                     if ((lastCh == '+' || lastCh == '-')
                         && codePart.length() >= 2
-                        && codePart.charAt(codePart.length() - 2)
-                            == lastCh) {
+                        && codePart.charAt(codePart.length() - 2) == lastCh) {
                         continue;
                     }
                     operator = String.valueOf(lastCh);
