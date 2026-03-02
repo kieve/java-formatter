@@ -101,12 +101,12 @@ public class PreferEarlyExitCheck extends AbstractCheck {
             TokenTypes.CTOR_DEF,
             TokenTypes.COMPACT_CTOR_DEF,
             TokenTypes.LAMBDA ->
-            "return";
+                "return";
         case
             TokenTypes.LITERAL_FOR,
             TokenTypes.LITERAL_WHILE,
             TokenTypes.LITERAL_DO ->
-            "continue";
+                "continue";
         case TokenTypes.CASE_GROUP -> "break";
         default -> null;
         };
