@@ -39,8 +39,8 @@ public final class AnnotationTypeBlankLines {
             String trimmed = lines[i].trim();
 
             if (trimmed.startsWith("//")
-                    || trimmed.startsWith("*")
-                    || trimmed.startsWith("/*")) {
+                || trimmed.startsWith("*")
+                || trimmed.startsWith("/*")) {
                 continue;
             }
 
@@ -110,7 +110,7 @@ public final class AnnotationTypeBlankLines {
             int groupStart = sorted.get(i);
             int groupEnd = groupStart;
             while (i + 1 < sorted.size()
-                    && sorted.get(i + 1) == groupEnd + 1) {
+                && sorted.get(i + 1) == groupEnd + 1) {
                 i++;
                 groupEnd = sorted.get(i);
             }
@@ -137,8 +137,8 @@ public final class AnnotationTypeBlankLines {
     private static boolean isTypeDeclaration(String line) {
         String trimmed = line.trim();
         if (trimmed.startsWith("//")
-                || trimmed.startsWith("/*")
-                || trimmed.startsWith("*")) {
+            || trimmed.startsWith("/*")
+            || trimmed.startsWith("*")) {
             return false;
         }
         return TYPE_KEYWORD.matcher(trimmed).find();
@@ -203,13 +203,20 @@ public final class AnnotationTypeBlankLines {
 
             if (c == '"') {
                 inString = true;
-            } else if (c == '\'') {
-                inChar = true;
-            } else if (c == '{') {
-                delta++;
-            } else if (c == '}') {
-                delta--;
+                continue;
             }
+            if (c == '\'') {
+                inChar = true;
+                continue;
+            }
+            if (c == '{') {
+                delta++;
+                continue;
+            }
+            if (c != '}') {
+                continue;
+            }
+            delta--;
         }
 
         return delta;

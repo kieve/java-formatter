@@ -46,7 +46,8 @@ public class RequireBracesCheck extends AbstractCheck {
         case TokenTypes.LITERAL_WHILE -> visitWhile(ast);
         case TokenTypes.LITERAL_FOR -> visitFor(ast);
         case TokenTypes.LITERAL_DO -> visitDo(ast);
-        default -> { }
+        default -> {
+        }
         }
     }
 

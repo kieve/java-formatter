@@ -19,12 +19,12 @@ import java.util.List;
  * plus one continuation unit (4 spaces).
  */
 public final class AssignmentWrapping {
+    private record Edit(int line, int col, String indent) {
+    }
+
     private static final String[] COMPOUND_SUFFIXES = {
         "+=", "-=", "*=", "/=", "%=", "&=", "|=", "^="
     };
-
-    private record Edit(int line, int col, String indent) {
-    }
 
     private AssignmentWrapping() {
     }
@@ -208,40 +208,43 @@ public final class AssignmentWrapping {
                     continue;
                 }
 
-                // Look for assignment operators
-                if (ch != '=' && assignCol < 0) {
-                    // Check compound operators
+                // Already found an assignment — skip further operator checks
+                if (assignCol >= 0) {
+                    continue;
+                }
+
+                // Look for compound assignment operators (+=, -=, etc.)
+                if (ch != '=') {
                     if (col + 1 < line.length()
                         && line.charAt(col + 1) == '=') {
                         String twoChar = line.substring(col, col + 2);
                         for (String compound : COMPOUND_SUFFIXES) {
-                            if (twoChar.equals(compound)) {
-                                assignCol = col;
-                                assignLen = 2;
-                                col++;
-                                break;
+                            if (!twoChar.equals(compound)) {
+                                continue;
                             }
+                            assignCol = col;
+                            assignLen = 2;
+                            col++;
+                            break;
                         }
                     }
                     continue;
                 }
 
-                if (ch == '=' && assignCol < 0) {
-                    // Exclude ==, !=, <=, >=
-                    if (col + 1 < line.length()
-                        && line.charAt(col + 1) == '=') {
-                        col++;
+                // ch == '=' — Exclude ==, !=, <=, >=
+                if (col + 1 < line.length()
+                    && line.charAt(col + 1) == '=') {
+                    col++;
+                    continue;
+                }
+                if (col > 0) {
+                    char prev = line.charAt(col - 1);
+                    if (prev == '!' || prev == '<' || prev == '>') {
                         continue;
                     }
-                    if (col > 0) {
-                        char prev = line.charAt(col - 1);
-                        if (prev == '!' || prev == '<' || prev == '>') {
-                            continue;
-                        }
-                    }
-                    assignCol = col;
-                    assignLen = 1;
                 }
+                assignCol = col;
+                assignLen = 1;
             }
 
             if (assignCol < 0 || !foundSemicolon) {

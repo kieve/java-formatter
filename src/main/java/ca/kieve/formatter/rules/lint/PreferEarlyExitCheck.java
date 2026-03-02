@@ -18,7 +18,8 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  */
 public class PreferEarlyExitCheck extends AbstractCheck {
     private static final String MSG_ELSE = "Use early %s to eliminate the else branch.";
-    private static final String MSG_WRAP = "Invert the condition and use early %s to reduce nesting.";
+    private static final String MSG_WRAP =
+        "Invert the condition and use early %s to reduce nesting.";
 
     @Override
     public int[] getDefaultTokens() {
