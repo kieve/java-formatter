@@ -40,8 +40,7 @@ class QualifiedImportResolutionTest extends FormatterRuleTestBase {
     }
 
     @Test
-    void collisionTwoFqcnsSameSimpleNameLeavesBothQualified()
-        throws IOException {
+    void collisionTwoFqcnsSameSimpleNameLeavesBothQualified() throws IOException {
         test("collision-two-fqcns-unchanged.java");
     }
 

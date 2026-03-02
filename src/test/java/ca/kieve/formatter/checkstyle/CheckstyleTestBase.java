@@ -32,8 +32,7 @@ abstract class CheckstyleTestBase {
      * Assert exactly one violation with the expected check name. Optionally
      * verify the message contains each of the given substrings.
      */
-    protected void assertViolation(String fixture, String... messageContains)
-        throws IOException {
+    protected void assertViolation(String fixture, String... messageContains) throws IOException {
         List<Violation> violations = lint(fixture);
         assertEquals(1, violations.size());
         assertEquals(checkName, violations.get(0).checkName());
@@ -46,8 +45,7 @@ abstract class CheckstyleTestBase {
         }
     }
 
-    protected void assertViolations(String fixture, int count)
-        throws IOException {
+    protected void assertViolations(String fixture, int count) throws IOException {
         assertEquals(count, lint(fixture).size());
     }
 

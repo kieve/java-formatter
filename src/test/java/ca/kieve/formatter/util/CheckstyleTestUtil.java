@@ -51,8 +51,7 @@ public final class CheckstyleTestUtil {
         }
     }
 
-    private static List<Violation> runChecker(Path sourceFile)
-        throws Exception {
+    private static List<Violation> runChecker(Path sourceFile) throws Exception {
         try (
             InputStream configStream = CheckstyleTestUtil.class
                 .getResourceAsStream("/checkstyle.xml")

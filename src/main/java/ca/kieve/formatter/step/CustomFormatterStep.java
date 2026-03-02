@@ -12,13 +12,13 @@ import ca.kieve.formatter.rules.style.AssignmentWrapping;
 import ca.kieve.formatter.rules.style.ClassBodyBlankLines;
 import ca.kieve.formatter.rules.style.ClosingBracketNewline;
 import ca.kieve.formatter.rules.style.CommentFormatting;
-import ca.kieve.formatter.rules.style.ThrowsWrapping;
 import ca.kieve.formatter.rules.style.FieldOrdering;
 import ca.kieve.formatter.rules.style.ImportSorting;
 import ca.kieve.formatter.rules.style.InnerTypeOrdering;
 import ca.kieve.formatter.rules.style.LeadingBlankLines;
 import ca.kieve.formatter.rules.style.SplitFieldDeclarations;
 import ca.kieve.formatter.rules.style.SwitchCaseBlankLines;
+import ca.kieve.formatter.rules.style.ThrowsWrapping;
 
 import java.io.Serializable;
 

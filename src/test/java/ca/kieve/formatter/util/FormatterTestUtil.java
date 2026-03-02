@@ -45,8 +45,7 @@ public final class FormatterTestUtil {
      * @param javaSource unformatted Java source code
      * @return the formatted source with normalized (Unix) line endings
      */
-    public static String formatJava(Path testProjectDir, String javaSource)
-        throws IOException {
+    public static String formatJava(Path testProjectDir, String javaSource) throws IOException {
         writeFile(testProjectDir, "settings.gradle", "");
         writeFile(testProjectDir, "build.gradle", BUILD_GRADLE);
 
@@ -66,8 +65,11 @@ public final class FormatterTestUtil {
     /**
      * Write a file into the test project directory, creating parent dirs as needed.
      */
-    public static void writeFile(Path testProjectDir, String relativePath, String content)
-        throws IOException {
+    public static void writeFile(
+        Path testProjectDir,
+        String relativePath,
+        String content
+    ) throws IOException {
         Path file = testProjectDir.resolve(relativePath);
         Files.createDirectories(file.getParent());
         Files.writeString(file, content);
