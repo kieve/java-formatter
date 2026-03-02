@@ -5,8 +5,10 @@ public class Foo {
         do {
             if (x) {
                 doA();
-            } else {
                 doB();
+                doC();
+            } else {
+                doD();
             }
         } while (x);
     }

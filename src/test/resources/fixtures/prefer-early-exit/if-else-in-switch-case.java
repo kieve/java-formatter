@@ -6,8 +6,10 @@ public class Foo {
             case 1:
                 if (x > 0) {
                     doA();
-                } else {
                     doB();
+                    doC();
+                } else {
+                    doD();
                 }
         }
     }

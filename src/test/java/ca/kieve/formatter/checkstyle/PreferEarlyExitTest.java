@@ -68,6 +68,11 @@ class PreferEarlyExitTest extends CheckstyleTestBase {
     }
 
     @Test
+    void acceptsSmallBody() throws IOException {
+        assertClean("small-body.java");
+    }
+
+    @Test
     void acceptsGuardReturn() throws IOException {
         assertClean("guard-return.java");
     }

@@ -17,6 +17,8 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </ul>
  */
 public class PreferEarlyExitCheck extends AbstractCheck {
+    private static final int MIN_BODY_LINES = 3;
+
     private static final String MSG_ELSE = "Use early %s to eliminate the else branch.";
     private static final String MSG_WRAP =
         "Invert the condition and use early %s to reduce nesting.";
@@ -60,6 +62,11 @@ public class PreferEarlyExitCheck extends AbstractCheck {
         // Determine exit keyword from enclosing context
         String exitKeyword = findExitKeyword(parent);
         if (exitKeyword == null) {
+            return;
+        }
+
+        // Skip small if-bodies — not worth refactoring
+        if (getBodyLineCount(ast) < MIN_BODY_LINES) {
             return;
         }
 
@@ -150,6 +157,18 @@ public class PreferEarlyExitCheck extends AbstractCheck {
         return count == 1
             && candidate != null
             && isExitStatement(candidate.getType());
+    }
+
+    private int getBodyLineCount(DetailAST ifAst) {
+        DetailAST thenBlock = getThenBlock(ifAst);
+        if (thenBlock == null || thenBlock.getType() != TokenTypes.SLIST) {
+            return 1;
+        }
+        DetailAST rcurly = thenBlock.findFirstToken(TokenTypes.RCURLY);
+        if (rcurly == null) {
+            return 0;
+        }
+        return rcurly.getLineNo() - thenBlock.getLineNo() - 1;
     }
 
     private boolean isExitStatement(int tokenType) {

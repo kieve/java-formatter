@@ -6,6 +6,7 @@ public class Foo {
             if (i > 5) {
                 doA();
                 doB();
+                doC();
             }
         }
     }

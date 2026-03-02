@@ -5,6 +5,7 @@ public class Foo {
         if (x) {
             doA();
             doB();
+            doC();
         }
     }
 }

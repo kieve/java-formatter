@@ -5,8 +5,10 @@ public class Foo {
         for (int i = 0; i < 10; i++) {
             if (i > 5) {
                 doA();
-            } else {
                 doB();
+                doC();
+            } else {
+                doD();
             }
         }
     }

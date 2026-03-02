@@ -4,16 +4,20 @@ public class Foo {
     void method1(boolean x) {
         if (x) {
             doA();
-        } else {
             doB();
+            doC();
+        } else {
+            doD();
         }
     }
 
     void method2(boolean x) {
         if (x) {
-            doA();
+            doE();
+            doF();
+            doG();
         } else {
-            doB();
+            doH();
         }
     }
 }

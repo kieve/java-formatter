@@ -4,8 +4,10 @@ public class Foo {
     Runnable r = () -> {
         if (true) {
             doA();
-        } else {
             doB();
+            doC();
+        } else {
+            doD();
         }
     };
 }
