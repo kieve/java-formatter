@@ -21,6 +21,8 @@ plugins {
     id 'java'
     id 'ca.kieve.java-formatter'
 }
+
+group = 'com.example'  // required: used as the default project-specific import group
 ```
 
 ## Usage
@@ -70,10 +72,13 @@ a blank line in the output. Entries are one of four types:
 
 #### Default Import Layout
 
+When no `importLayout` is specified, the plugin uses the project's Gradle `group` property to
+build the default layout. For example, a project with `group = 'com.example'` gets:
+
 ```yaml
 importLayout:
   - catch-all                # all other non-static imports
-  - ["ca.kieve."]            # ca.kieve.* imports
+  - ["com.example."]         # project-specific imports (derived from group)
   - ["javax.", "java."]      # javax.* and java.* imports (no blank line between)
   - static-catch-all         # all static imports
 ```
@@ -81,16 +86,18 @@ importLayout:
 This produces output like:
 
 ```java
-import com.example.Foo;
+import org.slf4j.Logger;
 import org.something.Bar;
 
-import ca.kieve.myapp.MyClass;
+import com.example.myapp.MyClass;
 
 import javax.annotation.Nonnull;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 ```
+
+If `group` is not set, the project-specific group is omitted from the default layout.
 
 ## Self-Formatting (Development)
 

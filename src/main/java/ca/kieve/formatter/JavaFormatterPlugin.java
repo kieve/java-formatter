@@ -97,6 +97,7 @@ public class JavaFormatterPlugin implements Plugin<Project> {
         SpotlessExtension spotless = project.getExtensions()
             .getByType(SpotlessExtension.class);
 
+        FormatConfig.setDefaultProjectGroup(project.getGroup().toString());
         FormatConfig config = FormatConfigLoader.loadFromDirectory(
             project.getProjectDir()
         );

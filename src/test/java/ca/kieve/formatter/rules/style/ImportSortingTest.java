@@ -13,6 +13,10 @@ import static ca.kieve.formatter.util.FormatterTestUtil.loadFixture;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ImportSortingTest extends FormatterRuleTestBase {
+    static {
+        FormatConfig.setDefaultProjectGroup("ca.kieve");
+    }
+
     private static final FormatConfig CONFIG = FormatConfig.defaults();
 
     ImportSortingTest() {
