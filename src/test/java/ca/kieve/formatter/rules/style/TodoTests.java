@@ -1,6 +1,5 @@
 package ca.kieve.formatter.rules.style;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import ca.kieve.formatter.util.FormatterTestBase;
@@ -27,7 +26,6 @@ class TodoTests extends FormatterTestBase {
 
     // wrap_before_binary_operator — when author wraps after an operator, the formatter should move
     // the operator to the beginning of the next line. See TODO.md.
-    @Disabled("Needs custom formatter step — Eclipse preserves author's wrap-after-operator style")
     @Test
     void wrapAfterOperatorShouldMoveOperatorBeforeNextLine() throws IOException {
         test("wrap-after-operator-input.java", "wrap-after-operator-expected.java");

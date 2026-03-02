@@ -16,6 +16,7 @@ import ca.kieve.formatter.rules.style.FieldOrdering;
 import ca.kieve.formatter.rules.style.ImportSorting;
 import ca.kieve.formatter.rules.style.InnerTypeOrdering;
 import ca.kieve.formatter.rules.style.LeadingBlankLines;
+import ca.kieve.formatter.rules.style.OperatorWrapping;
 import ca.kieve.formatter.rules.style.ParameterAnnotationWrapping;
 import ca.kieve.formatter.rules.style.SplitFieldDeclarations;
 import ca.kieve.formatter.rules.style.SwitchCaseBlankLines;
@@ -88,6 +89,7 @@ public final class CustomFormatterStep {
         result = AnnotationTypeBlankLines.apply(result);
         result = SplitFieldDeclarations.apply(result);
         result = ArrayInitializerWrapping.apply(result);
+        result = OperatorWrapping.apply(result);
         result = AssignmentWrapping.apply(result, config);
         result = ClosingBracketNewline.apply(result);
         result = ParameterAnnotationWrapping.apply(result);
