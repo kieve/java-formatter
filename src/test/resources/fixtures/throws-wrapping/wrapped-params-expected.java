@@ -1,5 +1,8 @@
 public class FormatterTest {
-    FormatterTest() throws
+    void method(
+        String firstLongParameter,
+        String secondLongParameter
+    ) throws
         FirstLongerException,
         SecondLongerException,
         ThirdLongerException,

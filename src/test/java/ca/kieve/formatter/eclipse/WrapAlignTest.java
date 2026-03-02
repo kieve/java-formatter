@@ -152,18 +152,12 @@ class WrapAlignTest extends FormatterTestBase {
     }
 
     // alignment_for_throws_clause_in_method_declaration
-    // DISABLED: Eclipse JDT keeps "throws" + first exception as a single unit.
-    // Needs a custom formatter step to break after "throws". See TODO.md.
-    @Disabled("Needs custom formatter step — Eclipse JDT cannot separate throws from first exception")
     @Test
     void alignmentForThrowsClauseInMethodDeclarationWrapsAllElements() throws IOException {
         test("throws-method-input.java", "throws-method-expected.java");
     }
 
     // alignment_for_throws_clause_in_constructor_declaration
-    // DISABLED: Eclipse JDT keeps "throws" + first exception as a single unit.
-    // Needs a custom formatter step to break after "throws". See TODO.md.
-    @Disabled("Needs custom formatter step — Eclipse JDT cannot separate throws from first exception")
     @Test
     void alignmentForThrowsClauseInConstructorDeclarationWrapsAllElements() throws IOException {
         test("throws-constructor-input.java", "throws-constructor-expected.java");

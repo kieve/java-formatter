@@ -299,8 +299,8 @@ org:
           alignment_for_superinterfaces_in_type_declaration: 48
           alignment_for_superinterfaces_in_enum_declaration: 48
           alignment_for_superinterfaces_in_record_declaration: 48
-          alignment_for_throws_clause_in_method_declaration: 48
-          alignment_for_throws_clause_in_constructor_declaration: 48
+          alignment_for_throws_clause_in_method_declaration: 0
+          alignment_for_throws_clause_in_constructor_declaration: 0
           alignment_for_type_arguments: 48
           alignment_for_type_parameters: 48
           alignment_for_parameterized_type_references: 0

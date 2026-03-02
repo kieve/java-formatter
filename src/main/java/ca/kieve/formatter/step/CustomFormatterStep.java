@@ -12,6 +12,7 @@ import ca.kieve.formatter.rules.style.AssignmentWrapping;
 import ca.kieve.formatter.rules.style.ClassBodyBlankLines;
 import ca.kieve.formatter.rules.style.ClosingBracketNewline;
 import ca.kieve.formatter.rules.style.CommentFormatting;
+import ca.kieve.formatter.rules.style.ThrowsWrapping;
 import ca.kieve.formatter.rules.style.FieldOrdering;
 import ca.kieve.formatter.rules.style.ImportSorting;
 import ca.kieve.formatter.rules.style.InnerTypeOrdering;
@@ -86,6 +87,7 @@ public final class CustomFormatterStep {
         result = ArrayInitializerWrapping.apply(result);
         result = AssignmentWrapping.apply(result, config);
         result = ClosingBracketNewline.apply(result);
+        result = ThrowsWrapping.apply(result, config);
         return ps.restore(result);
     }
 }
