@@ -1,18 +1,5 @@
 Styles to enforce:
 ---
-Remove blank lines between annotation type members. Eclipse's `blank_lines_before_method` applies
-to annotation members the same as regular methods, and `blank_lines_before_abstract_method` doesn't
-cover them. Need a custom rule to strip blank lines inside `@interface` bodies.
-Test to update: `WrapAlignTest.alignmentForArgumentsInAnnotationWrapsAllElements`
-
----
-Custom rule for assignment wrapping. Eclipse's `alignment_for_assignment` wraps after `=`, but it
-interferes with other wrapping (e.g., `new Foo(...)` args get collapsed onto one line after the `=`
-wraps instead of wrapping per-argument). Need a custom rule that wraps after `=` only when the RHS
-doesn't have its own wrapping.
-Test to update: `WrapAlignTest.alignmentForAssignmentDoesNotWrap`
-
----
 Custom rule for throws clause wrapping. Eclipse JDT always keeps `throws` + first exception on the
 same line. Need a custom formatter step to break after `throws` so each exception starts on its own
 line.

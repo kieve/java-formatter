@@ -69,8 +69,8 @@ class WrapAlignTest extends FormatterTestBase {
 
     // alignment_for_assignment
     @Test
-    void alignmentForAssignmentDoesNotWrap() throws IOException {
-        test("assignment-no-wrap-unchanged.java");
+    void alignmentForAssignmentWrapsViaCustomRule() throws IOException {
+        test("assignment-input.java", "assignment-expected.java");
     }
 
     // alignment_for_conditional_expression
@@ -183,8 +183,8 @@ class WrapAlignTest extends FormatterTestBase {
 
     // alignment_for_parameterized_type_references
     @Test
-    void alignmentForParameterizedTypeReferencesDoesNotWrap() throws IOException {
-        test("parameterized-type-ref-unchanged.java");
+    void alignmentForParameterizedTypeReferencesWrapsAssignment() throws IOException {
+        test("parameterized-type-ref-input.java", "parameterized-type-ref-expected.java");
     }
 
     // alignment_for_union_type_in_multicatch

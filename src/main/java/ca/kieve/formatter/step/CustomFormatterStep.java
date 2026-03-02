@@ -8,6 +8,7 @@ import ca.kieve.formatter.FormatterTags;
 import ca.kieve.formatter.FormatterTags.ProtectedSource;
 import ca.kieve.formatter.rules.style.AnnotationTypeBlankLines;
 import ca.kieve.formatter.rules.style.ArrayInitializerWrapping;
+import ca.kieve.formatter.rules.style.AssignmentWrapping;
 import ca.kieve.formatter.rules.style.ClassBodyBlankLines;
 import ca.kieve.formatter.rules.style.ClosingBracketNewline;
 import ca.kieve.formatter.rules.style.CommentFormatting;
@@ -83,6 +84,7 @@ public final class CustomFormatterStep {
         result = AnnotationTypeBlankLines.apply(result);
         result = SplitFieldDeclarations.apply(result);
         result = ArrayInitializerWrapping.apply(result);
+        result = AssignmentWrapping.apply(result, config);
         result = ClosingBracketNewline.apply(result);
         return ps.restore(result);
     }
