@@ -1,10 +1,7 @@
 @interface MyAnnotation {
     String first() default "";
-
     String second() default "";
-
     String third() default "";
-
     String fourth() default "";
 }
 

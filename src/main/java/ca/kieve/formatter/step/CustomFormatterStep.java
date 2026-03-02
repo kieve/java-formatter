@@ -6,6 +6,7 @@ import com.diffplug.spotless.FormatterStep;
 import ca.kieve.formatter.FormatConfig;
 import ca.kieve.formatter.FormatterTags;
 import ca.kieve.formatter.FormatterTags.ProtectedSource;
+import ca.kieve.formatter.rules.style.AnnotationTypeBlankLines;
 import ca.kieve.formatter.rules.style.ArrayInitializerWrapping;
 import ca.kieve.formatter.rules.style.ClassBodyBlankLines;
 import ca.kieve.formatter.rules.style.ClosingBracketNewline;
@@ -79,6 +80,7 @@ public final class CustomFormatterStep {
         result = InnerTypeOrdering.apply(result);
         result = ClassBodyBlankLines.apply(result);
         result = SwitchCaseBlankLines.apply(result);
+        result = AnnotationTypeBlankLines.apply(result);
         result = SplitFieldDeclarations.apply(result);
         result = ArrayInitializerWrapping.apply(result);
         result = ClosingBracketNewline.apply(result);

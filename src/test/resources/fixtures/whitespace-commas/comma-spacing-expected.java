@@ -1,7 +1,6 @@
 public class FormatterTest {
     @interface Config {
         String name();
-
         int value();
     }
 

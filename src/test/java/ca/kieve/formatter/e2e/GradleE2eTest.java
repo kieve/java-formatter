@@ -1,4 +1,4 @@
-package ca.kieve.formatter;
+package ca.kieve.formatter.e2e;
 
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -16,9 +16,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * <p>
  * This is intentionally a single test with one comprehensive input to keep
  * Gradle invocations minimal. Individual formatter settings are tested faster
- * via {@link DirectFormatterTestUtil} in the eclipse/ package tests.
+ * via {@link ca.kieve.formatter.util.DirectFormatterTestUtil} in the eclipse/
+ * package tests.
  */
-class EndToEndTest {
+class GradleE2eTest {
     @TempDir
     Path testProjectDir;
 
