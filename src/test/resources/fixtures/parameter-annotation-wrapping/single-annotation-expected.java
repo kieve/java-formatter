@@ -1,10 +1,8 @@
 public class FormatterTest {
     void method(
-        @SuppressWarnings("unchecked")
-        @Deprecated
+        @Nullable
         String firstParameter,
-        @SuppressWarnings("unchecked")
-        @Deprecated
+        @Nullable
         String secondParameter
     ) {
     }

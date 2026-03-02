@@ -1,18 +1,5 @@
 Styles to enforce:
 ---
-Fix switch case body indentation. When `case` expressions in a switch case wrap, Eclipse JDT indents
-the body (after `->` or `:`) at the same level as the case expressions. The body should be indented
-further to distinguish it from the case labels. Not solvable via Eclipse settings (`INDENT_BY_ONE`
-adds only 1 space, `INDENT_ON_COLUMN` forces wrapping on all cases). Needs a custom rule.
-Disabled tests: `WrapAlignTest.alignmentForExpressionsInSwitchCaseWithArrowWrapsAllElements`,
-`WrapAlignTest.alignmentForExpressionsInSwitchCaseWithColonWrapsAllElements`
-
----
-Custom rule for annotations on wrapped parameters. When parameters wrap one-per-line, Eclipse keeps
-annotations inline with each parameter. They should go on their own lines above each parameter.
-Disabled test: `rules.TodoTests.annotationsOnWrappedParametersShouldGoOnOwnLines`
-
----
 Custom rule for wrap-before-operator enforcement. Eclipse's `wrap_before_binary_operator` only
 affects wrapping that Eclipse introduces — it does not fix existing wrap-after-operator style.
 Need a custom rule to move trailing operators to the beginning of the next line.

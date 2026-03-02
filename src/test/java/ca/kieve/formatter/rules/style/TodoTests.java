@@ -20,7 +20,6 @@ class TodoTests extends FormatterTestBase {
 
     // alignment_for_annotations_on_parameter — when parameters wrap, annotations should go on their
     // own lines above each parameter, not inline. See TODO.md.
-    @Disabled("Needs custom formatter step — Eclipse keeps annotations inline with wrapped parameters")
     @Test
     void annotationsOnWrappedParametersShouldGoOnOwnLines() throws IOException {
         test("annotations-wrapped-params-input.java", "annotations-wrapped-params-expected.java");

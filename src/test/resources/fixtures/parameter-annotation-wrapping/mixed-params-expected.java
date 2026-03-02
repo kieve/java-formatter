@@ -3,9 +3,9 @@ public class FormatterTest {
         @SuppressWarnings("unchecked")
         @Deprecated
         String firstParameter,
-        @SuppressWarnings("unchecked")
-        @Deprecated
-        String secondParameter
+        String secondParameter,
+        @Nullable
+        String thirdParameter
     ) {
     }
 }
