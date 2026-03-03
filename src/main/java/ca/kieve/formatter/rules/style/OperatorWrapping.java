@@ -66,6 +66,7 @@ public final class OperatorWrapping {
                     && line.charAt(col + 2) == '"') {
                     inTextBlock = true;
                     col += 2;
+                    lastCodeEnd = col + 1;
                     continue;
                 }
 

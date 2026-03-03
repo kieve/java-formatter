@@ -25,6 +25,7 @@ import ca.kieve.formatter.rules.style.ThrowsWrapping;
 import ca.kieve.formatter.rules.style.WrappedLineJoining;
 
 import java.io.Serializable;
+import java.util.function.UnaryOperator;
 
 /**
  * The main Spotless FormatterStep that applies all custom formatting rules.
@@ -44,6 +45,12 @@ public final class CustomFormatterStep {
         FormatterFunc toFormatter() {
             return source -> applyCustomRules(source, config);
         }
+    }
+
+    private static volatile boolean debugRules = false;
+
+    public static void setDebugRules(boolean enabled) {
+        debugRules = enabled;
     }
 
     private CustomFormatterStep() {
@@ -75,23 +82,39 @@ public final class CustomFormatterStep {
     public static String applyCustomRules(String source, FormatConfig config) {
         ProtectedSource ps = FormatterTags.protect(source);
         String result = ps.source();
-        result = LeadingBlankLines.apply(result);
-        result = ImportSorting.apply(result, config);
-        result = CommentFormatting.apply(result, config);
-        result = FieldOrdering.apply(result);
-        result = InnerTypeOrdering.apply(result);
-        result = ClassBodyBlankLines.apply(result);
-        result = SwitchCaseBlankLines.apply(result);
-        result = SwitchCaseBodyIndentation.apply(result);
-        result = AnnotationTypeBlankLines.apply(result);
-        result = SplitFieldDeclarations.apply(result);
-        result = ArrayInitializerWrapping.apply(result);
-        result = OperatorWrapping.apply(result);
-        result = AssignmentWrapping.apply(result, config);
-        result = ClosingBracketNewline.apply(result);
-        result = ParameterAnnotationWrapping.apply(result);
-        result = ThrowsWrapping.apply(result, config);
-        result = WrappedLineJoining.apply(result, config);
+        result = debugApply("LeadingBlankLines", result, LeadingBlankLines::apply);
+        result = debugApply("ImportSorting", result, r -> ImportSorting.apply(r, config));
+        result = debugApply("CommentFormatting", result, r -> CommentFormatting.apply(r, config));
+        result = debugApply("FieldOrdering", result, FieldOrdering::apply);
+        result = debugApply("InnerTypeOrdering", result, InnerTypeOrdering::apply);
+        result = debugApply("ClassBodyBlankLines", result, ClassBodyBlankLines::apply);
+        result = debugApply("SwitchCaseBlankLines", result, SwitchCaseBlankLines::apply);
+        result = debugApply("SwitchCaseBodyIndentation", result, SwitchCaseBodyIndentation::apply);
+        result = debugApply("AnnotationTypeBlankLines", result, AnnotationTypeBlankLines::apply);
+        result = debugApply("SplitFieldDeclarations", result, SplitFieldDeclarations::apply);
+        result = debugApply("ArrayInitializerWrapping", result, ArrayInitializerWrapping::apply);
+        result = debugApply("OperatorWrapping", result, OperatorWrapping::apply);
+        result = debugApply("AssignmentWrapping", result, r -> AssignmentWrapping.apply(r, config));
+        result = debugApply("ClosingBracketNewline", result, ClosingBracketNewline::apply);
+        result = debugApply(
+            "ParameterAnnotationWrapping",
+            result,
+            ParameterAnnotationWrapping::apply
+        );
+        result = debugApply("ThrowsWrapping", result, r -> ThrowsWrapping.apply(r, config));
+        result = debugApply("WrappedLineJoining", result, r -> WrappedLineJoining.apply(r, config));
         return ps.restore(result);
+    }
+
+    private static String debugApply(String ruleName, String input, UnaryOperator<String> rule) {
+        String output = rule.apply(input);
+        if (debugRules && !output.equals(input)) {
+            System.err.println("=== " + ruleName + " BEFORE ===");
+            System.err.println(input);
+            System.err.println("=== " + ruleName + " AFTER ===");
+            System.err.println(output);
+            System.err.println("=== END " + ruleName + " ===");
+        }
+        return output;
     }
 }
