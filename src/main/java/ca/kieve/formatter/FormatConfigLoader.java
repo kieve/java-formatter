@@ -20,10 +20,7 @@ import java.util.Map;
  * {@link FormatConfig#defaults()}.
  */
 public final class FormatConfigLoader {
-    private record RawConfig(
-        Integer maxLineLength,
-        List<Object> importLayout
-    ) {
+    private record RawConfig(Integer maxLineLength, List<Object> importLayout) {
     }
 
     private static final String CONFIG_FILE_NAME = "kieve-formatter.yaml";
@@ -43,10 +40,7 @@ public final class FormatConfigLoader {
         try (InputStream in = new FileInputStream(yamlFile)) {
             return load(in);
         } catch (IOException e) {
-            throw new IllegalArgumentException(
-                "Failed to read config file: " + yamlFile,
-                e
-            );
+            throw new IllegalArgumentException("Failed to read config file: " + yamlFile, e);
         }
     }
 
@@ -62,10 +56,7 @@ public final class FormatConfigLoader {
             RawConfig raw = MAPPER.treeToValue(tree, RawConfig.class);
             return toFormatConfig(raw);
         } catch (IOException e) {
-            throw new IllegalArgumentException(
-                "Failed to parse config YAML: " + e.getMessage(),
-                e
-            );
+            throw new IllegalArgumentException("Failed to parse config YAML: " + e.getMessage(), e);
         }
     }
 
@@ -131,11 +122,7 @@ public final class FormatConfigLoader {
         };
     }
 
-    private static ImportGroup parsePrefixList(
-        List<?> list,
-        boolean isStatic,
-        int index
-    ) {
+    private static ImportGroup parsePrefixList(List<?> list, boolean isStatic, int index) {
         List<String> prefixes = new ArrayList<>();
         for (Object item : list) {
             if (item instanceof String s) {
@@ -158,10 +145,7 @@ public final class FormatConfigLoader {
         return new ImportGroup(prefixes, isStatic);
     }
 
-    private static ImportGroup parseMapEntry(
-        Map<String, Object> map,
-        int index
-    ) {
+    private static ImportGroup parseMapEntry(Map<String, Object> map, int index) {
         if (map.size() != 1 || !map.containsKey("static")) {
             throw new IllegalArgumentException(
                 "importLayout[" + index

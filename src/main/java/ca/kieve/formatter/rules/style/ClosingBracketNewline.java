@@ -127,13 +127,7 @@ public final class ClosingBracketNewline {
             }
 
             char closer = closerFor(lastChar);
-            int[] closerPos = findMatchingCloser(
-                lines,
-                lineIdx,
-                lastCodePos,
-                lastChar,
-                closer
-            );
+            int[] closerPos = findMatchingCloser(lines, lineIdx, lastCodePos, lastChar, closer);
             if (closerPos == null) {
                 continue;
             }
@@ -155,13 +149,7 @@ public final class ClosingBracketNewline {
                 continue;
             }
 
-            splits.add(
-                new Split(
-                    closerLine,
-                    closerCol,
-                    extractIndent(lines[lineIdx])
-                )
-            );
+            splits.add(new Split(closerLine, closerCol, extractIndent(lines[lineIdx])));
         }
 
         if (splits.isEmpty()) {

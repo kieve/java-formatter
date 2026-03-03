@@ -96,9 +96,7 @@ class QualifiedImportResolutionTest extends FormatterRuleTestBase {
 
     @Override
     void respectsFormatterOffTags() throws IOException {
-        String input = loadFixture(
-            "qualified-import-resolution/formatter-off-unchanged.java"
-        );
+        String input = loadFixture("qualified-import-resolution/formatter-off-unchanged.java");
         assertEquals(input, CustomFormatterStep.applyCustomRules(input));
     }
 }

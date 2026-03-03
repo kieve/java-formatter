@@ -97,10 +97,7 @@ public final class FieldOrdering {
         return source;
     }
 
-    private static String tryReorder(
-        TypeDeclaration<?> type,
-        String[] lines
-    ) {
+    private static String tryReorder(TypeDeclaration<?> type, String[] lines) {
         List<BodyDeclaration<?>> members = type.getMembers();
         if (members.isEmpty()) {
             return null;
@@ -148,11 +145,7 @@ public final class FieldOrdering {
 
         int bodyStart;
         if (type instanceof EnumDeclaration) {
-            bodyStart = findEnumBodyStart(
-                (EnumDeclaration) type,
-                openBraceLine,
-                lines
-            );
+            bodyStart = findEnumBodyStart((EnumDeclaration) type, openBraceLine, lines);
         } else {
             bodyStart = openBraceLine + 1;
         }
@@ -164,11 +157,7 @@ public final class FieldOrdering {
 
         // Sort members by their begin line
         List<BodyDeclaration<?>> sortedMembers = new ArrayList<>(members);
-        sortedMembers.sort(
-            Comparator.comparingInt(
-                m -> m.getBegin().map(p -> p.line).orElse(0)
-            )
-        );
+        sortedMembers.sort(Comparator.comparingInt(m -> m.getBegin().map(p -> p.line).orElse(0)));
 
         // Build regions: each member "owns" the gap above it.
         // Static initializer blocks that follow a field get the same
@@ -320,10 +309,7 @@ public final class FieldOrdering {
             .max().orElse(0);
 
         int firstNonFieldBegin = nonFields.stream()
-            .mapToInt(
-                m -> m.getBegin().map(p -> p.line)
-                    .orElse(Integer.MAX_VALUE)
-            )
+            .mapToInt(m -> m.getBegin().map(p -> p.line).orElse(Integer.MAX_VALUE))
             .min().orElse(Integer.MAX_VALUE);
 
         return lastFieldEnd < firstNonFieldBegin;
@@ -351,10 +337,7 @@ public final class FieldOrdering {
      * declaration. Tracks parenthesis depth to skip braces inside annotation
      * arguments like {@code @SuppressWarnings({"unchecked"})}.
      */
-    private static int findOpenBraceLine(
-        TypeDeclaration<?> type,
-        String[] lines
-    ) {
+    private static int findOpenBraceLine(TypeDeclaration<?> type, String[] lines) {
         int beginLine = type.getBegin().map(p -> p.line - 1).orElse(-1);
         if (beginLine < 0) {
             return -1;

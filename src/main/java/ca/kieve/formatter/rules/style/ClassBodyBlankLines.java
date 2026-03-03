@@ -16,9 +16,7 @@ public final class ClassBodyBlankLines {
         "(\\{[^\\S\\n]*\\n)(\\s*\\n)+"
     );
 
-    private static final Pattern BLANK_BEFORE_BRACE = Pattern.compile(
-        "\\n(\\s*\\n)+(\\s*})"
-    );
+    private static final Pattern BLANK_BEFORE_BRACE = Pattern.compile("\\n(\\s*\\n)+(\\s*})");
 
     private ClassBodyBlankLines() {
     }

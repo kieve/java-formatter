@@ -14,10 +14,7 @@ class CommentFormattingTest extends FormatterRuleTestBase {
     private static final FormatConfig CONFIG = FormatConfig.defaults();
 
     CommentFormattingTest() {
-        super(
-            "comment-formatting-rule/",
-            s -> CommentFormatting.apply(s, CONFIG)
-        );
+        super("comment-formatting-rule/", s -> CommentFormatting.apply(s, CONFIG));
     }
 
     @Test
@@ -32,50 +29,32 @@ class CommentFormattingTest extends FormatterRuleTestBase {
 
     @Test
     void paramContinuationAlign() throws IOException {
-        test(
-            "param-continuation-input.java",
-            "param-continuation-expected.java"
-        );
+        test("param-continuation-input.java", "param-continuation-expected.java");
     }
 
     @Test
     void returnContinuationAlign() throws IOException {
-        test(
-            "return-continuation-input.java",
-            "return-continuation-expected.java"
-        );
+        test("return-continuation-input.java", "return-continuation-expected.java");
     }
 
     @Test
     void throwsContinuationAlign() throws IOException {
-        test(
-            "throws-continuation-input.java",
-            "throws-continuation-expected.java"
-        );
+        test("throws-continuation-input.java", "throws-continuation-expected.java");
     }
 
     @Test
     void blockCommentWraps() throws IOException {
-        test(
-            "block-comment-wrap-input.java",
-            "block-comment-wrap-expected.java"
-        );
+        test("block-comment-wrap-input.java", "block-comment-wrap-expected.java");
     }
 
     @Test
     void lineCommentWraps() throws IOException {
-        test(
-            "line-comment-wrap-input.java",
-            "line-comment-wrap-expected.java"
-        );
+        test("line-comment-wrap-input.java", "line-comment-wrap-expected.java");
     }
 
     @Test
     void markdownDocWraps() throws IOException {
-        test(
-            "markdown-doc-wrap-input.java",
-            "markdown-doc-wrap-expected.java"
-        );
+        test("markdown-doc-wrap-input.java", "markdown-doc-wrap-expected.java");
     }
 
     @Test
@@ -105,9 +84,7 @@ class CommentFormattingTest extends FormatterRuleTestBase {
 
     @Override
     void respectsFormatterOffTags() throws IOException {
-        String input = loadFixture(
-            "comment-formatting-rule/formatter-off-unchanged.java"
-        );
+        String input = loadFixture("comment-formatting-rule/formatter-off-unchanged.java");
         assertEquals(input, CustomFormatterStep.applyCustomRules(input));
     }
 }

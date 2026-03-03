@@ -36,11 +36,7 @@ import java.util.List;
  * </pre>
  */
 public final class ParameterAnnotationWrapping {
-    private record Replacement(
-        int startLine,
-        int endLine,
-        List<String> newLines
-    ) {
+    private record Replacement(int startLine, int endLine, List<String> newLines) {
     }
 
     private ParameterAnnotationWrapping() {
@@ -66,11 +62,7 @@ public final class ParameterAnnotationWrapping {
         }
 
         // Apply bottom-to-top so line numbers stay valid
-        replacements.sort(
-            Comparator.comparingInt(
-                (Replacement r) -> r.startLine
-            ).reversed()
-        );
+        replacements.sort(Comparator.comparingInt((Replacement r) -> r.startLine).reversed());
 
         String[] lines = sourceLines;
         for (Replacement r : replacements) {
@@ -154,10 +146,7 @@ public final class ParameterAnnotationWrapping {
         return line.substring(0, i);
     }
 
-    private static String[] applyReplacement(
-        String[] lines,
-        Replacement replacement
-    ) {
+    private static String[] applyReplacement(String[] lines, Replacement replacement) {
         List<String> result = new ArrayList<>();
         for (int i = 0; i < replacement.startLine; i++) {
             result.add(lines[i]);

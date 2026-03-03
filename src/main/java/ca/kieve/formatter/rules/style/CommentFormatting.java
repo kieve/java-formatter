@@ -145,9 +145,7 @@ public final class CommentFormatting {
             if (containsTextBlockStart(trimmed)) {
                 inTextBlock = true;
                 result.add(line);
-                if (containsTextBlockEnd(
-                    line.substring(line.indexOf("\"\"\"") + 3)
-                )) {
+                if (containsTextBlockEnd(line.substring(line.indexOf("\"\"\"") + 3))) {
                     inTextBlock = false;
                 }
                 i++;
@@ -259,10 +257,7 @@ public final class CommentFormatting {
 
     // ── Javadoc formatting ──────────────────────────────────────────────
 
-    private static List<String> formatSingleLineJavadoc(
-        String line,
-        int maxLen
-    ) {
+    private static List<String> formatSingleLineJavadoc(String line, int maxLen) {
         if (line.length() <= maxLen) {
             return List.of(line);
         }
@@ -278,10 +273,7 @@ public final class CommentFormatting {
         return formatJavadoc(expanded, maxLen);
     }
 
-    private static List<String> formatJavadoc(
-        List<String> lines,
-        int maxLen
-    ) {
+    private static List<String> formatJavadoc(List<String> lines, int maxLen) {
         if (lines.isEmpty()) {
             return lines;
         }
@@ -317,9 +309,7 @@ public final class CommentFormatting {
                         continue;
                     }
                     // Split-only for description lines
-                    result.addAll(
-                        splitOverlength(descLine, starPrefix, maxLen)
-                    );
+                    result.addAll(splitOverlength(descLine, starPrefix, maxLen));
                 }
                 continue;
             }
@@ -333,10 +323,7 @@ public final class CommentFormatting {
         return result;
     }
 
-    private static List<Segment> parseJavadocSegments(
-        List<String> lines,
-        String indent
-    ) {
+    private static List<Segment> parseJavadocSegments(List<String> lines, String indent) {
         List<Segment> segments = new ArrayList<>();
         String starPrefix = indent + " * ";
 
@@ -372,11 +359,7 @@ public final class CommentFormatting {
             if (isTag) {
                 // Flush description
                 if (!currentDescLines.isEmpty()) {
-                    segments.add(
-                        new DescriptionSegment(
-                            new ArrayList<>(currentDescLines)
-                        )
-                    );
+                    segments.add(new DescriptionSegment(new ArrayList<>(currentDescLines)));
                     currentDescLines.clear();
                 }
                 // Flush previous tag
@@ -401,9 +384,7 @@ public final class CommentFormatting {
 
         // Flush remaining
         if (!currentDescLines.isEmpty()) {
-            segments.add(
-                new DescriptionSegment(new ArrayList<>(currentDescLines))
-            );
+            segments.add(new DescriptionSegment(new ArrayList<>(currentDescLines)));
         }
         if (currentTag != null) {
             segments.add(currentTag);
@@ -472,11 +453,7 @@ public final class CommentFormatting {
         return trimmed;
     }
 
-    private static List<String> formatTagSegment(
-        TagSegment tag,
-        String starPrefix,
-        int maxLen
-    ) {
+    private static List<String> formatTagSegment(TagSegment tag, String starPrefix, int maxLen) {
         String fullText = tag.getFullText();
         String contIndentStr = tag.getContinuationIndent();
         String contPrefix = starPrefix + contIndentStr;
@@ -492,10 +469,7 @@ public final class CommentFormatting {
 
     // ── Block comment formatting ────────────────────────────────────────
 
-    private static List<String> formatBlockComment(
-        List<String> lines,
-        int maxLen
-    ) {
+    private static List<String> formatBlockComment(List<String> lines, int maxLen) {
         List<String> result = new ArrayList<>();
         boolean inVerbatim = false;
 
@@ -535,10 +509,7 @@ public final class CommentFormatting {
 
     // ── Line comment formatting ─────────────────────────────────────────
 
-    private static List<String> formatLineComments(
-        List<String> lines,
-        int maxLen
-    ) {
+    private static List<String> formatLineComments(List<String> lines, int maxLen) {
         List<String> result = new ArrayList<>();
         for (String line : lines) {
             if (line.length() <= maxLen) {
@@ -554,10 +525,7 @@ public final class CommentFormatting {
 
     // ── Markdown doc comment formatting ─────────────────────────────────
 
-    private static List<String> formatMarkdownDoc(
-        List<String> lines,
-        int maxLen
-    ) {
+    private static List<String> formatMarkdownDoc(List<String> lines, int maxLen) {
         List<String> result = new ArrayList<>();
         for (String line : lines) {
             if (line.length() <= maxLen) {
@@ -579,11 +547,7 @@ public final class CommentFormatting {
      * text up to the last word boundary that fits; continuation lines use
      * the given prefix.
      */
-    private static List<String> splitOverlength(
-        String line,
-        String contPrefix,
-        int maxLen
-    ) {
+    private static List<String> splitOverlength(String line, String contPrefix, int maxLen) {
         if (line.length() <= maxLen) {
             return List.of(line);
         }

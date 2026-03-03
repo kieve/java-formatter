@@ -57,9 +57,7 @@ public final class CheckstyleTestUtil {
                 .getResourceAsStream("/checkstyle.xml")
         ) {
             if (configStream == null) {
-                throw new IllegalStateException(
-                    "checkstyle.xml not found on classpath."
-                );
+                throw new IllegalStateException("checkstyle.xml not found on classpath.");
             }
 
             Configuration config = ConfigurationLoader.loadConfiguration(
@@ -93,27 +91,13 @@ public final class CheckstyleTestUtil {
                 @Override
                 public void addError(AuditEvent event) {
                     String sourceName = event.getSourceName();
-                    String checkName = sourceName.substring(
-                        sourceName.lastIndexOf('.') + 1
-                    );
-                    violations.add(
-                        new Violation(
-                            event.getLine(),
-                            event.getMessage(),
-                            checkName
-                        )
-                    );
+                    String checkName = sourceName.substring(sourceName.lastIndexOf('.') + 1);
+                    violations.add(new Violation(event.getLine(), event.getMessage(), checkName));
                 }
 
                 @Override
-                public void addException(
-                    AuditEvent event,
-                    Throwable throwable
-                ) {
-                    throw new RuntimeException(
-                        "Checkstyle exception",
-                        throwable
-                    );
+                public void addException(AuditEvent event, Throwable throwable) {
+                    throw new RuntimeException("Checkstyle exception", throwable);
                 }
             });
 

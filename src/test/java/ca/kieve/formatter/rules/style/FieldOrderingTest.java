@@ -16,42 +16,27 @@ class FieldOrderingTest extends FormatterRuleTestBase {
 
     @Test
     void sortsStaticBeforeInstance() throws IOException {
-        test(
-            "static-before-instance-input.java",
-            "static-before-instance-expected.java"
-        );
+        test("static-before-instance-input.java", "static-before-instance-expected.java");
     }
 
     @Test
     void sortsPublicBeforeNonPublic() throws IOException {
-        test(
-            "public-before-nonpublic-input.java",
-            "public-before-nonpublic-expected.java"
-        );
+        test("public-before-nonpublic-input.java", "public-before-nonpublic-expected.java");
     }
 
     @Test
     void sortsFinalBeforeNonFinal() throws IOException {
-        test(
-            "final-before-nonfinal-input.java",
-            "final-before-nonfinal-expected.java"
-        );
+        test("final-before-nonfinal-input.java", "final-before-nonfinal-expected.java");
     }
 
     @Test
     void sortsFullGroupOrdering() throws IOException {
-        test(
-            "full-group-ordering-input.java",
-            "full-group-ordering-expected.java"
-        );
+        test("full-group-ordering-input.java", "full-group-ordering-expected.java");
     }
 
     @Test
     void movesFieldsBeforeConstructor() throws IOException {
-        test(
-            "fields-before-constructor-input.java",
-            "fields-before-constructor-expected.java"
-        );
+        test("fields-before-constructor-input.java", "fields-before-constructor-expected.java");
     }
 
     @Test
@@ -66,10 +51,7 @@ class FieldOrderingTest extends FormatterRuleTestBase {
 
     @Test
     void handlesEnumWithConstants() throws IOException {
-        test(
-            "enum-with-constants-input.java",
-            "enum-with-constants-expected.java"
-        );
+        test("enum-with-constants-input.java", "enum-with-constants-expected.java");
     }
 
     @Test
@@ -84,10 +66,7 @@ class FieldOrderingTest extends FormatterRuleTestBase {
 
     @Test
     void keepsStaticInitBlockWithField() throws IOException {
-        test(
-            "static-init-block-input.java",
-            "static-init-block-expected.java"
-        );
+        test("static-init-block-input.java", "static-init-block-expected.java");
     }
 
     @Test
@@ -97,10 +76,7 @@ class FieldOrderingTest extends FormatterRuleTestBase {
 
     @Test
     void keepsStaticInitBlockBeforeField() throws IOException {
-        test(
-            "static-init-before-field-input.java",
-            "static-init-before-field-expected.java"
-        );
+        test("static-init-before-field-input.java", "static-init-before-field-expected.java");
     }
 
     @Test

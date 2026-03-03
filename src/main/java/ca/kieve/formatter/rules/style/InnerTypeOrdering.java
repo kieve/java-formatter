@@ -120,11 +120,7 @@ public final class InnerTypeOrdering {
 
         int bodyStart;
         if (type instanceof EnumDeclaration) {
-            bodyStart = findEnumBodyStart(
-                (EnumDeclaration) type,
-                openBraceLine,
-                lines
-            );
+            bodyStart = findEnumBodyStart((EnumDeclaration) type, openBraceLine, lines);
         } else {
             bodyStart = openBraceLine + 1;
         }
@@ -136,11 +132,7 @@ public final class InnerTypeOrdering {
 
         // Sort members by their begin line
         List<BodyDeclaration<?>> sortedMembers = new ArrayList<>(members);
-        sortedMembers.sort(
-            Comparator.comparingInt(
-                m -> m.getBegin().map(p -> p.line).orElse(0)
-            )
-        );
+        sortedMembers.sort(Comparator.comparingInt(m -> m.getBegin().map(p -> p.line).orElse(0)));
 
         // Build regions: each member "owns" the gap above it
         List<Region> regions = new ArrayList<>();
@@ -238,10 +230,7 @@ public final class InnerTypeOrdering {
      * declaration. Tracks parenthesis depth to skip braces inside annotation
      * arguments like {@code @SuppressWarnings({"unchecked"})}.
      */
-    private static int findOpenBraceLine(
-        TypeDeclaration<?> type,
-        String[] lines
-    ) {
+    private static int findOpenBraceLine(TypeDeclaration<?> type, String[] lines) {
         int beginLine = type.getBegin().map(p -> p.line - 1).orElse(-1);
         if (beginLine < 0) {
             return -1;

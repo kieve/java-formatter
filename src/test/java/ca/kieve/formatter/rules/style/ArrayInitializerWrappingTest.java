@@ -37,9 +37,7 @@ class ArrayInitializerWrappingTest extends FormatterRuleTestBase {
     @Override
     @Test
     void respectsFormatterOffTags() throws IOException {
-        String input = loadFixture(
-            "array-initializer-wrapping/formatter-off-unchanged.java"
-        );
+        String input = loadFixture("array-initializer-wrapping/formatter-off-unchanged.java");
         assertEquals(input, CustomFormatterStep.applyCustomRules(input));
     }
 }

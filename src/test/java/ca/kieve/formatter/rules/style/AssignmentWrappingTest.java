@@ -14,10 +14,7 @@ class AssignmentWrappingTest extends FormatterRuleTestBase {
     private static final FormatConfig CONFIG = FormatConfig.defaults();
 
     AssignmentWrappingTest() {
-        super(
-            "assignment-wrapping/",
-            s -> AssignmentWrapping.apply(s, CONFIG)
-        );
+        super("assignment-wrapping/", s -> AssignmentWrapping.apply(s, CONFIG));
     }
 
     @Test
@@ -58,9 +55,7 @@ class AssignmentWrappingTest extends FormatterRuleTestBase {
     @Override
     @Test
     void respectsFormatterOffTags() throws IOException {
-        String input = loadFixture(
-            "assignment-wrapping/formatter-off-unchanged.java"
-        );
+        String input = loadFixture("assignment-wrapping/formatter-off-unchanged.java");
         assertEquals(input, CustomFormatterStep.applyCustomRules(input));
     }
 }

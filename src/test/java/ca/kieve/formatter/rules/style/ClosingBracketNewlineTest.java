@@ -97,9 +97,7 @@ class ClosingBracketNewlineTest extends FormatterRuleTestBase {
     @Override
     @Test
     void respectsFormatterOffTags() throws IOException {
-        String input = loadFixture(
-            "closing-bracket-newline/formatter-off-unchanged.java"
-        );
+        String input = loadFixture("closing-bracket-newline/formatter-off-unchanged.java");
         assertEquals(input, CustomFormatterStep.applyCustomRules(input));
     }
 }

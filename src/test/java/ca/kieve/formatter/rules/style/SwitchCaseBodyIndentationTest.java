@@ -11,10 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class SwitchCaseBodyIndentationTest extends FormatterRuleTestBase {
     SwitchCaseBodyIndentationTest() {
-        super(
-            "switch-case-body-indent/",
-            SwitchCaseBodyIndentation::apply
-        );
+        super("switch-case-body-indent/", SwitchCaseBodyIndentation::apply);
     }
 
     @Test
@@ -35,9 +32,7 @@ class SwitchCaseBodyIndentationTest extends FormatterRuleTestBase {
     @Override
     @Test
     void respectsFormatterOffTags() throws IOException {
-        String input = loadFixture(
-            "switch-case-body-indent/formatter-off-unchanged.java"
-        );
+        String input = loadFixture("switch-case-body-indent/formatter-off-unchanged.java");
         assertEquals(input, CustomFormatterStep.applyCustomRules(input));
     }
 }

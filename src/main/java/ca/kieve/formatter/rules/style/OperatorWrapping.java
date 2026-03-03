@@ -163,10 +163,7 @@ public final class OperatorWrapping {
 
             String nextIndent = extractIndent(nextLine);
             String nextContent = nextLine.stripLeading();
-            result.set(
-                edit.lineIndex + 1,
-                nextIndent + edit.operator + " " + nextContent
-            );
+            result.set(edit.lineIndex + 1, nextIndent + edit.operator + " " + nextContent);
         }
 
         return String.join("\n", result);

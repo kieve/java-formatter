@@ -205,11 +205,7 @@ public final class ArrayInitializerWrapping {
         return col - 1;
     }
 
-    private static int[] findMatchingCloser(
-        String[] lines,
-        int startLine,
-        int startCol
-    ) {
+    private static int[] findMatchingCloser(String[] lines, int startLine, int startCol) {
         int depth = 1;
         boolean inBlockComment = false;
         boolean inTextBlock = false;

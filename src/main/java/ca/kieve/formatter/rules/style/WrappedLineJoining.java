@@ -24,11 +24,7 @@ import java.util.List;
  * max line length.
  */
 public final class WrappedLineJoining {
-    private record Replacement(
-        int startLine,
-        int endLine,
-        List<String> newLines
-    ) {
+    private record Replacement(int startLine, int endLine, List<String> newLines) {
     }
 
     private WrappedLineJoining() {
@@ -139,11 +135,7 @@ public final class WrappedLineJoining {
             }
 
             // Find matching closer
-            int[] closerPos = findMatchingCloser(
-                lines,
-                lineIdx,
-                lastCodePos
-            );
+            int[] closerPos = findMatchingCloser(lines, lineIdx, lastCodePos);
             if (closerPos == null) {
                 continue;
             }
@@ -159,9 +151,7 @@ public final class WrappedLineJoining {
             // Validate that ')' is the first non-whitespace char on its line
             boolean isFirstNonWhitespace = true;
             for (int j = 0; j < closerCol; j++) {
-                if (!Character.isWhitespace(
-                    lines[closerLine].charAt(j)
-                )) {
+                if (!Character.isWhitespace(lines[closerLine].charAt(j))) {
                     isFirstNonWhitespace = false;
                     break;
                 }
@@ -208,13 +198,7 @@ public final class WrappedLineJoining {
                 continue;
             }
 
-            replacements.add(
-                new Replacement(
-                    lineIdx,
-                    closerLine,
-                    List.of(singleLine)
-                )
-            );
+            replacements.add(new Replacement(lineIdx, closerLine, List.of(singleLine)));
         }
 
         if (replacements.isEmpty()) {
@@ -222,11 +206,7 @@ public final class WrappedLineJoining {
         }
 
         // Apply bottom-to-top, skip overlapping replacements
-        replacements.sort(
-            Comparator.comparingInt(
-                (Replacement r) -> r.startLine
-            ).reversed()
-        );
+        replacements.sort(Comparator.comparingInt((Replacement r) -> r.startLine).reversed());
 
         int lowestConsumed = Integer.MAX_VALUE;
         List<String> result = new ArrayList<>(Arrays.asList(lines));
@@ -383,11 +363,7 @@ public final class WrappedLineJoining {
         return col - 1;
     }
 
-    private static int[] findMatchingCloser(
-        String[] lines,
-        int startLine,
-        int startCol
-    ) {
+    private static int[] findMatchingCloser(String[] lines, int startLine, int startCol) {
         int depth = 1;
         boolean inBlockComment = false;
         boolean inTextBlock = false;

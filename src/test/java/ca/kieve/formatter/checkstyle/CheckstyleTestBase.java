@@ -23,9 +23,7 @@ abstract class CheckstyleTestBase {
     }
 
     protected List<Violation> lint(String fixture) throws IOException {
-        return CheckstyleTestUtil.lint(
-            FormatterTestUtil.loadFixture(fixtureDir + fixture)
-        );
+        return CheckstyleTestUtil.lint(FormatterTestUtil.loadFixture(fixtureDir + fixture));
     }
 
     /**

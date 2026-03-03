@@ -31,11 +31,7 @@ import java.util.List;
  * throws formatting instead.
  */
 public final class ThrowsWrapping {
-    private record Replacement(
-        int startLine,
-        int endLine,
-        List<String> newLines
-    ) {
+    private record Replacement(int startLine, int endLine, List<String> newLines) {
     }
 
     private ThrowsWrapping() {
@@ -55,21 +51,14 @@ public final class ThrowsWrapping {
 
         cu.findAll(CallableDeclaration.class).stream()
             .filter(c -> !c.getThrownExceptions().isEmpty())
-            .forEach(
-                c -> buildReplacement(c, sourceLines, limit)
-                    .ifPresent(replacements::add)
-            );
+            .forEach(c -> buildReplacement(c, sourceLines, limit).ifPresent(replacements::add));
 
         if (replacements.isEmpty()) {
             return source;
         }
 
         // Apply bottom-to-top so line numbers stay valid
-        replacements.sort(
-            Comparator.comparingInt(
-                (Replacement r) -> r.startLine
-            ).reversed()
-        );
+        replacements.sort(Comparator.comparingInt((Replacement r) -> r.startLine).reversed());
 
         String[] lines = sourceLines;
         for (Replacement r : replacements) {
@@ -102,11 +91,7 @@ public final class ThrowsWrapping {
         // Find "throws" keyword by searching backward from first exception
         int throwsLine = -1;
         int throwsCol = -1;
-        for (
-            int i = firstExLine;
-            i >= Math.max(0, firstExLine - 10);
-            i--
-        ) {
+        for (int i = firstExLine; i >= Math.max(0, firstExLine - 10); i--) {
             int searchBefore = (i == firstExLine) ? firstExCol : lines[i].length();
             int col = findThrowsKeyword(lines[i], searchBefore);
             if (col < 0) {
@@ -123,11 +108,7 @@ public final class ThrowsWrapping {
         // Find ')' before "throws"
         int closeParenLine = -1;
         int closeParenCol = -1;
-        for (
-            int i = throwsLine;
-            i >= Math.max(0, throwsLine - 10);
-            i--
-        ) {
+        for (int i = throwsLine; i >= Math.max(0, throwsLine - 10); i--) {
             int searchBefore = (i == throwsLine) ? throwsCol : lines[i].length();
             int col = findCloseParenBefore(lines[i], searchBefore);
             if (col < 0) {
@@ -145,11 +126,7 @@ public final class ThrowsWrapping {
         int endLine = -1;
         int endCol = -1;
         char endChar = '\0';
-        for (
-            int i = lastExEndLine;
-            i < Math.min(lines.length, lastExEndLine + 5);
-            i++
-        ) {
+        for (int i = lastExEndLine; i < Math.min(lines.length, lastExEndLine + 5); i++) {
             int startCol = (i == lastExEndLine) ? lastExEndCol : 0;
             for (int j = startCol; j < lines[i].length(); j++) {
                 char ch = lines[i].charAt(j);
@@ -195,9 +172,7 @@ public final class ThrowsWrapping {
 
         if (singleLine.length() <= limit) {
             List<String> newLines = List.of(singleLine + trailing);
-            return java.util.Optional.of(
-                new Replacement(closeParenLine, endLine, newLines)
-            );
+            return java.util.Optional.of(new Replacement(closeParenLine, endLine, newLines));
         }
 
         // Multi-line format
@@ -222,9 +197,7 @@ public final class ThrowsWrapping {
             newLines.set(lastIdx, newLines.get(lastIdx) + trailing);
         }
 
-        return java.util.Optional.of(
-            new Replacement(closeParenLine, endLine, newLines)
-        );
+        return java.util.Optional.of(new Replacement(closeParenLine, endLine, newLines));
     }
 
     /**
@@ -256,11 +229,7 @@ public final class ThrowsWrapping {
      * Find the last ')' in a line before {@code beforeCol}.
      */
     private static int findCloseParenBefore(String line, int beforeCol) {
-        for (
-            int i = Math.min(beforeCol - 1, line.length() - 1);
-            i >= 0;
-            i--
-        ) {
+        for (int i = Math.min(beforeCol - 1, line.length() - 1); i >= 0; i--) {
             if (line.charAt(i) == ')') {
                 return i;
             }
@@ -277,10 +246,7 @@ public final class ThrowsWrapping {
         return line.substring(0, i);
     }
 
-    private static String[] applyReplacement(
-        String[] lines,
-        Replacement replacement
-    ) {
+    private static String[] applyReplacement(String[] lines, Replacement replacement) {
         List<String> result = new ArrayList<>();
         for (int i = 0; i < replacement.startLine; i++) {
             result.add(lines[i]);

@@ -16,10 +16,7 @@ public final class FormatConfig implements Serializable {
     private final int maxLineLength;
     private final List<ImportGroup> importLayout;
 
-    public FormatConfig(
-        int maxLineLength,
-        List<ImportGroup> importLayout
-    ) {
+    public FormatConfig(int maxLineLength, List<ImportGroup> importLayout) {
         this.maxLineLength = maxLineLength;
         this.importLayout = List.copyOf(importLayout);
     }

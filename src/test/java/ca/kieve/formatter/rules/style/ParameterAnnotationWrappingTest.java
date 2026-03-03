@@ -11,10 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ParameterAnnotationWrappingTest extends FormatterRuleTestBase {
     ParameterAnnotationWrappingTest() {
-        super(
-            "parameter-annotation-wrapping/",
-            ParameterAnnotationWrapping::apply
-        );
+        super("parameter-annotation-wrapping/", ParameterAnnotationWrapping::apply);
     }
 
     @Test
@@ -55,9 +52,7 @@ class ParameterAnnotationWrappingTest extends FormatterRuleTestBase {
     @Override
     @Test
     void respectsFormatterOffTags() throws IOException {
-        String input = loadFixture(
-            "parameter-annotation-wrapping/formatter-off-unchanged.java"
-        );
+        String input = loadFixture("parameter-annotation-wrapping/formatter-off-unchanged.java");
         assertEquals(input, CustomFormatterStep.applyCustomRules(input));
     }
 }

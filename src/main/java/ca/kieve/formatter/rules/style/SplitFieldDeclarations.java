@@ -21,11 +21,7 @@ import java.util.List;
  * but does not touch for-loop initializers or try-with-resources.
  */
 public final class SplitFieldDeclarations {
-    private record Replacement(
-        int startLine,
-        int endLine,
-        List<String> newLines
-    ) {
+    private record Replacement(int startLine, int endLine, List<String> newLines) {
     }
 
     private SplitFieldDeclarations() {
@@ -65,11 +61,7 @@ public final class SplitFieldDeclarations {
         }
 
         // Apply bottom-to-top so line numbers stay valid
-        replacements.sort(
-            Comparator.comparingInt(
-                (Replacement r) -> r.startLine
-            ).reversed()
-        );
+        replacements.sort(Comparator.comparingInt((Replacement r) -> r.startLine).reversed());
 
         String[] lines = sourceLines;
         for (Replacement r : replacements) {
@@ -99,13 +91,7 @@ public final class SplitFieldDeclarations {
         int startLine = begin.line - 1;
         int endLine = end.line - 1;
 
-        String fullText = extractText(
-            lines,
-            startLine,
-            begin.column - 1,
-            endLine,
-            end.column
-        );
+        String fullText = extractText(lines, startLine, begin.column - 1, endLine, end.column);
 
         String firstName = variables.get(0).getName().asString();
         int nameIdx = findFirstVariableName(fullText, firstName);
@@ -125,9 +111,7 @@ public final class SplitFieldDeclarations {
             newLines.add(indent + prefix + var.toString() + ";");
         }
 
-        return java.util.Optional.of(
-            new Replacement(startLine, endLine, newLines)
-        );
+        return java.util.Optional.of(new Replacement(startLine, endLine, newLines));
     }
 
     private static java.util.Optional<Replacement> buildReplacementForLocal(
@@ -144,13 +128,7 @@ public final class SplitFieldDeclarations {
         int startLine = begin.line - 1;
         int endLine = end.line - 1;
 
-        String fullText = extractText(
-            lines,
-            startLine,
-            begin.column - 1,
-            endLine,
-            end.column
-        );
+        String fullText = extractText(lines, startLine, begin.column - 1, endLine, end.column);
 
         List<VariableDeclarator> variables = expr.getVariables();
         String firstName = variables.get(0).getName().asString();
@@ -171,9 +149,7 @@ public final class SplitFieldDeclarations {
             newLines.add(indent + prefix + var.toString() + ";");
         }
 
-        return java.util.Optional.of(
-            new Replacement(startLine, endLine, newLines)
-        );
+        return java.util.Optional.of(new Replacement(startLine, endLine, newLines));
     }
 
     private static String extractText(
@@ -226,11 +202,7 @@ public final class SplitFieldDeclarations {
         return line.substring(0, i);
     }
 
-    private static String extractTrailingComment(
-        String[] lines,
-        int endLine,
-        int endCol
-    ) {
+    private static String extractTrailingComment(String[] lines, int endLine, int endCol) {
         String line = lines[endLine];
         if (endCol < line.length()) {
             String rest = line.substring(endCol).trim();
@@ -241,10 +213,7 @@ public final class SplitFieldDeclarations {
         return null;
     }
 
-    private static String[] applyReplacement(
-        String[] lines,
-        Replacement replacement
-    ) {
+    private static String[] applyReplacement(String[] lines, Replacement replacement) {
         List<String> result = new ArrayList<>();
         for (int i = 0; i < replacement.startLine; i++) {
             result.add(lines[i]);

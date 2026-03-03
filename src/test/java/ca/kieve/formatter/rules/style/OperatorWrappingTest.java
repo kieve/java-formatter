@@ -16,18 +16,12 @@ class OperatorWrappingTest extends FormatterRuleTestBase {
 
     @Test
     void logicalOperatorMoves() throws IOException {
-        test(
-            "logical-operator-input.java",
-            "logical-operator-expected.java"
-        );
+        test("logical-operator-input.java", "logical-operator-expected.java");
     }
 
     @Test
     void stringConcatMoves() throws IOException {
-        test(
-            "string-concat-input.java",
-            "string-concat-expected.java"
-        );
+        test("string-concat-input.java", "string-concat-expected.java");
     }
 
     @Test
@@ -43,9 +37,7 @@ class OperatorWrappingTest extends FormatterRuleTestBase {
     @Override
     @Test
     void respectsFormatterOffTags() throws IOException {
-        String input = loadFixture(
-            "operator-wrapping/formatter-off-unchanged.java"
-        );
+        String input = loadFixture("operator-wrapping/formatter-off-unchanged.java");
         assertEquals(input, CustomFormatterStep.applyCustomRules(input));
     }
 }

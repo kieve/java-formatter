@@ -20,9 +20,7 @@ import java.util.regex.Pattern;
  * preserved (one blank line per group boundary).
  */
 public final class AnnotationTypeBlankLines {
-    private static final Pattern ANNOTATION_TYPE = Pattern.compile(
-        "@interface\\s+\\w+"
-    );
+    private static final Pattern ANNOTATION_TYPE = Pattern.compile("@interface\\s+\\w+");
 
     private static final Pattern TYPE_KEYWORD = Pattern.compile(
         "\\b(?:class|interface|enum|record)\\s+\\w+"
@@ -98,10 +96,7 @@ public final class AnnotationTypeBlankLines {
      * ({@code }}) or the next non-blank line starts a type declaration,
      * exactly one blank line is preserved.
      */
-    private static void preserveGroupSeparators(
-        String[] lines,
-        Set<Integer> linesToRemove
-    ) {
+    private static void preserveGroupSeparators(String[] lines, Set<Integer> linesToRemove) {
         List<Integer> sorted = new ArrayList<>(linesToRemove);
         Collections.sort(sorted);
 

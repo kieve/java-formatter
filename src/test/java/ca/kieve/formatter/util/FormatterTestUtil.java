@@ -57,9 +57,7 @@ public final class FormatterTestUtil {
             .withArguments("spotlessApply")
             .build();
 
-        return normalizeLineEndings(
-            Files.readString(testProjectDir.resolve(RELATIVE_PATH))
-        );
+        return normalizeLineEndings(Files.readString(testProjectDir.resolve(RELATIVE_PATH)));
     }
 
     /**

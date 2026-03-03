@@ -14,10 +14,7 @@ class WrappedLineJoiningTest extends FormatterRuleTestBase {
     private static final FormatConfig CONFIG = FormatConfig.defaults();
 
     WrappedLineJoiningTest() {
-        super(
-            "wrapped-line-joining/",
-            s -> WrappedLineJoining.apply(s, CONFIG)
-        );
+        super("wrapped-line-joining/", s -> WrappedLineJoining.apply(s, CONFIG));
     }
 
     @Test
@@ -27,10 +24,7 @@ class WrappedLineJoiningTest extends FormatterRuleTestBase {
 
     @Test
     void joinsConstructorParams() throws IOException {
-        test(
-            "constructor-params-input.java",
-            "constructor-params-expected.java"
-        );
+        test("constructor-params-input.java", "constructor-params-expected.java");
     }
 
     @Test
@@ -71,9 +65,7 @@ class WrappedLineJoiningTest extends FormatterRuleTestBase {
     @Override
     @Test
     void respectsFormatterOffTags() throws IOException {
-        String input = loadFixture(
-            "wrapped-line-joining/formatter-off-unchanged.java"
-        );
+        String input = loadFixture("wrapped-line-joining/formatter-off-unchanged.java");
         assertEquals(input, CustomFormatterStep.applyCustomRules(input));
     }
 }

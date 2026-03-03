@@ -37,10 +37,7 @@ public final class DirectFormatterTestUtil {
     }
 
     private static final ThreadLocal<CodeFormatter> CODE_FORMATTER = ThreadLocal.withInitial(
-        () -> ToolFactory.createCodeFormatter(
-            FORMATTER_OPTIONS,
-            ToolFactory.M_FORMAT_EXISTING
-        )
+        () -> ToolFactory.createCodeFormatter(FORMATTER_OPTIONS, ToolFactory.M_FORMAT_EXISTING)
     );
 
     private DirectFormatterTestUtil() {
