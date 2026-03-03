@@ -1,7 +1,7 @@
-We've configured the eclipse formatter as best we can, but there's some gaps that we're now
-fixing with custom formatter rules.
+We've configured the eclipse formatter as best we can, and added many custom formatting and linting
+rules.
 
-Some useful context follows.
+Also, we support disabling the formatting.
 
 ---
 Formatter Disable Tags
