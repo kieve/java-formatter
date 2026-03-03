@@ -167,5 +167,8 @@ public class JavaFormatterPlugin implements Plugin<Project> {
             task.setGroup("verification");
             task.setDescription("Lint test source files");
         });
+
+        // Wire format before compilation so sources are auto-formatted before build
+        project.getTasks().named("compileJava", task -> task.dependsOn("format"));
     }
 }
