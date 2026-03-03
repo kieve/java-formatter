@@ -22,6 +22,7 @@ import ca.kieve.formatter.rules.style.SplitFieldDeclarations;
 import ca.kieve.formatter.rules.style.SwitchCaseBlankLines;
 import ca.kieve.formatter.rules.style.SwitchCaseBodyIndentation;
 import ca.kieve.formatter.rules.style.ThrowsWrapping;
+import ca.kieve.formatter.rules.style.WrappedLineJoining;
 
 import java.io.Serializable;
 
@@ -94,6 +95,7 @@ public final class CustomFormatterStep {
         result = ClosingBracketNewline.apply(result);
         result = ParameterAnnotationWrapping.apply(result);
         result = ThrowsWrapping.apply(result, config);
+        result = WrappedLineJoining.apply(result, config);
         return ps.restore(result);
     }
 }
